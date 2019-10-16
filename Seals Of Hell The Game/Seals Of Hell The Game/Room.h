@@ -11,6 +11,6 @@ public:
 	Room();
 	~Room();
 	const void AddExitRoom(Room*);
-	void RemoveExitRoom(int, Room*);
+	void RemoveExitRoom(Room*);
 };
 #endif
