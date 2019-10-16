@@ -1,0 +1,8 @@
+Make a game icon
+Make it position based 
++y = north
+-y = south
++x = east
+-x = west
+everything is of size (1,1)
+so basically if something is north of something its just +1 in y
