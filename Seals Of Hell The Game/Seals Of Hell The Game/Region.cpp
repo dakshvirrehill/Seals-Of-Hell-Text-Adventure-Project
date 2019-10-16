@@ -1,7 +1,6 @@
 #include "Region.h"
-
 Region::Region()
-	:mName(""),mStory(""),mEntryRoom(nullptr),mExitRoom(nullptr)
+	:BasicObject(),mEntryRoom(nullptr),mExitRoom(nullptr)
 {
 }
 

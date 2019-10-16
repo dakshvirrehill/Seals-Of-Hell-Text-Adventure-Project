@@ -2,14 +2,15 @@
 #ifndef ROOM_H
 #define ROOM_H
 #include <string>
-class Room
+#include "BasicObject.h"
+class Room : public BasicObject
 {
-	std::string mName;
-	std::string mStory;
+	
 public:
 	Room();
 	~Room();
-	std::string& getName() { return mName; }
-	std::string& getStory() { return mStory; }
+	virtual std::string& getName() override { return mName; }
+	virtual std::string& getStory() override { return mStory; }
+	virtual int& getUniqueID() override { return mUniqueID; }
 };
 #endif

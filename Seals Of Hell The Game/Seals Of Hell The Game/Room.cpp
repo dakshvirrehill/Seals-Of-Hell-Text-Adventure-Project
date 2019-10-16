@@ -1,7 +1,7 @@
 #include "Room.h"
 
 Room::Room()
-	:mName(""),mStory("")
+	:BasicObject()
 {
 }
 

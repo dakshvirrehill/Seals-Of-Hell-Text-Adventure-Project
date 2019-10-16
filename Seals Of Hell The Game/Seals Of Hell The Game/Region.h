@@ -2,17 +2,17 @@
 #ifndef REGION_H
 #define REGION_H
 #include <string>
+#include "BasicObject.h"
 class Room;
-class Region
+class Region : public BasicObject
 {
-	std::string mName;
-	std::string mStory;
 	Room* mEntryRoom;
 	Room* mExitRoom;
 public:
 	Region();
 	~Region();
-	std::string& getName() { return mName; }
-	std::string& getStory() { return mStory; }
+	virtual std::string& getName() override { return mName; }
+	virtual std::string& getStory() override { return mStory; }
+	virtual int& getUniqueID() override { return mUniqueID; }
 };
 #endif
