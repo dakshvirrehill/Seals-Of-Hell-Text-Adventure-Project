@@ -11,8 +11,5 @@ class Region : public BasicObject
 public:
 	Region();
 	~Region();
-	virtual std::string& getName() override { return mName; }
-	virtual std::string& getStory() override { return mStory; }
-	virtual int& getUniqueID() override { return mUniqueID; }
 };
 #endif

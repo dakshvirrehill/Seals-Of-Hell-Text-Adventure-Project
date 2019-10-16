@@ -1,7 +1,7 @@
 #include "Room.h"
 
 Room::Room()
-	:BasicObject()
+	:BasicObject(),mExitRooms()
 {
 }
 

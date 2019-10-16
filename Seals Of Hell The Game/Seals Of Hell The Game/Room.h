@@ -2,15 +2,15 @@
 #ifndef ROOM_H
 #define ROOM_H
 #include <string>
+#include <map>
 #include "BasicObject.h"
 class Room : public BasicObject
 {
-	
+	std::map<int, Room*> mExitRooms;
 public:
 	Room();
 	~Room();
-	virtual std::string& getName() override { return mName; }
-	virtual std::string& getStory() override { return mStory; }
-	virtual int& getUniqueID() override { return mUniqueID; }
+	const void AddExitRoom(Room*);
+	void RemoveExitRoom(int, Room*);
 };
 #endif
