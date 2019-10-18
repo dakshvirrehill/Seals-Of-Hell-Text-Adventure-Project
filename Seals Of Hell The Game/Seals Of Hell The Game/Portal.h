@@ -3,10 +3,6 @@
 #define PORTAL_H
 #include "IInteractable.h"
 class Region;
-namespace json
-{
-	class JSON;
-}
 class Portal : public IInteractable
 {
 	Region* mActiveRegion;
@@ -14,6 +10,6 @@ class Portal : public IInteractable
 public:
 	Portal();
 	~Portal();
-	void initialize(json::JSON&) override;
+	void initialize();
 };
 #endif

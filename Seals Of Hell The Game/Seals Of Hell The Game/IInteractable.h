@@ -2,17 +2,13 @@
 #ifndef I_INTERACTABLE_H
 #define I_INTERACTABLE_H
 #include "BasicObject.h"
-namespace json
-{
-	class JSON;
-}
 class IInteractable : public BasicObject
 {
 protected:
 	IInteractable():BasicObject() {};
 	virtual ~IInteractable() {};
 public:
-	virtual void initialize(json::JSON&) = 0;
+//	virtual void initialize() = 0;
 	virtual bool teleportRegion();
 	virtual bool pickObject();
 	virtual bool goDirection();

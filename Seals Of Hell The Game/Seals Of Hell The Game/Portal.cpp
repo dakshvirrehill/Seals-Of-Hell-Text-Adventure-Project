@@ -1,7 +1,14 @@
 #include "Portal.h"
-#include "json.hpp"
+Portal::Portal()
+	:mActiveRegion(nullptr),mConnectedRegion(nullptr)
+{
+}
 
-void Portal::initialize(json::JSON&)
+Portal::~Portal()
+{
+}
+
+void Portal::initialize()
 {
 
 }
