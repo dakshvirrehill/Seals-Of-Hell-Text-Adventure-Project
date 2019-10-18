@@ -18,3 +18,8 @@ void GameManager::StartGame(std::string& pFileName)
 	json::JSON aJSONObj = SaveGameManager::instance().loadGame(mFileName);
 
 }
+
+void GameManager::GameLoop()
+{
+
+}

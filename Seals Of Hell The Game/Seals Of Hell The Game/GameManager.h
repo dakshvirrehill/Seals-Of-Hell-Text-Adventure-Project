@@ -20,5 +20,6 @@ public:
 		return mInstance;
 	}
 	void StartGame(std::string&);
+	void GameLoop();
 };
 #endif
