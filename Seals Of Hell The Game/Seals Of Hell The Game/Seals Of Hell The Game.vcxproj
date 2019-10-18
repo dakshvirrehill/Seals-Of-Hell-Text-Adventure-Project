@@ -124,12 +124,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BasicObject.cpp" />
+    <ClCompile Include="IInteractable.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="Region.cpp" />
     <ClCompile Include="Room.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasicObject.h" />
+    <ClInclude Include="IInteractable.h" />
     <ClInclude Include="Region.h" />
     <ClInclude Include="Room.h" />
   </ItemGroup>

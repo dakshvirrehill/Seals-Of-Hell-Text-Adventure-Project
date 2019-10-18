@@ -1,7 +1,7 @@
 #include "Room.h"
 
 Room::Room()
-	:BasicObject(),mExitRooms()
+	:BasicObject()
 {
 }
 
@@ -16,11 +16,6 @@ void Room::RemoveExitRoom(Room* pRoom)
 	{
 		return;
 	}
-	if (mExitRooms.find(pRoom->getUniqueID()) == mExitRooms.end())
-	{
-		return;
-	}
-	mExitRooms.erase(pRoom->getUniqueID());
 }
 
 const void Room::AddExitRoom(Room* pRoom)
@@ -29,5 +24,4 @@ const void Room::AddExitRoom(Room* pRoom)
 	{
 		return;
 	}
-	mExitRooms.emplace(pRoom->getUniqueID(), pRoom);
 }

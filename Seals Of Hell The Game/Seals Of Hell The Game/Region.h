@@ -6,8 +6,7 @@
 class Room;
 class Region : public BasicObject
 {
-	Room* mEntryRoom;
-	Room* mExitRoom;
+	
 public:
 	Region();
 	~Region();

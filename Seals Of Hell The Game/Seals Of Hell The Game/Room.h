@@ -6,7 +6,7 @@
 #include "BasicObject.h"
 class Room : public BasicObject
 {
-	std::map<int, Room*> mExitRooms;
+	
 public:
 	Room();
 	~Room();

@@ -4,15 +4,13 @@
 #include <string>
 class BasicObject
 {
-	int mUniqueID;
 	std::string mName;
 	std::string mStory;
 protected:
 	BasicObject();
 	virtual ~BasicObject();
 public:
-	void Initialize(std::string&, std::string&, int&);
-	int& getUniqueID() { return mUniqueID; }
+	void Initialize(std::string&, std::string&);
 	std::string& getName() { return mName; }
 	std::string& getStory() { return mStory; }
 };

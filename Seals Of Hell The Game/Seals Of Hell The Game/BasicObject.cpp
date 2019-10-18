@@ -1,7 +1,7 @@
 #include "BasicObject.h"
 
 BasicObject::BasicObject()
-	:mName(""),mStory(""),mUniqueID(-1)
+	:mName(""),mStory("")
 {
 }
 
@@ -9,9 +9,8 @@ BasicObject::~BasicObject()
 {
 }
 
-void BasicObject::Initialize(std::string& pName, std::string& pStory, int& pUniqueID)
+void BasicObject::Initialize(std::string& pName, std::string& pStory)
 {
 	mName = pName;
 	mStory = pStory;
-	mUniqueID = pUniqueID;
 }

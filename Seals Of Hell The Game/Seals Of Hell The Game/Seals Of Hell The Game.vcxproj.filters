@@ -36,6 +36,9 @@
     <ClCompile Include="BasicObject.cpp">
       <Filter>Source Files\Abstract Bases</Filter>
     </ClCompile>
+    <ClCompile Include="IInteractable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Region.h">
@@ -46,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="BasicObject.h">
       <Filter>Header Files\Abstract Bases</Filter>
+    </ClInclude>
+    <ClInclude Include="IInteractable.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
