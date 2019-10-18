@@ -13,7 +13,7 @@ private:
 	{
 		return *this;
 	}
-public:
+protected:
 	inline static SaveGameManager& instance()
 	{
 		static SaveGameManager mInstance;
@@ -21,5 +21,6 @@ public:
 	}
 	json::JSON& loadGame(std::string&);
 	bool saveGame(json::JSON&,std::string&);
+	friend class GameManager;
 };
 #endif
