@@ -8,3 +8,7 @@ Region::~Region()
 {
 	
 }
+
+void Region::initialize(json::JSON&)
+{
+}

@@ -10,18 +10,6 @@ Room::~Room()
 	
 }
 
-void Room::RemoveExitRoom(Room* pRoom)
+void Room::initialize(json::JSON&)
 {
-	if (pRoom == nullptr)
-	{
-		return;
-	}
-}
-
-const void Room::AddExitRoom(Room* pRoom)
-{
-	if (pRoom == nullptr)
-	{
-		return;
-	}
 }

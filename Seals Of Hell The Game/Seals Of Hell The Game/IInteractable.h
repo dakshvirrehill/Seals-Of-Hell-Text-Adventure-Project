@@ -12,6 +12,7 @@ protected:
 	IInteractable():BasicObject() {};
 	virtual ~IInteractable() {};
 public:
+	virtual void initialize(json::JSON&) = 0;
 	virtual bool teleportRegion();
 	virtual bool pickObject();
 	virtual bool goDirection();
@@ -24,7 +25,6 @@ public:
 	virtual bool moveObject();
 	virtual bool answerRiddle();
 	virtual bool dropObject();
-	virtual void Initialize(json::JSON&) = 0;
 //	virtual bool giveString() = 0;
 };
 #endif

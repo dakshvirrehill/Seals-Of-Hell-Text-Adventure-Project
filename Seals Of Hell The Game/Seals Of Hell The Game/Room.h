@@ -4,13 +4,16 @@
 #include <string>
 #include <map>
 #include "BasicObject.h"
+namespace json
+{
+	class JSON;
+}
 class Room : public BasicObject
 {
 	
 public:
 	Room();
 	~Room();
-	const void AddExitRoom(Room*);
-	void RemoveExitRoom(Room*);
+	void initialize(json::JSON&);
 };
 #endif
