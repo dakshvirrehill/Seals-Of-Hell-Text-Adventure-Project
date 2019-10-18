@@ -10,5 +10,6 @@ class Portal : public IInteractable
 public:
 	Portal();
 	~Portal();
+
 };
 #endif
