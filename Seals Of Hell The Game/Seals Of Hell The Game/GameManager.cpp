@@ -16,7 +16,8 @@ void GameManager::StartGame(std::string& pFileName)
 {
 	mFileName = pFileName;
 	json::JSON aJSONObj = SaveGameManager::instance().loadGame(mFileName);
-
+	_ASSERT_EXPR(aJSONObj.hasKey("mRegionList"), "JSON Doesn't have number of regions");
+	aJSONObj = aJSONObj["mRegionList"];
 }
 
 void GameManager::GameLoop()

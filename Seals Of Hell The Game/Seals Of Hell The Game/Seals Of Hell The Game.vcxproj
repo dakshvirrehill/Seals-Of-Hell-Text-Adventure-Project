@@ -124,16 +124,38 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BasicObject.cpp" />
+    <ClCompile Include="Collector.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Gateway.cpp" />
+    <ClCompile Include="ICharacter.cpp" />
     <ClCompile Include="IInteractable.cpp" />
+    <ClCompile Include="json.cpp" />
+    <ClCompile Include="KillZone.cpp" />
+    <ClCompile Include="OneInteractionItem.cpp" />
+    <ClCompile Include="PickableItem.cpp" />
+    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="Region.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="SaveGameManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasicObject.h" />
+    <ClInclude Include="Collector.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Gateway.h" />
+    <ClInclude Include="ICharacter.h" />
     <ClInclude Include="IInteractable.h" />
+    <ClInclude Include="json.hpp" />
+    <ClInclude Include="KillZone.h" />
+    <ClInclude Include="OneInteractionItem.h" />
+    <ClInclude Include="PickableItem.h" />
+    <ClInclude Include="Portal.h" />
     <ClInclude Include="Region.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="SaveGameManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

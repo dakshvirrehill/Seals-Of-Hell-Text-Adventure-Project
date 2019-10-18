@@ -22,36 +22,126 @@
     <Filter Include="Header Files\Abstract Bases">
       <UniqueIdentifier>{dd3ae2e3-b392-415e-b7c7-0bebfce55641}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Helpers">
+      <UniqueIdentifier>{dc3ede07-0ec8-496a-9544-589df5f1fc42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helpers">
+      <UniqueIdentifier>{1f0fa419-26ce-462e-8dbd-adf9c8e8ee17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{21b4e41c-6cee-47b4-b419-11ddce26350b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{841a3370-fc10-40f4-ac50-d276213487c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Interactables">
+      <UniqueIdentifier>{3339f10d-f11e-4584-b372-e64a0f71817e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Interactables">
+      <UniqueIdentifier>{f1557fe9-cc80-49d4-8c2e-00c73c3f351a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Containers">
+      <UniqueIdentifier>{71248bcf-d1ee-44df-acbf-933ca227b52d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Container">
+      <UniqueIdentifier>{bd70b751-9225-435a-ac41-ec1bd3286c8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Region.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="program.cpp">
       <Filter>Source Files\main</Filter>
-    </ClCompile>
-    <ClCompile Include="Room.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BasicObject.cpp">
       <Filter>Source Files\Abstract Bases</Filter>
     </ClCompile>
     <ClCompile Include="IInteractable.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Abstract Bases</Filter>
+    </ClCompile>
+    <ClCompile Include="json.cpp">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveGameManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>Source Files\Interactables</Filter>
+    </ClCompile>
+    <ClCompile Include="Gateway.cpp">
+      <Filter>Source Files\Interactables</Filter>
+    </ClCompile>
+    <ClCompile Include="KillZone.cpp">
+      <Filter>Source Files\Interactables</Filter>
+    </ClCompile>
+    <ClCompile Include="ICharacter.cpp">
+      <Filter>Source Files\Abstract Bases</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Interactables</Filter>
+    </ClCompile>
+    <ClCompile Include="Collector.cpp">
+      <Filter>Source Files\Interactables</Filter>
+    </ClCompile>
+    <ClCompile Include="PickableItem.cpp">
+      <Filter>Source Files\Interactables</Filter>
+    </ClCompile>
+    <ClCompile Include="OneInteractionItem.cpp">
+      <Filter>Source Files\Interactables</Filter>
+    </ClCompile>
+    <ClCompile Include="Region.cpp">
+      <Filter>Source Files\Container</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>Source Files\Container</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Region.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Room.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BasicObject.h">
       <Filter>Header Files\Abstract Bases</Filter>
     </ClInclude>
     <ClInclude Include="IInteractable.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Abstract Bases</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveGameManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Portal.h">
+      <Filter>Header Files\Interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="Gateway.h">
+      <Filter>Header Files\Interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="KillZone.h">
+      <Filter>Header Files\Interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="ICharacter.h">
+      <Filter>Header Files\Abstract Bases</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\Interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="Collector.h">
+      <Filter>Header Files\Interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="PickableItem.h">
+      <Filter>Header Files\Interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="OneInteractionItem.h">
+      <Filter>Header Files\Interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="Region.h">
+      <Filter>Header Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>Header Files\Containers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
