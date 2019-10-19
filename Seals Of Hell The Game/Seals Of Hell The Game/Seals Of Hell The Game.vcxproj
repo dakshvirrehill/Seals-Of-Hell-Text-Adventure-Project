@@ -130,10 +130,12 @@
     <ClCompile Include="Gateway.cpp" />
     <ClCompile Include="ICharacter.cpp" />
     <ClCompile Include="IInteractable.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="json.cpp" />
     <ClCompile Include="KillZone.cpp" />
     <ClCompile Include="OneInteractionItem.cpp" />
     <ClCompile Include="PickableItem.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="Region.cpp" />
@@ -148,10 +150,12 @@
     <ClInclude Include="Gateway.h" />
     <ClInclude Include="ICharacter.h" />
     <ClInclude Include="IInteractable.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="KillZone.h" />
     <ClInclude Include="OneInteractionItem.h" />
     <ClInclude Include="PickableItem.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="Region.h" />
     <ClInclude Include="Room.h" />
