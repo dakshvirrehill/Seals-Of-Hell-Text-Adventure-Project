@@ -12,6 +12,10 @@
 #include "PickableItem.h"
 #include "Portal.h"
 
+void GameManager::look()
+{
+}
+
 void GameManager::StartGame(std::string& pFileName)
 {
 	mFileName = pFileName;

@@ -13,6 +13,8 @@ private:
 	{
 		return *this;
 	}
+protected:
+	void look();
 public:
 	inline static GameManager& instance() 
 	{
@@ -21,5 +23,6 @@ public:
 	}
 	void StartGame(std::string&);
 	void GameLoop();
+	friend class InputManager;
 };
 #endif

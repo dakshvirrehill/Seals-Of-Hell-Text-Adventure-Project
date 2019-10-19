@@ -1,5 +1,10 @@
 #include "IInteractable.h"
 #include<iostream>
+bool IInteractable::lookObject()
+{
+	std::cout << BasicObject::getName() << " cannot be looked." << std::endl;
+	return true;
+}
 bool IInteractable::teleportRegion()
 {
 	std::cout << BasicObject::getName() << " cannot be used to teleport." << std::endl;
@@ -70,4 +75,9 @@ bool IInteractable::dropObject()
 {
 	std::cout << BasicObject::getName() << " cannot be dropped." << std::endl;
 	return true;
+}
+
+bool IInteractable::wakeUp()
+{
+	return false;
 }

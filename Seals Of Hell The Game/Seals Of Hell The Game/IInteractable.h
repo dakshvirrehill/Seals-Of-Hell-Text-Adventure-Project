@@ -9,6 +9,7 @@ protected:
 	virtual ~IInteractable() {};
 public:
 //	virtual void initialize() = 0;
+	virtual bool lookObject();
 	virtual bool teleportRegion();
 	virtual bool pickObject();
 	virtual bool goDirection();
@@ -21,6 +22,7 @@ public:
 	virtual bool moveObject();
 	virtual bool answerRiddle();
 	virtual bool dropObject();
+	virtual bool wakeUp();
 //	virtual bool giveString() = 0;
 };
 #endif
