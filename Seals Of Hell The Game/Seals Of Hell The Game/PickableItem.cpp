@@ -1,3 +1,4 @@
+#include "PlayerManager.h"
 #include "PickableItem.h"
 
 void PickableItem::initialize(bool& pIsWeapon, bool& pIsShield, bool& pIsGiveable, bool& pIsWearable, bool& pIsVisable, bool& pIsInteractable)
@@ -12,8 +13,9 @@ void PickableItem::initialize(bool& pIsWeapon, bool& pIsShield, bool& pIsGiveabl
 
 void PickableItem::pickObject()
 {
-	if (isInteractable() && isVisible())
+	if (isInteractable() && isVisible() && !mIsPicked)
 	{
-
+		mIsPicked = true;
+		PlayerManager::instance().addInInventory(this);
 	}
 }

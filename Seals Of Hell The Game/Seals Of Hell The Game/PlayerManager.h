@@ -16,14 +16,14 @@ private:
 	}
 	std::map < std::string, IInteractable*> mInventory;
 protected:
+	void inventory();
+	void wakeUp();
+public:
 	inline static PlayerManager& instance()
 	{
 		static PlayerManager mInstance;
 		return mInstance;
 	}
-	void inventory();
-	void wakeUp();
-public:
 	IInteractable* getInventoryObject(std::string&);
 	void addInInventory(IInteractable*);
 	friend class GameManager;

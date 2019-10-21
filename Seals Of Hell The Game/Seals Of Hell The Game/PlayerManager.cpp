@@ -1,5 +1,6 @@
 #include "IInteractable.h"
 #include "PlayerManager.h"
+#include "GameManager.h"
 #include <string>
 #include <iostream>
 #include <map>
@@ -32,4 +33,5 @@ IInteractable* PlayerManager::getInventoryObject(std::string& pObjectName)
 void PlayerManager::addInInventory(IInteractable* pPickedObject)
 {
 	mInventory.emplace(pPickedObject->getName(), pPickedObject);
+	GameManager::instance().removeFromRoom(pPickedObject);
 }

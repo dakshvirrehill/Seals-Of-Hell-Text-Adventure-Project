@@ -70,6 +70,7 @@ void GameManager::setCurrentRoom(Room* pRoom)
 	mCurrentRoom->look();
 }
 
+
 void GameManager::endGame()
 {
 	mGamePlay = false;
@@ -92,4 +93,9 @@ IInteractable* GameManager::getInteractable(std::string& pObjName)
 		}
 	}
 	return aInteractableObj;
+}
+
+void GameManager::removeFromRoom(IInteractable* pInteractable)
+{
+	mCurrentRoom->removeInteractable(pInteractable);
 }

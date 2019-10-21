@@ -26,6 +26,7 @@ protected:
 	void endGame();
 	void saveGame();
 	IInteractable* getInteractable(std::string&);
+	void removeFromRoom(IInteractable*);
 public:
 	inline static GameManager& instance() 
 	{
@@ -37,5 +38,6 @@ public:
 	void setCurrentRegion(Region*);
 	void setCurrentRoom(Room*);
 	friend class CommandManager;
+	friend class PlayerManager;
 };
 #endif

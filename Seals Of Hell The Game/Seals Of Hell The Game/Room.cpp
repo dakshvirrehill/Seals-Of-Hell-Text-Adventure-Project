@@ -36,3 +36,13 @@ IInteractable* Room::getRoomObject(std::string& pObjectName)
 	}
 	return nullptr;
 }
+
+void Room::removeInteractable(IInteractable* pInteractable)
+{
+	mRoomObjects.erase(pInteractable->getName());
+}
+
+void Room::addInteractable(IInteractable* pInteractable)
+{
+	mRoomObjects.emplace(pInteractable->getName(), pInteractable);
+}
