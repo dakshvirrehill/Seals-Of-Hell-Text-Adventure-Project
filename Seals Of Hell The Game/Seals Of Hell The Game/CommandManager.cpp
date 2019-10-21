@@ -26,6 +26,8 @@ void CommandManager::initialize()
 	mInteractableCommands.emplace("MOVE", &IInteractable::moveObject);
 	mInteractableCommands.emplace("ANSWER", &IInteractable::answerRiddle);
 	mInteractableCommands.emplace("DROP", &IInteractable::dropObject);
+	mInteractableCommands.emplace("GIVE LOVE", &IInteractable::giveLove);
+	mInteractableCommands.emplace("GIVE HATE", &IInteractable::giveHate);
 
 	mTwoInteractionCommands.emplace("GIVE", &IInteractable::giveObject);
 	mTwoInteractionCommands.emplace("ATTACK", &IInteractable::attackEnemy);
@@ -122,6 +124,7 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 	std::string aObj1 = "";
 	std::string aObj2 = "";
 	bool aSInObj2 = false;
+	bool aLHF = false;
 	for (int aI = 1; aI < aCommandWords.size(); aI++)
 	{
 		if (aCommandWords.at(aI) == "WITH" || aCommandWords.at(aI) == "TO")
@@ -131,15 +134,16 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 		}
 		else if (aCommandWords.at(aI) == "LOVE" || aCommandWords.at(aI) == "HATE")
 		{
+			aLHF = true;
 			aSInObj2 = true;
 		}
 		if (aSInObj2)
 		{
-			aObj2 += aCommandWords.at(aI);
+			aObj2 += " " + aCommandWords.at(aI);
 		}
 		else
 		{
-			aObj1 += aCommandWords.at(aI);
+			aObj1 += " " + aCommandWords.at(aI);
 		}
 	}
 	IInteractable* aIObj1 = GameManager::instance().getInteractable(aObj1);
@@ -149,6 +153,15 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 	}
 	if (aSInObj2)
 	{
+		if (aLHF)
+		{
+			aObj2 = aCommandWords.at(0) + " " + aObj2;
+			if (mInteractableCommands.find(aObj2) == mInteractableCommands.end())
+			{
+				return false;
+			}
+			mInteractableCommands[aObj2](aIObj1);
+		}
 		IInteractable* aIObj2 = GameManager::instance().getInteractable(aObj2);
 		if (aIObj2 == nullptr)
 		{
