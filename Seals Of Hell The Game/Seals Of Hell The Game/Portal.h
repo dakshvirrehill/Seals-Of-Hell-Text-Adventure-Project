@@ -8,7 +8,7 @@ class Portal : public IInteractable
 	Region* mActiveRegion;
 	Region* mConnectedRegion;
 public:
-	Portal();
+	Portal() : IInteractable(), mActiveRegion(nullptr), mConnectedRegion(nullptr) {};
 	~Portal();
 	void initialize(Region*,Region*,bool&,bool&);
 	void teleportRegion() override;

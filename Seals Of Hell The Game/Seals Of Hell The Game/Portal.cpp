@@ -1,10 +1,6 @@
 #include <iostream>
 #include "GameManager.h"
 #include "Portal.h"
-Portal::Portal()
-	:mActiveRegion(nullptr),mConnectedRegion(nullptr)
-{
-}
 
 Portal::~Portal()
 {
