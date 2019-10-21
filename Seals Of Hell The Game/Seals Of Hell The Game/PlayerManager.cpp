@@ -15,9 +15,9 @@ void PlayerManager::inventory()
 	std::cout << "==============================" << std::endl;
 }
 
-bool PlayerManager::wakeUp()
+void PlayerManager::wakeUp()
 {
-	return false;
+	//do something
 }
 
 IInteractable* PlayerManager::getInventoryObject(std::string& pObjectName)

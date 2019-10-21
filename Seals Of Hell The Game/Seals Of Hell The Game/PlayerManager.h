@@ -22,7 +22,7 @@ protected:
 		return mInstance;
 	}
 	void inventory();
-	bool wakeUp();
+	void wakeUp();
 	IInteractable* getInventoryObject(std::string&);
 	friend class GameManager;
 	friend class CommandManager;

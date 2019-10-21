@@ -11,19 +11,19 @@ protected:
 	virtual ~IInteractable() {};
 public:
 //	virtual void initialize() = 0;
-	virtual bool lookObject();
-	virtual bool teleportRegion();
-	virtual bool pickObject();
-	virtual bool goDirection();
-	virtual bool blockAttack();
-	virtual bool attackEnemy(IInteractable*);
-	virtual bool wearObject();
-	virtual bool playObject();
-	virtual bool giveObject(IInteractable*);
-	virtual bool eatObject();
-	virtual bool moveObject();
-	virtual bool answerRiddle();
-	virtual bool dropObject();
+	virtual void lookObject();
+	virtual void teleportRegion();
+	virtual void pickObject();
+	virtual void goDirection();
+	virtual void blockAttack();
+	virtual void attackEnemy(IInteractable*);
+	virtual void wearObject();
+	virtual void playObject();
+	virtual void giveObject(IInteractable*);
+	virtual void eatObject();
+	virtual void moveObject();
+	virtual void answerRiddle();
+	virtual void dropObject();
 	bool& isVisible() { return mVisible; }
 	bool& isInteractable() { return mInteractable; }
 	void makeVisible(bool pEnable = true) { mVisible = pEnable; }

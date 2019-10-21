@@ -20,8 +20,8 @@ private:
 	void convertToUpper(std::string&);
 //	std::function<bool(IInteractable*)> getInteractableCommandPointer(std::string&);
 //	std::function<void()> getSingleCommandPointer(std::string&);
-	std::map<std::string, std::function<bool(IInteractable*)>> mInteractableCommands;
-	std::map < std::string, std::function<bool(IInteractable*, IInteractable*)>> mTwoInteractionCommands;
+	std::map<std::string, std::function<void(IInteractable*)>> mInteractableCommands;
+	std::map < std::string, std::function<void(IInteractable*, IInteractable*)>> mTwoInteractionCommands;
 	std::map<std::string, std::function<void()>> mSingleCommands;
 	bool mInitialzed;
 protected:
