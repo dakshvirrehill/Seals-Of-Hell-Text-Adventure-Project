@@ -10,6 +10,7 @@ class Portal : public IInteractable
 public:
 	Portal();
 	~Portal();
-	void initialize();
+	void initialize(Region*,Region*,bool&,bool&);
+	void teleportRegion() override;
 };
 #endif

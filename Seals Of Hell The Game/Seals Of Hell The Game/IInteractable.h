@@ -26,8 +26,8 @@ public:
 	virtual void dropObject();
 	bool& isVisible() { return mVisible; }
 	bool& isInteractable() { return mInteractable; }
-	void makeVisible(bool pEnable = true) { mVisible = pEnable; }
-	void makeInteractable(bool pEnable = true) { mInteractable = pEnable; }
+	void makeVisible(bool& pEnable) { mVisible = pEnable; }
+	void makeInteractable(bool& pEnable) { mInteractable = pEnable; }
 //	virtual bool wakeUp();
 //	virtual bool giveString() = 0;
 };

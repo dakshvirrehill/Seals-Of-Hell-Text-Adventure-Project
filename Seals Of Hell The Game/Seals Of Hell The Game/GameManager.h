@@ -34,7 +34,8 @@ public:
 	}
 	void StartGame(std::string&);
 	void GameLoop();
-
+	void setCurrentRegion(Region*);
+	void setCurrentRoom(Room*);
 	friend class CommandManager;
 };
 #endif

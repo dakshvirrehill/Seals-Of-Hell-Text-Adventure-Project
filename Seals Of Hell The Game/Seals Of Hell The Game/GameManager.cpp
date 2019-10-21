@@ -57,6 +57,19 @@ void GameManager::GameLoop()
 	} while (mGamePlay);
 }
 
+void GameManager::setCurrentRegion(Region* pCurrentRegion)
+{
+	mCurrentRegion = pCurrentRegion;
+	mCurrentRoom = mCurrentRegion->getStartingRoom();
+	look();
+}
+
+void GameManager::setCurrentRoom(Room* pRoom)
+{
+	mCurrentRoom = pRoom;
+	mCurrentRoom->look();
+}
+
 void GameManager::endGame()
 {
 	mGamePlay = false;

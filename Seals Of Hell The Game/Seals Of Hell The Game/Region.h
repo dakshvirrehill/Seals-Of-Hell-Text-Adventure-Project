@@ -5,11 +5,12 @@
 class Room;
 class Region : public BasicObject
 {
-	
+	Room* mEntryRoom;
 public:
 	Region();
 	~Region();
-	void initialize();
+	void initialize(Room*);
 	void look();
+	Room* getStartingRoom();
 };
 #endif
