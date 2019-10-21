@@ -2,17 +2,20 @@
 #ifndef GAME_MANAGER_H
 #define GAME_MANAGER_H
 #include <string>
+class BasicObject;
 class Region;
 class Room;
-class GameManager
+class GameManager : public BasicObject
 {
-	Region* mCurrentRegion;
-	Room* mCurrentRoom;
+
 private:
 	std::string mFileName;
-	inline explicit GameManager() : mCurrentRegion(nullptr),mCurrentRoom(nullptr) {}
+	Region* mCurrentRegion;
+	Room* mCurrentRoom;
+	bool mGamePlay;
+	inline explicit GameManager() :BasicObject(), mFileName(""), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mGamePlay(false) {}
 	inline ~GameManager() {}
-	inline explicit GameManager(GameManager const&) : mCurrentRegion(nullptr), mCurrentRoom(nullptr) {}
+	inline explicit GameManager(GameManager const&) :BasicObject(), mFileName(""), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mGamePlay(false) {}
 	inline GameManager& operator=(GameManager const&) 
 	{
 		return *this;
@@ -27,6 +30,8 @@ public:
 	}
 	void StartGame(std::string&);
 	void GameLoop();
+	void EndGame();
+	void SaveGame();
 	friend class CommandManager;
 };
 #endif

@@ -1,6 +1,7 @@
 #pragma once
 #ifndef COMMAND_MANAGER_H
 #define COMMAND_MANAGER_H
+#include<vector>
 #include<functional>
 #include<map>
 #include<string>
@@ -28,6 +29,7 @@ protected:
 	void help();
 	std::function<bool(IInteractable*)> getInteractableCommandPointer(std::string& pCommandVerb);
 	std::function<void()> getSingleCommandPointer(std::string& pCommandVerb);
+	std::vector<std::string>& getCommandWords(std::string& pCommandStr);
 	friend class GameManager;
 };
 #endif

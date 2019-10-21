@@ -1,3 +1,4 @@
+#include "BasicObject.h"
 #include "GameManager.h"
 #include "SaveGameManager.h"
 #include "CommandManager.h"
@@ -12,6 +13,8 @@
 //#include "PickableItem.h"
 //#include "Portal.h"
 #include<string>
+#include<sstream>
+#include<vector>
 
 void GameManager::look()
 {
@@ -38,5 +41,28 @@ void GameManager::StartGame(std::string& pFileName)
 
 void GameManager::GameLoop()
 {
-	
+	std::cout << "Welcome to " << getName() << std::endl << std::endl;
+	std::cout << getStory() << std::endl << std::endl << std::endl;
+	std::cout << "To interact with the game, type commands..." << std::endl;
+	std::cout << "Type HELP to see all the commands..." << std::endl;
+	std::cout << "Type SAVE to save the game..." << std::endl;
+	std::cout << "Type EXIT to exit the game... (The game autosaves on exit and gameover)" << std::endl;
+	std::string aCommandStr = "";
+	std::vector<std::string> aCommandWords;
+	do
+	{
+		std:: cin >> aCommandStr;
+		aCommandWords = CommandManager::instance().getCommandWords(aCommandStr);
+	} while (mGamePlay);
+}
+
+void GameManager::EndGame()
+{
+	mGamePlay = false;
+	SaveGame();
+}
+
+void GameManager::SaveGame()
+{
+	//save game logic
 }
