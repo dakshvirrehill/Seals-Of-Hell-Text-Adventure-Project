@@ -22,6 +22,9 @@ private:
 	}
 protected:
 	void look();
+	void endGame();
+	void saveGame();
+	IInteractable* getInteractable(std::string&);
 public:
 	inline static GameManager& instance() 
 	{
@@ -30,8 +33,7 @@ public:
 	}
 	void StartGame(std::string&);
 	void GameLoop();
-	void EndGame();
-	void SaveGame();
+
 	friend class CommandManager;
 };
 #endif

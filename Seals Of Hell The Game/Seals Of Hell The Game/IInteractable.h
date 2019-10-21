@@ -14,15 +14,15 @@ public:
 	virtual bool pickObject();
 	virtual bool goDirection();
 	virtual bool blockAttack();
-	virtual bool attackEnemy();
+	virtual bool attackEnemy(IInteractable*);
 	virtual bool wearObject();
 	virtual bool playObject();
-	virtual bool giveObject();
+	virtual bool giveObject(IInteractable*);
 	virtual bool eatObject();
 	virtual bool moveObject();
 	virtual bool answerRiddle();
 	virtual bool dropObject();
-	virtual bool wakeUp();
+//	virtual bool wakeUp();
 //	virtual bool giveString() = 0;
 };
 #endif

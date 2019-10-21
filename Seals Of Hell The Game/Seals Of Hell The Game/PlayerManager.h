@@ -1,6 +1,8 @@
 #pragma once
 #ifndef PLAYER_MANAGER_H
 #define PLAYER_MANAGER_H
+namespace std { class string; }
+class IInteractable;
 class PlayerManager
 {
 private:
@@ -18,6 +20,8 @@ protected:
 		return mInstance;
 	}
 	void inventory();
+	bool wakeUp();
+	IInteractable* getInventoryObject(std::string&);
 	friend class GameManager;
 	friend class CommandManager;
 };
