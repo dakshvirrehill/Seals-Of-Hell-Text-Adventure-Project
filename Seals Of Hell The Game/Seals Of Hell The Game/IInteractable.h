@@ -4,8 +4,10 @@
 #include "BasicObject.h"
 class IInteractable : public BasicObject
 {
+	bool mVisible;
+	bool mInteractable;
 protected:
-	IInteractable():BasicObject() {};
+	IInteractable():BasicObject(), mVisible(false),mInteractable(false) {};
 	virtual ~IInteractable() {};
 public:
 //	virtual void initialize() = 0;
@@ -22,6 +24,10 @@ public:
 	virtual bool moveObject();
 	virtual bool answerRiddle();
 	virtual bool dropObject();
+	bool& isVisible() { return mVisible; }
+	bool& isInteractable() { return mInteractable; }
+	void makeVisible(bool pEnable = true) { mVisible = pEnable; }
+	void makeInteractable(bool pEnable = true) { mInteractable = pEnable; }
 //	virtual bool wakeUp();
 //	virtual bool giveString() = 0;
 };

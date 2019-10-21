@@ -1,18 +1,20 @@
 #pragma once
 #ifndef PLAYER_MANAGER_H
 #define PLAYER_MANAGER_H
-namespace std { class string; }
+#include<string>
+#include<map>
 class IInteractable;
 class PlayerManager
 {
 private:
-	inline explicit PlayerManager() {}
+	inline explicit PlayerManager() : mInventory() {}
 	inline ~PlayerManager() {}
-	inline explicit PlayerManager(PlayerManager const&) {}
+	inline explicit PlayerManager(PlayerManager const&) : mInventory() {}
 	inline PlayerManager& operator=(PlayerManager const&)
 	{
 		return *this;
 	}
+	std::map < std::string, IInteractable*> mInventory;
 protected:
 	inline static PlayerManager& instance()
 	{

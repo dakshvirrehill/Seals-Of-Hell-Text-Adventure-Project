@@ -5,6 +5,7 @@
 class BasicObject;
 class Region;
 class Room;
+class IInteractable;
 class GameManager : public BasicObject
 {
 
