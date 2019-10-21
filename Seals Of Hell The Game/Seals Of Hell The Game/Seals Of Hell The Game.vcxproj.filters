@@ -75,9 +75,6 @@
     <ClCompile Include="KillZone.cpp">
       <Filter>Source Files\Interactables</Filter>
     </ClCompile>
-    <ClCompile Include="ICharacter.cpp">
-      <Filter>Source Files\Abstract Bases</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Interactables</Filter>
     </ClCompile>
@@ -99,8 +96,11 @@
     <ClCompile Include="PlayerManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="InputManager.cpp">
+    <ClCompile Include="CommandManager.cpp">
       <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="IUpdatable.cpp">
+      <Filter>Source Files\Abstract Bases</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,9 +128,6 @@
     <ClInclude Include="KillZone.h">
       <Filter>Header Files\Interactables</Filter>
     </ClInclude>
-    <ClInclude Include="ICharacter.h">
-      <Filter>Header Files\Abstract Bases</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Header Files\Interactables</Filter>
     </ClInclude>
@@ -152,8 +149,11 @@
     <ClInclude Include="PlayerManager.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
+    <ClInclude Include="CommandManager.h">
       <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="IUpdatable.h">
+      <Filter>Header Files\Abstract Bases</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

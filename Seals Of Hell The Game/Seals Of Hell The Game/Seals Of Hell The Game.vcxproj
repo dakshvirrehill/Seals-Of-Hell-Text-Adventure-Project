@@ -128,9 +128,9 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Gateway.cpp" />
-    <ClCompile Include="ICharacter.cpp" />
+    <ClCompile Include="IUpdatable.cpp" />
     <ClCompile Include="IInteractable.cpp" />
-    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="CommandManager.cpp" />
     <ClCompile Include="json.cpp" />
     <ClCompile Include="KillZone.cpp" />
     <ClCompile Include="OneInteractionItem.cpp" />
@@ -148,9 +148,9 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Gateway.h" />
-    <ClInclude Include="ICharacter.h" />
+    <ClInclude Include="IUpdatable.h" />
     <ClInclude Include="IInteractable.h" />
-    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="CommandManager.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="KillZone.h" />
     <ClInclude Include="OneInteractionItem.h" />
