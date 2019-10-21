@@ -6,8 +6,12 @@ class PickableItem : public IInteractable
 	bool mIsShield;
 	bool mIsGiveable;
 	bool mIsWearable;
+	bool mIsPicked;
+	bool mIsWorn;
+	bool mIsGiven;
 public:
-	void initialize();
+	PickableItem() : IInteractable(),mIsWeapon(false),mIsShield(false),mIsGiveable(false),mIsWearable(false),mIsPicked(false),mIsWorn(false),mIsGiven(false) {}
+	void initialize(bool&,bool&,bool&,bool&,bool&,bool&);
 	void pickObject() override;
 	void wearObject() override;
 	void giveObject(IInteractable*) override;
