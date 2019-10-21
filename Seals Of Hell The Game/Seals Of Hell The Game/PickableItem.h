@@ -15,5 +15,6 @@ public:
 	void pickObject() override;
 	void wearObject() override;
 	void giveObject(IInteractable*) override;
+	void dropObject() override;
 };
 

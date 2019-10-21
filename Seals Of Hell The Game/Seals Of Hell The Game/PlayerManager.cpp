@@ -35,3 +35,9 @@ void PlayerManager::addInInventory(IInteractable* pPickedObject)
 	mInventory.emplace(pPickedObject->getName(), pPickedObject);
 	GameManager::instance().removeFromRoom(pPickedObject);
 }
+
+void PlayerManager::removeFromInventory(IInteractable* pDroppedObject)
+{
+	mInventory.erase(pDroppedObject->getName());
+	GameManager::instance().addInRoom(pDroppedObject);
+}

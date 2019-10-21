@@ -27,6 +27,7 @@ protected:
 	void saveGame();
 	IInteractable* getInteractable(std::string&);
 	void removeFromRoom(IInteractable*);
+	void addInRoom(IInteractable*);
 public:
 	inline static GameManager& instance() 
 	{

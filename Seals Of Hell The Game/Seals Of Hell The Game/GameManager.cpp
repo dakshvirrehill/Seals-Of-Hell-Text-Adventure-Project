@@ -99,3 +99,8 @@ void GameManager::removeFromRoom(IInteractable* pInteractable)
 {
 	mCurrentRoom->removeInteractable(pInteractable);
 }
+
+void GameManager::addInRoom(IInteractable* pInteractable)
+{
+	mCurrentRoom->addInteractable(pInteractable);
+}

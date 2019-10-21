@@ -26,6 +26,7 @@ public:
 	}
 	IInteractable* getInventoryObject(std::string&);
 	void addInInventory(IInteractable*);
+	void removeFromInventory(IInteractable*);
 	friend class GameManager;
 	friend class CommandManager;
 };
