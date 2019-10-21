@@ -1,6 +1,7 @@
 #include "IInteractable.h"
 #include "PlayerManager.h"
 #include "GameManager.h"
+#include "Enemy.h"
 #include <string>
 #include <iostream>
 #include <map>
@@ -16,10 +17,6 @@ void PlayerManager::inventory()
 	std::cout << "==============================" << std::endl;
 }
 
-void PlayerManager::wakeUp()
-{
-	//do something
-}
 
 IInteractable* PlayerManager::getInventoryObject(std::string& pObjectName)
 {
@@ -40,4 +37,9 @@ void PlayerManager::removeFromInventory(IInteractable* pDroppedObject)
 {
 	mInventory.erase(pDroppedObject->getName());
 	GameManager::instance().addInRoom(pDroppedObject);
+}
+
+void PlayerManager::attackPlayer(Enemy* pAttacker)
+{
+
 }

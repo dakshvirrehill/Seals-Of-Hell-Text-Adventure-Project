@@ -36,11 +36,6 @@ void PickableItem::wearObject()
 	}
 }
 
-void PickableItem::giveObject(IInteractable* pCollector)
-{
-	//TODO: Add code to give object to collector and drop it from inventory
-}
-
 void PickableItem::dropObject()
 {
 	if (mIsPicked && isInteractable())

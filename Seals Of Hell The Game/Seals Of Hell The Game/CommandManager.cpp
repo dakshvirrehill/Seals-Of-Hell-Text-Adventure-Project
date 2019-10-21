@@ -13,7 +13,7 @@ void CommandManager::initialize()
 	mSingleCommands.emplace("EXIT", GameManager::instance().endGame);
 	mSingleCommands.emplace("INVENTORY", PlayerManager::instance().inventory);
 	mSingleCommands.emplace("LOOK", GameManager::instance().look);
-	mSingleCommands.emplace("WAKE UP", PlayerManager::instance().wakeUp);
+	//mSingleCommands.emplace("WAKE UP", PlayerManager::instance().wakeUp);
 
 	mInteractableCommands.emplace("LOOK", &IInteractable::lookObject);
 	mInteractableCommands.emplace("TELEPORT", &IInteractable::teleportRegion);
@@ -26,8 +26,8 @@ void CommandManager::initialize()
 	mInteractableCommands.emplace("MOVE", &IInteractable::moveObject);
 	mInteractableCommands.emplace("ANSWER", &IInteractable::answerRiddle);
 	mInteractableCommands.emplace("DROP", &IInteractable::dropObject);
-	mInteractableCommands.emplace("GIVE LOVE", &IInteractable::giveLove);
-	mInteractableCommands.emplace("GIVE HATE", &IInteractable::giveHate);
+	//mInteractableCommands.emplace("GIVE LOVE", &IInteractable::giveLove);
+	//mInteractableCommands.emplace("GIVE HATE", &IInteractable::giveHate);
 
 	mTwoInteractionCommands.emplace("GIVE", &IInteractable::giveObject);
 	mTwoInteractionCommands.emplace("ATTACK", &IInteractable::attackEnemy);
@@ -43,7 +43,7 @@ void CommandManager::help()
 	std::cout << "SAVE" << std::endl;
 	std::cout << "EXIT" << std::endl;
 	std::cout << "INVENTORY" << std::endl;
-	std::cout << "WAKE UP" << std::endl;
+	//std::cout << "WAKE UP" << std::endl;
 	std::cout << "LOOK" << std::endl;
 	std::cout << "LOOK <Object>" << std::endl;
 	std::cout << "TELEPORT <Region>" << std::endl;
@@ -58,7 +58,7 @@ void CommandManager::help()
 	std::cout << "MOVE <Object>" << std::endl;
 	std::cout << "ANSWER <Answer>" << std::endl;
 	std::cout << "DROP <Object>" << std::endl;
-	std::cout << "GIVE <Enemy> Love/Hate" << std::endl;
+	//std::cout << "GIVE <Enemy> Love/Hate" << std::endl;
 	std::cout << "==============================" << std::endl;
 }
 
@@ -124,19 +124,26 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 	std::string aObj1 = "";
 	std::string aObj2 = "";
 	bool aSInObj2 = false;
-	bool aLHF = false;
+	bool aSwapObj1n2 = false;
+	//bool aLHF = false;
 	for (int aI = 1; aI < aCommandWords.size(); aI++)
 	{
-		if (aCommandWords.at(aI) == "WITH" || aCommandWords.at(aI) == "TO")
+		if (aCommandWords.at(aI) == "WITH")
 		{
 			aSInObj2 = true;
 			continue;
 		}
-		else if (aCommandWords.at(aI) == "LOVE" || aCommandWords.at(aI) == "HATE")
+		else if (aCommandWords.at(aI) == "TO")
 		{
-			aLHF = true;
 			aSInObj2 = true;
+			aSwapObj1n2 = true;
+			continue;
 		}
+		//else if (aCommandWords.at(aI) == "LOVE" || aCommandWords.at(aI) == "HATE")
+		//{
+		//	aLHF = true;
+		//	aSInObj2 = true;
+		//}
 		if (aSInObj2)
 		{
 			aObj2 += " " + aCommandWords.at(aI);
@@ -146,6 +153,12 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 			aObj1 += " " + aCommandWords.at(aI);
 		}
 	}
+	if (aSwapObj1n2) //for implementation sake
+	{
+		std::string aObJ = aObj1;
+		aObj1 = aObj2;
+		aObj2 = aObJ;
+	}
 	IInteractable* aIObj1 = GameManager::instance().getInteractable(aObj1);
 	if (aIObj1 == nullptr)
 	{
@@ -153,15 +166,15 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 	}
 	if (aSInObj2)
 	{
-		if (aLHF)
-		{
-			aObj2 = aCommandWords.at(0) + " " + aObj2;
-			if (mInteractableCommands.find(aObj2) == mInteractableCommands.end())
-			{
-				return false;
-			}
-			mInteractableCommands[aObj2](aIObj1);
-		}
+		//if (aLHF)
+		//{
+		//	aObj2 = aCommandWords.at(0) + " " + aObj2;
+		//	if (mInteractableCommands.find(aObj2) == mInteractableCommands.end())
+		//	{
+		//		return false;
+		//	}
+		//	mInteractableCommands[aObj2](aIObj1);
+		//}
 		IInteractable* aIObj2 = GameManager::instance().getInteractable(aObj2);
 		if (aIObj2 == nullptr)
 		{

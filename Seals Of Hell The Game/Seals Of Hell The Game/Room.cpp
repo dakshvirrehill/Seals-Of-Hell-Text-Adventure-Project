@@ -3,10 +3,6 @@
 #include <map>
 #include <string>
 #include <iostream>
-Room::Room()
-	:BasicObject(),mRoomObjects()
-{
-}
 
 Room::~Room()
 {
@@ -50,4 +46,9 @@ void Room::addInteractable(IInteractable* pInteractable)
 void Room::enterRoom()
 {
 	//do init code everytime
+}
+
+void Room::updateRoom()
+{
+	//update updatables
 }

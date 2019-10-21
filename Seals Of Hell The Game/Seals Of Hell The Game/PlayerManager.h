@@ -4,20 +4,21 @@
 #include<string>
 #include<map>
 class IInteractable;
+class Enemy;
 class PlayerManager
 {
 private:
-	inline explicit PlayerManager() : mInventory() {}
+	inline explicit PlayerManager() : mInventory(),mInAttack(false) {}
 	inline ~PlayerManager() {}
-	inline explicit PlayerManager(PlayerManager const&) : mInventory() {}
+	inline explicit PlayerManager(PlayerManager const&) : mInventory(),mInAttack(false) {}
 	inline PlayerManager& operator=(PlayerManager const&)
 	{
 		return *this;
 	}
 	std::map < std::string, IInteractable*> mInventory;
+	bool mInAttack;
 protected:
 	void inventory();
-	void wakeUp();
 public:
 	inline static PlayerManager& instance()
 	{
@@ -27,6 +28,7 @@ public:
 	IInteractable* getInventoryObject(std::string&);
 	void addInInventory(IInteractable*);
 	void removeFromInventory(IInteractable*);
+	void attackPlayer(Enemy*);
 	friend class GameManager;
 	friend class CommandManager;
 };

@@ -1,8 +1,11 @@
 #pragma once
 #ifndef KILL_ZONE_H
 #define KILL_ZONE_H
+#include "IUpdatable.h"
 #include "IInteractable.h"
-class KillZone : public IInteractable
+class KillZone : public IUpdatable,IInteractable
 {
+public:
+	void update() override;
 };
 #endif

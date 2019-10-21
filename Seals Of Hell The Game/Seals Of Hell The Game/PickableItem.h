@@ -14,7 +14,6 @@ public:
 	void initialize(bool&,bool&,bool&,bool&,bool&,bool&);
 	void pickObject() override;
 	void wearObject() override;
-	void giveObject(IInteractable*) override;
 	void dropObject() override;
 };
 

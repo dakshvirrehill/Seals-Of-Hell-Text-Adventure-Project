@@ -1,8 +1,11 @@
 #pragma once
 #ifndef COLLECTOR_H
 #define COLLECTOR_H
-#include "ICharacter.h"
-class Collector : public ICharacter
+#include "IUpdatable.h"
+#include "IInteractable.h"
+class Collector : public IUpdatable,IInteractable
 {
+public:
+	void update() override;
 };
 #endif
