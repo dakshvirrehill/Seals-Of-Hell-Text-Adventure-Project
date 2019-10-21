@@ -2,13 +2,17 @@
 #ifndef GAME_MANAGER_H
 #define GAME_MANAGER_H
 #include <string>
+class Region;
+class Room;
 class GameManager
 {
+	Region* mCurrentRegion;
+	Room* mCurrentRoom;
 private:
 	std::string mFileName;
-	inline explicit GameManager() {}
+	inline explicit GameManager() : mCurrentRegion(nullptr),mCurrentRoom(nullptr) {}
 	inline ~GameManager() {}
-	inline explicit GameManager(GameManager const&) {}
+	inline explicit GameManager(GameManager const&) : mCurrentRegion(nullptr), mCurrentRoom(nullptr) {}
 	inline GameManager& operator=(GameManager const&) 
 	{
 		return *this;

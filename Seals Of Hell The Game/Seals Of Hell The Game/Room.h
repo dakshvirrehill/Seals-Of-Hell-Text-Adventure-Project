@@ -9,5 +9,6 @@ public:
 	Room();
 	~Room();
 	void initialize();
+	void look();
 };
 #endif

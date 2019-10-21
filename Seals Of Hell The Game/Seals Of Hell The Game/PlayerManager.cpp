@@ -2,4 +2,5 @@
 
 void PlayerManager::inventory()
 {
+	//print all interactable names in inventory
 }

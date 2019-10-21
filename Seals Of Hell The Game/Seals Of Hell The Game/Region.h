@@ -10,5 +10,6 @@ public:
 	Region();
 	~Region();
 	void initialize();
+	void look();
 };
 #endif
