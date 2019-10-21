@@ -11,8 +11,10 @@ class Enemy : public IUpdatable,IInteractable
 public:
 	Enemy() : IUpdatable(), IInteractable() {}
 	~Enemy();
+	void initialize();
 	void update() override;
 	void attackEnemy(IInteractable*) override;
 	void blockAttack() override;
+	void enemyDeath();
 };
 #endif
