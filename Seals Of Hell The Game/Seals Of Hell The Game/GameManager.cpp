@@ -2,6 +2,7 @@
 #include "GameManager.h"
 #include "SaveGameManager.h"
 #include "CommandManager.h"
+#include "PlayerManager.h"
 #include "json.hpp"
 #include "IInteractable.h"
 #include "Region.h"
@@ -80,5 +81,13 @@ void GameManager::saveGame()
 
 IInteractable* GameManager::getInteractable(std::string& pObjName)
 {
-	
+	IInteractable* aInteractableObj = PlayerManager::instance().getInventoryObject(pObjName);
+	if (aInteractableObj == nullptr)
+	{
+		if (mCurrentRoom != nullptr)
+		{
+			aInteractableObj = mCurrentRoom->getRoomObject(pObjName);
+		}
+	}
+	return aInteractableObj;
 }
