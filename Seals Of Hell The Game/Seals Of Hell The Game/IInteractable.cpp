@@ -82,6 +82,16 @@ void IInteractable::dropObject()
 	
 }
 
+void IInteractable::giveLove()
+{
+	std::cout << getName() << " cannot be given love." << std::endl;
+}
+
+void IInteractable::giveHate()
+{
+	std::cout << getName() << " cannot be given hate." << std::endl;
+}
+
 //void IInteractable::wakeUp()
 //{
 //	std::cout << getName() << " cannot be woken up." << std::endl;
