@@ -46,3 +46,8 @@ void Room::addInteractable(IInteractable* pInteractable)
 {
 	mRoomObjects.emplace(pInteractable->getName(), pInteractable);
 }
+
+void Room::enterRoom()
+{
+	//do init code everytime
+}
