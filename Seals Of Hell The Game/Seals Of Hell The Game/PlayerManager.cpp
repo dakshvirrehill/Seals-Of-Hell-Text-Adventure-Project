@@ -28,3 +28,8 @@ IInteractable* PlayerManager::getInventoryObject(std::string& pObjectName)
 	}
 	return nullptr;
 }
+
+void PlayerManager::addInInventory(IInteractable* pPickedObject)
+{
+	mInventory.emplace(pPickedObject->getName(), pPickedObject);
+}

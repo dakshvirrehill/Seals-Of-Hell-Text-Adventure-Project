@@ -23,7 +23,9 @@ protected:
 	}
 	void inventory();
 	void wakeUp();
+public:
 	IInteractable* getInventoryObject(std::string&);
+	void addInInventory(IInteractable*);
 	friend class GameManager;
 	friend class CommandManager;
 };

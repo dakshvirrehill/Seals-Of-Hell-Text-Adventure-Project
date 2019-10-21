@@ -9,3 +9,11 @@ void PickableItem::initialize(bool& pIsWeapon, bool& pIsShield, bool& pIsGiveabl
 	mIsGiveable = pIsGiveable;
 	mIsWearable = pIsWearable;
 }
+
+void PickableItem::pickObject()
+{
+	if (isInteractable() && isVisible())
+	{
+
+	}
+}
