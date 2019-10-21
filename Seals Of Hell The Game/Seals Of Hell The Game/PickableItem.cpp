@@ -32,7 +32,7 @@ void PickableItem::wearObject()
 			PlayerManager::instance().addInInventory(this);
 		}
 		mIsWorn = true;
-		std::cout << getName() << " is worn." << std::endl;
+		std::cout << getName() << " worn." << std::endl;
 	}
 }
 
