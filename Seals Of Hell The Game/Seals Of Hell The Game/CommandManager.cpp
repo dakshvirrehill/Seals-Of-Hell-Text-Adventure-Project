@@ -1,11 +1,11 @@
-#include "InputManager.h"
+#include "CommandManager.h"
 #include "PlayerManager.h"
 #include "GameManager.h"
 #include "IInteractable.h"
 #include <iostream>
-void InputManager::initialize()
+void CommandManager::initialize()
 {
-	mSingleCommands.emplace("HELP", InputManager::instance().help);
+	mSingleCommands.emplace("HELP", CommandManager::instance().help);
 	mSingleCommands.emplace("INVENTORY", PlayerManager::instance().inventory);
 	mSingleCommands.emplace("LOOK", GameManager::instance().look);
 
@@ -23,9 +23,10 @@ void InputManager::initialize()
 	mInteractableCommands.emplace("DROP", &IInteractable::dropObject);
 	mInteractableCommands.emplace("GIVE", &IInteractable::giveObject);
 	mInteractableCommands.emplace("WAKE", &IInteractable::wakeUp);
+	mInitialzed = true;
 }
 
-bool InputManager::help()
+void CommandManager::help()
 {
 	std::cout << "==============================" << std::endl;
 	std::cout << "List of Commands" << std::endl;
@@ -47,4 +48,22 @@ bool InputManager::help()
 	std::cout<<"GIVE <Enemy> Love/Hate"<< std::endl;
 	std::cout<<"WAKE Up"<< std::endl;
 	std::cout << "==============================" << std::endl;
+}
+
+std::function<bool(IInteractable*)> CommandManager::getInteractableCommandPointer(std::string& pCommandVerb)
+{
+	if (mInteractableCommands.find(pCommandVerb) == mInteractableCommands.end())
+	{
+		return nullptr;
+	}
+	return mInteractableCommands[pCommandVerb];
+}
+
+std::function<void()> CommandManager::getSingleCommandPointer(std::string& pCommandVerb)
+{
+	if (mSingleCommands.find(pCommandVerb) == mSingleCommands.end())
+	{
+		return nullptr;
+	}
+	return mSingleCommands[pCommandVerb];
 }

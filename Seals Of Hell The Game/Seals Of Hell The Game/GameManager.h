@@ -27,6 +27,6 @@ public:
 	}
 	void StartGame(std::string&);
 	void GameLoop();
-	friend class InputManager;
+	friend class CommandManager;
 };
 #endif

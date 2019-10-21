@@ -19,6 +19,6 @@ protected:
 	}
 	void inventory();
 	friend class GameManager;
-	friend class InputManager;
+	friend class CommandManager;
 };
 #endif

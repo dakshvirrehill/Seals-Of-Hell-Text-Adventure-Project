@@ -1,6 +1,6 @@
 #include "GameManager.h"
 #include "SaveGameManager.h"
-#include<string>
+#include "CommandManager.h"
 #include "json.hpp"
 #include "Region.h"
 #include "Room.h"
@@ -11,6 +11,7 @@
 //#include "OneInteractionItem.h"
 //#include "PickableItem.h"
 //#include "Portal.h"
+#include<string>
 
 void GameManager::look()
 {
@@ -30,9 +31,12 @@ void GameManager::StartGame(std::string& pFileName)
 	json::JSON aJSONObj = SaveGameManager::instance().loadGame(mFileName);
 	_ASSERT_EXPR(aJSONObj.hasKey("mRegionList"), "JSON Doesn't have number of regions");
 	aJSONObj = aJSONObj["mRegionList"];
+	//convert json and initialize everything
+	//intialize CommandManager
+	CommandManager::instance().initialize();
 }
 
 void GameManager::GameLoop()
 {
-
+	
 }
