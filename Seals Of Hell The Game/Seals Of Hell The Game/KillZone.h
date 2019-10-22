@@ -3,7 +3,7 @@
 #define KILL_ZONE_H
 #include "IUpdatable.h"
 #include "IInteractable.h"
-class KillZone : public IUpdatable,IInteractable
+class KillZone : public IUpdatable,public IInteractable
 {
 public:
 	void update() override;

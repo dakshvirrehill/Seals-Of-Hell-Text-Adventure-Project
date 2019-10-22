@@ -15,7 +15,7 @@ private:
 	{
 		return *this;
 	}
-	std::map < std::string, IInteractable*> mInventory;
+	std::map <std::string, IInteractable*> mInventory;
 	bool mInAttack;
 protected:
 	void inventory();
@@ -29,6 +29,8 @@ public:
 	void addInInventory(IInteractable*);
 	void removeFromInventory(IInteractable*);
 	void attackPlayer(Enemy*);
+	void blockAttack();
+	bool hasShield();
 	friend class GameManager;
 	friend class CommandManager;
 };

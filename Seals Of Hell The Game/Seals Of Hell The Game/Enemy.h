@@ -6,10 +6,11 @@
 #include <string>
 #include <list>
 class PickableItem;
-class Enemy : public IUpdatable,IInteractable
+class Enemy : public IUpdatable,public IInteractable
 {
+	bool mCanAttack;
 public:
-	Enemy() : IUpdatable(), IInteractable() {}
+	Enemy() : IUpdatable(), IInteractable(), mCanAttack(false) {}
 	~Enemy();
 	void initialize();
 	void update() override;

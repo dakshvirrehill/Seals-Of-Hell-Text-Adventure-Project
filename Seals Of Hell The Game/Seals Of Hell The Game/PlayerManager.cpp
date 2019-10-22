@@ -41,5 +41,22 @@ void PlayerManager::removeFromInventory(IInteractable* pDroppedObject)
 
 void PlayerManager::attackPlayer(Enemy* pAttacker)
 {
+	if (mInAttack)
+	{
+		std::cout << " You Died at the hands of " << pAttacker->getName() << std::endl;
+	}
+	else
+	{
+		mInAttack = true;
+	}
+}
 
+void PlayerManager::blockAttack()
+{
+	mInAttack = false;
+}
+
+bool PlayerManager::hasShield()
+{
+	return mInventory.find("SHIELD") != mInventory.end();
 }
