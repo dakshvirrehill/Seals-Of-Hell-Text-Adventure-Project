@@ -43,6 +43,7 @@ void PickableItem::dropObject()
 		mIsWorn = false;
 		mIsGiven = false;
 		mIsPicked = false;
+		mIsDropped = true;
 		PlayerManager::instance().removeFromInventory(this);
 		std::cout << getName() << " dropped." << std::endl;
 	}
