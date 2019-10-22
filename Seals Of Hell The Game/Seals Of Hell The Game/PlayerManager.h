@@ -31,6 +31,7 @@ public:
 	void attackPlayer(Enemy*);
 	void blockAttack();
 	bool hasShield();
+	bool hasInInventory(IInteractable*);
 	friend class GameManager;
 	friend class CommandManager;
 };

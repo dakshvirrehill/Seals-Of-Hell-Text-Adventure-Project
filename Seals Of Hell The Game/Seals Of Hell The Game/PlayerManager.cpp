@@ -60,3 +60,8 @@ bool PlayerManager::hasShield()
 {
 	return mInventory.find("SHIELD") != mInventory.end();
 }
+
+bool PlayerManager::hasInInventory(IInteractable* pObject)
+{
+	return mInventory.find(pObject->getName()) != mInventory.end();
+}
