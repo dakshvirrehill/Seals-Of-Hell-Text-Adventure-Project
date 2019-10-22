@@ -16,6 +16,7 @@ public:
 	IUpdatable() : mLife(0), mAttackStory(""), mBlockStory(""), mDeathStory(""),mConditionalObject(nullptr),mCondUpdtObjs() {}
 	~IUpdatable() {}
 	virtual void update() = 0;
+	virtual void enemyDeath() = 0;
 	int& getLife() { return mLife; }
 	std::string& getAttackStory() { return mAttackStory; }
 	std::string& getBlockStory() { return mBlockStory; }

@@ -28,7 +28,7 @@ public:
 	IInteractable* getInventoryObject(std::string&);
 	void addInInventory(IInteractable*);
 	void removeFromInventory(IInteractable*);
-	void attackPlayer(Enemy*);
+	void attackPlayer(IInteractable*);
 	void blockAttack();
 	bool hasShield();
 	bool hasInInventory(IInteractable*);

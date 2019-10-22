@@ -39,7 +39,7 @@ void PlayerManager::removeFromInventory(IInteractable* pDroppedObject)
 	GameManager::instance().addInRoom(pDroppedObject);
 }
 
-void PlayerManager::attackPlayer(Enemy* pAttacker)
+void PlayerManager::attackPlayer(IInteractable* pAttacker)
 {
 	if (mInAttack)
 	{

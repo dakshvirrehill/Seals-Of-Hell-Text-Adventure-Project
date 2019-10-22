@@ -68,4 +68,7 @@ void Enemy::enemyDeath()
 		iter->makeInteractable(aVal);
 		iter->makeVisible(aVal);
 	}
+	mCanAttack = false;
+	makeInteractable(mCanAttack);
+	makeVisible(mCanAttack);
 }
