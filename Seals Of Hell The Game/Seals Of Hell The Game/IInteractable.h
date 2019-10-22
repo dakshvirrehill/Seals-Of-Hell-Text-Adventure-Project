@@ -24,6 +24,8 @@ public:
 	virtual void moveObject();
 	virtual void answerRiddle();
 	virtual void dropObject();
+	virtual bool isWorn() { return false; }
+	virtual bool isGiven() { return false; }
 	bool& isVisible() { return mVisible; }
 	bool& isInteractable() { return mInteractable; }
 	void makeVisible(bool& pEnable) { mVisible = pEnable; }

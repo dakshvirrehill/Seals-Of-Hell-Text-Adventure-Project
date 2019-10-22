@@ -15,5 +15,7 @@ public:
 	void pickObject() override;
 	void wearObject() override;
 	void dropObject() override;
+	bool isWorn() override { return mIsWorn; }
+	bool isGiven() override { return mIsPicked; }
 };
 
