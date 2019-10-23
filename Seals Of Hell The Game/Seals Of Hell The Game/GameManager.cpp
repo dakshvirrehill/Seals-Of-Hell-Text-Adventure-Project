@@ -49,7 +49,7 @@ void GameManager::GameLoop()
 	std::string aCommandStr = "";
 	do
 	{
-		std:: cin >> aCommandStr;
+		std::getline(std::cin, aCommandStr);
 		if (!CommandManager::instance().runCommand(aCommandStr))
 		{
 			std::cout << std::endl << "The game world did not understand your gibberish... Try again..." << std::endl << std::endl;
