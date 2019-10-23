@@ -6,7 +6,10 @@ void IInteractable::lookObject()
 	{
 		return;
 	}
-	std::cout << getName() << std::endl;
+	if (mIsNameVisible)
+	{
+		std::cout << getName() << std::endl;
+	}
 	std::cout << getStory() << std::endl << std::endl;
 }
 void IInteractable::teleportRegion()

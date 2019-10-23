@@ -6,8 +6,9 @@ class IInteractable : public BasicObject
 {
 	bool mVisible;
 	bool mInteractable;
+	bool mIsNameVisible;
 protected:
-	IInteractable():BasicObject(), mVisible(false),mInteractable(false) {};
+	IInteractable():BasicObject(), mVisible(false),mInteractable(false),mIsNameVisible(false) {};
 	virtual ~IInteractable() {};
 public:
 	virtual void lookObject();
@@ -27,7 +28,10 @@ public:
 	virtual bool isGiven() { return false; }
 	bool& isVisible() { return mVisible; }
 	bool& isInteractable() { return mInteractable; }
+	bool& isNameVisible() { return mIsNameVisible; }
+	//TODO : maybe remove these functions to keep reference functions to manipulate only
 	void makeVisible(bool& pEnable) { mVisible = pEnable; }
 	void makeInteractable(bool& pEnable) { mInteractable = pEnable; }
+	void makeNameVisible(bool& pEnable) { mIsNameVisible = pEnable; }
 };
 #endif
