@@ -59,7 +59,7 @@ void IInteractable::moveObject()
 	std::cout << getName() << " cannot be moved." << std::endl;
 }
 
-void IInteractable::answerRiddle()
+void IInteractable::answerRiddle(std::string pAnswer)
 {
 	std::cout << getName() << " cannot be answered." << std::endl;
 }
@@ -69,15 +69,15 @@ void IInteractable::dropObject()
 	std::cout << getName() << " cannot be dropped." << std::endl;
 }
 
-void IInteractable::giveLove()
-{
-	std::cout << getName() << " cannot be given love." << std::endl;
-}
-
-void IInteractable::giveHate()
-{
-	std::cout << getName() << " cannot be given hate." << std::endl;
-}
+//void IInteractable::giveLove()
+//{
+//	std::cout << getName() << " cannot be given love." << std::endl;
+//}
+//
+//void IInteractable::giveHate()
+//{
+//	std::cout << getName() << " cannot be given hate." << std::endl;
+//}
 
 //void IInteractable::wakeUp()
 //{

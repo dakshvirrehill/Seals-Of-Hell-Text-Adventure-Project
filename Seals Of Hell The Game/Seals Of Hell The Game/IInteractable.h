@@ -21,7 +21,7 @@ public:
 	virtual void giveObject(IInteractable*);
 	virtual void eatObject();
 	virtual void moveObject();
-	virtual void answerRiddle();
+	virtual void answerRiddle(std::string);
 	virtual void dropObject();
 	virtual bool isWorn() { return false; }
 	virtual bool isGiven() { return false; }
