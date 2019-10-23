@@ -10,7 +10,6 @@ protected:
 	IInteractable():BasicObject(), mVisible(false),mInteractable(false) {};
 	virtual ~IInteractable() {};
 public:
-//	virtual void initialize() = 0;
 	virtual void lookObject();
 	virtual void teleportRegion();
 	virtual void pickObject();
@@ -30,7 +29,5 @@ public:
 	bool& isInteractable() { return mInteractable; }
 	void makeVisible(bool& pEnable) { mVisible = pEnable; }
 	void makeInteractable(bool& pEnable) { mInteractable = pEnable; }
-//	virtual bool wakeUp();
-//	virtual bool giveString() = 0;
 };
 #endif
