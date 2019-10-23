@@ -59,7 +59,7 @@ void IInteractable::moveObject()
 	std::cout << getName() << " cannot be moved." << std::endl;
 }
 
-void IInteractable::answerRiddle(std::string pAnswer)
+void IInteractable::answerRiddle()
 {
 	std::cout << getName() << " cannot be answered." << std::endl;
 }
