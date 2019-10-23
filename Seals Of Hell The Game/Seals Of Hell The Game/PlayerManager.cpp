@@ -1,7 +1,7 @@
 #include "IInteractable.h"
 #include "PlayerManager.h"
 #include "GameManager.h"
-#include "Enemy.h"
+#include "Room.h"
 #include <string>
 #include <iostream>
 #include <map>
@@ -50,6 +50,18 @@ void PlayerManager::attackPlayer(IInteractable* pAttacker)
 		mInAttack = true;
 	}
 }
+
+void PlayerManager::dropInventory(Room* pDroppingRoom)
+{
+	std::map<std::string, IInteractable*>::iterator aIterator = mInventory.begin();
+	while (aIterator != mInventory.end())
+	{
+		pDroppingRoom->addInteractable((*aIterator).second);
+		aIterator = mInventory.erase(aIterator);
+	}
+}
+
+
 
 void PlayerManager::blockAttack()
 {

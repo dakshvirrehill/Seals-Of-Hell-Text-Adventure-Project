@@ -12,6 +12,7 @@ void KillZone::update()
 		std::cout << getName() << std::endl;
 		std::cout << getAttackStory() << std::endl;
 		PlayerManager::instance().attackPlayer(this);
+		PlayerManager::instance().attackPlayer(this);
 	}
 	else if (!getConditionalObject()->isWorn())
 	{

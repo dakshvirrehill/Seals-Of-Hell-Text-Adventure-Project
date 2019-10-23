@@ -4,7 +4,7 @@
 #include<string>
 #include<map>
 class IInteractable;
-class Enemy;
+class Room;
 class PlayerManager
 {
 private:
@@ -29,6 +29,7 @@ public:
 	void addInInventory(IInteractable*);
 	void removeFromInventory(IInteractable*);
 	void attackPlayer(IInteractable*);
+	void dropInventory(Room*);
 	void blockAttack();
 	bool hasShield();
 	bool hasInInventory(IInteractable*);
