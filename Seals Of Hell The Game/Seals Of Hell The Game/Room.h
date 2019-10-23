@@ -18,7 +18,9 @@ public:
 	void look();
 	IInteractable* getRoomObject(std::string&);
 	void removeInteractable(IInteractable*);
+	void removeUpdatable(IUpdatable*);
 	void addInteractable(IInteractable*);
+	void addUpdatable(IUpdatable*);
 	void enterRoom();
 	void updateRoom();
 };

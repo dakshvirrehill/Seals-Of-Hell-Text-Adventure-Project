@@ -1,5 +1,6 @@
 #include "Room.h"
 #include "IInteractable.h"
+#include "IUpdatable.h"
 #include <map>
 #include <string>
 #include <iostream>
@@ -17,7 +18,6 @@ void Room::look()
 {
 	std::cout << getName() << std::endl;
 	std::cout << getStory() << std::endl << std::endl << std::endl;
-	//call lookobject on all interactables
 	for (auto& iter : mRoomObjects)
 	{
 		iter.second->lookObject();
@@ -45,10 +45,13 @@ void Room::addInteractable(IInteractable* pInteractable)
 
 void Room::enterRoom()
 {
-	//do init code everytime
+	
 }
 
 void Room::updateRoom()
 {
-	//update updatables
+	for (auto& iter : mUpdatableObjects)
+	{
+		iter->update();
+	}
 }

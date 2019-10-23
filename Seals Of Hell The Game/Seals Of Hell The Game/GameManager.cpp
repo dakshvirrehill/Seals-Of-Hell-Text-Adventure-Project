@@ -54,6 +54,7 @@ void GameManager::GameLoop()
 		{
 			std::cout << std::endl << "The game world did not understand your gibberish... Try again..." << std::endl << std::endl;
 		}
+		mCurrentRoom->updateRoom();
 	} while (mGamePlay);
 }
 
@@ -61,12 +62,14 @@ void GameManager::setCurrentRegion(Region* pCurrentRegion)
 {
 	mCurrentRegion = pCurrentRegion;
 	mCurrentRoom = mCurrentRegion->getStartingRoom();
+	mCurrentRoom->enterRoom();
 	look();
 }
 
 void GameManager::setCurrentRoom(Room* pRoom)
 {
 	mCurrentRoom = pRoom;
+	mCurrentRoom->enterRoom();
 	mCurrentRoom->look();
 }
 
