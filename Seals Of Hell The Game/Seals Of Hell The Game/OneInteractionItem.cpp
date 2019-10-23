@@ -10,6 +10,18 @@ void OneInteractionItem::initialize(bool& pIsMovable, bool& pIsPlayable, bool& p
 	makeVisible(pIsVisible);
 }
 
+void OneInteractionItem::lookObject()
+{
+	if (mIsRiddle)
+	{
+		std::cout << getStory() << std::endl;
+	}
+	else
+	{
+		IInteractable::lookObject();
+	}
+}
+
 void OneInteractionItem::moveObject()
 {
 	if (isInteractable() && mIsPlayable)

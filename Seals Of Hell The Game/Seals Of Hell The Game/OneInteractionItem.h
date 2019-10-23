@@ -13,6 +13,7 @@ public:
 	OneInteractionItem() : IInteractable(), mIsMovable(false), mIsPlayable(false), mIsEatable(false), mIsRiddle(false)
 	{ }
 	void initialize(bool&, bool&, bool&, bool&, bool&, bool&);
+	void lookObject() override;
 	void moveObject() override;
 	void playObject() override;
 	void eatObject() override;
