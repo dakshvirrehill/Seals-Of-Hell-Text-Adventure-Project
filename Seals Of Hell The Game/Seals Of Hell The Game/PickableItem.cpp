@@ -2,14 +2,16 @@
 #include "PickableItem.h"
 #include <iostream>
 
-void PickableItem::initialize(bool& pIsWeapon, bool& pIsShield, bool& pIsGiveable, bool& pIsWearable, bool& pIsVisable, bool& pIsInteractable)
+void PickableItem::initialize(bool pIsWeapon, bool pIsShield, bool pIsGiveable, bool pIsWearable, bool pIsPicked = false, bool pIsWorn = false, bool pIsGiven = false, bool pIsDropped = false)
 {
-	makeInteractable(pIsInteractable);
-	makeVisible(pIsVisable);
 	mIsWeapon = pIsWeapon;
 	mIsShield = pIsShield;
 	mIsGiveable = pIsGiveable;
 	mIsWearable = pIsWearable;
+	mIsPicked = pIsPicked;
+	mIsGiven = pIsGiven;
+	mIsWorn = pIsWorn;
+	mIsDropped = pIsDropped;
 }
 
 void PickableItem::pickObject()

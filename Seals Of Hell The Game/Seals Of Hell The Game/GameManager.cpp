@@ -112,17 +112,17 @@ void GameManager::StartGame(std::string& pFileName)
 			_ASSERT_EXPR(aRoom.second.hasKey("mName"), "Room has no name");
 			_ASSERT_EXPR(aRoom.second.hasKey("mStory"), "Room has no story");
 			_ASSERT_EXPR(aRoom.second.hasKey("mHasCollectors"), "Room has no collector bool");
-			bool aCollector = aRoom.second["mHasCollectors"].ToBool();
+			bool aHasCollector = aRoom.second["mHasCollectors"].ToBool();
 			_ASSERT_EXPR(aRoom.second.hasKey("mHasEnemies"), "Room has no enemy bool");
-			bool aEnemy = aRoom.second["mHasEnemies"].ToBool();
+			bool aHasEnemy = aRoom.second["mHasEnemies"].ToBool();
 			_ASSERT_EXPR(aRoom.second.hasKey("mHasKillZones"), "Room has no KillZone bool");
-			bool aKillZone = aRoom.second["mHasKillZones"].ToBool();
+			bool aHasKillZone = aRoom.second["mHasKillZones"].ToBool();
 			_ASSERT_EXPR(aRoom.second.hasKey("mHasOneInteractionItems"), "Room has no OneInteractionItem bool");
-			bool aOneInteractionItem = aRoom.second["mHasOneInteractionItems"].ToBool();
+			bool aHasOneInteractionItem = aRoom.second["mHasOneInteractionItems"].ToBool();
 			_ASSERT_EXPR(aRoom.second.hasKey("mHasPickableItems"), "Room has no PickableItem bool");
-			bool aPickableItem = aRoom.second["mHasPickableItems"].ToBool();
+			bool aHasPickableItem = aRoom.second["mHasPickableItems"].ToBool();
 			_ASSERT_EXPR(aRoom.second.hasKey("mHasPortals"), "Room has no PortalItem bool");
-			bool aPortal = aRoom.second["mHasPortals"].ToBool();
+			bool aHasPortal = aRoom.second["mHasPortals"].ToBool();
 			_ASSERT_EXPR(aRoom.second.hasKey("mGateways"), "Room has no Gateways");
 			aRoomPtr->BasicObject::initialize(aRoom.second["mName"].ToString(), aRoom.second["mStory"].ToString());
 			//figure out gateway logic
@@ -167,7 +167,7 @@ void GameManager::StartGame(std::string& pFileName)
 				aNewGateway->initialize(aCurRoom, aConRoom);
 				aRoomPtr->addInteractable(aInteractableMap[aGateway.first]);
 			}
-			if (aCollector)
+			if (aHasCollector)
 			{
 				_ASSERT_EXPR(aRoom.second.hasKey("mCollectors"), "Room has no Collectors");
 				for (auto& aCollector : aRoom.second["mCollectors"].ObjectRange())
@@ -224,7 +224,7 @@ void GameManager::StartGame(std::string& pFileName)
 					aRoomPtr->addUpdatable(aNewCollector);
 				}
 			}
-			if (aEnemy)
+			if (aHasEnemy)
 			{
 				_ASSERT_EXPR(aRoom.second.hasKey("mEnemies"), "Room has no Enemies");
 				for (auto& aEnemy : aRoom.second["mEnemies"].ObjectRange())
@@ -284,7 +284,7 @@ void GameManager::StartGame(std::string& pFileName)
 					aRoomPtr->addUpdatable(aNewEnemy);
 				}
 			}
-			if (aKillZone)
+			if (aHasKillZone)
 			{
 				_ASSERT_EXPR(aRoom.second.hasKey("mKillZones"), "Room has no Killzones");
 				for (auto& aKillZone : aRoom.second["mKillZones"].ObjectRange())
@@ -353,7 +353,7 @@ void GameManager::StartGame(std::string& pFileName)
 					aRoomPtr->addUpdatable(aNewKillZone);
 				}
 			}
-			if (aOneInteractionItem)
+			if (aHasOneInteractionItem)
 			{
 				_ASSERT_EXPR(aRoom.second.hasKey("mOneInteractionItems"), "Room has no OneInteractionItems");
 				for (auto& aOneInteractionItem : aRoom.second["mOneInteractionItems"].ObjectRange())
@@ -364,38 +364,122 @@ void GameManager::StartGame(std::string& pFileName)
 					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mInteractable"), "OneInteractionItem has no interactable bool");
 					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mAttackStory"), "OneInteractionItem has no attack story");
 					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mDeathStory"), "OneInteractionItem has no death story");
-					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mGiveableObject"), "OneInteractionItem has no giveable object");
+					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mType"), "OneInteractionItem has no trype");
 					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mUpdatableObjects"), "OneInteractionItem has no updatable objects");
+					OneInteractionItem* aNewItem = nullptr;
+					if (aInteractableMap.find(aOneInteractionItem.first) == aInteractableMap.end())
+					{
+						aNewItem = new OneInteractionItem();
+						aInteractableMap.emplace(aOneInteractionItem.first, aNewItem);
+					}
+					else
+					{
+						aNewItem = (OneInteractionItem*)aInteractableMap[aOneInteractionItem.first];
+					}
+					aNewItem->BasicObject::initialize(aOneInteractionItem.second["mName"].ToString(), aOneInteractionItem.second["mStory"].ToString());
+					aNewItem->IInteractable::initialize(aOneInteractionItem.second["mVisible"].ToBool(), aOneInteractionItem.second["mInteractable"].ToBool());
+					aNewItem->IUpdatable::initialize(aOneInteractionItem.second["mAttackStory"].ToString(), aOneInteractionItem.second["mDeathStory"].ToString());
+					int aType = aOneInteractionItem.second["mType"].ToInt();
+					aNewItem->initialize(aType == 0, aType == 1, aType == 2, aType == 3);
+					for (auto& aUpdatableObj : aOneInteractionItem.second["mUpdatableObjects"].ObjectRange())
+					{
+						_ASSERT_EXPR(aUpdatableObj.second.hasKey("mClassName"), "Updatable Object can't be created without class name");
+						_ASSERT_EXPR(aUpdatableObj.second.hasKey("mObjName"), "Updatable Object can't be created without obj name");
+						IInteractable* aUpdatable = nullptr;
+						if (aInteractableMap.find(aUpdatableObj.second["mObjName"].ToString()) == aInteractableMap.end())
+						{
+							aUpdatable = aObjectCreator[aUpdatableObj.second["mClassName"].ToString()]();
+							aInteractableMap.emplace(aUpdatableObj.second["mObjName"].ToString(), aUpdatable);
+						}
+						else
+						{
+							aUpdatable = aInteractableMap[aUpdatableObj.second["mObjName"].ToString()];
+						}
+						aNewItem->addConditionUpdateObjects(aUpdatable);
+					}
+					aRoomPtr->addInteractable(aInteractableMap[aOneInteractionItem.first]);
+					aRoomPtr->addUpdatable(aNewItem);
 				}
 			}
-			if (aPickableItem)
+			if (aHasPickableItem)
 			{
-				_ASSERT_EXPR(aRoom.second.hasKey("mCollectors"), "Room has no Collectors");
-				for (auto& aCollector : aRoom.second["mCollectors"].ObjectRange())
+				_ASSERT_EXPR(aRoom.second.hasKey("mPickableItems"), "Room has no Pickable Items");
+				for (auto& aPickableItem : aRoom.second["mPickableItems"].ObjectRange())
 				{
-					_ASSERT_EXPR(aCollector.second.hasKey("mName"), "Collector has no name");
-					_ASSERT_EXPR(aCollector.second.hasKey("mStory"), "Collector has no story");
-					_ASSERT_EXPR(aCollector.second.hasKey("mVisible"), "Collector has no visible bool");
-					_ASSERT_EXPR(aCollector.second.hasKey("mInteractable"), "Collector has no interactable bool");
-					_ASSERT_EXPR(aCollector.second.hasKey("mAttackStory"), "Collector has no attack story");
-					_ASSERT_EXPR(aCollector.second.hasKey("mDeathStory"), "Collector has no death story");
-					_ASSERT_EXPR(aCollector.second.hasKey("mGiveableObject"), "Collector has no giveable object");
-					_ASSERT_EXPR(aCollector.second.hasKey("mUpdatableObjects"), "Collector has no updatable objects");
+					_ASSERT_EXPR(aPickableItem.second.hasKey("mName"), "Pickable Item has no name");
+					_ASSERT_EXPR(aPickableItem.second.hasKey("mStory"), "Pickable Item has no story");
+					_ASSERT_EXPR(aPickableItem.second.hasKey("mVisible"), "Pickable Item has no visible bool");
+					_ASSERT_EXPR(aPickableItem.second.hasKey("mInteractable"), "Pickable Item has no interactable bool");
+					_ASSERT_EXPR(aPickableItem.second.hasKey("mType"), "Pickable Item has no type");
+					PickableItem* aNewPItem = nullptr;
+					if (aInteractableMap.find(aPickableItem.first) == aInteractableMap.end())
+					{
+						aNewPItem = new PickableItem();
+						aInteractableMap.emplace(aPickableItem.first, aNewPItem);
+					}
+					else
+					{
+						aNewPItem = (PickableItem*)aInteractableMap[aPickableItem.first];
+					}
+					aNewPItem->BasicObject::initialize(aPickableItem.second["mName"].ToString(), aPickableItem.second["mStory"].ToString());
+					aNewPItem->IInteractable::initialize(aPickableItem.second["mVisible"].ToBool(), aPickableItem.second["mInteractable"].ToBool());
+					int aType = aPickableItem.second["mType"].ToInt();
+					if(aPickableItem.second.hasKey("mIsPicked"))
+					{
+						aNewPItem->initialize(aType == 0, aType == 1, aType == 2, aType == 3, aPickableItem.second["mIsPicked"].ToBool(),aPickableItem.second["mIsWorn"].ToBool(),aPickableItem.second["mIsGiven"].ToBool(),aPickableItem.second["mIsDropped"].ToBool());
+					}
+					else
+					{
+						aNewPItem->initialize(aType == 0, aType == 1, aType == 2, aType == 3);
+					}
+					aRoomPtr->addInteractable(aInteractableMap[aPickableItem.first]);
 				}
 			}
-			if (aPortal)
+			if (aHasPortal)
 			{
-				_ASSERT_EXPR(aRoom.second.hasKey("mCollectors"), "Room has no Collectors");
-				for (auto& aCollector : aRoom.second["mCollectors"].ObjectRange())
+				_ASSERT_EXPR(aRoom.second.hasKey("mPortals"), "Room has no Portals");
+				for (auto& aPortal : aRoom.second["mPortals"].ObjectRange())
 				{
-					_ASSERT_EXPR(aCollector.second.hasKey("mName"), "Collector has no name");
-					_ASSERT_EXPR(aCollector.second.hasKey("mStory"), "Collector has no story");
-					_ASSERT_EXPR(aCollector.second.hasKey("mVisible"), "Collector has no visible bool");
-					_ASSERT_EXPR(aCollector.second.hasKey("mInteractable"), "Collector has no interactable bool");
-					_ASSERT_EXPR(aCollector.second.hasKey("mAttackStory"), "Collector has no attack story");
-					_ASSERT_EXPR(aCollector.second.hasKey("mDeathStory"), "Collector has no death story");
-					_ASSERT_EXPR(aCollector.second.hasKey("mGiveableObject"), "Collector has no giveable object");
-					_ASSERT_EXPR(aCollector.second.hasKey("mUpdatableObjects"), "Collector has no updatable objects");
+					_ASSERT_EXPR(aPortal.second.hasKey("mName"), "Portal has no name");
+					_ASSERT_EXPR(aPortal.second.hasKey("mStory"), "Portal has no story");
+					_ASSERT_EXPR(aPortal.second.hasKey("mVisible"), "Portal has no visible bool");
+					_ASSERT_EXPR(aPortal.second.hasKey("mInteractable"), "Portal has no interactable bool");
+					_ASSERT_EXPR(aPortal.second.hasKey("mActiveRegion"), "Portal has no active region");
+					_ASSERT_EXPR(aPortal.second.hasKey("mConnectedRegion"), "Portal has no connected region");
+					Portal* aNewPortal = nullptr;
+					if (aInteractableMap.find(aPortal.first) == aInteractableMap.end())
+					{
+						aNewPortal = new Portal();
+						aInteractableMap.emplace(aPortal.first, aNewPortal);
+					}
+					else
+					{
+						aNewPortal = (Portal*)aInteractableMap[aPortal.first];
+					}
+					aNewPortal->BasicObject::initialize(aPortal.second["mName"].ToString(), aPortal.second["mStory"].ToString());
+					aNewPortal->IInteractable::initialize(aPortal.second["mVisible"].ToBool(), aPortal.second["mInteractable"].ToBool());
+					Region* aActiveRegion = nullptr;
+					if (aRegionMap.find(aPortal.second["mActiveRegion"].ToString()) == aRegionMap.end())
+					{
+						aActiveRegion = new Region();
+						aRegionMap.emplace(aPortal.second["mActiveRegion"].ToString(), aActiveRegion);
+					}
+					else
+					{
+						aActiveRegion = aRegionMap[aPortal.second["mActiveRegion"].ToString()];
+					}
+					Region* aConnectedRegion = nullptr;
+					if (aRegionMap.find(aPortal.second["mConnectedRegion"].ToString()) == aRegionMap.end())
+					{
+						aConnectedRegion = new Region();
+						aRegionMap.emplace(aPortal.second["mConnectedRegion"].ToString(), aConnectedRegion);
+					}
+					else
+					{
+						aConnectedRegion = aRegionMap[aPortal.second["mConnectedRegion"].ToString()];
+					}
+					aNewPortal->initialize(aActiveRegion, aConnectedRegion);
+					aRoomPtr->addInteractable(aInteractableMap[aPortal.first]);
 				}
 			}
 		}
@@ -411,7 +495,9 @@ void GameManager::GameLoop()
 	std::cout << "To interact with the game, type commands..." << std::endl;
 	std::cout << "Type HELP to see all the commands..." << std::endl;
 	std::cout << "Type SAVE to save the game..." << std::endl;
-	std::cout << "Type EXIT to exit the game... (The game autosaves on exit and gameover)" << std::endl;
+	std::cout << "Type EXIT to exit the game... (The game autosaves on exit and gameover)" << std::endl << std::endl;
+	look();
+	std::cout << std::endl << "What do you do?" << std::endl << std::endl;
 	std::string aCommandStr = "";
 	do
 	{

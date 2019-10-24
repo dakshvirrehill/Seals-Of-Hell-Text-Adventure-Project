@@ -6,12 +6,10 @@ Portal::~Portal()
 {
 }
 
-void Portal::initialize(Region* pActiveRegion, Region* pConnectedRegion, bool& pIsVisible, bool& pIsInteractable)
+void Portal::initialize(Region* pActiveRegion, Region* pConnectedRegion)
 {
 	mActiveRegion = pActiveRegion;
 	mConnectedRegion = pConnectedRegion;
-	makeVisible(pIsVisible);
-	makeInteractable(pIsInteractable);
 }
 
 void Portal::teleportRegion()

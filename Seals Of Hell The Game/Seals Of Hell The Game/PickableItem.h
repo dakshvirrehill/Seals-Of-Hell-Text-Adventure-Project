@@ -12,7 +12,7 @@ class PickableItem : public IInteractable
 	bool mIsDropped;
 public:
 	PickableItem() : IInteractable(),mIsWeapon(false),mIsShield(false),mIsGiveable(false),mIsWearable(false),mIsPicked(false),mIsWorn(false),mIsGiven(false),mIsDropped(false) {}
-	void initialize(bool&,bool&,bool&,bool&,bool&,bool&);
+	void initialize(bool pIsWeapon,bool pIsShield,bool pIsGiveable,bool pIsWearable,bool pIsPicked = false,bool pIsWorn = false,bool pIsGiven = false,bool pIsDropped = false);
 	void pickObject() override;
 	void wearObject() override;
 	void dropObject() override;
