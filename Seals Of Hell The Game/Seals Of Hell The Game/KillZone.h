@@ -6,6 +6,8 @@
 class KillZone : public IUpdatable,public IInteractable
 {
 public:
+	KillZone() : IUpdatable(), IInteractable() {}
+	~KillZone();
 	void update() override;
 	void enemyDeath() override;
 };

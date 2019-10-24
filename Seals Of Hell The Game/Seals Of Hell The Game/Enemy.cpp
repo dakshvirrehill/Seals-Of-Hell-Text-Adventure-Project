@@ -6,8 +6,11 @@ Enemy::~Enemy()
 {
 }
 
-void Enemy::initialize()
+void Enemy::initialize(int pLife, std::string pBlockStory)
 {
+	mLife = pLife;
+	mBlockStory = pBlockStory;
+	mCanAttack = true;
 }
 
 void Enemy::update()

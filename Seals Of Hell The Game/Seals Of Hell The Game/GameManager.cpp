@@ -16,6 +16,18 @@
 #include "Portal.h"
 #include<string>
 #include <map>
+#include <functional>
+
+///Temp Helper Functions start
+IInteractable* CreateCollector() { return new Collector(); }
+IInteractable* CreateEnemy() { return new Enemy(); }
+IInteractable* CreateKillZone() { return new KillZone(); }
+IInteractable* CreateGateway() { return new Gateway(); }
+IInteractable* CreateOneInteractionItem() { return new OneInteractionItem(); }
+IInteractable* CreatePickableItem() { return new PickableItem(); }
+IInteractable* CreatePortal() { return new Portal(); }
+//Temp Helper Functions end
+
 void GameManager::look()
 {
 	if (mCurrentRegion != nullptr)
@@ -46,7 +58,16 @@ void GameManager::StartGame(std::string& pFileName)
 	mCurrentRoom = mCurrentRegion->getStartingRoom();
 	std::map<std::string, Room*> aRoomMap;
 	std::map<std::string, IInteractable*> aInteractableMap;
-
+	//temp function pointer map start
+	std::map<std::string, std::function<IInteractable* ()>> aObjectCreator;
+	aObjectCreator.emplace("Collector", CreateCollector);
+	aObjectCreator.emplace("Enemy", CreateEnemy);
+	aObjectCreator.emplace("Gateway", CreateGateway);
+	aObjectCreator.emplace("KillZone", CreateKillZone);
+	aObjectCreator.emplace("OneInteractionItem", CreateOneInteractionItem);
+	aObjectCreator.emplace("PickableItem", CreatePickableItem);
+	aObjectCreator.emplace("Portal", CreatePortal);
+	//temp function pointer map end
 	for (auto& aRegion : aRegions.ObjectRange())
 	{
 		_ASSERT_EXPR(aRegion.second.hasKey("mName"), "Region has no name");
@@ -104,12 +125,13 @@ void GameManager::StartGame(std::string& pFileName)
 			bool aPortal = aRoom.second["mHasPortals"].ToBool();
 			_ASSERT_EXPR(aRoom.second.hasKey("mGateways"), "Room has no Gateways");
 			aRoomPtr->BasicObject::initialize(aRoom.second["mName"].ToString(), aRoom.second["mStory"].ToString());
+			//figure out gateway logic
 			for (auto& aGateway : aRoom.second["mGateways"].ObjectRange())
 			{
 				_ASSERT_EXPR(aGateway.second.hasKey("mName"), "Gateway has no name");
 				_ASSERT_EXPR(aGateway.second.hasKey("mStory"), "Gateway has no story");
-				_ASSERT_EXPR(aGateway.second.hasKey("mIsVisible"), "Gateway has no visible bool");
-				_ASSERT_EXPR(aGateway.second.hasKey("mIsInteractable"), "Gateway has no interactable bool");
+				_ASSERT_EXPR(aGateway.second.hasKey("mVisible"), "Gateway has no visible bool");
+				_ASSERT_EXPR(aGateway.second.hasKey("mInteractable"), "Gateway has no interactable bool");
 				_ASSERT_EXPR(aGateway.second.hasKey("mCurrentRoom"), "Gateway has no current room");
 				_ASSERT_EXPR(aGateway.second.hasKey("mConnectedRoom"), "Gateway has no connected room");
 				Gateway* aNewGateway = nullptr;
@@ -123,7 +145,7 @@ void GameManager::StartGame(std::string& pFileName)
 					aNewGateway = (Gateway*)aInteractableMap[aGateway.first];
 				}
 				aNewGateway->BasicObject::initialize(aGateway.second["mName"].ToString(), aGateway.second["mStory"].ToString());
-				aNewGateway->IInteractable::initialize(aGateway.second["mIsVisible"].ToBool(), aGateway.second["mIsInteractable"].ToBool());
+				aNewGateway->IInteractable::initialize(aGateway.second["mVisible"].ToBool(), aGateway.second["mInteractable"].ToBool());
 				Room* aCurRoom = nullptr;
 				if (aRoomMap.find(aGateway.second["mCurrentRoom"].ToString()) == aRoomMap.end())
 				{
@@ -150,36 +172,231 @@ void GameManager::StartGame(std::string& pFileName)
 				_ASSERT_EXPR(aRoom.second.hasKey("mCollectors"), "Room has no Collectors");
 				for (auto& aCollector : aRoom.second["mCollectors"].ObjectRange())
 				{
-					_ASSERT_EXPR(aCollector.second.hasKey("mName"), "Gateway has no name");
-					_ASSERT_EXPR(aCollector.second.hasKey("mStory"), "Gateway has no story");
-					_ASSERT_EXPR(aCollector.second.hasKey("mIsVisible"), "Gateway has no visible bool");
-					_ASSERT_EXPR(aCollector.second.hasKey("mIsInteractable"), "Gateway has no interactable bool");
+					_ASSERT_EXPR(aCollector.second.hasKey("mName"), "Collector has no name");
+					_ASSERT_EXPR(aCollector.second.hasKey("mStory"), "Collector has no story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mVisible"), "Collector has no visible bool");
+					_ASSERT_EXPR(aCollector.second.hasKey("mInteractable"), "Collector has no interactable bool");
+					_ASSERT_EXPR(aCollector.second.hasKey("mAttackStory"), "Collector has no attack story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mDeathStory"), "Collector has no death story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mGiveableObject"), "Collector has no giveable object");
+					_ASSERT_EXPR(aCollector.second.hasKey("mUpdatableObjects"), "Collector has no updatable objects");
 					Collector* aNewCollector = nullptr;
 					if (aInteractableMap.find(aCollector.first) == aInteractableMap.end())
 					{
 						aNewCollector = new Collector();
+						aInteractableMap.emplace(aCollector.first, aNewCollector);
 					}
+					else
+					{
+						aNewCollector = (Collector*)aInteractableMap[aCollector.first];
+					}
+					aNewCollector->BasicObject::initialize(aCollector.second["mName"].ToString(), aCollector.second["mStory"].ToString());
+					aNewCollector->IInteractable::initialize(aCollector.second["mVisible"].ToBool(), aCollector.second["mInteractable"].ToBool());
+					aNewCollector->IUpdatable::initialize(aCollector.second["mAttackStory"].ToString(), aCollector.second["mDeathStory"].ToString());
+					IInteractable* aGiveableObject = nullptr;
+					if (aInteractableMap.find(aCollector.second["mGiveableObject"].ToString()) == aInteractableMap.end())
+					{
+						aGiveableObject = new PickableItem();
+						aInteractableMap.emplace(aCollector.second["mGiveableObject"].ToString(), aGiveableObject);
+					}
+					else
+					{
+						aGiveableObject = aInteractableMap[aCollector.second["mGiveableObject"].ToString()];
+					}
+					aNewCollector->setConditionalObject(aGiveableObject);
+					for (auto& aUpdatableObj : aCollector.second["mUpdatableObjects"].ObjectRange())
+					{
+						_ASSERT_EXPR(aUpdatableObj.second.hasKey("mClassName"), "Updatable Object can't be created without class name");
+						_ASSERT_EXPR(aUpdatableObj.second.hasKey("mObjName"), "Updatable Object can't be created without obj name");
+						IInteractable* aUpdatable = nullptr;
+						if (aInteractableMap.find(aUpdatableObj.second["mObjName"].ToString()) == aInteractableMap.end())
+						{
+							aUpdatable = aObjectCreator[aUpdatableObj.second["mClassName"].ToString()]();
+							aInteractableMap.emplace(aUpdatableObj.second["mObjName"].ToString(), aUpdatable);
+						}
+						else
+						{
+							aUpdatable = aInteractableMap[aUpdatableObj.second["mObjName"].ToString()];
+						}
+						aNewCollector->addConditionUpdateObjects(aUpdatable);
+					}
+					aRoomPtr->addInteractable(aInteractableMap[aCollector.first]);
+					aRoomPtr->addUpdatable(aNewCollector);
 				}
 			}
 			if (aEnemy)
 			{
-
+				_ASSERT_EXPR(aRoom.second.hasKey("mEnemies"), "Room has no Enemies");
+				for (auto& aEnemy : aRoom.second["mEnemies"].ObjectRange())
+				{
+					_ASSERT_EXPR(aEnemy.second.hasKey("mName"), "Enemy has no name");
+					_ASSERT_EXPR(aEnemy.second.hasKey("mStory"), "Enemy has no story");
+					_ASSERT_EXPR(aEnemy.second.hasKey("mVisible"), "Enemy has no visible bool");
+					_ASSERT_EXPR(aEnemy.second.hasKey("mInteractable"), "Enemy has no interactable bool");
+					_ASSERT_EXPR(aEnemy.second.hasKey("mAttackStory"), "Enemy has no attack story");
+					_ASSERT_EXPR(aEnemy.second.hasKey("mLife"), "Enemy has no life");
+					_ASSERT_EXPR(aEnemy.second.hasKey("mBlockStory"), "Enemy has no block story");
+					_ASSERT_EXPR(aEnemy.second.hasKey("mDeathStory"), "Enemy has no death story");
+					_ASSERT_EXPR(aEnemy.second.hasKey("mKillingWeapon"), "Enemy has no killing weapon");
+					_ASSERT_EXPR(aEnemy.second.hasKey("mUpdatableObjects"), "Enemy has no updatable objects");
+					Enemy* aNewEnemy = nullptr;
+					if (aInteractableMap.find(aEnemy.first) == aInteractableMap.end())
+					{
+						aNewEnemy = new Enemy();
+						aInteractableMap.emplace(aEnemy.first, aNewEnemy);
+					}
+					else
+					{
+						aNewEnemy = (Enemy*)aInteractableMap[aEnemy.first];
+					}
+					aNewEnemy->BasicObject::initialize(aEnemy.second["mName"].ToString(), aEnemy.second["mStory"].ToString());
+					aNewEnemy->IInteractable::initialize(aEnemy.second["mVisible"].ToBool(), aEnemy.second["mInteractable"].ToBool());
+					aNewEnemy->IUpdatable::initialize(aEnemy.second["mAttackStory"].ToString(), aEnemy.second["mDeathStory"].ToString());
+					aNewEnemy->initialize(aEnemy.second["mLife"].ToInt(), aEnemy.second["mBlockStory"].ToString());
+					IInteractable* aKillingWeapon = nullptr;
+					if (aInteractableMap.find(aEnemy.second["mKillingWeapon"].ToString()) == aInteractableMap.end())
+					{
+						aKillingWeapon = new PickableItem();
+						aInteractableMap.emplace(aEnemy.second["mKillingWeapon"].ToString(), aKillingWeapon);
+					}
+					else
+					{
+						aKillingWeapon = aInteractableMap[aEnemy.second["mKillingWeapon"].ToString()];
+					}
+					aNewEnemy->setConditionalObject(aKillingWeapon);
+					for (auto& aUpdatableObj : aEnemy.second["mUpdatableObjects"].ObjectRange())
+					{
+						_ASSERT_EXPR(aUpdatableObj.second.hasKey("mClassName"), "Updatable Object can't be created without class name");
+						_ASSERT_EXPR(aUpdatableObj.second.hasKey("mObjName"), "Updatable Object can't be created without obj name");
+						IInteractable* aUpdatable = nullptr;
+						if (aInteractableMap.find(aUpdatableObj.second["mObjName"].ToString()) == aInteractableMap.end())
+						{
+							aUpdatable = aObjectCreator[aUpdatableObj.second["mClassName"].ToString()]();
+							aInteractableMap.emplace(aUpdatableObj.second["mObjName"].ToString(), aUpdatable);
+						}
+						else
+						{
+							aUpdatable = aInteractableMap[aUpdatableObj.second["mObjName"].ToString()];
+						}
+						aNewEnemy->addConditionUpdateObjects(aUpdatable);
+					}
+					aRoomPtr->addInteractable(aInteractableMap[aEnemy.first]);
+					aRoomPtr->addUpdatable(aNewEnemy);
+				}
 			}
 			if (aKillZone)
 			{
-
+				_ASSERT_EXPR(aRoom.second.hasKey("mKillZones"), "Room has no Killzones");
+				for (auto& aKillZone : aRoom.second["mKillZones"].ObjectRange())
+				{
+					_ASSERT_EXPR(aKillZone.second.hasKey("mName"), "Killzone has no name");
+					_ASSERT_EXPR(aKillZone.second.hasKey("mStory"), "Killzone has no story");
+					_ASSERT_EXPR(aKillZone.second.hasKey("mVisible"), "Killzone has no visible bool");
+					_ASSERT_EXPR(aKillZone.second.hasKey("mInteractable"), "Killzone has no interactable bool");
+					_ASSERT_EXPR(aKillZone.second.hasKey("mAttackStory"), "Killzone has no attack story");
+					_ASSERT_EXPR(aKillZone.second.hasKey("mDeathStory"), "Killzone has no death story");
+					_ASSERT_EXPR(aKillZone.second.hasKey("mHasCondition"), "Killzone has no has condition bool");
+					_ASSERT_EXPR(aKillZone.second.hasKey("mUpdatableObjects"), "Killzone has no updatable objects");
+					bool aHasCond = aKillZone.second["mHasCondition"].ToBool();
+					if (aHasCond)
+					{
+						_ASSERT_EXPR(aKillZone.second.hasKey("mConditionalObject"), "Killzone has no conditional object");
+					}
+					KillZone* aNewKillZone = nullptr;
+					if (aInteractableMap.find(aKillZone.first) == aInteractableMap.end())
+					{
+						aNewKillZone = new KillZone();
+						aInteractableMap.emplace(aKillZone.first, aNewKillZone);
+					}
+					else
+					{
+						aNewKillZone = (KillZone*)aInteractableMap[aKillZone.first];
+					}
+					aNewKillZone->BasicObject::initialize(aKillZone.second["mName"].ToString(), aKillZone.second["mStory"].ToString());
+					aNewKillZone->IInteractable::initialize(aKillZone.second["mVisible"].ToBool(), aKillZone.second["mInteractable"].ToBool());
+					aNewKillZone->IUpdatable::initialize(aKillZone.second["mAttackStory"].ToString(), aKillZone.second["mDeathStory"].ToString());
+					if (aHasCond)
+					{
+						IInteractable* aConditionalObject = nullptr;
+						if (aInteractableMap.find(aKillZone.second["mConditionalObject"].ToString()) == aInteractableMap.end())
+						{
+							aConditionalObject = new PickableItem();
+							aInteractableMap.emplace(aKillZone.second["mConditionalObject"].ToString(), aConditionalObject);
+						}
+						else
+						{
+							aConditionalObject = aInteractableMap[aKillZone.second["mConditionalObject"].ToString()];
+						}
+						aNewKillZone->setConditionalObject(aConditionalObject);
+					}
+					else
+					{
+						aNewKillZone->setConditionalObject(nullptr);
+					}
+					for (auto& aUpdatableObj : aKillZone.second["mUpdatableObjects"].ObjectRange())
+					{
+						_ASSERT_EXPR(aUpdatableObj.second.hasKey("mClassName"), "Updatable Object can't be created without class name");
+						_ASSERT_EXPR(aUpdatableObj.second.hasKey("mObjName"), "Updatable Object can't be created without obj name");
+						IInteractable* aUpdatable = nullptr;
+						if (aInteractableMap.find(aUpdatableObj.second["mObjName"].ToString()) == aInteractableMap.end())
+						{
+							aUpdatable = aObjectCreator[aUpdatableObj.second["mClassName"].ToString()]();
+							aInteractableMap.emplace(aUpdatableObj.second["mObjName"].ToString(), aUpdatable);
+						}
+						else
+						{
+							aUpdatable = aInteractableMap[aUpdatableObj.second["mObjName"].ToString()];
+						}
+						aNewKillZone->addConditionUpdateObjects(aUpdatable);
+					}
+					aRoomPtr->addInteractable(aInteractableMap[aKillZone.first]);
+					aRoomPtr->addUpdatable(aNewKillZone);
+				}
 			}
 			if (aOneInteractionItem)
 			{
-
+				_ASSERT_EXPR(aRoom.second.hasKey("mCollectors"), "Room has no Collectors");
+				for (auto& aCollector : aRoom.second["mCollectors"].ObjectRange())
+				{
+					_ASSERT_EXPR(aCollector.second.hasKey("mName"), "Collector has no name");
+					_ASSERT_EXPR(aCollector.second.hasKey("mStory"), "Collector has no story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mVisible"), "Collector has no visible bool");
+					_ASSERT_EXPR(aCollector.second.hasKey("mInteractable"), "Collector has no interactable bool");
+					_ASSERT_EXPR(aCollector.second.hasKey("mAttackStory"), "Collector has no attack story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mDeathStory"), "Collector has no death story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mGiveableObject"), "Collector has no giveable object");
+					_ASSERT_EXPR(aCollector.second.hasKey("mUpdatableObjects"), "Collector has no updatable objects");
+				}
 			}
 			if (aPickableItem)
 			{
-
+				_ASSERT_EXPR(aRoom.second.hasKey("mCollectors"), "Room has no Collectors");
+				for (auto& aCollector : aRoom.second["mCollectors"].ObjectRange())
+				{
+					_ASSERT_EXPR(aCollector.second.hasKey("mName"), "Collector has no name");
+					_ASSERT_EXPR(aCollector.second.hasKey("mStory"), "Collector has no story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mVisible"), "Collector has no visible bool");
+					_ASSERT_EXPR(aCollector.second.hasKey("mInteractable"), "Collector has no interactable bool");
+					_ASSERT_EXPR(aCollector.second.hasKey("mAttackStory"), "Collector has no attack story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mDeathStory"), "Collector has no death story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mGiveableObject"), "Collector has no giveable object");
+					_ASSERT_EXPR(aCollector.second.hasKey("mUpdatableObjects"), "Collector has no updatable objects");
+				}
 			}
 			if (aPortal)
 			{
-
+				_ASSERT_EXPR(aRoom.second.hasKey("mCollectors"), "Room has no Collectors");
+				for (auto& aCollector : aRoom.second["mCollectors"].ObjectRange())
+				{
+					_ASSERT_EXPR(aCollector.second.hasKey("mName"), "Collector has no name");
+					_ASSERT_EXPR(aCollector.second.hasKey("mStory"), "Collector has no story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mVisible"), "Collector has no visible bool");
+					_ASSERT_EXPR(aCollector.second.hasKey("mInteractable"), "Collector has no interactable bool");
+					_ASSERT_EXPR(aCollector.second.hasKey("mAttackStory"), "Collector has no attack story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mDeathStory"), "Collector has no death story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mGiveableObject"), "Collector has no giveable object");
+					_ASSERT_EXPR(aCollector.second.hasKey("mUpdatableObjects"), "Collector has no updatable objects");
+				}
 			}
 		}
 	}

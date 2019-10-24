@@ -1,6 +1,9 @@
 #include "PlayerManager.h"
 #include "KillZone.h"
 #include <iostream>
+KillZone::~KillZone()
+{
+}
 void KillZone::update()
 {
 	if (!isInteractable())
