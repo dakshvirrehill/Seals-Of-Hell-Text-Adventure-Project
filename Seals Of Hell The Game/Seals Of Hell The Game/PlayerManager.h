@@ -18,7 +18,7 @@ private:
 	std::map <std::string, IInteractable*> mInventory;
 	bool mInAttack;
 protected:
-	void inventory();
+	static void inventory();
 public:
 	inline static PlayerManager& instance()
 	{

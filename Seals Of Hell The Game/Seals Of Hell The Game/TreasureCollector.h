@@ -3,11 +3,11 @@
 #define TREASURE_COLLECTOR_H
 #include "IInteractable.h"
 #include "IUpdatable.h"
-#include <list>
-
+#include <map>
+#include <string>
 class TreasureCollector : public IInteractable , public IUpdatable
 {
-	std::list<IInteractable*> mTreasures;
+	std::map<std::string,IInteractable*> mTreasures;
 public:
 	TreasureCollector() : IInteractable(),IUpdatable(),mTreasures() {}
 	~TreasureCollector();

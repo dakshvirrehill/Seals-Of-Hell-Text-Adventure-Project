@@ -2,7 +2,7 @@
 #include "PickableItem.h"
 #include <iostream>
 
-void PickableItem::initialize(bool pIsWeapon, bool pIsShield, bool pIsGiveable, bool pIsWearable, bool pIsPicked = false, bool pIsWorn = false, bool pIsGiven = false, bool pIsDropped = false)
+void PickableItem::initialize(bool pIsWeapon, bool pIsShield, bool pIsGiveable, bool pIsWearable, bool pIsPicked, bool pIsWorn, bool pIsGiven, bool pIsDropped)
 {
 	mIsWeapon = pIsWeapon;
 	mIsShield = pIsShield;
@@ -18,6 +18,7 @@ void PickableItem::objectGiven()
 {
 	mIsGiven = true;
 	PlayerManager::instance().removeFromInventory(this);
+	std::cout << getName() << " given." << std::endl;
 }
 
 void PickableItem::pickObject()

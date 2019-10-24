@@ -8,12 +8,11 @@
 #include <cctype>
 void CommandManager::initialize()
 {
-	mSingleCommands.emplace("HELP", CommandManager::instance().help);
-	mSingleCommands.emplace("SAVE", GameManager::instance().saveGame);
-	mSingleCommands.emplace("EXIT", GameManager::instance().endGame);
-	mSingleCommands.emplace("INVENTORY", PlayerManager::instance().inventory);
-	mSingleCommands.emplace("LOOK", GameManager::instance().look);
-	//mSingleCommands.emplace("WAKE UP", PlayerManager::instance().wakeUp);
+	mSingleCommands.emplace("HELP", &CommandManager::help);
+	mSingleCommands.emplace("SAVE", &GameManager::saveGame);
+	mSingleCommands.emplace("EXIT", &GameManager::endGame);
+	mSingleCommands.emplace("INVENTORY", &PlayerManager::inventory);
+	mSingleCommands.emplace("LOOK", &GameManager::look);
 
 	mInteractableCommands.emplace("LOOK", &IInteractable::lookObject);
 	mInteractableCommands.emplace("TELEPORT", &IInteractable::teleportRegion);
@@ -26,8 +25,6 @@ void CommandManager::initialize()
 	mInteractableCommands.emplace("MOVE", &IInteractable::moveObject);
 	mInteractableCommands.emplace("ANSWER", &IInteractable::answerRiddle);
 	mInteractableCommands.emplace("DROP", &IInteractable::dropObject);
-	//mInteractableCommands.emplace("GIVE LOVE", &IInteractable::giveLove);
-	//mInteractableCommands.emplace("GIVE HATE", &IInteractable::giveHate);
 
 	mTwoInteractionCommands.emplace("GIVE", &IInteractable::giveObject);
 	mTwoInteractionCommands.emplace("ATTACK", &IInteractable::attackEnemy);
@@ -76,7 +73,7 @@ std::vector<std::string>& CommandManager::getCommandWords(std::string& pCommandS
 
 void CommandManager::convertToUpper(std::string& pString)
 {
-	for (int aI = 0; aI < pString.size(); aI++)
+	for (size_t aI = 0; aI < pString.size(); aI++)
 	{
 		if (std::islower(pString[aI]))
 		{
@@ -108,7 +105,7 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 	bool aSInObj2 = false;
 	bool aSwapObj1n2 = false;
 	//bool aLHF = false;
-	for (int aI = 1; aI < aCommandWords.size(); aI++)
+	for (size_t aI = 1; aI < aCommandWords.size(); aI++)
 	{
 		if (aCommandWords.at(aI) == "WITH")
 		{

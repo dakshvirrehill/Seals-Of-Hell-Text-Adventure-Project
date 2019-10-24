@@ -11,13 +11,13 @@
 
 void GameManager::look()
 {
-	if (mCurrentRegion != nullptr)
+	if (instance().mCurrentRegion != nullptr)
 	{
-		mCurrentRegion->look();
+		instance().mCurrentRegion->look();
 	}
-	if (mCurrentRoom != nullptr)
+	if (instance().mCurrentRoom != nullptr)
 	{
-		mCurrentRoom->look();
+		instance().mCurrentRoom->look();
 	}
 }
 
@@ -71,10 +71,16 @@ void GameManager::setCurrentRoom(Room* pRoom)
 	mCurrentRoom->look();
 }
 
+void GameManager::playerWon()
+{
+	endGame();
+	//anything else
+}
+
 
 void GameManager::endGame()
 {
-	mGamePlay = false;
+	instance().mGamePlay = false;
 	saveGame();
 }
 

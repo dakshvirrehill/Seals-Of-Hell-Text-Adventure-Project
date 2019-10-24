@@ -18,11 +18,9 @@ private:
 	}
 	std::vector<std::string>& getCommandWords(std::string&);
 	void convertToUpper(std::string&);
-//	std::function<bool(IInteractable*)> getInteractableCommandPointer(std::string&);
-//	std::function<void()> getSingleCommandPointer(std::string&);
 	std::map<std::string, std::function<void(IInteractable*)>> mInteractableCommands;
 	std::map < std::string, std::function<void(IInteractable*, IInteractable*)>> mTwoInteractionCommands;
-	std::map<std::string, std::function<void()>> mSingleCommands;
+	std::map<std::string, std::function<void ()>> mSingleCommands;
 	bool mInitialzed;
 protected:
 	inline static CommandManager& instance()
@@ -31,7 +29,7 @@ protected:
 		return mInstance;
 	}
 	void initialize();
-	void help();
+	static void help();
 	bool runCommand(std::string&);
 	friend class GameManager;
 };

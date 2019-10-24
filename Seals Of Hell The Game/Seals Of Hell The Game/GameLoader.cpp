@@ -46,7 +46,7 @@ void GameLoader::initializeIUpdatable(json::JSON pData, IUpdatable* pObject, std
 		IInteractable* aUpdatable = nullptr;
 		if (pInteractableMap.find(aUpdatableObj.second["mObjName"].ToString()) == pInteractableMap.end())
 		{
-			aUpdatable = mObjectCreator[aUpdatableObj.second["mClassName"].ToString()]();
+			aUpdatable = mObjectCreator[aUpdatableObj.second["mClassName"].ToString()](instance());
 			pInteractableMap.emplace(aUpdatableObj.second["mObjName"].ToString(), aUpdatable);
 		}
 		else

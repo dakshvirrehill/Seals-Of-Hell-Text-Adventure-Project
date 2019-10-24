@@ -105,6 +105,9 @@
     <ClCompile Include="GameLoader.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="TreasureCollector.cpp">
+      <Filter>Source Files\Interactables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasicObject.h">
@@ -160,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="GameLoader.h">
       <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="TreasureCollector.h">
+      <Filter>Header Files\Interactables</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

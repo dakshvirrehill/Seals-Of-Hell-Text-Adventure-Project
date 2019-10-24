@@ -2,7 +2,7 @@
 #include "json.hpp"
 #include <string>
 #include <fstream>
-json::JSON& SaveGameManager::loadGame(std::string& pFileName)
+json::JSON SaveGameManager::loadGame(std::string& pFileName)
 {
 	std::ifstream aInputStream(pFileName);
 	std::string aReadJSON((std::istreambuf_iterator<char>(aInputStream)), std::istreambuf_iterator<char>());

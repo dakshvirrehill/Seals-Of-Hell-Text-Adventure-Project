@@ -10,7 +10,7 @@ class BasicObject;
 class IUpdatable;
 class GameLoader
 {
-	std::map<std::string, std::function<IInteractable* ()>> mObjectCreator;
+	std::map<std::string, std::function<IInteractable* (GameLoader&)>> mObjectCreator;
 	bool mInit;
 	inline explicit GameLoader() :mObjectCreator(),mInit(false) {}
 	inline ~GameLoader() {}
@@ -36,13 +36,13 @@ protected:
 		if (!mInstance.mInit)
 		{
 			mInstance.mInit = true;
-			mInstance.mObjectCreator.emplace("Collector", mInstance.CreateCollector);
-			mInstance.mObjectCreator.emplace("Enemy", mInstance.CreateEnemy);
-			mInstance.mObjectCreator.emplace("Gateway", mInstance.CreateGateway);
-			mInstance.mObjectCreator.emplace("KillZone", mInstance.CreateKillZone);
-			mInstance.mObjectCreator.emplace("OneInteractionItem", mInstance.CreateOneInteractionItem);
-			mInstance.mObjectCreator.emplace("PickableItem", mInstance.CreatePickableItem);
-			mInstance.mObjectCreator.emplace("Portal", mInstance.CreatePortal);
+			mInstance.mObjectCreator.emplace("Collector", &GameLoader::CreateCollector);
+			mInstance.mObjectCreator.emplace("Enemy", &GameLoader::CreateEnemy);
+			mInstance.mObjectCreator.emplace("Gateway", &GameLoader::CreateGateway);
+			mInstance.mObjectCreator.emplace("KillZone", &GameLoader::CreateKillZone);
+			mInstance.mObjectCreator.emplace("OneInteractionItem", &GameLoader::CreateOneInteractionItem);
+			mInstance.mObjectCreator.emplace("PickableItem", &GameLoader::CreatePickableItem);
+			mInstance.mObjectCreator.emplace("Portal", &GameLoader::CreatePortal);
 		}
 		return mInstance;
 	}

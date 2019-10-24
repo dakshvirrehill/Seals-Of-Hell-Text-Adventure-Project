@@ -29,7 +29,7 @@ public:
 	bool& isVisible() { return mVisible; }
 	bool& isInteractable() { return mInteractable; }
 	//TODO : maybe remove these functions to keep reference functions to manipulate only
-	void makeVisible(bool& pEnable) { mVisible = pEnable; }
-	void makeInteractable(bool& pEnable) { mInteractable = pEnable; }
+	void makeVisible(bool pEnable) { mVisible = pEnable; }
+	void makeInteractable(bool pEnable) { mInteractable = pEnable; }
 };
 #endif

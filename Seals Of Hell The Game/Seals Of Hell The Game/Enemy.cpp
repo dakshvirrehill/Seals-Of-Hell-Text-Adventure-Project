@@ -49,7 +49,7 @@ void Enemy::update()
 
 void Enemy::attackEnemy(IInteractable* pWeapon)
 {
-	if (pWeapon != getConditionalObject() && !PlayerManager::instance().hasInInventory)
+	if (pWeapon != getConditionalObject() && !PlayerManager::instance().hasInInventory(pWeapon))
 	{
 		IInteractable::attackEnemy(pWeapon);
 	}

@@ -19,7 +19,7 @@ protected:
 		static SaveGameManager mInstance;
 		return mInstance;
 	}
-	json::JSON& loadGame(std::string&);
+	json::JSON loadGame(std::string&);
 	bool saveGame(json::JSON&,std::string&);
 	friend class GameManager;
 };

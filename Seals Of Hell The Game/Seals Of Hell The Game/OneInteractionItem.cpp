@@ -24,7 +24,7 @@ void OneInteractionItem::moveObject()
 {
 	if (isInteractable() && mIsMovable)
 	{
-		endUpdate()();
+		endUpdate();
 	}
 	else
 	{
@@ -36,7 +36,7 @@ void OneInteractionItem::playObject()
 {
 	if (isInteractable() && mIsPlayable)
 	{
-		endUpdate()();
+		endUpdate();
 	}
 	else
 	{
@@ -48,7 +48,7 @@ void OneInteractionItem::eatObject()
 {
 	if (isInteractable() && mIsEatable)
 	{
-		endUpdate()();
+		endUpdate();
 	}
 	else
 	{
@@ -60,7 +60,7 @@ void OneInteractionItem::answerRiddle()
 {
 	if (isInteractable() && mIsRiddle)
 	{
-		endUpdate()();
+		endUpdate();
 	}
 	else
 	{
@@ -87,7 +87,7 @@ void OneInteractionItem::update()
 	}
 }
 
-void OneInteractionItem::endUpdate()()
+void OneInteractionItem::endUpdate()
 {
 	std::cout << getName() << std::endl;
 	std::cout << getDeathStory() << std::endl;

@@ -22,9 +22,9 @@ private:
 		return *this;
 	}
 protected:
-	void look();
-	void endGame();
-	void saveGame();
+	static void look();
+	static void endGame();
+	static void saveGame();
 public:
 	inline static GameManager& instance() 
 	{
@@ -34,6 +34,7 @@ public:
 	void initialize(Region*, Room*);
 	void StartGame(std::string&);
 	void GameLoop();
+	void playerWon();
 	void setCurrentRegion(Region*);
 	void setCurrentRoom(Room*);
 	IInteractable* getInteractable(std::string&);
