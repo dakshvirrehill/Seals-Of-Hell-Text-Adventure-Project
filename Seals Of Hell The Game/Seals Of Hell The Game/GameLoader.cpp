@@ -13,6 +13,7 @@
 #include "OneInteractionItem.h"
 #include "PickableItem.h"
 #include "Portal.h"
+#include "TreasureCollector.h"
 #include<string>
 #include <map>
 #include <functional>
@@ -64,11 +65,12 @@ IInteractable* GameLoader::CreateGateway() { return new Gateway(); }
 IInteractable* GameLoader::CreateOneInteractionItem() { return new OneInteractionItem(); }
 IInteractable* GameLoader::CreatePickableItem() { return new PickableItem(); }
 IInteractable* GameLoader::CreatePortal() { return new Portal(); }
+IInteractable* GameLoader::CreateTreasureCollector() { return new TreasureCollector(); }
 
 
 void GameLoader::initializeGameFromSave(json::JSON& pGameData)
 {
-
+	//from save game
 }
 
 void GameLoader::initializeNewGame(json::JSON& pGameData)
@@ -88,6 +90,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 	Region* aRegionPtr = new Region();
 	aRegionMap.emplace(pGameData["mGameDetails"]["mFirstRegion"].ToString(), aRegionPtr);
 	bool aGMInit = false;
+	bool aMakeTreasureCollector = false;
 	for (auto& aRegion : aRegions.ObjectRange())
 	{
 		_ASSERT_EXPR(aRegion.second.hasKey("mEntryRoom"), "Region has no entry room");
@@ -119,6 +122,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 			{
 				GameManager::instance().initialize(aRegionPtr, aEntryRoomPtr);
 				aGMInit = true;
+				aMakeTreasureCollector = true;
 			}
 		}
 		aRegionPtr->initialize(aEntryRoomPtr);
@@ -148,6 +152,45 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 			bool aHasPickableItem = aRoom.second["mHasPickableItems"].ToBool();
 			_ASSERT_EXPR(aRoom.second.hasKey("mHasPortals"), "Room has no PortalItem bool");
 			bool aHasPortal = aRoom.second["mHasPortals"].ToBool();
+			if (aRoomPtr == aEntryRoomPtr && aMakeTreasureCollector)
+			{
+				_ASSERT_EXPR(aRoom.second.hasKey("mTreasureCollector"), "Room has no treasure collector");
+				json::JSON aTCol = aRoom.second["mTreasureCollector"];
+				_ASSERT_EXPR(aTCol.hasKey("mKey"), "Treasure Collector has no key");
+				TreasureCollector* aTCollector = nullptr;
+				if (aInteractableMap.find(aTCol["mKey"].ToString()) == aInteractableMap.end())
+				{
+					aTCollector = new TreasureCollector();
+					aInteractableMap.emplace(aTCol["mKey"].ToString(), aTCollector);
+				}
+				else
+				{
+					aTCollector = (TreasureCollector*)aInteractableMap[aTCol["mKey"].ToString()];
+				}
+				initializeIInteractable(aTCol, aTCollector);
+				initializeIUpdatable(aTCol, aTCollector, aInteractableMap);
+				_ASSERT_EXPR(aTCol.hasKey("mTreasures"), "Treasure Collector has no treasures");
+				for (auto& aTreasure : aTCol["mTreasures"].ObjectRange())
+				{
+					PickableItem* aNTreasure = nullptr;
+					if (aInteractableMap.find(aTreasure.first) == aInteractableMap.end())
+					{
+						aNTreasure = new PickableItem();
+						aInteractableMap.emplace(aTreasure.first, aNTreasure);
+					}
+					else
+					{
+						aNTreasure = (PickableItem*)aInteractableMap[aTreasure.first];
+					}
+					if (aNTreasure->getName() != aTreasure.second.ToString())
+					{
+						aNTreasure->getName() = aTreasure.second.ToString();
+					}
+					aTCollector->addTreasures(aNTreasure);
+				}
+				aMakeTreasureCollector = false;
+				aRoomPtr->addInteractable(aTCollector);
+			}
 			_ASSERT_EXPR(aRoom.second.hasKey("mGateways"), "Room has no Gateways");
 			//figure out gateway logic
 			for (auto& aGateway : aRoom.second["mGateways"].ObjectRange())

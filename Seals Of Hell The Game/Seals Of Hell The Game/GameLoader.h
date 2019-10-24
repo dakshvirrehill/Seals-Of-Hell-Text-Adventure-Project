@@ -29,6 +29,7 @@ class GameLoader
 	IInteractable* CreateOneInteractionItem();
 	IInteractable* CreatePickableItem();
 	IInteractable* CreatePortal();
+	IInteractable* CreateTreasureCollector();
 protected:
 	inline static GameLoader& instance()
 	{
@@ -43,6 +44,7 @@ protected:
 			mInstance.mObjectCreator.emplace("OneInteractionItem", &GameLoader::CreateOneInteractionItem);
 			mInstance.mObjectCreator.emplace("PickableItem", &GameLoader::CreatePickableItem);
 			mInstance.mObjectCreator.emplace("Portal", &GameLoader::CreatePortal);
+			mInstance.mObjectCreator.emplace("TreasureCollector", &GameLoader::CreateTreasureCollector);
 		}
 		return mInstance;
 	}

@@ -65,7 +65,7 @@ void TreasureCollector::giveObject(IInteractable* pGiveable)
 	}
 	else
 	{
-		std::cout << "Collect all first" << std::endl;
+		std::cout << getAttackStory() << std::endl;
 	}
 }
 
