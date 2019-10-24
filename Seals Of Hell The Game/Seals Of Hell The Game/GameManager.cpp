@@ -355,17 +355,17 @@ void GameManager::StartGame(std::string& pFileName)
 			}
 			if (aOneInteractionItem)
 			{
-				_ASSERT_EXPR(aRoom.second.hasKey("mCollectors"), "Room has no Collectors");
-				for (auto& aCollector : aRoom.second["mCollectors"].ObjectRange())
+				_ASSERT_EXPR(aRoom.second.hasKey("mOneInteractionItems"), "Room has no OneInteractionItems");
+				for (auto& aOneInteractionItem : aRoom.second["mOneInteractionItems"].ObjectRange())
 				{
-					_ASSERT_EXPR(aCollector.second.hasKey("mName"), "Collector has no name");
-					_ASSERT_EXPR(aCollector.second.hasKey("mStory"), "Collector has no story");
-					_ASSERT_EXPR(aCollector.second.hasKey("mVisible"), "Collector has no visible bool");
-					_ASSERT_EXPR(aCollector.second.hasKey("mInteractable"), "Collector has no interactable bool");
-					_ASSERT_EXPR(aCollector.second.hasKey("mAttackStory"), "Collector has no attack story");
-					_ASSERT_EXPR(aCollector.second.hasKey("mDeathStory"), "Collector has no death story");
-					_ASSERT_EXPR(aCollector.second.hasKey("mGiveableObject"), "Collector has no giveable object");
-					_ASSERT_EXPR(aCollector.second.hasKey("mUpdatableObjects"), "Collector has no updatable objects");
+					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mName"), "OneInteractionItem has no name");
+					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mStory"), "OneInteractionItem has no story");
+					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mVisible"), "OneInteractionItem has no visible bool");
+					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mInteractable"), "OneInteractionItem has no interactable bool");
+					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mAttackStory"), "OneInteractionItem has no attack story");
+					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mDeathStory"), "OneInteractionItem has no death story");
+					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mGiveableObject"), "OneInteractionItem has no giveable object");
+					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mUpdatableObjects"), "OneInteractionItem has no updatable objects");
 				}
 			}
 			if (aPickableItem)

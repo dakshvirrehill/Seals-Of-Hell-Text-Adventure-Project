@@ -1,13 +1,11 @@
 #include "OneInteractionItem.h"
 #include <iostream>
-void OneInteractionItem::initialize(bool& pIsMovable, bool& pIsPlayable, bool& pIsEatable, bool& pIsRiddle, bool& pIsInteractable, bool& pIsVisible)
+void OneInteractionItem::initialize(bool pIsMovable, bool pIsPlayable, bool pIsEatable, bool pIsRiddle)
 {
 	mIsMovable = pIsMovable;
 	mIsPlayable = pIsPlayable;
 	mIsRiddle = pIsRiddle;
 	mIsEatable = pIsEatable;
-	makeInteractable(pIsInteractable);
-	makeVisible(pIsVisible);
 }
 
 void OneInteractionItem::lookObject()
@@ -24,9 +22,8 @@ void OneInteractionItem::lookObject()
 
 void OneInteractionItem::moveObject()
 {
-	if (isInteractable() && mIsPlayable)
+	if (isInteractable() && mIsMovable)
 	{
-		std::cout << getName() << "moved." << std::endl;
 		enemyDeath();
 	}
 	else
@@ -39,8 +36,6 @@ void OneInteractionItem::playObject()
 {
 	if (isInteractable() && mIsPlayable)
 	{
-		std::cout << getName() << std::endl;
-		std::cout << getDeathStory() << std::endl;
 		enemyDeath();
 	}
 	else
@@ -53,7 +48,6 @@ void OneInteractionItem::eatObject()
 {
 	if (isInteractable() && mIsEatable)
 	{
-		std::cout << getName() << " eaten." << std::endl;
 		enemyDeath();
 	}
 	else
@@ -66,8 +60,6 @@ void OneInteractionItem::answerRiddle()
 {
 	if (isInteractable() && mIsRiddle)
 	{
-		std::cout << getName() << std::endl;
-		std::cout << getDeathStory() << std::endl;
 		enemyDeath();
 	}
 	else
@@ -97,6 +89,8 @@ void OneInteractionItem::update()
 
 void OneInteractionItem::enemyDeath()
 {
+	std::cout << getName() << std::endl;
+	std::cout << getDeathStory() << std::endl;
 	bool aInt = false;
 	makeInteractable(aInt);
 	bool aVal = true;
