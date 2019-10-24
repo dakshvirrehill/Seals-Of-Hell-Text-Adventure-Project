@@ -212,6 +212,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 				if (aRoomMap.find(aGateway.second["mCurrentRoom"].ToString()) == aRoomMap.end())
 				{
 					aCurRoom = new Room();
+					aRoomMap.emplace(aGateway.second["mCurrentRoom"].ToString(), aCurRoom);
 				}
 				else
 				{
@@ -221,6 +222,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 				if (aRoomMap.find(aGateway.second["mConnectedRoom"].ToString()) == aRoomMap.end())
 				{
 					aConRoom = new Room();
+					aRoomMap.emplace(aGateway.second["mConnectedRoom"].ToString(), aConRoom);
 				}
 				else
 				{
