@@ -10,7 +10,7 @@ void Collector::update()
 	{
 		if (getConditionalObject()->isGiven())
 		{
-			enemyDeath();
+			endUpdate();
 		}
 		else
 		{
@@ -32,7 +32,7 @@ void Collector::update()
 	}
 }
 
-void Collector::enemyDeath()
+void Collector::endUpdate()
 {
 	bool aTemp = false;
 	makeInteractable(aTemp);

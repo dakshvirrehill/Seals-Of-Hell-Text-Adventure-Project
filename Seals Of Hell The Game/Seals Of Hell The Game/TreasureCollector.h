@@ -12,7 +12,7 @@ public:
 	TreasureCollector() : IInteractable(),IUpdatable(),mTreasures() {}
 	~TreasureCollector();
 	void update() override;
-	void enemyDeath() override;
+	void endUpdate() override;
 	void giveObject(IInteractable*) override;
 	void addTreasures(IInteractable*);
 };

@@ -16,7 +16,7 @@ public:
 	~IUpdatable() {}
 	void initialize(std::string, std::string);
 	virtual void update() = 0;
-	virtual void enemyDeath() = 0;
+	virtual void endUpdate() = 0;
 	std::string& getAttackStory() { return mAttackStory; }
 	std::string& getDeathStory() { return mDeathStory; }
 	IInteractable* getConditionalObject() { return mConditionalObject; }

@@ -19,6 +19,6 @@ public:
 	void eatObject() override;
 	void answerRiddle() override;
 	void update() override;
-	void enemyDeath() override;
+	void endUpdate() override;
 };
 #endif

@@ -18,6 +18,6 @@ public:
 	void update() override;
 	void attackEnemy(IInteractable*) override;
 	void blockAttack() override;
-	void enemyDeath() override;
+	void endUpdate() override;
 };
 #endif

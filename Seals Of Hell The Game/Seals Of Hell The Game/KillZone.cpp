@@ -49,11 +49,11 @@ void KillZone::update()
 	}
 	else
 	{
-		enemyDeath();
+		endUpdate();
 	}
 }
 
-void KillZone::enemyDeath()
+void KillZone::endUpdate()
 {
 	bool aInt = false;
 	makeInteractable(aInt);

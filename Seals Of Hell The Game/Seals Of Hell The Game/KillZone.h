@@ -9,6 +9,6 @@ public:
 	KillZone() : IUpdatable(), IInteractable() {}
 	~KillZone();
 	void update() override;
-	void enemyDeath() override;
+	void endUpdate() override;
 };
 #endif

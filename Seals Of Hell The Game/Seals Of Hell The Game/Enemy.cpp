@@ -58,7 +58,7 @@ void Enemy::attackEnemy(IInteractable* pWeapon)
 		mLife -= 1;
 		if (mLife <= 0)
 		{
-			enemyDeath();
+			endUpdate();
 		}
 	}
 }
@@ -77,7 +77,7 @@ void Enemy::blockAttack()
 	}
 }
 
-void Enemy::enemyDeath()
+void Enemy::endUpdate()
 {
 	std::cout << getName() << std::endl;
 	std::cout << getDeathStory() << std::endl;

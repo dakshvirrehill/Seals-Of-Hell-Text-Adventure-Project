@@ -9,7 +9,7 @@ public:
 	Collector() : IUpdatable(), IInteractable() {}
 	~Collector();
 	void update() override;
-	void enemyDeath() override;
+	void endUpdate() override;
 	void giveObject(IInteractable*) override;
 };
 #endif
