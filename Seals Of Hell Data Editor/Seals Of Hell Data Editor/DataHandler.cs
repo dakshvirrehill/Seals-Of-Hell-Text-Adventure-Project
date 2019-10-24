@@ -14,27 +14,7 @@ namespace Seals_Of_Hell_Data_Editor
         public Dictionary<string, Region> mRegionDetails { get; set; }
         public DataHandler()
         {
-            mRegionDetails = new Dictionary<string, Region>();
-        }
-
-        public bool IsValid()
-        {
-            if(string.IsNullOrEmpty(mFirstRegion))
-            {
-                return false;
-            }
-            if (mRegionDetails.Count <= 0)
-            {
-                return false;
-            }
-            foreach (Region aRegion in mRegionDetails.Values)
-            {
-                if (aRegion.mRooms.Count <= 0)
-                {
-                    return false;
-                }
-            }
-            return true;
+            
         }
 
     }

@@ -14,16 +14,7 @@ namespace Seals_Of_Hell_Data_Editor
         public Dictionary<string, Room> mRooms { get; set; }
         public Region()
         {
-            mRooms = new Dictionary<string, Room>();
-        }
-
-        public void AddDefaultRoom()
-        {
-            mEntryRoom = mName + "_Default";
-            mRooms.Add(mEntryRoom, new Room());
-            mRooms[mEntryRoom].mName = "Default";
-            mRooms[mEntryRoom].mRegion = mName;
-            mRooms[mEntryRoom].mStory = "This is default entry room story";
+            
         }
     }
 }
