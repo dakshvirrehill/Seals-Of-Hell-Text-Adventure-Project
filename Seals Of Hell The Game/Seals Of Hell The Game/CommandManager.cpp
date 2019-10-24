@@ -62,24 +62,6 @@ void CommandManager::help()
 	std::cout << "==============================" << std::endl;
 }
 
-//std::function<bool(IInteractable*)> CommandManager::getInteractableCommandPointer(std::string& pCommandVerb)
-//{
-//	if (mInteractableCommands.find(pCommandVerb) == mInteractableCommands.end())
-//	{
-//		return nullptr;
-//	}
-//	return mInteractableCommands[pCommandVerb];
-//}
-//
-//std::function<void()> CommandManager::getSingleCommandPointer(std::string& pCommandVerb)
-//{
-//	if (mSingleCommands.find(pCommandVerb) == mSingleCommands.end())
-//	{
-//		return nullptr;
-//	}
-//	return mSingleCommands[pCommandVerb];
-//}
-
 std::vector<std::string>& CommandManager::getCommandWords(std::string& pCommandStr)
 {
 	std::vector<std::string> aCommandVector;
@@ -139,11 +121,7 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 			aSwapObj1n2 = true;
 			continue;
 		}
-		//else if (aCommandWords.at(aI) == "LOVE" || aCommandWords.at(aI) == "HATE")
-		//{
-		//	aLHF = true;
-		//	aSInObj2 = true;
-		//}
+
 		if (aSInObj2)
 		{
 			aObj2 += " " + aCommandWords.at(aI);
@@ -166,15 +144,6 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 	}
 	if (aSInObj2)
 	{
-		//if (aLHF)
-		//{
-		//	aObj2 = aCommandWords.at(0) + " " + aObj2;
-		//	if (mInteractableCommands.find(aObj2) == mInteractableCommands.end())
-		//	{
-		//		return false;
-		//	}
-		//	mInteractableCommands[aObj2](aIObj1);
-		//}
 		IInteractable* aIObj2 = GameManager::instance().getInteractable(aObj2);
 		if (aIObj2 == nullptr)
 		{

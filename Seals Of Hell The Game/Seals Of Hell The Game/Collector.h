@@ -10,5 +10,6 @@ public:
 	~Collector();
 	void update() override;
 	void enemyDeath() override;
+	void giveObject(IInteractable*) override;
 };
 #endif

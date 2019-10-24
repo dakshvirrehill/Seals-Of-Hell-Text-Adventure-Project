@@ -1,4 +1,5 @@
 #include "Collector.h"
+#include "PickableItem.h"
 #include<iostream>
 Collector::~Collector()
 {
@@ -43,5 +44,18 @@ void Collector::enemyDeath()
 	{
 		iter->makeInteractable(aVal);
 		iter->makeVisible(aVal);
+	}
+}
+
+void Collector::giveObject(IInteractable* pGiveable)
+{
+	if (getConditionalObject() == pGiveable)
+	{
+		PickableItem* aGivable = (PickableItem*)pGiveable;
+		aGivable->objectGiven();
+	}
+	else
+	{
+		IInteractable::giveObject(pGiveable);
 	}
 }

@@ -49,9 +49,9 @@ void IInteractable::playObject()
 	std::cout << getName() << " cannot be played." << std::endl;
 }
 
-void IInteractable::giveObject(IInteractable* pCollector)
+void IInteractable::giveObject(IInteractable* pGiveable)
 {
-	std::cout << getName() << " cannot be given to" << pCollector->getName() << " ."<< std::endl;
+	std::cout << pGiveable->getName() << " cannot be given to" << getName() << " ."<< std::endl;
 }
 
 void IInteractable::eatObject()

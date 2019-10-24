@@ -14,6 +14,12 @@ void PickableItem::initialize(bool pIsWeapon, bool pIsShield, bool pIsGiveable, 
 	mIsDropped = pIsDropped;
 }
 
+void PickableItem::objectGiven()
+{
+	mIsGiven = true;
+	PlayerManager::instance().removeFromInventory(this);
+}
+
 void PickableItem::pickObject()
 {
 	if (isInteractable() && !mIsPicked)
