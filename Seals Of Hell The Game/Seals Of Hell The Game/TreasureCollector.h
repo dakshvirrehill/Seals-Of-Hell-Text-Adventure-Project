@@ -14,5 +14,6 @@ public:
 	void update() override;
 	void enemyDeath() override;
 	void giveObject(IInteractable*) override;
+	void addTreasures(IInteractable*);
 };
 #endif
