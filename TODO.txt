@@ -1,5 +1,1 @@
 Make a game icon
-
-Add a new ring class
-complete one interactionitems
-make sub rooms for maze

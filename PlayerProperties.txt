@@ -1,4 +1,0 @@
-Direction (xy)
-Position (xy) positive y means north and negative y means south positive x means east and negative x means west
-Size (xy) units
-Story
