@@ -8,14 +8,12 @@ namespace Seals_Of_Hell_Data_Editor
 {
     class Room
     {
-        public string mName;
-        public string mStory;
-        public string mRegion;
-        public Room(string pName, string pRegion, string pStory = "")
+        public string mName { get; set; }
+        public string mStory { get; set; }
+        public string mRegion { get; set; }
+        public Room()
         {
-            mName = pName;
-            mStory = pStory;
-            mRegion = pRegion;
+            
         }
     }
 }

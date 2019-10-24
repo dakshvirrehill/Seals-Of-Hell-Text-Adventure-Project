@@ -15,7 +15,6 @@ namespace Seals_Of_Hell_Data_Editor
         DataHandler mGameDetails;
         Region mSelectedRegion;
         Room mSelectedRoom;
-        string mSelectedVerb;
         string mCurrentFilePath;
         string mCurrentFileName;
 
@@ -29,6 +28,7 @@ namespace Seals_Of_Hell_Data_Editor
         {
             this.RegionTabs.Visible = false;
             this.RoomTabs.Visible = false;
+            this.gameDetailsGroup.Visible = false;
         }
         void ResetToSelectedRoom()
         {
@@ -159,9 +159,14 @@ namespace Seals_Of_Hell_Data_Editor
                 mGameDetails.mFirstRegion = aNewRegion;
                 this.IsEntryRegion.Enabled = false;
             }
-            mGameDetails.mRegionDetails.Add(aNewRegion, new Region(aNewRegion,this.RegionStoryTextBox.Text));
+            mGameDetails.mRegionDetails.Add(aNewRegion, new Region());
+            mGameDetails.mRegionDetails[aNewRegion].mName = aNewRegion;
+            mGameDetails.mRegionDetails[aNewRegion].mStory = this.RegionStoryTextBox.Text;
+            mGameDetails.mRegionDetails[aNewRegion].AddDefaultRoom();
+
             this.AddRegionTextBox.Text = "";
             this.RegionStoryTextBox.Text = "";
+            this.IsEntryRegion.Checked = false;
         }
         private void SetEditRegionTextBox(object sender, EventArgs e)
         {
@@ -169,8 +174,8 @@ namespace Seals_Of_Hell_Data_Editor
             this.EditRegionStoryTBox.Text = mGameDetails.mRegionDetails[this.EditCurrentRegionTextBox.Text].mStory;
 
             this.EditIsEntryRegion.Enabled = 
-            this.EditIsEntryRegion.Checked = 
             (this.EditCurrentRegionTextBox.Text.Equals(mGameDetails.mFirstRegion) || string.IsNullOrEmpty(mGameDetails.mFirstRegion));
+            this.EditIsEntryRegion.Checked = this.EditCurrentRegionTextBox.Text.Equals(mGameDetails.mFirstRegion);
 
             mSelectedRegion = mGameDetails.mRegionDetails[this.EditCurrentRegionTextBox.Text];
         }
@@ -232,12 +237,15 @@ namespace Seals_Of_Hell_Data_Editor
                 return;
             }
             Region aRegion = mGameDetails.mRegionDetails[aRegionN];
-            if(aRegion.mRooms.ContainsKey(this.NewRoomNameTBox.Text))
+            string aRoomKey = aRegion.mName + "_" + this.NewRoomNameTBox.Text;
+            if (aRegion.mRooms.ContainsKey(aRoomKey))
             {
                 return;
             }
-            Room aRoom = new Room(this.NewRoomNameTBox.Text,aRegionN,this.NewRoomStory.Text);
-            aRegion.mRooms.Add(aRoom.mName, aRoom);
+            aRegion.mRooms.Add(aRoomKey,new Room());
+            aRegion.mRooms[aRoomKey].mName = this.NewRoomNameTBox.Text;
+            aRegion.mRooms[aRoomKey].mStory = this.NewRoomStory.Text;
+            aRegion.mRooms[aRoomKey].mRegion = aRegion.mName;
             this.NewRoomNameTBox.Text = "";
             this.NewRoomStory.Text = "";
             this.NewRoomRegionSelector.SelectedIndex = 0;
@@ -245,16 +253,16 @@ namespace Seals_Of_Hell_Data_Editor
         private void SaveRoomEdit_Click(object sender, EventArgs e)
         {
             if(string.IsNullOrEmpty(this.EditRoomName.Text) || 
-                mGameDetails.mRegionDetails[(string)this.EditRoomRegion.SelectedItem].mRooms.ContainsKey(this.EditRoomName.Text))
+                mGameDetails.mRegionDetails[(string)this.EditRoomRegion.SelectedItem].mRooms.ContainsKey((string)this.EditRoomRegion.SelectedItem + "_" + this.EditRoomName.Text))
             {
                 ResetToSelectedRoom();
                 return;
             }
-            mGameDetails.mRegionDetails[mSelectedRoom.mRegion].mRooms.Remove(mSelectedRoom.mName);
+            mGameDetails.mRegionDetails[mSelectedRoom.mRegion].mRooms.Remove(mSelectedRoom.mRegion+"_"+mSelectedRoom.mName);
             mSelectedRoom.mName = this.EditRoomName.Text;
             mSelectedRoom.mRegion = (string)this.EditRoomRegion.SelectedItem;
             mSelectedRoom.mStory = this.EditRoomStory.Text;
-            mGameDetails.mRegionDetails[mSelectedRoom.mRegion].mRooms.Add(mSelectedRoom.mName, mSelectedRoom);
+            mGameDetails.mRegionDetails[mSelectedRoom.mRegion].mRooms.Add(mSelectedRoom.mRegion + "_" + mSelectedRoom.mName, mSelectedRoom);
             UpdateRoomNamesInSelector();
         }
         private void UpdateRegionsAndRooms(object sender, EventArgs e)
@@ -276,7 +284,6 @@ namespace Seals_Of_Hell_Data_Editor
             mSelectedRoom = mGameDetails.mRegionDetails[aRegionN].mRooms[aRoomN];
             ResetToSelectedRoom();
         }
-
         #endregion
         #region GAME DETAILS EDITOR CODE
         private void ChangeGameDetails_Click(object sender, EventArgs e)
