@@ -8,25 +8,26 @@ namespace Seals_Of_Hell_Data_Editor
 {
     class DataHandler
     {
-        public Dictionary<string, Region> mRegionList { get; set; }
-        public List<string> mCommandVerbs { get; set; }
+        public string mName { get; set; }
+        public string mStory { get; set; }
+        public string mFirstRegion { get; set; }
+        public Dictionary<string, Region> mRegionDetails { get; set; }
         public DataHandler()
         {
-            mRegionList = new Dictionary<string, Region>();
-            mCommandVerbs = new List<string>();
+            mRegionDetails = new Dictionary<string, Region>();
         }
 
         public bool IsValid()
         {
-            if (mRegionList.Count <= 0)
+            if(string.IsNullOrEmpty(mFirstRegion))
             {
                 return false;
             }
-            if (mCommandVerbs.Count <= 0)
+            if (mRegionDetails.Count <= 0)
             {
                 return false;
             }
-            foreach (Region aRegion in mRegionList.Values)
+            foreach (Region aRegion in mRegionDetails.Values)
             {
                 if (aRegion.mRooms.Count <= 0)
                 {
