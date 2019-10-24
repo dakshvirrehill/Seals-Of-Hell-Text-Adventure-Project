@@ -191,45 +191,48 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 				aMakeTreasureCollector = false;
 				aRoomPtr->addInteractable(aTCollector);
 			}
-			_ASSERT_EXPR(aRoom.second.hasKey("mGateways"), "Room has no Gateways");
-			//figure out gateway logic
-			for (auto& aGateway : aRoom.second["mGateways"].ObjectRange())
+			else
 			{
-				_ASSERT_EXPR(aGateway.second.hasKey("mCurrentRoom"), "Gateway has no current room");
-				_ASSERT_EXPR(aGateway.second.hasKey("mConnectedRoom"), "Gateway has no connected room");
-				Gateway* aNewGateway = nullptr;
-				if (aInteractableMap.find(aGateway.first) == aInteractableMap.end())
+				_ASSERT_EXPR(aRoom.second.hasKey("mGateways"), "Room has no Gateways");
+				//figure out gateway logic
+				for (auto& aGateway : aRoom.second["mGateways"].ObjectRange())
 				{
-					aNewGateway = new Gateway();
-					aInteractableMap.emplace(aGateway.first, aNewGateway);
+					_ASSERT_EXPR(aGateway.second.hasKey("mCurrentRoom"), "Gateway has no current room");
+					_ASSERT_EXPR(aGateway.second.hasKey("mConnectedRoom"), "Gateway has no connected room");
+					Gateway* aNewGateway = nullptr;
+					if (aInteractableMap.find(aGateway.first) == aInteractableMap.end())
+					{
+						aNewGateway = new Gateway();
+						aInteractableMap.emplace(aGateway.first, aNewGateway);
+					}
+					else
+					{
+						aNewGateway = (Gateway*)aInteractableMap[aGateway.first];
+					}
+					initializeIInteractable(aGateway.second, aNewGateway);
+					Room* aCurRoom = nullptr;
+					if (aRoomMap.find(aGateway.second["mCurrentRoom"].ToString()) == aRoomMap.end())
+					{
+						aCurRoom = new Room();
+						aRoomMap.emplace(aGateway.second["mCurrentRoom"].ToString(), aCurRoom);
+					}
+					else
+					{
+						aCurRoom = aRoomMap[aGateway.second["mCurrentRoom"].ToString()];
+					}
+					Room* aConRoom = nullptr;
+					if (aRoomMap.find(aGateway.second["mConnectedRoom"].ToString()) == aRoomMap.end())
+					{
+						aConRoom = new Room();
+						aRoomMap.emplace(aGateway.second["mConnectedRoom"].ToString(), aConRoom);
+					}
+					else
+					{
+						aConRoom = aRoomMap[aGateway.second["mConnectedRoom"].ToString()];
+					}
+					aNewGateway->initialize(aCurRoom, aConRoom);
+					aRoomPtr->addInteractable(aInteractableMap[aGateway.first]);
 				}
-				else
-				{
-					aNewGateway = (Gateway*)aInteractableMap[aGateway.first];
-				}
-				initializeIInteractable(aGateway.second, aNewGateway);
-				Room* aCurRoom = nullptr;
-				if (aRoomMap.find(aGateway.second["mCurrentRoom"].ToString()) == aRoomMap.end())
-				{
-					aCurRoom = new Room();
-					aRoomMap.emplace(aGateway.second["mCurrentRoom"].ToString(), aCurRoom);
-				}
-				else
-				{
-					aCurRoom = aRoomMap[aGateway.second["mCurrentRoom"].ToString()];
-				}
-				Room* aConRoom = nullptr;
-				if (aRoomMap.find(aGateway.second["mConnectedRoom"].ToString()) == aRoomMap.end())
-				{
-					aConRoom = new Room();
-					aRoomMap.emplace(aGateway.second["mConnectedRoom"].ToString(), aConRoom);
-				}
-				else
-				{
-					aConRoom = aRoomMap[aGateway.second["mConnectedRoom"].ToString()];
-				}
-				aNewGateway->initialize(aCurRoom, aConRoom);
-				aRoomPtr->addInteractable(aInteractableMap[aGateway.first]);
 			}
 			if (aHasCollector)
 			{

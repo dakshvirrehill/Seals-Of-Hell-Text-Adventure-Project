@@ -10,7 +10,6 @@ namespace Seals_Of_Hell_Data_Editor
     {
         public string mName { get; set; }
         public string mStory { get; set; }
-        public string mRegion { get; set; }
         public bool mHasCollectors { get; set; }
         public bool mHasEnemies { get; set; }
         public bool mHasKillzones { get; set; }
@@ -27,7 +26,8 @@ namespace Seals_Of_Hell_Data_Editor
         public Dictionary<string, Portal> mPortal { get; set; }
         public Room()
         {
-            
+            mName = "Default Name";
+            mStory = "Default Story";
         }
 
     }
