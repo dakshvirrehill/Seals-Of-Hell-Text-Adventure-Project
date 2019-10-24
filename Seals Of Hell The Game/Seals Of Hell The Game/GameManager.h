@@ -2,7 +2,7 @@
 #ifndef GAME_MANAGER_H
 #define GAME_MANAGER_H
 #include <string>
-class BasicObject;
+#include "BasicObject.h"
 class Region;
 class Room;
 class IInteractable;
@@ -25,19 +25,20 @@ protected:
 	void look();
 	void endGame();
 	void saveGame();
-	IInteractable* getInteractable(std::string&);
-	void removeFromRoom(IInteractable*);
-	void addInRoom(IInteractable*);
 public:
 	inline static GameManager& instance() 
 	{
 		static GameManager mInstance;
 		return mInstance;
 	}
+	void initialize(Region*, Room*);
 	void StartGame(std::string&);
 	void GameLoop();
 	void setCurrentRegion(Region*);
 	void setCurrentRoom(Room*);
+	IInteractable* getInteractable(std::string&);
+	void removeFromRoom(IInteractable*);
+	void addInRoom(IInteractable*);
 	friend class CommandManager;
 	friend class PlayerManager;
 };

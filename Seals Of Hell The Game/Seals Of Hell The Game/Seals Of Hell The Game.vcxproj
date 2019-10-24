@@ -126,6 +126,7 @@
     <ClCompile Include="BasicObject.cpp" />
     <ClCompile Include="Collector.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="GameLoader.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Gateway.cpp" />
     <ClCompile Include="IUpdatable.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="BasicObject.h" />
     <ClInclude Include="Collector.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GameLoader.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Gateway.h" />
     <ClInclude Include="IUpdatable.h" />

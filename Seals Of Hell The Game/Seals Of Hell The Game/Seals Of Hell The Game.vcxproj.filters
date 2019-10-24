@@ -102,6 +102,9 @@
     <ClCompile Include="IUpdatable.cpp">
       <Filter>Source Files\Abstract Bases</Filter>
     </ClCompile>
+    <ClCompile Include="GameLoader.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasicObject.h">
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="IUpdatable.h">
       <Filter>Header Files\Abstract Bases</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLoader.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
