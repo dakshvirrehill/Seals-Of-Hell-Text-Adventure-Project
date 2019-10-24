@@ -1,5 +1,10 @@
 #include "IInteractable.h"
 #include<iostream>
+void IInteractable::initialize(bool pIsVisible, bool pIsInteractable)
+{
+	mVisible = pIsVisible;
+	mInteractable = pIsInteractable;
+}
 void IInteractable::lookObject()
 {
 	if (!mVisible)

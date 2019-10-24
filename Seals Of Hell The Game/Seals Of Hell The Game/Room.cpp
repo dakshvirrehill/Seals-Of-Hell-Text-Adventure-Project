@@ -10,10 +10,6 @@ Room::~Room()
 	
 }
 
-void Room::initialize()
-{
-}
-
 void Room::look()
 {
 	std::cout << getName() << std::endl;

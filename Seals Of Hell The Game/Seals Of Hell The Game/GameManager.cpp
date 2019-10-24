@@ -42,9 +42,10 @@ void GameManager::StartGame(std::string& pFileName)
 	std::map<std::string, Region*> aRegionMap;
 	Region* aRegionPtr = new Region();
 	aRegionMap.emplace(aJSONObj["mGameDetails"]["mFirstRegion"].ToString(), aRegionPtr);
+	mCurrentRegion = aRegionPtr;
+	mCurrentRoom = mCurrentRegion->getStartingRoom();
 	std::map<std::string, Room*> aRoomMap;
 	std::map<std::string, IInteractable*> aInteractableMap;
-	std::map<std::string, IUpdatable*> aUpdatableMap;
 
 	for (auto& aRegion : aRegions.ObjectRange())
 	{
@@ -77,6 +78,16 @@ void GameManager::StartGame(std::string& pFileName)
 		json::JSON aRooms = aRegion.second["mRooms"];
 		for (auto& aRoom : aRooms.ObjectRange())
 		{
+			Room* aRoomPtr = nullptr;
+			if (aRoomMap.find(aRoom.first) == aRoomMap.end())
+			{
+				aRoomPtr = new Room();
+				aRoomMap.emplace(aRoom.first,aRoomPtr);
+			}
+			else
+			{
+				aRoomPtr = aRoomMap[aRoom.first];
+			}
 			_ASSERT_EXPR(aRoom.second.hasKey("mName"), "Room has no name");
 			_ASSERT_EXPR(aRoom.second.hasKey("mStory"), "Room has no story");
 			_ASSERT_EXPR(aRoom.second.hasKey("mHasCollectors"), "Room has no collector bool");
@@ -92,14 +103,15 @@ void GameManager::StartGame(std::string& pFileName)
 			_ASSERT_EXPR(aRoom.second.hasKey("mHasPortals"), "Room has no PortalItem bool");
 			bool aPortal = aRoom.second["mHasPortals"].ToBool();
 			_ASSERT_EXPR(aRoom.second.hasKey("mGateways"), "Room has no Gateways");
+			aRoomPtr->BasicObject::initialize(aRoom.second["mName"].ToString(), aRoom.second["mStory"].ToString());
 			for (auto& aGateway : aRoom.second["mGateways"].ObjectRange())
 			{
 				_ASSERT_EXPR(aGateway.second.hasKey("mName"), "Gateway has no name");
 				_ASSERT_EXPR(aGateway.second.hasKey("mStory"), "Gateway has no story");
-				_ASSERT_EXPR(aGateway.second.hasKey("mCurrentRoom"), "Gateway has no current room");
-				_ASSERT_EXPR(aGateway.second.hasKey("mConnectedRoom"), "Gateway has no connected room");
 				_ASSERT_EXPR(aGateway.second.hasKey("mIsVisible"), "Gateway has no visible bool");
 				_ASSERT_EXPR(aGateway.second.hasKey("mIsInteractable"), "Gateway has no interactable bool");
+				_ASSERT_EXPR(aGateway.second.hasKey("mCurrentRoom"), "Gateway has no current room");
+				_ASSERT_EXPR(aGateway.second.hasKey("mConnectedRoom"), "Gateway has no connected room");
 				Gateway* aNewGateway = nullptr;
 				if (aInteractableMap.find(aGateway.first) == aInteractableMap.end())
 				{
@@ -110,6 +122,64 @@ void GameManager::StartGame(std::string& pFileName)
 				{
 					aNewGateway = (Gateway*)aInteractableMap[aGateway.first];
 				}
+				aNewGateway->BasicObject::initialize(aGateway.second["mName"].ToString(), aGateway.second["mStory"].ToString());
+				aNewGateway->IInteractable::initialize(aGateway.second["mIsVisible"].ToBool(), aGateway.second["mIsInteractable"].ToBool());
+				Room* aCurRoom = nullptr;
+				if (aRoomMap.find(aGateway.second["mCurrentRoom"].ToString()) == aRoomMap.end())
+				{
+					aCurRoom = new Room();
+				}
+				else
+				{
+					aCurRoom = aRoomMap[aGateway.second["mCurrentRoom"].ToString()];
+				}
+				Room* aConRoom = nullptr;
+				if (aRoomMap.find(aGateway.second["mConnectedRoom"].ToString()) == aRoomMap.end())
+				{
+					aConRoom = new Room();
+				}
+				else
+				{
+					aConRoom = aRoomMap[aGateway.second["mConnectedRoom"].ToString()];
+				}
+				aNewGateway->initialize(aCurRoom, aConRoom);
+				aRoomPtr->addInteractable(aInteractableMap[aGateway.first]);
+			}
+			if (aCollector)
+			{
+				_ASSERT_EXPR(aRoom.second.hasKey("mCollectors"), "Room has no Collectors");
+				for (auto& aCollector : aRoom.second["mCollectors"].ObjectRange())
+				{
+					_ASSERT_EXPR(aCollector.second.hasKey("mName"), "Gateway has no name");
+					_ASSERT_EXPR(aCollector.second.hasKey("mStory"), "Gateway has no story");
+					_ASSERT_EXPR(aCollector.second.hasKey("mIsVisible"), "Gateway has no visible bool");
+					_ASSERT_EXPR(aCollector.second.hasKey("mIsInteractable"), "Gateway has no interactable bool");
+					Collector* aNewCollector = nullptr;
+					if (aInteractableMap.find(aCollector.first) == aInteractableMap.end())
+					{
+						aNewCollector = new Collector();
+					}
+				}
+			}
+			if (aEnemy)
+			{
+
+			}
+			if (aKillZone)
+			{
+
+			}
+			if (aOneInteractionItem)
+			{
+
+			}
+			if (aPickableItem)
+			{
+
+			}
+			if (aPortal)
+			{
+
 			}
 		}
 	}

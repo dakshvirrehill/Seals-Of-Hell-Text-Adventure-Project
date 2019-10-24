@@ -9,8 +9,10 @@ class PickableItem;
 class Enemy : public IUpdatable,public IInteractable
 {
 	bool mCanAttack;
+	int mLife;
+	std::string mBlockStory;
 public:
-	Enemy() : IUpdatable(), IInteractable(), mCanAttack(false) {}
+	Enemy() : IUpdatable(), IInteractable(), mCanAttack(false), mLife(0), mBlockStory("") {}
 	~Enemy();
 	void initialize();
 	void update() override;

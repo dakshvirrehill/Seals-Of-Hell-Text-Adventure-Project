@@ -1,5 +1,8 @@
 #include "Collector.h"
 #include<iostream>
+Collector::~Collector()
+{
+}
 void Collector::update()
 {
 	if (isInteractable())

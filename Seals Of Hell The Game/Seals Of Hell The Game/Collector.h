@@ -6,6 +6,8 @@
 class Collector : public IUpdatable,public IInteractable
 {
 public:
+	Collector() : IUpdatable(), IInteractable() {}
+	~Collector();
 	void update() override;
 	void enemyDeath() override;
 };

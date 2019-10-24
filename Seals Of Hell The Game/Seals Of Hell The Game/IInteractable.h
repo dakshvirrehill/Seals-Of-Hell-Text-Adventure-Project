@@ -10,6 +10,7 @@ protected:
 	IInteractable():BasicObject(), mVisible(false),mInteractable(false) {};
 	virtual ~IInteractable() {};
 public:
+	void initialize(bool, bool);
 	virtual void lookObject();
 	virtual void teleportRegion();
 	virtual void pickObject();

@@ -6,20 +6,18 @@
 class IInteractable;
 class IUpdatable
 {
-	int mLife;
+	
 	std::string mAttackStory;	
-	std::string mBlockStory;
 	std::string mDeathStory;
 	IInteractable* mConditionalObject;
 	std::list<IInteractable*> mCondUpdtObjs;
 public:
-	IUpdatable() : mLife(0), mAttackStory(""), mBlockStory(""), mDeathStory(""),mConditionalObject(nullptr),mCondUpdtObjs() {}
+	IUpdatable() : mAttackStory(""), mDeathStory(""),mConditionalObject(nullptr),mCondUpdtObjs() {}
 	~IUpdatable() {}
+	void initialize(std::string, std::string);
 	virtual void update() = 0;
 	virtual void enemyDeath() = 0;
-	int& getLife() { return mLife; }
 	std::string& getAttackStory() { return mAttackStory; }
-	std::string& getBlockStory() { return mBlockStory; }
 	std::string& getDeathStory() { return mDeathStory; }
 	IInteractable* getConditionalObject() { return mConditionalObject; }
 	std::list<IInteractable*>& getConditionUpdateObjects() { return mCondUpdtObjs; }

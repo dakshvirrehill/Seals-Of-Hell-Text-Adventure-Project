@@ -14,7 +14,6 @@ class Room : public BasicObject
 public:
 	Room() :BasicObject(), mRoomObjects(), mUpdatableObjects() {}
 	~Room();
-	void initialize();
 	void look();
 	IInteractable* getRoomObject(std::string&);
 	void removeInteractable(IInteractable*);

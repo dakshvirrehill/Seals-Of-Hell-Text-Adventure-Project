@@ -16,7 +16,7 @@ void Enemy::update()
 	{
 		return;
 	}
-	if (getLife() > 0)
+	if (mLife > 0)
 	{
 		if (!mCanAttack)
 		{
@@ -52,8 +52,8 @@ void Enemy::attackEnemy(IInteractable* pWeapon)
 	}
 	else
 	{
-		getLife() -= 1;
-		if (getLife() <= 0)
+		mLife -= 1;
+		if (mLife <= 0)
 		{
 			enemyDeath();
 		}
@@ -62,10 +62,10 @@ void Enemy::attackEnemy(IInteractable* pWeapon)
 
 void Enemy::blockAttack()
 {
-	if(PlayerManager::instance().hasShield() && getLife() > 0)
+	if(PlayerManager::instance().hasShield() && mLife > 0)
 	{
 		std::cout << getName() << std::endl;
-		std::cout << getBlockStory() << std::endl;
+		std::cout << mBlockStory << std::endl;
 		PlayerManager::instance().blockAttack();
 	}
 	else
