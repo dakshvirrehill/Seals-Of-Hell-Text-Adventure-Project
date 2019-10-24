@@ -17,13 +17,14 @@ namespace Seals_Of_Hell_Data_Editor
         public bool mHasOneInteractionItems { get; set; }
         public bool mHasPickableItems { get; set; }
         public bool mHasPortals { get; set; }
-        public Dictionary<string, Gateway> mGateways;
-        public Dictionary<string, Collector> mCollector;
-        public Dictionary<string, Enemy> mEnemy;
-        public Dictionary<string, KillZone> mKillZone;
-        public Dictionary<string, OneInteractionItem> mOneInteractionItem;
-        public Dictionary<string, PickableItem> mPickableItem;
-        public Dictionary<string, Portal> mPortal;
+        public TreasureCollector mTreasureCollector { get; set; }
+        public Dictionary<string, Gateway> mGateways { get; set; }
+        public Dictionary<string, Collector> mCollector { get; set; }
+        public Dictionary<string, Enemy> mEnemy { get; set; }
+        public Dictionary<string, KillZone> mKillZone { get; set; }
+        public Dictionary<string, OneInteractionItem> mOneInteractionItem { get; set; }
+        public Dictionary<string, PickableItem> mPickableItem { get; set; }
+        public Dictionary<string, Portal> mPortal { get; set; }
         public Room()
         {
             

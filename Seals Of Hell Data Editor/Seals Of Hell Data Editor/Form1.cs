@@ -15,12 +15,14 @@ namespace Seals_Of_Hell_Data_Editor
         DataHandler mGameDetails;
         Region mSelectedRegion;
         Room mSelectedRoom;
+        TreasureCollector mTreasureCollector;
         string mCurrentFilePath;
         string mCurrentFileName;
 
         public SealsOfHellMain()
         {
             mGameDetails = new DataHandler();
+            mTreasureCollector = new TreasureCollector();
             InitializeComponent();
         }
         #region HELPERS
