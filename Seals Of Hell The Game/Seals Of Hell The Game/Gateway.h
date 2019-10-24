@@ -9,7 +9,9 @@ class Gateway : public IInteractable
 	Room* mConnectedRoom;
 
 public:
-	void initialize(Room*,Room*,bool&, bool&);
+	Gateway() : IInteractable(), mCurrentRoom(nullptr), mConnectedRoom(nullptr) {}
+	~Gateway();
+	void initialize(Room*,Room*);
 	void lookObject() override;
 	void goDirection() override;
 

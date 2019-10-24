@@ -21,7 +21,6 @@ public:
 	void removeUpdatable(IUpdatable*);
 	void addInteractable(IInteractable*);
 	void addUpdatable(IUpdatable*);
-	void enterRoom();
 	void updateRoom();
 };
 #endif

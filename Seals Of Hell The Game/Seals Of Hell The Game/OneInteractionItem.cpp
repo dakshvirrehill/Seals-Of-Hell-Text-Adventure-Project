@@ -78,7 +78,21 @@ void OneInteractionItem::answerRiddle()
 
 void OneInteractionItem::update()
 {
-
+	if (isInteractable())
+	{
+		bool aVal = false;
+		for (auto& iter : getConditionUpdateObjects())
+		{
+			if (iter->isInteractable())
+			{
+				iter->makeInteractable(aVal);
+			}
+			if (iter->isVisible())
+			{
+				iter->makeVisible(aVal);
+			}
+		}
+	}
 }
 
 void OneInteractionItem::enemyDeath()

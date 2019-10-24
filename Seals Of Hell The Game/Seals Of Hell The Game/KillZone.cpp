@@ -11,6 +11,18 @@ void KillZone::update()
 	{
 		std::cout << getName() << std::endl;
 		std::cout << getAttackStory() << std::endl;
+		bool aVal = false;
+		for (auto& iter : getConditionUpdateObjects())
+		{
+			if (iter->isInteractable())
+			{
+				iter->makeInteractable(aVal);
+			}
+			if (iter->isVisible())
+			{
+				iter->makeVisible(aVal);
+			}
+		}
 		PlayerManager::instance().attackPlayer(this);
 		PlayerManager::instance().attackPlayer(this);
 	}
@@ -18,6 +30,18 @@ void KillZone::update()
 	{
 		std::cout << getName() << std::endl;
 		std::cout << getAttackStory() << std::endl;
+		bool aVal = false;
+		for (auto& iter : getConditionUpdateObjects())
+		{
+			if (iter->isInteractable())
+			{
+				iter->makeInteractable(aVal);
+			}
+			if (iter->isVisible())
+			{
+				iter->makeVisible(aVal);
+			}
+		}
 		PlayerManager::instance().attackPlayer(this);
 	}
 	else

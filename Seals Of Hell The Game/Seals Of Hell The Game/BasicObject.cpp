@@ -9,7 +9,7 @@ BasicObject::~BasicObject()
 {
 }
 
-void BasicObject::initialize(std::string& pName, std::string& pStory)
+void BasicObject::initialize(std::string pName, std::string pStory)
 {
 	mName = pName;
 	mStory = pStory;

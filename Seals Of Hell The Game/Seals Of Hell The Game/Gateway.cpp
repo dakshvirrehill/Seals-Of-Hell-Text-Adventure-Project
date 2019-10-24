@@ -3,12 +3,14 @@
 #include "GameManager.h"
 #include <iostream>
 
-void Gateway::initialize(Room* pCurrentRoom, Room* pConnectedRoom, bool& pIsVisible, bool& pIsInteractable)
+Gateway::~Gateway()
+{
+}
+
+void Gateway::initialize(Room* pCurrentRoom, Room* pConnectedRoom)
 {
 	mCurrentRoom = pCurrentRoom;
 	mConnectedRoom = pConnectedRoom;
-	makeInteractable(pIsInteractable);
-	makeVisible(pIsVisible);
 }
 
 void Gateway::lookObject()

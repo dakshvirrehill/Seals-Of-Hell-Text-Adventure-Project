@@ -38,14 +38,19 @@ void Room::removeInteractable(IInteractable* pInteractable)
 	mRoomObjects.erase(pInteractable->getName());
 }
 
+void Room::removeUpdatable(IUpdatable* pUpdatable)
+{
+	mUpdatableObjects.remove(pUpdatable);
+}
+
 void Room::addInteractable(IInteractable* pInteractable)
 {
 	mRoomObjects.emplace(pInteractable->getName(), pInteractable);
 }
 
-void Room::enterRoom()
+void Room::addUpdatable(IUpdatable* pUpdatable)
 {
-	
+	mUpdatableObjects.push_back(pUpdatable);
 }
 
 void Room::updateRoom()

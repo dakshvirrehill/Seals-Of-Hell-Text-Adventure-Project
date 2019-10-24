@@ -10,7 +10,7 @@ protected:
 	BasicObject();
 	virtual ~BasicObject();
 public:
-	void initialize(std::string&, std::string&);
+	void initialize(std::string, std::string);
 	std::string& getName() { return mName; }
 	std::string& getStory() { return mStory; }
 };
