@@ -13,7 +13,8 @@ namespace Seals_Of_Hell_Data_Editor
     public partial class SealsOfHellMain : Form
     {
         DataHandler mGameDetails;
-
+        Region mSelectedRegion;
+        Room mSelectedRoom;
         public SealsOfHellMain()
         {
             mGameDetails = new DataHandler();
@@ -36,14 +37,29 @@ namespace Seals_Of_Hell_Data_Editor
         {
             this.gameStartTabControl.Visible = true;
             this.gameStartTabControl.SelectedIndex = 0;
-            SetAllGameStartData();
         }
         #endregion
         #region Game Start Data
-        void SetAllGameStartData()
+        private void SetAllGameStartData(object sender, EventArgs e)
         {
-            this.gameNameTextBox.Text = mGameDetails.mName;
-            this.gameStoryTextBox.Text = mGameDetails.mStory;
+            mSelectedRegion = mGameDetails.mRegionDetails[mGameDetails.mFirstRegion];
+            mSelectedRoom = mSelectedRegion.mRooms[mSelectedRegion.mEntryRoom];
+            if(this.gameStartTabControl.SelectedTab == this.gameDetailsTab)
+            {
+                this.gameNameTextBox.Text = mGameDetails.mName;
+                this.gameStoryTextBox.Text = mGameDetails.mStory;
+            }
+            else if(this.gameStartTabControl.SelectedTab == this.firstRegionTab)
+            {
+                this.firstRegionNameTextBox.Text = mGameDetails.mFirstRegion;
+                this.firstRegionStoryTextBox.Text = mSelectedRegion.mStory;
+            }
+            else if(this.gameStartTabControl.SelectedTab == this.firstRoomTab)
+            {
+                this.firstRoomNameTextBox.Text = mSelectedRegion.mEntryRoom;
+                this.firstRoomNameTextBox.Text = mSelectedRoom.mStory;
+                //add interactable code
+            }
         }
         private void EditGameDetails_Click(object sender, EventArgs e)
         {
@@ -59,6 +75,43 @@ namespace Seals_Of_Hell_Data_Editor
             }
             mGameDetails.mName = this.gameNameTextBox.Text;
             mGameDetails.mStory = this.gameStoryTextBox.Text;
+        }
+        private void EditFirstRegionDetails_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(this.firstRegionNameTextBox.Text))
+            {
+                this.firstRegionNameTextBox.Text = mGameDetails.mFirstRegion;
+                return;
+            }
+            if(string.IsNullOrEmpty(this.firstRegionStoryTextBox.Text))
+            {
+                this.firstRegionStoryTextBox.Text = mSelectedRegion.mStory;
+                return;
+            }
+            mGameDetails.mRegionDetails.Remove(mGameDetails.mFirstRegion);
+            mSelectedRegion.mName = this.firstRegionNameTextBox.Text;
+            mSelectedRegion.mStory = this.firstRegionStoryTextBox.Text;
+            mGameDetails.mFirstRegion = mSelectedRegion.mName;
+            mGameDetails.mRegionDetails.Add(mGameDetails.mFirstRegion, mSelectedRegion);
+        }
+        private void EditFirstRoomDetails_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.firstRoomNameTextBox.Text))
+            {
+                this.firstRoomNameTextBox.Text = mSelectedRoom.mName;
+                return;
+            }
+            if(string.IsNullOrEmpty(this.firstRoomStoryTextBox.Text))
+            {
+                this.firstRoomStoryTextBox.Text = mSelectedRoom.mStory;
+                return;
+            }
+            mSelectedRegion.mRooms.Remove(mSelectedRoom.mName);
+            mSelectedRoom.mName = this.firstRoomNameTextBox.Text;
+            mSelectedRoom.mStory = this.firstRoomStoryTextBox.Text;
+            mSelectedRegion.mEntryRoom = mSelectedRoom.mName;
+            //add code to add in dictionary
+            mSelectedRegion.mRooms.Add(mSelectedRegion.mEntryRoom, mSelectedRoom);
         }
         #endregion
     }

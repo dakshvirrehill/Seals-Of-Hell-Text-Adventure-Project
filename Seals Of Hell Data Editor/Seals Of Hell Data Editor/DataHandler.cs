@@ -12,6 +12,7 @@ namespace Seals_Of_Hell_Data_Editor
         public string mStory { get; set; }
         public string mFirstRegion { get; set; }
         public Dictionary<string, Region> mRegionDetails { get; set; }
+
         public DataHandler()
         {
             mName = "Default Game";

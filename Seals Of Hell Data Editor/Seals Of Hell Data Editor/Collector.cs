@@ -8,5 +8,9 @@ namespace Seals_Of_Hell_Data_Editor
 {
     class Collector
     {
+        public string mName { get; set; }
+
+        bool mIsSelected;
+        public bool IsSelected() { return mIsSelected; }
     }
 }

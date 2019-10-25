@@ -79,7 +79,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 	_ASSERT_EXPR(pGameData["mGameDetails"].hasKey("mName"), "Game Details has no name");
 	_ASSERT_EXPR(pGameData["mGameDetails"].hasKey("mStory"), "Game Details has no story");
 	_ASSERT_EXPR(pGameData["mGameDetails"].hasKey("mFirstRegion"), "GameDetails has no first region");
-	_ASSERT_EXPR(pGameData["mGameDetails"].hasKey("mRegionDetails"), "JSON Doesn't have region detalis");
+	_ASSERT_EXPR(pGameData["mGameDetails"].hasKey("mRegionDetails"), "JSON Doesn't have region details");
 	GameManager::instance().BasicObject::initialize(pGameData["mGameDetails"]["mName"].ToString(), pGameData["mGameDetails"]["mStory"].ToString());
 	json::JSON aRegions = pGameData["mGameDetails"]["mRegionDetails"];
 	//temporary maps for assignment
