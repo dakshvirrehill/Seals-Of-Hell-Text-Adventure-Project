@@ -312,7 +312,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					bool aHasCond = aKillZone.second["mHasCondition"].ToBool();
 					if (aHasCond)
 					{
-						_ASSERT_EXPR(aKillZone.second.hasKey("mConditionalObject"), "Killzone has no conditional object");
+						_ASSERT_EXPR(aKillZone.second.hasKey("mDisabler"), "Killzone has no conditional object");
 					}
 					KillZone* aNewKillZone = nullptr;
 					if (aInteractableMap.find(aKillZone.first) == aInteractableMap.end())
@@ -329,14 +329,14 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					if (aHasCond)
 					{
 						IInteractable* aConditionalObject = nullptr;
-						if (aInteractableMap.find(aKillZone.second["mConditionalObject"].ToString()) == aInteractableMap.end())
+						if (aInteractableMap.find(aKillZone.second["mDisabler"].ToString()) == aInteractableMap.end())
 						{
 							aConditionalObject = new PickableItem();
-							aInteractableMap.emplace(aKillZone.second["mConditionalObject"].ToString(), aConditionalObject);
+							aInteractableMap.emplace(aKillZone.second["mDisabler"].ToString(), aConditionalObject);
 						}
 						else
 						{
-							aConditionalObject = aInteractableMap[aKillZone.second["mConditionalObject"].ToString()];
+							aConditionalObject = aInteractableMap[aKillZone.second["mDisabler"].ToString()];
 						}
 						aNewKillZone->setConditionalObject(aConditionalObject);
 					}
