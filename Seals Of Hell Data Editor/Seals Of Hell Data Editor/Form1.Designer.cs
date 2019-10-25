@@ -146,6 +146,79 @@
             this.insidePortalsTabControl = new System.Windows.Forms.TabControl();
             this.editPortalTab = new System.Windows.Forms.TabPage();
             this.portalRoomsTab = new System.Windows.Forms.TabPage();
+            this.interactableDetailsTabControl = new System.Windows.Forms.TabControl();
+            this.collectorDetailsTab = new System.Windows.Forms.TabPage();
+            this.enemyDetailsTab = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.listBox4 = new System.Windows.Forms.ListBox();
+            this.listBox5 = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.richTextBox5 = new System.Windows.Forms.RichTextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.richTextBox6 = new System.Windows.Forms.RichTextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.listBox6 = new System.Windows.Forms.ListBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.listBox7 = new System.Windows.Forms.ListBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.richTextBox7 = new System.Windows.Forms.RichTextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.isCollectorInteractable = new System.Windows.Forms.CheckBox();
+            this.isCollectorVisible = new System.Windows.Forms.CheckBox();
+            this.collectorEndUpdateStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.collectorEndUpdateStoryLabel = new System.Windows.Forms.Label();
+            this.collectorUpdateStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.collectorUpdateStoryLabel = new System.Windows.Forms.Label();
+            this.collectorStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.collectorStoryLabel = new System.Windows.Forms.Label();
+            this.collectorNameTextBox = new System.Windows.Forms.TextBox();
+            this.collectorNameLabel = new System.Windows.Forms.Label();
+            this.currentCollectorListLabel = new System.Windows.Forms.Label();
+            this.currentCollectorsList = new System.Windows.Forms.ListBox();
+            this.editSelectedCollector = new System.Windows.Forms.Button();
+            this.collectorCollectionObjectSelector = new System.Windows.Forms.ComboBox();
+            this.collectorCollectionObjectLabel = new System.Windows.Forms.Label();
+            this.deleteCollectorDetails = new System.Windows.Forms.Button();
+            this.editCollectorDetails = new System.Windows.Forms.Button();
+            this.editEnemyDetails = new System.Windows.Forms.Button();
+            this.deleteEnemy = new System.Windows.Forms.Button();
+            this.currentEnemyListLabel = new System.Windows.Forms.Label();
+            this.currentEnemyList = new System.Windows.Forms.ListBox();
+            this.editSelectedEnemy = new System.Windows.Forms.Button();
+            this.enemyKillableWeaponSelector = new System.Windows.Forms.ComboBox();
+            this.enemyKillableWeaponLabel = new System.Windows.Forms.Label();
+            this.isEnemyInteractable = new System.Windows.Forms.CheckBox();
+            this.isEnemyVisible = new System.Windows.Forms.CheckBox();
+            this.enemyDeathStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.enemyDeathStoryLabel = new System.Windows.Forms.Label();
+            this.enemyBlockStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.enemyBlockStoryLabel = new System.Windows.Forms.Label();
+            this.enemyStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.enemyStoryLabel = new System.Windows.Forms.Label();
+            this.enemyNameTextBox = new System.Windows.Forms.TextBox();
+            this.enemyNameLabel = new System.Windows.Forms.Label();
+            this.enemyAttackStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.enemyAttackStoryLabel = new System.Windows.Forms.Label();
+            this.enemyLifeLabel = new System.Windows.Forms.Label();
+            this.enemyLifeNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             this.gameStartTabControl.SuspendLayout();
             this.gameDetailsTab.SuspendLayout();
@@ -161,6 +234,12 @@
             this.insidePortalsTabControl.SuspendLayout();
             this.editPortalTab.SuspendLayout();
             this.portalRoomsTab.SuspendLayout();
+            this.interactableDetailsTabControl.SuspendLayout();
+            this.collectorDetailsTab.SuspendLayout();
+            this.enemyDetailsTab.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.enemyLifeNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -1391,6 +1470,787 @@
             this.portalRoomsTab.Text = "Add Portal To Rooms";
             this.portalRoomsTab.UseVisualStyleBackColor = true;
             // 
+            // interactableDetailsTabControl
+            // 
+            this.interactableDetailsTabControl.Controls.Add(this.collectorDetailsTab);
+            this.interactableDetailsTabControl.Controls.Add(this.enemyDetailsTab);
+            this.interactableDetailsTabControl.Controls.Add(this.tabPage3);
+            this.interactableDetailsTabControl.Controls.Add(this.tabPage4);
+            this.interactableDetailsTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.interactableDetailsTabControl.Location = new System.Drawing.Point(0, 27);
+            this.interactableDetailsTabControl.Name = "interactableDetailsTabControl";
+            this.interactableDetailsTabControl.SelectedIndex = 0;
+            this.interactableDetailsTabControl.Size = new System.Drawing.Size(1008, 703);
+            this.interactableDetailsTabControl.TabIndex = 4;
+            // 
+            // collectorDetailsTab
+            // 
+            this.collectorDetailsTab.Controls.Add(this.editCollectorDetails);
+            this.collectorDetailsTab.Controls.Add(this.deleteCollectorDetails);
+            this.collectorDetailsTab.Controls.Add(this.currentCollectorListLabel);
+            this.collectorDetailsTab.Controls.Add(this.currentCollectorsList);
+            this.collectorDetailsTab.Controls.Add(this.editSelectedCollector);
+            this.collectorDetailsTab.Controls.Add(this.collectorCollectionObjectSelector);
+            this.collectorDetailsTab.Controls.Add(this.collectorCollectionObjectLabel);
+            this.collectorDetailsTab.Controls.Add(this.isCollectorInteractable);
+            this.collectorDetailsTab.Controls.Add(this.isCollectorVisible);
+            this.collectorDetailsTab.Controls.Add(this.collectorEndUpdateStoryTextBox);
+            this.collectorDetailsTab.Controls.Add(this.collectorEndUpdateStoryLabel);
+            this.collectorDetailsTab.Controls.Add(this.collectorUpdateStoryTextBox);
+            this.collectorDetailsTab.Controls.Add(this.collectorUpdateStoryLabel);
+            this.collectorDetailsTab.Controls.Add(this.collectorStoryTextBox);
+            this.collectorDetailsTab.Controls.Add(this.collectorStoryLabel);
+            this.collectorDetailsTab.Controls.Add(this.collectorNameTextBox);
+            this.collectorDetailsTab.Controls.Add(this.collectorNameLabel);
+            this.collectorDetailsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.collectorDetailsTab.Location = new System.Drawing.Point(4, 29);
+            this.collectorDetailsTab.Name = "collectorDetailsTab";
+            this.collectorDetailsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.collectorDetailsTab.Size = new System.Drawing.Size(1000, 670);
+            this.collectorDetailsTab.TabIndex = 0;
+            this.collectorDetailsTab.Text = "Add/Edit Collectors";
+            this.collectorDetailsTab.UseVisualStyleBackColor = true;
+            // 
+            // enemyDetailsTab
+            // 
+            this.enemyDetailsTab.Controls.Add(this.enemyLifeNumericUpDown);
+            this.enemyDetailsTab.Controls.Add(this.enemyLifeLabel);
+            this.enemyDetailsTab.Controls.Add(this.enemyAttackStoryTextBox);
+            this.enemyDetailsTab.Controls.Add(this.enemyAttackStoryLabel);
+            this.enemyDetailsTab.Controls.Add(this.editEnemyDetails);
+            this.enemyDetailsTab.Controls.Add(this.deleteEnemy);
+            this.enemyDetailsTab.Controls.Add(this.currentEnemyListLabel);
+            this.enemyDetailsTab.Controls.Add(this.currentEnemyList);
+            this.enemyDetailsTab.Controls.Add(this.editSelectedEnemy);
+            this.enemyDetailsTab.Controls.Add(this.enemyKillableWeaponSelector);
+            this.enemyDetailsTab.Controls.Add(this.enemyKillableWeaponLabel);
+            this.enemyDetailsTab.Controls.Add(this.isEnemyInteractable);
+            this.enemyDetailsTab.Controls.Add(this.isEnemyVisible);
+            this.enemyDetailsTab.Controls.Add(this.enemyDeathStoryTextBox);
+            this.enemyDetailsTab.Controls.Add(this.enemyDeathStoryLabel);
+            this.enemyDetailsTab.Controls.Add(this.enemyBlockStoryTextBox);
+            this.enemyDetailsTab.Controls.Add(this.enemyBlockStoryLabel);
+            this.enemyDetailsTab.Controls.Add(this.enemyStoryTextBox);
+            this.enemyDetailsTab.Controls.Add(this.enemyStoryLabel);
+            this.enemyDetailsTab.Controls.Add(this.enemyNameTextBox);
+            this.enemyDetailsTab.Controls.Add(this.enemyNameLabel);
+            this.enemyDetailsTab.Location = new System.Drawing.Point(4, 29);
+            this.enemyDetailsTab.Name = "enemyDetailsTab";
+            this.enemyDetailsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.enemyDetailsTab.Size = new System.Drawing.Size(1000, 670);
+            this.enemyDetailsTab.TabIndex = 1;
+            this.enemyDetailsTab.Text = "Add/Edit Enemies";
+            this.enemyDetailsTab.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.listBox1);
+            this.tabPage3.Controls.Add(this.listBox2);
+            this.tabPage3.Controls.Add(this.listBox3);
+            this.tabPage3.Controls.Add(this.listBox4);
+            this.tabPage3.Controls.Add(this.listBox5);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.label8);
+            this.tabPage3.Controls.Add(this.label9);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.richTextBox4);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.textBox4);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1000, 670);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "First Room Details";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(801, 237);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox1.Size = new System.Drawing.Size(176, 324);
+            this.listBox1.TabIndex = 24;
+            // 
+            // listBox2
+            // 
+            this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 16;
+            this.listBox2.Location = new System.Drawing.Point(606, 237);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox2.Size = new System.Drawing.Size(176, 324);
+            this.listBox2.TabIndex = 23;
+            // 
+            // listBox3
+            // 
+            this.listBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.ItemHeight = 16;
+            this.listBox3.Location = new System.Drawing.Point(414, 237);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox3.Size = new System.Drawing.Size(176, 324);
+            this.listBox3.TabIndex = 22;
+            // 
+            // listBox4
+            // 
+            this.listBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox4.FormattingEnabled = true;
+            this.listBox4.ItemHeight = 16;
+            this.listBox4.Location = new System.Drawing.Point(217, 237);
+            this.listBox4.Name = "listBox4";
+            this.listBox4.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox4.Size = new System.Drawing.Size(176, 324);
+            this.listBox4.TabIndex = 21;
+            // 
+            // listBox5
+            // 
+            this.listBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox5.FormattingEnabled = true;
+            this.listBox5.ItemHeight = 16;
+            this.listBox5.Location = new System.Drawing.Point(23, 237);
+            this.listBox5.Name = "listBox5";
+            this.listBox5.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox5.Size = new System.Drawing.Size(176, 324);
+            this.listBox5.TabIndex = 20;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(829, 214);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(126, 20);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Pickable Items";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(602, 214);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(184, 20);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "One Interaction Items";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(453, 214);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(87, 20);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Kill Zones";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(263, 214);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(78, 20);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Enemies";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(64, 214);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(89, 20);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "Collectors";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(211, 584);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(538, 77);
+            this.button3.TabIndex = 14;
+            this.button3.Text = "Edit First Room Details";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox4
+            // 
+            this.richTextBox4.Location = new System.Drawing.Point(383, 70);
+            this.richTextBox4.Name = "richTextBox4";
+            this.richTextBox4.Size = new System.Drawing.Size(538, 134);
+            this.richTextBox4.TabIndex = 13;
+            this.richTextBox4.Text = "";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(81, 70);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(268, 20);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Current Story Of The First Room";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(383, 18);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(538, 26);
+            this.textBox4.TabIndex = 11;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(77, 21);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(272, 20);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "Current Name Of The First Room";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.checkBox1);
+            this.tabPage4.Controls.Add(this.checkBox2);
+            this.tabPage4.Controls.Add(this.richTextBox5);
+            this.tabPage4.Controls.Add(this.label13);
+            this.tabPage4.Controls.Add(this.richTextBox6);
+            this.tabPage4.Controls.Add(this.label14);
+            this.tabPage4.Controls.Add(this.listBox6);
+            this.tabPage4.Controls.Add(this.label15);
+            this.tabPage4.Controls.Add(this.listBox7);
+            this.tabPage4.Controls.Add(this.label16);
+            this.tabPage4.Controls.Add(this.button4);
+            this.tabPage4.Controls.Add(this.richTextBox7);
+            this.tabPage4.Controls.Add(this.label17);
+            this.tabPage4.Controls.Add(this.textBox5);
+            this.tabPage4.Controls.Add(this.label18);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1000, 670);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Treasure Collector Details";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(419, 459);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(145, 24);
+            this.checkBox1.TabIndex = 34;
+            this.checkBox1.Text = "Is Interactable";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(419, 406);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(101, 24);
+            this.checkBox2.TabIndex = 33;
+            this.checkBox2.Text = "Is Visible";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox5
+            // 
+            this.richTextBox5.Location = new System.Drawing.Point(384, 199);
+            this.richTextBox5.Name = "richTextBox5";
+            this.richTextBox5.Size = new System.Drawing.Size(538, 54);
+            this.richTextBox5.TabIndex = 32;
+            this.richTextBox5.Text = "";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(78, 217);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(272, 20);
+            this.label13.TabIndex = 31;
+            this.label13.Text = "Current Win Story Of Tr Collector";
+            // 
+            // richTextBox6
+            // 
+            this.richTextBox6.Location = new System.Drawing.Point(384, 129);
+            this.richTextBox6.Name = "richTextBox6";
+            this.richTextBox6.Size = new System.Drawing.Size(538, 54);
+            this.richTextBox6.TabIndex = 30;
+            this.richTextBox6.Text = "";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(31, 154);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(320, 20);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "Current After All Output Of Tr Collector";
+            // 
+            // listBox6
+            // 
+            this.listBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox6.FormattingEnabled = true;
+            this.listBox6.ItemHeight = 16;
+            this.listBox6.Location = new System.Drawing.Point(197, 292);
+            this.listBox6.Name = "listBox6";
+            this.listBox6.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox6.Size = new System.Drawing.Size(176, 356);
+            this.listBox6.TabIndex = 28;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(224, 269);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(101, 20);
+            this.label15.TabIndex = 27;
+            this.label15.Text = "Updatables";
+            // 
+            // listBox7
+            // 
+            this.listBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox7.FormattingEnabled = true;
+            this.listBox7.ItemHeight = 16;
+            this.listBox7.Location = new System.Drawing.Point(6, 292);
+            this.listBox7.Name = "listBox7";
+            this.listBox7.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox7.Size = new System.Drawing.Size(176, 356);
+            this.listBox7.TabIndex = 26;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(8, 269);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(161, 20);
+            this.label16.TabIndex = 25;
+            this.label16.Text = "Treasure Pickables";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(585, 406);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(337, 77);
+            this.button4.TabIndex = 19;
+            this.button4.Text = "Edit Treasure Collector Details";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox7
+            // 
+            this.richTextBox7.Location = new System.Drawing.Point(384, 58);
+            this.richTextBox7.Name = "richTextBox7";
+            this.richTextBox7.Size = new System.Drawing.Size(538, 54);
+            this.richTextBox7.TabIndex = 18;
+            this.richTextBox7.Text = "";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(31, 81);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(327, 20);
+            this.label17.TabIndex = 17;
+            this.label17.Text = "Current Story Of The Treasure Collector";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Location = new System.Drawing.Point(384, 14);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(538, 26);
+            this.textBox5.TabIndex = 16;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(27, 20);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(331, 20);
+            this.label18.TabIndex = 15;
+            this.label18.Text = "Current Name Of The Treasure Collector";
+            // 
+            // isCollectorInteractable
+            // 
+            this.isCollectorInteractable.AutoSize = true;
+            this.isCollectorInteractable.Location = new System.Drawing.Point(481, 402);
+            this.isCollectorInteractable.Name = "isCollectorInteractable";
+            this.isCollectorInteractable.Size = new System.Drawing.Size(145, 24);
+            this.isCollectorInteractable.TabIndex = 45;
+            this.isCollectorInteractable.Text = "Is Interactable";
+            this.isCollectorInteractable.UseVisualStyleBackColor = true;
+            // 
+            // isCollectorVisible
+            // 
+            this.isCollectorVisible.AutoSize = true;
+            this.isCollectorVisible.Location = new System.Drawing.Point(266, 402);
+            this.isCollectorVisible.Name = "isCollectorVisible";
+            this.isCollectorVisible.Size = new System.Drawing.Size(101, 24);
+            this.isCollectorVisible.TabIndex = 44;
+            this.isCollectorVisible.Text = "Is Visible";
+            this.isCollectorVisible.UseVisualStyleBackColor = true;
+            // 
+            // collectorEndUpdateStoryTextBox
+            // 
+            this.collectorEndUpdateStoryTextBox.Location = new System.Drawing.Point(172, 331);
+            this.collectorEndUpdateStoryTextBox.Name = "collectorEndUpdateStoryTextBox";
+            this.collectorEndUpdateStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.collectorEndUpdateStoryTextBox.TabIndex = 43;
+            this.collectorEndUpdateStoryTextBox.Text = "";
+            // 
+            // collectorEndUpdateStoryLabel
+            // 
+            this.collectorEndUpdateStoryLabel.AutoSize = true;
+            this.collectorEndUpdateStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.collectorEndUpdateStoryLabel.Location = new System.Drawing.Point(32, 344);
+            this.collectorEndUpdateStoryLabel.Name = "collectorEndUpdateStoryLabel";
+            this.collectorEndUpdateStoryLabel.Size = new System.Drawing.Size(128, 20);
+            this.collectorEndUpdateStoryLabel.TabIndex = 42;
+            this.collectorEndUpdateStoryLabel.Text = "Coll. End Story";
+            // 
+            // collectorUpdateStoryTextBox
+            // 
+            this.collectorUpdateStoryTextBox.Location = new System.Drawing.Point(175, 250);
+            this.collectorUpdateStoryTextBox.Name = "collectorUpdateStoryTextBox";
+            this.collectorUpdateStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.collectorUpdateStoryTextBox.TabIndex = 41;
+            this.collectorUpdateStoryTextBox.Text = "";
+            // 
+            // collectorUpdateStoryLabel
+            // 
+            this.collectorUpdateStoryLabel.AutoSize = true;
+            this.collectorUpdateStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.collectorUpdateStoryLabel.Location = new System.Drawing.Point(8, 266);
+            this.collectorUpdateStoryLabel.Name = "collectorUpdateStoryLabel";
+            this.collectorUpdateStoryLabel.Size = new System.Drawing.Size(155, 20);
+            this.collectorUpdateStoryLabel.TabIndex = 40;
+            this.collectorUpdateStoryLabel.Text = "Coll. Update Story";
+            // 
+            // collectorStoryTextBox
+            // 
+            this.collectorStoryTextBox.Location = new System.Drawing.Point(176, 135);
+            this.collectorStoryTextBox.Name = "collectorStoryTextBox";
+            this.collectorStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.collectorStoryTextBox.TabIndex = 38;
+            this.collectorStoryTextBox.Text = "";
+            // 
+            // collectorStoryLabel
+            // 
+            this.collectorStoryLabel.AutoSize = true;
+            this.collectorStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.collectorStoryLabel.Location = new System.Drawing.Point(36, 150);
+            this.collectorStoryLabel.Name = "collectorStoryLabel";
+            this.collectorStoryLabel.Size = new System.Drawing.Size(127, 20);
+            this.collectorStoryLabel.TabIndex = 37;
+            this.collectorStoryLabel.Text = "Collector Story";
+            // 
+            // collectorNameTextBox
+            // 
+            this.collectorNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.collectorNameTextBox.Location = new System.Drawing.Point(176, 86);
+            this.collectorNameTextBox.Name = "collectorNameTextBox";
+            this.collectorNameTextBox.Size = new System.Drawing.Size(538, 26);
+            this.collectorNameTextBox.TabIndex = 36;
+            // 
+            // collectorNameLabel
+            // 
+            this.collectorNameLabel.AutoSize = true;
+            this.collectorNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.collectorNameLabel.Location = new System.Drawing.Point(32, 89);
+            this.collectorNameLabel.Name = "collectorNameLabel";
+            this.collectorNameLabel.Size = new System.Drawing.Size(131, 20);
+            this.collectorNameLabel.TabIndex = 35;
+            this.collectorNameLabel.Text = "Collector Name";
+            // 
+            // currentCollectorListLabel
+            // 
+            this.currentCollectorListLabel.AutoSize = true;
+            this.currentCollectorListLabel.Location = new System.Drawing.Point(781, 23);
+            this.currentCollectorListLabel.Name = "currentCollectorListLabel";
+            this.currentCollectorListLabel.Size = new System.Drawing.Size(188, 20);
+            this.currentCollectorListLabel.TabIndex = 50;
+            this.currentCollectorListLabel.Text = "Current Collectors List";
+            // 
+            // currentCollectorsList
+            // 
+            this.currentCollectorsList.FormattingEnabled = true;
+            this.currentCollectorsList.ItemHeight = 20;
+            this.currentCollectorsList.Location = new System.Drawing.Point(768, 46);
+            this.currentCollectorsList.Name = "currentCollectorsList";
+            this.currentCollectorsList.Size = new System.Drawing.Size(205, 424);
+            this.currentCollectorsList.TabIndex = 49;
+            // 
+            // editSelectedCollector
+            // 
+            this.editSelectedCollector.Location = new System.Drawing.Point(769, 483);
+            this.editSelectedCollector.Name = "editSelectedCollector";
+            this.editSelectedCollector.Size = new System.Drawing.Size(205, 77);
+            this.editSelectedCollector.TabIndex = 48;
+            this.editSelectedCollector.Text = "Edit Selected";
+            this.editSelectedCollector.UseVisualStyleBackColor = true;
+            this.editSelectedCollector.Click += new System.EventHandler(this.EditSelectedCollector_Click);
+            // 
+            // collectorCollectionObjectSelector
+            // 
+            this.collectorCollectionObjectSelector.FormattingEnabled = true;
+            this.collectorCollectionObjectSelector.Location = new System.Drawing.Point(175, 202);
+            this.collectorCollectionObjectSelector.Name = "collectorCollectionObjectSelector";
+            this.collectorCollectionObjectSelector.Size = new System.Drawing.Size(538, 28);
+            this.collectorCollectionObjectSelector.TabIndex = 47;
+            // 
+            // collectorCollectionObjectLabel
+            // 
+            this.collectorCollectionObjectLabel.AutoSize = true;
+            this.collectorCollectionObjectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.collectorCollectionObjectLabel.Location = new System.Drawing.Point(18, 205);
+            this.collectorCollectionObjectLabel.Name = "collectorCollectionObjectLabel";
+            this.collectorCollectionObjectLabel.Size = new System.Drawing.Size(145, 20);
+            this.collectorCollectionObjectLabel.TabIndex = 46;
+            this.collectorCollectionObjectLabel.Text = "Collection Object";
+            // 
+            // deleteCollectorDetails
+            // 
+            this.deleteCollectorDetails.Location = new System.Drawing.Point(183, 548);
+            this.deleteCollectorDetails.Name = "deleteCollectorDetails";
+            this.deleteCollectorDetails.Size = new System.Drawing.Size(205, 77);
+            this.deleteCollectorDetails.TabIndex = 51;
+            this.deleteCollectorDetails.Text = "Delete Collector";
+            this.deleteCollectorDetails.UseVisualStyleBackColor = true;
+            this.deleteCollectorDetails.Click += new System.EventHandler(this.DeleteCollectorDetails_Click);
+            // 
+            // editCollectorDetails
+            // 
+            this.editCollectorDetails.Location = new System.Drawing.Point(436, 548);
+            this.editCollectorDetails.Name = "editCollectorDetails";
+            this.editCollectorDetails.Size = new System.Drawing.Size(205, 77);
+            this.editCollectorDetails.TabIndex = 52;
+            this.editCollectorDetails.Text = "Add/Edit Collector";
+            this.editCollectorDetails.UseVisualStyleBackColor = true;
+            this.editCollectorDetails.Click += new System.EventHandler(this.EditCollectorDetails_Click);
+            // 
+            // editEnemyDetails
+            // 
+            this.editEnemyDetails.Location = new System.Drawing.Point(445, 559);
+            this.editEnemyDetails.Name = "editEnemyDetails";
+            this.editEnemyDetails.Size = new System.Drawing.Size(205, 77);
+            this.editEnemyDetails.TabIndex = 69;
+            this.editEnemyDetails.Text = "Add/Edit Enemy";
+            this.editEnemyDetails.UseVisualStyleBackColor = true;
+            this.editEnemyDetails.Click += new System.EventHandler(this.EditEnemyDetails_Click);
+            // 
+            // deleteEnemy
+            // 
+            this.deleteEnemy.Location = new System.Drawing.Point(192, 559);
+            this.deleteEnemy.Name = "deleteEnemy";
+            this.deleteEnemy.Size = new System.Drawing.Size(205, 77);
+            this.deleteEnemy.TabIndex = 68;
+            this.deleteEnemy.Text = "Delete Enemy";
+            this.deleteEnemy.UseVisualStyleBackColor = true;
+            this.deleteEnemy.Click += new System.EventHandler(this.DeleteEnemy_Click);
+            // 
+            // currentEnemyListLabel
+            // 
+            this.currentEnemyListLabel.AutoSize = true;
+            this.currentEnemyListLabel.Location = new System.Drawing.Point(790, 34);
+            this.currentEnemyListLabel.Name = "currentEnemyListLabel";
+            this.currentEnemyListLabel.Size = new System.Drawing.Size(188, 20);
+            this.currentEnemyListLabel.TabIndex = 67;
+            this.currentEnemyListLabel.Text = "Current Collectors List";
+            // 
+            // currentEnemyList
+            // 
+            this.currentEnemyList.FormattingEnabled = true;
+            this.currentEnemyList.ItemHeight = 20;
+            this.currentEnemyList.Location = new System.Drawing.Point(777, 57);
+            this.currentEnemyList.Name = "currentEnemyList";
+            this.currentEnemyList.Size = new System.Drawing.Size(205, 424);
+            this.currentEnemyList.TabIndex = 66;
+            // 
+            // editSelectedEnemy
+            // 
+            this.editSelectedEnemy.Location = new System.Drawing.Point(778, 494);
+            this.editSelectedEnemy.Name = "editSelectedEnemy";
+            this.editSelectedEnemy.Size = new System.Drawing.Size(205, 77);
+            this.editSelectedEnemy.TabIndex = 65;
+            this.editSelectedEnemy.Text = "Edit Selected";
+            this.editSelectedEnemy.UseVisualStyleBackColor = true;
+            this.editSelectedEnemy.Click += new System.EventHandler(this.EditSelectedEnemy_Click);
+            // 
+            // enemyKillableWeaponSelector
+            // 
+            this.enemyKillableWeaponSelector.FormattingEnabled = true;
+            this.enemyKillableWeaponSelector.Location = new System.Drawing.Point(181, 162);
+            this.enemyKillableWeaponSelector.Name = "enemyKillableWeaponSelector";
+            this.enemyKillableWeaponSelector.Size = new System.Drawing.Size(538, 28);
+            this.enemyKillableWeaponSelector.TabIndex = 64;
+            // 
+            // enemyKillableWeaponLabel
+            // 
+            this.enemyKillableWeaponLabel.AutoSize = true;
+            this.enemyKillableWeaponLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.enemyKillableWeaponLabel.Location = new System.Drawing.Point(15, 172);
+            this.enemyKillableWeaponLabel.Name = "enemyKillableWeaponLabel";
+            this.enemyKillableWeaponLabel.Size = new System.Drawing.Size(137, 20);
+            this.enemyKillableWeaponLabel.TabIndex = 63;
+            this.enemyKillableWeaponLabel.Text = "Killable Weapon";
+            // 
+            // isEnemyInteractable
+            // 
+            this.isEnemyInteractable.AutoSize = true;
+            this.isEnemyInteractable.Location = new System.Drawing.Point(487, 498);
+            this.isEnemyInteractable.Name = "isEnemyInteractable";
+            this.isEnemyInteractable.Size = new System.Drawing.Size(145, 24);
+            this.isEnemyInteractable.TabIndex = 62;
+            this.isEnemyInteractable.Text = "Is Interactable";
+            this.isEnemyInteractable.UseVisualStyleBackColor = true;
+            // 
+            // isEnemyVisible
+            // 
+            this.isEnemyVisible.AutoSize = true;
+            this.isEnemyVisible.Location = new System.Drawing.Point(272, 498);
+            this.isEnemyVisible.Name = "isEnemyVisible";
+            this.isEnemyVisible.Size = new System.Drawing.Size(101, 24);
+            this.isEnemyVisible.TabIndex = 61;
+            this.isEnemyVisible.Text = "Is Visible";
+            this.isEnemyVisible.UseVisualStyleBackColor = true;
+            // 
+            // enemyDeathStoryTextBox
+            // 
+            this.enemyDeathStoryTextBox.Location = new System.Drawing.Point(178, 427);
+            this.enemyDeathStoryTextBox.Name = "enemyDeathStoryTextBox";
+            this.enemyDeathStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.enemyDeathStoryTextBox.TabIndex = 60;
+            this.enemyDeathStoryTextBox.Text = "";
+            // 
+            // enemyDeathStoryLabel
+            // 
+            this.enemyDeathStoryLabel.AutoSize = true;
+            this.enemyDeathStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.enemyDeathStoryLabel.Location = new System.Drawing.Point(47, 438);
+            this.enemyDeathStoryLabel.Name = "enemyDeathStoryLabel";
+            this.enemyDeathStoryLabel.Size = new System.Drawing.Size(105, 20);
+            this.enemyDeathStoryLabel.TabIndex = 59;
+            this.enemyDeathStoryLabel.Text = "Death Story";
+            // 
+            // enemyBlockStoryTextBox
+            // 
+            this.enemyBlockStoryTextBox.Location = new System.Drawing.Point(181, 346);
+            this.enemyBlockStoryTextBox.Name = "enemyBlockStoryTextBox";
+            this.enemyBlockStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.enemyBlockStoryTextBox.TabIndex = 58;
+            this.enemyBlockStoryTextBox.Text = "";
+            // 
+            // enemyBlockStoryLabel
+            // 
+            this.enemyBlockStoryLabel.AutoSize = true;
+            this.enemyBlockStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.enemyBlockStoryLabel.Location = new System.Drawing.Point(2, 363);
+            this.enemyBlockStoryLabel.Name = "enemyBlockStoryLabel";
+            this.enemyBlockStoryLabel.Size = new System.Drawing.Size(157, 20);
+            this.enemyBlockStoryLabel.TabIndex = 57;
+            this.enemyBlockStoryLabel.Text = "Block Attack Story";
+            // 
+            // enemyStoryTextBox
+            // 
+            this.enemyStoryTextBox.Location = new System.Drawing.Point(182, 95);
+            this.enemyStoryTextBox.Name = "enemyStoryTextBox";
+            this.enemyStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.enemyStoryTextBox.TabIndex = 56;
+            this.enemyStoryTextBox.Text = "";
+            // 
+            // enemyStoryLabel
+            // 
+            this.enemyStoryLabel.AutoSize = true;
+            this.enemyStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.enemyStoryLabel.Location = new System.Drawing.Point(42, 110);
+            this.enemyStoryLabel.Name = "enemyStoryLabel";
+            this.enemyStoryLabel.Size = new System.Drawing.Size(110, 20);
+            this.enemyStoryLabel.TabIndex = 55;
+            this.enemyStoryLabel.Text = "Enemy Story";
+            // 
+            // enemyNameTextBox
+            // 
+            this.enemyNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.enemyNameTextBox.Location = new System.Drawing.Point(182, 46);
+            this.enemyNameTextBox.Name = "enemyNameTextBox";
+            this.enemyNameTextBox.Size = new System.Drawing.Size(538, 26);
+            this.enemyNameTextBox.TabIndex = 54;
+            // 
+            // enemyNameLabel
+            // 
+            this.enemyNameLabel.AutoSize = true;
+            this.enemyNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.enemyNameLabel.Location = new System.Drawing.Point(38, 49);
+            this.enemyNameLabel.Name = "enemyNameLabel";
+            this.enemyNameLabel.Size = new System.Drawing.Size(114, 20);
+            this.enemyNameLabel.TabIndex = 53;
+            this.enemyNameLabel.Text = "Enemy Name";
+            // 
+            // enemyAttackStoryTextBox
+            // 
+            this.enemyAttackStoryTextBox.Location = new System.Drawing.Point(179, 271);
+            this.enemyAttackStoryTextBox.Name = "enemyAttackStoryTextBox";
+            this.enemyAttackStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.enemyAttackStoryTextBox.TabIndex = 71;
+            this.enemyAttackStoryTextBox.Text = "";
+            // 
+            // enemyAttackStoryLabel
+            // 
+            this.enemyAttackStoryLabel.AutoSize = true;
+            this.enemyAttackStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.enemyAttackStoryLabel.Location = new System.Drawing.Point(44, 292);
+            this.enemyAttackStoryLabel.Name = "enemyAttackStoryLabel";
+            this.enemyAttackStoryLabel.Size = new System.Drawing.Size(108, 20);
+            this.enemyAttackStoryLabel.TabIndex = 70;
+            this.enemyAttackStoryLabel.Text = "Attack Story";
+            // 
+            // enemyLifeLabel
+            // 
+            this.enemyLifeLabel.AutoSize = true;
+            this.enemyLifeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.enemyLifeLabel.Location = new System.Drawing.Point(54, 222);
+            this.enemyLifeLabel.Name = "enemyLifeLabel";
+            this.enemyLifeLabel.Size = new System.Drawing.Size(98, 20);
+            this.enemyLifeLabel.TabIndex = 72;
+            this.enemyLifeLabel.Text = "Enemy Life";
+            // 
+            // enemyLifeNumericUpDown
+            // 
+            this.enemyLifeNumericUpDown.Location = new System.Drawing.Point(182, 216);
+            this.enemyLifeNumericUpDown.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.enemyLifeNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.enemyLifeNumericUpDown.Name = "enemyLifeNumericUpDown";
+            this.enemyLifeNumericUpDown.Size = new System.Drawing.Size(537, 26);
+            this.enemyLifeNumericUpDown.TabIndex = 73;
+            this.enemyLifeNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // SealsOfHellMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1398,9 +2258,10 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.regionTabControl);
+            this.Controls.Add(this.interactableDetailsTabControl);
             this.Controls.Add(this.gameStartTabControl);
             this.Controls.Add(this.roomTabControl);
+            this.Controls.Add(this.regionTabControl);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1440, 1078);
@@ -1433,6 +2294,16 @@
             this.editPortalTab.PerformLayout();
             this.portalRoomsTab.ResumeLayout(false);
             this.portalRoomsTab.PerformLayout();
+            this.interactableDetailsTabControl.ResumeLayout(false);
+            this.collectorDetailsTab.ResumeLayout(false);
+            this.collectorDetailsTab.PerformLayout();
+            this.enemyDetailsTab.ResumeLayout(false);
+            this.enemyDetailsTab.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.enemyLifeNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1558,6 +2429,79 @@
         private System.Windows.Forms.TabControl insidePortalsTabControl;
         private System.Windows.Forms.TabPage editPortalTab;
         private System.Windows.Forms.TabPage portalRoomsTab;
+        private System.Windows.Forms.TabControl interactableDetailsTabControl;
+        private System.Windows.Forms.TabPage collectorDetailsTab;
+        private System.Windows.Forms.Button editCollectorDetails;
+        private System.Windows.Forms.Button deleteCollectorDetails;
+        private System.Windows.Forms.Label currentCollectorListLabel;
+        private System.Windows.Forms.ListBox currentCollectorsList;
+        private System.Windows.Forms.Button editSelectedCollector;
+        private System.Windows.Forms.ComboBox collectorCollectionObjectSelector;
+        private System.Windows.Forms.Label collectorCollectionObjectLabel;
+        private System.Windows.Forms.CheckBox isCollectorInteractable;
+        private System.Windows.Forms.CheckBox isCollectorVisible;
+        private System.Windows.Forms.RichTextBox collectorEndUpdateStoryTextBox;
+        private System.Windows.Forms.Label collectorEndUpdateStoryLabel;
+        private System.Windows.Forms.RichTextBox collectorUpdateStoryTextBox;
+        private System.Windows.Forms.Label collectorUpdateStoryLabel;
+        private System.Windows.Forms.RichTextBox collectorStoryTextBox;
+        private System.Windows.Forms.Label collectorStoryLabel;
+        private System.Windows.Forms.TextBox collectorNameTextBox;
+        private System.Windows.Forms.Label collectorNameLabel;
+        private System.Windows.Forms.TabPage enemyDetailsTab;
+        private System.Windows.Forms.NumericUpDown enemyLifeNumericUpDown;
+        private System.Windows.Forms.Label enemyLifeLabel;
+        private System.Windows.Forms.RichTextBox enemyAttackStoryTextBox;
+        private System.Windows.Forms.Label enemyAttackStoryLabel;
+        private System.Windows.Forms.Button editEnemyDetails;
+        private System.Windows.Forms.Button deleteEnemy;
+        private System.Windows.Forms.Label currentEnemyListLabel;
+        private System.Windows.Forms.ListBox currentEnemyList;
+        private System.Windows.Forms.Button editSelectedEnemy;
+        private System.Windows.Forms.ComboBox enemyKillableWeaponSelector;
+        private System.Windows.Forms.Label enemyKillableWeaponLabel;
+        private System.Windows.Forms.CheckBox isEnemyInteractable;
+        private System.Windows.Forms.CheckBox isEnemyVisible;
+        private System.Windows.Forms.RichTextBox enemyDeathStoryTextBox;
+        private System.Windows.Forms.Label enemyDeathStoryLabel;
+        private System.Windows.Forms.RichTextBox enemyBlockStoryTextBox;
+        private System.Windows.Forms.Label enemyBlockStoryLabel;
+        private System.Windows.Forms.RichTextBox enemyStoryTextBox;
+        private System.Windows.Forms.Label enemyStoryLabel;
+        private System.Windows.Forms.TextBox enemyNameTextBox;
+        private System.Windows.Forms.Label enemyNameLabel;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.ListBox listBox4;
+        private System.Windows.Forms.ListBox listBox5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.RichTextBox richTextBox4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.RichTextBox richTextBox5;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RichTextBox richTextBox6;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ListBox listBox6;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ListBox listBox7;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.RichTextBox richTextBox7;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label18;
     }
 }
 

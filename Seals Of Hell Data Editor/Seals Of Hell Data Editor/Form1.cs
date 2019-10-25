@@ -178,5 +178,33 @@ namespace Seals_Of_Hell_Data_Editor
 
         }
         #endregion
+        #region Interactables Data
+        private void DeleteCollectorDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditCollectorDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditSelectedCollector_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void DeleteEnemy_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditEnemyDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditSelectedEnemy_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+
     }
 }
