@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Seals_Of_Hell_Data_Editor
 {
-    class Enemy
+    class Enemy : Updater
     {
 
     }

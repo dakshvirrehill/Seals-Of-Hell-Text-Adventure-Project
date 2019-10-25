@@ -383,7 +383,7 @@
             this.gameStartTabControl.Size = new System.Drawing.Size(1008, 703);
             this.gameStartTabControl.TabIndex = 1;
             this.gameStartTabControl.Visible = false;
-            this.gameStartTabControl.SelectedIndexChanged += new System.EventHandler(this.SetAllGameStartData);
+            this.gameStartTabControl.SelectedIndexChanged += new System.EventHandler(this.GameStartTabControl_SelectedIndexChanged);
             // 
             // gameDetailsTab
             // 
@@ -1544,6 +1544,7 @@
             this.interactableDetailsTabControl.Size = new System.Drawing.Size(1008, 703);
             this.interactableDetailsTabControl.TabIndex = 4;
             this.interactableDetailsTabControl.Visible = false;
+            this.interactableDetailsTabControl.SelectedIndexChanged += new System.EventHandler(this.InteractableDetailsTabControl_SelectedIndexChanged);
             // 
             // collectorDetailsTab
             // 
@@ -2824,10 +2825,10 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.mainMenuStrip);
-            this.Controls.Add(this.roomTabControl);
-            this.Controls.Add(this.regionTabControl);
             this.Controls.Add(this.interactableDetailsTabControl);
             this.Controls.Add(this.gameStartTabControl);
+            this.Controls.Add(this.roomTabControl);
+            this.Controls.Add(this.regionTabControl);
             this.MainMenuStrip = this.mainMenuStrip;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1440, 1078);

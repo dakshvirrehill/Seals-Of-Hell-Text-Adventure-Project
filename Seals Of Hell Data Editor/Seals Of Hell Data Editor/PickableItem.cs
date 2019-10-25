@@ -8,6 +8,15 @@ namespace Seals_Of_Hell_Data_Editor
 {
     class PickableItem
     {
+        public enum Type
+        {
+            Weapon,
+            Shield,
+            Giveable,
+            Wearable
+        }
+
+        public string mName;
 
     }
 }

@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace Seals_Of_Hell_Data_Editor
 {
-    class OneInteractionItem : Updater
+    class Updater
     {
-        public enum Type
+        public List<string> mUpdatableObjects { get; set; }
+        public Updater()
         {
-            Moveable,
-            Playable,
-            Eatable,
-            Riddle
+            mUpdatableObjects = new List<string>();
         }
     }
 }
