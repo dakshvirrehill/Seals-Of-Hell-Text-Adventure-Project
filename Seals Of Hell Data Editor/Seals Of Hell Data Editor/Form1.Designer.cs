@@ -34,6 +34,9 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editGameStartDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewRegionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editRoomDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editInteractablesDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameStartTabControl = new System.Windows.Forms.TabControl();
             this.gameDetailsTab = new System.Windows.Forms.TabPage();
             this.editGameDetails = new System.Windows.Forms.Button();
@@ -48,6 +51,11 @@
             this.firstRegionNameTextBox = new System.Windows.Forms.TextBox();
             this.regionNameLabel = new System.Windows.Forms.Label();
             this.firstRoomTab = new System.Windows.Forms.TabPage();
+            this.firstRoomPIList = new System.Windows.Forms.ListBox();
+            this.firstRoomOIIList = new System.Windows.Forms.ListBox();
+            this.firstRoomKillZoneList = new System.Windows.Forms.ListBox();
+            this.firstRoomEnemyList = new System.Windows.Forms.ListBox();
+            this.firstRoomCollectorList = new System.Windows.Forms.ListBox();
             this.firstRoomPickableItemLabel = new System.Windows.Forms.Label();
             this.firstRoomOneInteractionItemsLabel = new System.Windows.Forms.Label();
             this.firstRoomKillZoneLabel = new System.Windows.Forms.Label();
@@ -58,40 +66,52 @@
             this.firstRoomStoryLabel = new System.Windows.Forms.Label();
             this.firstRoomNameTextBox = new System.Windows.Forms.TextBox();
             this.firstRoomNameLabel = new System.Windows.Forms.Label();
-            this.firstRoomCollectorList = new System.Windows.Forms.ListBox();
-            this.firstRoomEnemyList = new System.Windows.Forms.ListBox();
-            this.firstRoomKillZoneList = new System.Windows.Forms.ListBox();
-            this.firstRoomOIIList = new System.Windows.Forms.ListBox();
-            this.firstRoomPIList = new System.Windows.Forms.ListBox();
             this.treasureCollectorTab = new System.Windows.Forms.TabPage();
+            this.interactableTrCol = new System.Windows.Forms.CheckBox();
+            this.visibleTrCol = new System.Windows.Forms.CheckBox();
+            this.TrCollectorWinStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.winStoryLabel = new System.Windows.Forms.Label();
+            this.TrCollectorAllOutputTextBox = new System.Windows.Forms.RichTextBox();
+            this.treasureCollectorAfterAllStoryLabel = new System.Windows.Forms.Label();
+            this.updatableList = new System.Windows.Forms.ListBox();
+            this.updatableListLabel = new System.Windows.Forms.Label();
+            this.treasureList = new System.Windows.Forms.ListBox();
+            this.treasureListLabel = new System.Windows.Forms.Label();
             this.editTreasureCollectorDetails = new System.Windows.Forms.Button();
             this.TrCollectorStoryTextBox = new System.Windows.Forms.RichTextBox();
             this.treasuerCollectorStoryLabel = new System.Windows.Forms.Label();
             this.TrCollectorNameTextBox = new System.Windows.Forms.TextBox();
             this.treasureCollectorNameLabel = new System.Windows.Forms.Label();
-            this.treasureList = new System.Windows.Forms.ListBox();
-            this.treasureListLabel = new System.Windows.Forms.Label();
-            this.updatableList = new System.Windows.Forms.ListBox();
-            this.updatableListLabel = new System.Windows.Forms.Label();
-            this.TrCollectorAllOutputTextBox = new System.Windows.Forms.RichTextBox();
-            this.treasureCollectorAfterAllStoryLabel = new System.Windows.Forms.Label();
-            this.TrCollectorWinStoryTextBox = new System.Windows.Forms.RichTextBox();
-            this.winStoryLabel = new System.Windows.Forms.Label();
-            this.visibleTrCol = new System.Windows.Forms.CheckBox();
-            this.interactableTrCol = new System.Windows.Forms.CheckBox();
+            this.regionTabControl = new System.Windows.Forms.TabControl();
+            this.addEditRegionTab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.allRoomsRegionList = new System.Windows.Forms.ListBox();
+            this.newRegionRoomsLabel = new System.Windows.Forms.Label();
+            this.entryRoomSelector = new System.Windows.Forms.ComboBox();
+            this.newRegionEntryRoomLabel = new System.Windows.Forms.Label();
+            this.editRegionDetails = new System.Windows.Forms.Button();
+            this.regionStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.newRegionStoryLabel = new System.Windows.Forms.Label();
+            this.regionNameTextBox = new System.Windows.Forms.TextBox();
+            this.newRegionNameLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.gameStartTabControl.SuspendLayout();
             this.gameDetailsTab.SuspendLayout();
             this.firstRegionTab.SuspendLayout();
             this.firstRoomTab.SuspendLayout();
             this.treasureCollectorTab.SuspendLayout();
+            this.regionTabControl.SuspendLayout();
+            this.addEditRegionTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editGameStartDataToolStripMenuItem});
+            this.editGameStartDataToolStripMenuItem,
+            this.addNewRegionToolStripMenuItem,
+            this.editRoomDataToolStripMenuItem,
+            this.editInteractablesDataToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
@@ -135,6 +155,27 @@
             this.editGameStartDataToolStripMenuItem.Size = new System.Drawing.Size(127, 20);
             this.editGameStartDataToolStripMenuItem.Text = "Edit Game Start Data";
             this.editGameStartDataToolStripMenuItem.Click += new System.EventHandler(this.EditGameStartDataToolStripMenuItem_Click);
+            // 
+            // addNewRegionToolStripMenuItem
+            // 
+            this.addNewRegionToolStripMenuItem.Name = "addNewRegionToolStripMenuItem";
+            this.addNewRegionToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
+            this.addNewRegionToolStripMenuItem.Text = "Edit Region Data";
+            this.addNewRegionToolStripMenuItem.Click += new System.EventHandler(this.AddNewRegionToolStripMenuItem_Click);
+            // 
+            // editRoomDataToolStripMenuItem
+            // 
+            this.editRoomDataToolStripMenuItem.Name = "editRoomDataToolStripMenuItem";
+            this.editRoomDataToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
+            this.editRoomDataToolStripMenuItem.Text = "Edit Room Data";
+            this.editRoomDataToolStripMenuItem.Click += new System.EventHandler(this.EditRoomDataToolStripMenuItem_Click);
+            // 
+            // editInteractablesDataToolStripMenuItem
+            // 
+            this.editInteractablesDataToolStripMenuItem.Name = "editInteractablesDataToolStripMenuItem";
+            this.editInteractablesDataToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
+            this.editInteractablesDataToolStripMenuItem.Text = "Edit Interactables Data";
+            this.editInteractablesDataToolStripMenuItem.Click += new System.EventHandler(this.EditInteractablesDataToolStripMenuItem_Click);
             // 
             // gameStartTabControl
             // 
@@ -298,6 +339,61 @@
             this.firstRoomTab.Text = "First Room Details";
             this.firstRoomTab.UseVisualStyleBackColor = true;
             // 
+            // firstRoomPIList
+            // 
+            this.firstRoomPIList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstRoomPIList.FormattingEnabled = true;
+            this.firstRoomPIList.ItemHeight = 16;
+            this.firstRoomPIList.Location = new System.Drawing.Point(801, 237);
+            this.firstRoomPIList.Name = "firstRoomPIList";
+            this.firstRoomPIList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.firstRoomPIList.Size = new System.Drawing.Size(176, 324);
+            this.firstRoomPIList.TabIndex = 24;
+            // 
+            // firstRoomOIIList
+            // 
+            this.firstRoomOIIList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstRoomOIIList.FormattingEnabled = true;
+            this.firstRoomOIIList.ItemHeight = 16;
+            this.firstRoomOIIList.Location = new System.Drawing.Point(606, 237);
+            this.firstRoomOIIList.Name = "firstRoomOIIList";
+            this.firstRoomOIIList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.firstRoomOIIList.Size = new System.Drawing.Size(176, 324);
+            this.firstRoomOIIList.TabIndex = 23;
+            // 
+            // firstRoomKillZoneList
+            // 
+            this.firstRoomKillZoneList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstRoomKillZoneList.FormattingEnabled = true;
+            this.firstRoomKillZoneList.ItemHeight = 16;
+            this.firstRoomKillZoneList.Location = new System.Drawing.Point(414, 237);
+            this.firstRoomKillZoneList.Name = "firstRoomKillZoneList";
+            this.firstRoomKillZoneList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.firstRoomKillZoneList.Size = new System.Drawing.Size(176, 324);
+            this.firstRoomKillZoneList.TabIndex = 22;
+            // 
+            // firstRoomEnemyList
+            // 
+            this.firstRoomEnemyList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstRoomEnemyList.FormattingEnabled = true;
+            this.firstRoomEnemyList.ItemHeight = 16;
+            this.firstRoomEnemyList.Location = new System.Drawing.Point(217, 237);
+            this.firstRoomEnemyList.Name = "firstRoomEnemyList";
+            this.firstRoomEnemyList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.firstRoomEnemyList.Size = new System.Drawing.Size(176, 324);
+            this.firstRoomEnemyList.TabIndex = 21;
+            // 
+            // firstRoomCollectorList
+            // 
+            this.firstRoomCollectorList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstRoomCollectorList.FormattingEnabled = true;
+            this.firstRoomCollectorList.ItemHeight = 16;
+            this.firstRoomCollectorList.Location = new System.Drawing.Point(23, 237);
+            this.firstRoomCollectorList.Name = "firstRoomCollectorList";
+            this.firstRoomCollectorList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.firstRoomCollectorList.Size = new System.Drawing.Size(176, 324);
+            this.firstRoomCollectorList.TabIndex = 20;
+            // 
             // firstRoomPickableItemLabel
             // 
             this.firstRoomPickableItemLabel.AutoSize = true;
@@ -394,61 +490,6 @@
             this.firstRoomNameLabel.TabIndex = 10;
             this.firstRoomNameLabel.Text = "Current Name Of The First Room";
             // 
-            // firstRoomCollectorList
-            // 
-            this.firstRoomCollectorList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstRoomCollectorList.FormattingEnabled = true;
-            this.firstRoomCollectorList.ItemHeight = 16;
-            this.firstRoomCollectorList.Location = new System.Drawing.Point(23, 237);
-            this.firstRoomCollectorList.Name = "firstRoomCollectorList";
-            this.firstRoomCollectorList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.firstRoomCollectorList.Size = new System.Drawing.Size(176, 324);
-            this.firstRoomCollectorList.TabIndex = 20;
-            // 
-            // firstRoomEnemyList
-            // 
-            this.firstRoomEnemyList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstRoomEnemyList.FormattingEnabled = true;
-            this.firstRoomEnemyList.ItemHeight = 16;
-            this.firstRoomEnemyList.Location = new System.Drawing.Point(217, 237);
-            this.firstRoomEnemyList.Name = "firstRoomEnemyList";
-            this.firstRoomEnemyList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.firstRoomEnemyList.Size = new System.Drawing.Size(176, 324);
-            this.firstRoomEnemyList.TabIndex = 21;
-            // 
-            // firstRoomKillZoneList
-            // 
-            this.firstRoomKillZoneList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstRoomKillZoneList.FormattingEnabled = true;
-            this.firstRoomKillZoneList.ItemHeight = 16;
-            this.firstRoomKillZoneList.Location = new System.Drawing.Point(414, 237);
-            this.firstRoomKillZoneList.Name = "firstRoomKillZoneList";
-            this.firstRoomKillZoneList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.firstRoomKillZoneList.Size = new System.Drawing.Size(176, 324);
-            this.firstRoomKillZoneList.TabIndex = 22;
-            // 
-            // firstRoomOIIList
-            // 
-            this.firstRoomOIIList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstRoomOIIList.FormattingEnabled = true;
-            this.firstRoomOIIList.ItemHeight = 16;
-            this.firstRoomOIIList.Location = new System.Drawing.Point(606, 237);
-            this.firstRoomOIIList.Name = "firstRoomOIIList";
-            this.firstRoomOIIList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.firstRoomOIIList.Size = new System.Drawing.Size(176, 324);
-            this.firstRoomOIIList.TabIndex = 23;
-            // 
-            // firstRoomPIList
-            // 
-            this.firstRoomPIList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstRoomPIList.FormattingEnabled = true;
-            this.firstRoomPIList.ItemHeight = 16;
-            this.firstRoomPIList.Location = new System.Drawing.Point(801, 237);
-            this.firstRoomPIList.Name = "firstRoomPIList";
-            this.firstRoomPIList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.firstRoomPIList.Size = new System.Drawing.Size(176, 324);
-            this.firstRoomPIList.TabIndex = 24;
-            // 
             // treasureCollectorTab
             // 
             this.treasureCollectorTab.Controls.Add(this.interactableTrCol);
@@ -473,6 +514,104 @@
             this.treasureCollectorTab.TabIndex = 3;
             this.treasureCollectorTab.Text = "Treasure Collector Details";
             this.treasureCollectorTab.UseVisualStyleBackColor = true;
+            // 
+            // interactableTrCol
+            // 
+            this.interactableTrCol.AutoSize = true;
+            this.interactableTrCol.Location = new System.Drawing.Point(454, 613);
+            this.interactableTrCol.Name = "interactableTrCol";
+            this.interactableTrCol.Size = new System.Drawing.Size(145, 24);
+            this.interactableTrCol.TabIndex = 34;
+            this.interactableTrCol.Text = "Is Interactable";
+            this.interactableTrCol.UseVisualStyleBackColor = true;
+            // 
+            // visibleTrCol
+            // 
+            this.visibleTrCol.AutoSize = true;
+            this.visibleTrCol.Location = new System.Drawing.Point(454, 560);
+            this.visibleTrCol.Name = "visibleTrCol";
+            this.visibleTrCol.Size = new System.Drawing.Size(101, 24);
+            this.visibleTrCol.TabIndex = 33;
+            this.visibleTrCol.Text = "Is Visible";
+            this.visibleTrCol.UseVisualStyleBackColor = true;
+            // 
+            // TrCollectorWinStoryTextBox
+            // 
+            this.TrCollectorWinStoryTextBox.Location = new System.Drawing.Point(384, 199);
+            this.TrCollectorWinStoryTextBox.Name = "TrCollectorWinStoryTextBox";
+            this.TrCollectorWinStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.TrCollectorWinStoryTextBox.TabIndex = 32;
+            this.TrCollectorWinStoryTextBox.Text = "";
+            // 
+            // winStoryLabel
+            // 
+            this.winStoryLabel.AutoSize = true;
+            this.winStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.winStoryLabel.Location = new System.Drawing.Point(78, 217);
+            this.winStoryLabel.Name = "winStoryLabel";
+            this.winStoryLabel.Size = new System.Drawing.Size(272, 20);
+            this.winStoryLabel.TabIndex = 31;
+            this.winStoryLabel.Text = "Current Win Story Of Tr Collector";
+            // 
+            // TrCollectorAllOutputTextBox
+            // 
+            this.TrCollectorAllOutputTextBox.Location = new System.Drawing.Point(384, 129);
+            this.TrCollectorAllOutputTextBox.Name = "TrCollectorAllOutputTextBox";
+            this.TrCollectorAllOutputTextBox.Size = new System.Drawing.Size(538, 54);
+            this.TrCollectorAllOutputTextBox.TabIndex = 30;
+            this.TrCollectorAllOutputTextBox.Text = "";
+            // 
+            // treasureCollectorAfterAllStoryLabel
+            // 
+            this.treasureCollectorAfterAllStoryLabel.AutoSize = true;
+            this.treasureCollectorAfterAllStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treasureCollectorAfterAllStoryLabel.Location = new System.Drawing.Point(31, 154);
+            this.treasureCollectorAfterAllStoryLabel.Name = "treasureCollectorAfterAllStoryLabel";
+            this.treasureCollectorAfterAllStoryLabel.Size = new System.Drawing.Size(320, 20);
+            this.treasureCollectorAfterAllStoryLabel.TabIndex = 29;
+            this.treasureCollectorAfterAllStoryLabel.Text = "Current After All Output Of Tr Collector";
+            // 
+            // updatableList
+            // 
+            this.updatableList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updatableList.FormattingEnabled = true;
+            this.updatableList.ItemHeight = 16;
+            this.updatableList.Location = new System.Drawing.Point(197, 292);
+            this.updatableList.Name = "updatableList";
+            this.updatableList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.updatableList.Size = new System.Drawing.Size(176, 356);
+            this.updatableList.TabIndex = 28;
+            // 
+            // updatableListLabel
+            // 
+            this.updatableListLabel.AutoSize = true;
+            this.updatableListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updatableListLabel.Location = new System.Drawing.Point(224, 269);
+            this.updatableListLabel.Name = "updatableListLabel";
+            this.updatableListLabel.Size = new System.Drawing.Size(101, 20);
+            this.updatableListLabel.TabIndex = 27;
+            this.updatableListLabel.Text = "Updatables";
+            // 
+            // treasureList
+            // 
+            this.treasureList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treasureList.FormattingEnabled = true;
+            this.treasureList.ItemHeight = 16;
+            this.treasureList.Location = new System.Drawing.Point(6, 292);
+            this.treasureList.Name = "treasureList";
+            this.treasureList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.treasureList.Size = new System.Drawing.Size(176, 356);
+            this.treasureList.TabIndex = 26;
+            // 
+            // treasureListLabel
+            // 
+            this.treasureListLabel.AutoSize = true;
+            this.treasureListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treasureListLabel.Location = new System.Drawing.Point(8, 269);
+            this.treasureListLabel.Name = "treasureListLabel";
+            this.treasureListLabel.Size = new System.Drawing.Size(161, 20);
+            this.treasureListLabel.TabIndex = 25;
+            this.treasureListLabel.Text = "Treasure Pickables";
             // 
             // editTreasureCollectorDetails
             // 
@@ -519,103 +658,127 @@
             this.treasureCollectorNameLabel.TabIndex = 15;
             this.treasureCollectorNameLabel.Text = "Current Name Of The Treasure Collector";
             // 
-            // treasureList
+            // regionTabControl
             // 
-            this.treasureList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treasureList.FormattingEnabled = true;
-            this.treasureList.ItemHeight = 16;
-            this.treasureList.Location = new System.Drawing.Point(6, 292);
-            this.treasureList.Name = "treasureList";
-            this.treasureList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.treasureList.Size = new System.Drawing.Size(176, 356);
-            this.treasureList.TabIndex = 26;
+            this.regionTabControl.Controls.Add(this.addEditRegionTab);
+            this.regionTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.regionTabControl.Location = new System.Drawing.Point(0, 27);
+            this.regionTabControl.Name = "regionTabControl";
+            this.regionTabControl.SelectedIndex = 0;
+            this.regionTabControl.Size = new System.Drawing.Size(1008, 703);
+            this.regionTabControl.TabIndex = 2;
             // 
-            // treasureListLabel
+            // addEditRegionTab
             // 
-            this.treasureListLabel.AutoSize = true;
-            this.treasureListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treasureListLabel.Location = new System.Drawing.Point(8, 269);
-            this.treasureListLabel.Name = "treasureListLabel";
-            this.treasureListLabel.Size = new System.Drawing.Size(161, 20);
-            this.treasureListLabel.TabIndex = 25;
-            this.treasureListLabel.Text = "Treasure Pickables";
+            this.addEditRegionTab.Controls.Add(this.button1);
+            this.addEditRegionTab.Controls.Add(this.allRoomsRegionList);
+            this.addEditRegionTab.Controls.Add(this.newRegionRoomsLabel);
+            this.addEditRegionTab.Controls.Add(this.entryRoomSelector);
+            this.addEditRegionTab.Controls.Add(this.newRegionEntryRoomLabel);
+            this.addEditRegionTab.Controls.Add(this.editRegionDetails);
+            this.addEditRegionTab.Controls.Add(this.regionStoryTextBox);
+            this.addEditRegionTab.Controls.Add(this.newRegionStoryLabel);
+            this.addEditRegionTab.Controls.Add(this.regionNameTextBox);
+            this.addEditRegionTab.Controls.Add(this.newRegionNameLabel);
+            this.addEditRegionTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addEditRegionTab.Location = new System.Drawing.Point(4, 29);
+            this.addEditRegionTab.Name = "addEditRegionTab";
+            this.addEditRegionTab.Padding = new System.Windows.Forms.Padding(3);
+            this.addEditRegionTab.Size = new System.Drawing.Size(1000, 670);
+            this.addEditRegionTab.TabIndex = 0;
+            this.addEditRegionTab.Text = "Add/Edit Region";
+            this.addEditRegionTab.UseVisualStyleBackColor = true;
             // 
-            // updatableList
+            // button1
             // 
-            this.updatableList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updatableList.FormattingEnabled = true;
-            this.updatableList.ItemHeight = 16;
-            this.updatableList.Location = new System.Drawing.Point(197, 292);
-            this.updatableList.Name = "updatableList";
-            this.updatableList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.updatableList.Size = new System.Drawing.Size(176, 356);
-            this.updatableList.TabIndex = 28;
+            this.button1.Location = new System.Drawing.Point(190, 584);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(205, 77);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Edit Region Details";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // updatableListLabel
+            // allRoomsRegionList
             // 
-            this.updatableListLabel.AutoSize = true;
-            this.updatableListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updatableListLabel.Location = new System.Drawing.Point(224, 269);
-            this.updatableListLabel.Name = "updatableListLabel";
-            this.updatableListLabel.Size = new System.Drawing.Size(101, 20);
-            this.updatableListLabel.TabIndex = 27;
-            this.updatableListLabel.Text = "Updatables";
+            this.allRoomsRegionList.FormattingEnabled = true;
+            this.allRoomsRegionList.ItemHeight = 20;
+            this.allRoomsRegionList.Location = new System.Drawing.Point(190, 250);
+            this.allRoomsRegionList.Name = "allRoomsRegionList";
+            this.allRoomsRegionList.Size = new System.Drawing.Size(538, 304);
+            this.allRoomsRegionList.TabIndex = 8;
             // 
-            // TrCollectorAllOutputTextBox
+            // newRegionRoomsLabel
             // 
-            this.TrCollectorAllOutputTextBox.Location = new System.Drawing.Point(384, 129);
-            this.TrCollectorAllOutputTextBox.Name = "TrCollectorAllOutputTextBox";
-            this.TrCollectorAllOutputTextBox.Size = new System.Drawing.Size(538, 54);
-            this.TrCollectorAllOutputTextBox.TabIndex = 30;
-            this.TrCollectorAllOutputTextBox.Text = "";
+            this.newRegionRoomsLabel.AutoSize = true;
+            this.newRegionRoomsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newRegionRoomsLabel.Location = new System.Drawing.Point(8, 249);
+            this.newRegionRoomsLabel.Name = "newRegionRoomsLabel";
+            this.newRegionRoomsLabel.Size = new System.Drawing.Size(173, 20);
+            this.newRegionRoomsLabel.TabIndex = 7;
+            this.newRegionRoomsLabel.Text = "All Rooms of Region";
             // 
-            // treasureCollectorAfterAllStoryLabel
+            // entryRoomSelector
             // 
-            this.treasureCollectorAfterAllStoryLabel.AutoSize = true;
-            this.treasureCollectorAfterAllStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treasureCollectorAfterAllStoryLabel.Location = new System.Drawing.Point(31, 154);
-            this.treasureCollectorAfterAllStoryLabel.Name = "treasureCollectorAfterAllStoryLabel";
-            this.treasureCollectorAfterAllStoryLabel.Size = new System.Drawing.Size(320, 20);
-            this.treasureCollectorAfterAllStoryLabel.TabIndex = 29;
-            this.treasureCollectorAfterAllStoryLabel.Text = "Current After All Output Of Tr Collector";
+            this.entryRoomSelector.FormattingEnabled = true;
+            this.entryRoomSelector.Location = new System.Drawing.Point(190, 192);
+            this.entryRoomSelector.Name = "entryRoomSelector";
+            this.entryRoomSelector.Size = new System.Drawing.Size(538, 28);
+            this.entryRoomSelector.TabIndex = 6;
             // 
-            // TrCollectorWinStoryTextBox
+            // newRegionEntryRoomLabel
             // 
-            this.TrCollectorWinStoryTextBox.Location = new System.Drawing.Point(384, 199);
-            this.TrCollectorWinStoryTextBox.Name = "TrCollectorWinStoryTextBox";
-            this.TrCollectorWinStoryTextBox.Size = new System.Drawing.Size(538, 54);
-            this.TrCollectorWinStoryTextBox.TabIndex = 32;
-            this.TrCollectorWinStoryTextBox.Text = "";
+            this.newRegionEntryRoomLabel.AutoSize = true;
+            this.newRegionEntryRoomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newRegionEntryRoomLabel.Location = new System.Drawing.Point(47, 192);
+            this.newRegionEntryRoomLabel.Name = "newRegionEntryRoomLabel";
+            this.newRegionEntryRoomLabel.Size = new System.Drawing.Size(134, 20);
+            this.newRegionEntryRoomLabel.TabIndex = 5;
+            this.newRegionEntryRoomLabel.Text = "Entry of Region";
             // 
-            // winStoryLabel
+            // editRegionDetails
             // 
-            this.winStoryLabel.AutoSize = true;
-            this.winStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.winStoryLabel.Location = new System.Drawing.Point(78, 217);
-            this.winStoryLabel.Name = "winStoryLabel";
-            this.winStoryLabel.Size = new System.Drawing.Size(272, 20);
-            this.winStoryLabel.TabIndex = 31;
-            this.winStoryLabel.Text = "Current Win Story Of Tr Collector";
+            this.editRegionDetails.Location = new System.Drawing.Point(521, 584);
+            this.editRegionDetails.Name = "editRegionDetails";
+            this.editRegionDetails.Size = new System.Drawing.Size(205, 77);
+            this.editRegionDetails.TabIndex = 4;
+            this.editRegionDetails.Text = "Edit Region Details";
+            this.editRegionDetails.UseVisualStyleBackColor = true;
             // 
-            // visibleTrCol
+            // regionStoryTextBox
             // 
-            this.visibleTrCol.AutoSize = true;
-            this.visibleTrCol.Location = new System.Drawing.Point(454, 560);
-            this.visibleTrCol.Name = "visibleTrCol";
-            this.visibleTrCol.Size = new System.Drawing.Size(101, 24);
-            this.visibleTrCol.TabIndex = 33;
-            this.visibleTrCol.Text = "Is Visible";
-            this.visibleTrCol.UseVisualStyleBackColor = true;
+            this.regionStoryTextBox.Location = new System.Drawing.Point(190, 58);
+            this.regionStoryTextBox.Name = "regionStoryTextBox";
+            this.regionStoryTextBox.Size = new System.Drawing.Size(538, 105);
+            this.regionStoryTextBox.TabIndex = 3;
+            this.regionStoryTextBox.Text = "";
             // 
-            // interactableTrCol
+            // newRegionStoryLabel
             // 
-            this.interactableTrCol.AutoSize = true;
-            this.interactableTrCol.Location = new System.Drawing.Point(454, 613);
-            this.interactableTrCol.Name = "interactableTrCol";
-            this.interactableTrCol.Size = new System.Drawing.Size(145, 24);
-            this.interactableTrCol.TabIndex = 34;
-            this.interactableTrCol.Text = "Is Interactable";
-            this.interactableTrCol.UseVisualStyleBackColor = true;
+            this.newRegionStoryLabel.AutoSize = true;
+            this.newRegionStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newRegionStoryLabel.Location = new System.Drawing.Point(12, 69);
+            this.newRegionStoryLabel.Name = "newRegionStoryLabel";
+            this.newRegionStoryLabel.Size = new System.Drawing.Size(172, 20);
+            this.newRegionStoryLabel.TabIndex = 2;
+            this.newRegionStoryLabel.Text = "Story Of The Region";
+            // 
+            // regionNameTextBox
+            // 
+            this.regionNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.regionNameTextBox.Location = new System.Drawing.Point(190, 17);
+            this.regionNameTextBox.Name = "regionNameTextBox";
+            this.regionNameTextBox.Size = new System.Drawing.Size(538, 26);
+            this.regionNameTextBox.TabIndex = 1;
+            // 
+            // newRegionNameLabel
+            // 
+            this.newRegionNameLabel.AutoSize = true;
+            this.newRegionNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newRegionNameLabel.Location = new System.Drawing.Point(8, 20);
+            this.newRegionNameLabel.Name = "newRegionNameLabel";
+            this.newRegionNameLabel.Size = new System.Drawing.Size(176, 20);
+            this.newRegionNameLabel.TabIndex = 0;
+            this.newRegionNameLabel.Text = "Name Of The Region";
             // 
             // SealsOfHellMain
             // 
@@ -623,6 +786,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.regionTabControl);
             this.Controls.Add(this.gameStartTabControl);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -643,6 +807,9 @@
             this.firstRoomTab.PerformLayout();
             this.treasureCollectorTab.ResumeLayout(false);
             this.treasureCollectorTab.PerformLayout();
+            this.regionTabControl.ResumeLayout(false);
+            this.addEditRegionTab.ResumeLayout(false);
+            this.addEditRegionTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -701,6 +868,21 @@
         private System.Windows.Forms.Label treasuerCollectorStoryLabel;
         private System.Windows.Forms.TextBox TrCollectorNameTextBox;
         private System.Windows.Forms.Label treasureCollectorNameLabel;
+        private System.Windows.Forms.ToolStripMenuItem addNewRegionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editRoomDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editInteractablesDataToolStripMenuItem;
+        private System.Windows.Forms.TabControl regionTabControl;
+        private System.Windows.Forms.TabPage addEditRegionTab;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox allRoomsRegionList;
+        private System.Windows.Forms.Label newRegionRoomsLabel;
+        private System.Windows.Forms.ComboBox entryRoomSelector;
+        private System.Windows.Forms.Label newRegionEntryRoomLabel;
+        private System.Windows.Forms.Button editRegionDetails;
+        private System.Windows.Forms.RichTextBox regionStoryTextBox;
+        private System.Windows.Forms.Label newRegionStoryLabel;
+        private System.Windows.Forms.TextBox regionNameTextBox;
+        private System.Windows.Forms.Label newRegionNameLabel;
     }
 }
 

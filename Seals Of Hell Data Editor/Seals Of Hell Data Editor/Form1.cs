@@ -38,6 +38,18 @@ namespace Seals_Of_Hell_Data_Editor
             this.gameStartTabControl.Visible = true;
             this.gameStartTabControl.SelectedIndex = 0;
         }
+        private void AddNewRegionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditRoomDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditInteractablesDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
         #region Game Start Data
         private void SetAllGameStartData(object sender, EventArgs e)
@@ -113,6 +125,9 @@ namespace Seals_Of_Hell_Data_Editor
             //add code to add in dictionary
             mSelectedRegion.mRooms.Add(mSelectedRegion.mEntryRoom, mSelectedRoom);
         }
+
+
+
         #endregion
     }
 }
