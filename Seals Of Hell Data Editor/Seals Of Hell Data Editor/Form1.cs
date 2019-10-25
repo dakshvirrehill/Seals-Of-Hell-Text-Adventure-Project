@@ -125,9 +125,10 @@ namespace Seals_Of_Hell_Data_Editor
             //add code to add in dictionary
             mSelectedRegion.mRooms.Add(mSelectedRegion.mEntryRoom, mSelectedRoom);
         }
+        private void EditTreasureCollectorDetails_Click(object sender, EventArgs e)
+        {
 
-
-
+        }
         #endregion
         #region Region Data
         private void DeleteRegionDetails_Click(object sender, EventArgs e)
@@ -154,6 +155,14 @@ namespace Seals_Of_Hell_Data_Editor
         {
 
         }
+        private void EditPortalDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void AddPortalsToRooms_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
         #region Room Data
         private void DeleteRoomDetails_Click(object sender, EventArgs e)
@@ -168,10 +177,6 @@ namespace Seals_Of_Hell_Data_Editor
         {
 
         }
-
-
-
-
         #endregion
     }
 }

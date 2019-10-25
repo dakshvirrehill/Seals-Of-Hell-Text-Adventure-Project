@@ -135,6 +135,17 @@
             this.gatewayDirectionLabel = new System.Windows.Forms.Label();
             this.gatewayRoom2 = new System.Windows.Forms.ComboBox();
             this.gatewayRoom2Label = new System.Windows.Forms.Label();
+            this.currentPRoomsListLabel = new System.Windows.Forms.Label();
+            this.currentPortalRoomsList = new System.Windows.Forms.ListBox();
+            this.addPortalsToRooms = new System.Windows.Forms.Button();
+            this.editPortalDetails = new System.Windows.Forms.Button();
+            this.portalStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.portalStoryLabel = new System.Windows.Forms.Label();
+            this.portalNameTextBox = new System.Windows.Forms.TextBox();
+            this.portalNameLabel = new System.Windows.Forms.Label();
+            this.insidePortalsTabControl = new System.Windows.Forms.TabControl();
+            this.editPortalTab = new System.Windows.Forms.TabPage();
+            this.portalRoomsTab = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.gameStartTabControl.SuspendLayout();
             this.gameDetailsTab.SuspendLayout();
@@ -146,6 +157,10 @@
             this.roomTabControl.SuspendLayout();
             this.addEditRoomTab.SuspendLayout();
             this.regionGateWaysTab.SuspendLayout();
+            this.regionPortalTab.SuspendLayout();
+            this.insidePortalsTabControl.SuspendLayout();
+            this.editPortalTab.SuspendLayout();
+            this.portalRoomsTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -562,7 +577,7 @@
             // interactableTrCol
             // 
             this.interactableTrCol.AutoSize = true;
-            this.interactableTrCol.Location = new System.Drawing.Point(454, 613);
+            this.interactableTrCol.Location = new System.Drawing.Point(419, 459);
             this.interactableTrCol.Name = "interactableTrCol";
             this.interactableTrCol.Size = new System.Drawing.Size(145, 24);
             this.interactableTrCol.TabIndex = 34;
@@ -572,7 +587,7 @@
             // visibleTrCol
             // 
             this.visibleTrCol.AutoSize = true;
-            this.visibleTrCol.Location = new System.Drawing.Point(454, 560);
+            this.visibleTrCol.Location = new System.Drawing.Point(419, 406);
             this.visibleTrCol.Name = "visibleTrCol";
             this.visibleTrCol.Size = new System.Drawing.Size(101, 24);
             this.visibleTrCol.TabIndex = 33;
@@ -659,12 +674,13 @@
             // 
             // editTreasureCollectorDetails
             // 
-            this.editTreasureCollectorDetails.Location = new System.Drawing.Point(620, 560);
+            this.editTreasureCollectorDetails.Location = new System.Drawing.Point(585, 406);
             this.editTreasureCollectorDetails.Name = "editTreasureCollectorDetails";
             this.editTreasureCollectorDetails.Size = new System.Drawing.Size(337, 77);
             this.editTreasureCollectorDetails.TabIndex = 19;
             this.editTreasureCollectorDetails.Text = "Edit Treasure Collector Details";
             this.editTreasureCollectorDetails.UseVisualStyleBackColor = true;
+            this.editTreasureCollectorDetails.Click += new System.EventHandler(this.EditTreasureCollectorDetails_Click);
             // 
             // TrCollectorStoryTextBox
             // 
@@ -1116,6 +1132,7 @@
             // 
             // regionPortalTab
             // 
+            this.regionPortalTab.Controls.Add(this.insidePortalsTabControl);
             this.regionPortalTab.Location = new System.Drawing.Point(4, 29);
             this.regionPortalTab.Name = "regionPortalTab";
             this.regionPortalTab.Padding = new System.Windows.Forms.Padding(3);
@@ -1202,7 +1219,7 @@
             // 
             this.regionGatewayNameLabel.AutoSize = true;
             this.regionGatewayNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.regionGatewayNameLabel.Location = new System.Drawing.Point(6, 40);
+            this.regionGatewayNameLabel.Location = new System.Drawing.Point(-1, 38);
             this.regionGatewayNameLabel.Name = "regionGatewayNameLabel";
             this.regionGatewayNameLabel.Size = new System.Drawing.Size(189, 20);
             this.regionGatewayNameLabel.TabIndex = 13;
@@ -1262,6 +1279,118 @@
             this.gatewayRoom2Label.TabIndex = 26;
             this.gatewayRoom2Label.Text = "Room 2 In Gateway";
             // 
+            // currentPRoomsListLabel
+            // 
+            this.currentPRoomsListLabel.AutoSize = true;
+            this.currentPRoomsListLabel.Location = new System.Drawing.Point(369, 23);
+            this.currentPRoomsListLabel.Name = "currentPRoomsListLabel";
+            this.currentPRoomsListLabel.Size = new System.Drawing.Size(164, 20);
+            this.currentPRoomsListLabel.TabIndex = 29;
+            this.currentPRoomsListLabel.Text = "Current Rooms List";
+            // 
+            // currentPortalRoomsList
+            // 
+            this.currentPortalRoomsList.FormattingEnabled = true;
+            this.currentPortalRoomsList.ItemHeight = 20;
+            this.currentPortalRoomsList.Location = new System.Drawing.Point(78, 58);
+            this.currentPortalRoomsList.Name = "currentPortalRoomsList";
+            this.currentPortalRoomsList.Size = new System.Drawing.Size(833, 424);
+            this.currentPortalRoomsList.TabIndex = 28;
+            // 
+            // addPortalsToRooms
+            // 
+            this.addPortalsToRooms.Location = new System.Drawing.Point(195, 512);
+            this.addPortalsToRooms.Name = "addPortalsToRooms";
+            this.addPortalsToRooms.Size = new System.Drawing.Size(581, 77);
+            this.addPortalsToRooms.TabIndex = 27;
+            this.addPortalsToRooms.Text = "Add Portal To Rooms";
+            this.addPortalsToRooms.UseVisualStyleBackColor = true;
+            this.addPortalsToRooms.Click += new System.EventHandler(this.AddPortalsToRooms_Click);
+            // 
+            // editPortalDetails
+            // 
+            this.editPortalDetails.Location = new System.Drawing.Point(324, 430);
+            this.editPortalDetails.Name = "editPortalDetails";
+            this.editPortalDetails.Size = new System.Drawing.Size(560, 77);
+            this.editPortalDetails.TabIndex = 26;
+            this.editPortalDetails.Text = "Edit Portal Details";
+            this.editPortalDetails.UseVisualStyleBackColor = true;
+            this.editPortalDetails.Click += new System.EventHandler(this.EditPortalDetails_Click);
+            // 
+            // portalStoryTextBox
+            // 
+            this.portalStoryTextBox.Location = new System.Drawing.Point(321, 155);
+            this.portalStoryTextBox.Name = "portalStoryTextBox";
+            this.portalStoryTextBox.Size = new System.Drawing.Size(563, 229);
+            this.portalStoryTextBox.TabIndex = 25;
+            this.portalStoryTextBox.Text = "";
+            // 
+            // portalStoryLabel
+            // 
+            this.portalStoryLabel.AutoSize = true;
+            this.portalStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.portalStoryLabel.Location = new System.Drawing.Point(60, 155);
+            this.portalStoryLabel.Name = "portalStoryLabel";
+            this.portalStoryLabel.Size = new System.Drawing.Size(162, 20);
+            this.portalStoryLabel.TabIndex = 24;
+            this.portalStoryLabel.Text = "Story Of The Portal";
+            // 
+            // portalNameTextBox
+            // 
+            this.portalNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.portalNameTextBox.Location = new System.Drawing.Point(324, 83);
+            this.portalNameTextBox.Name = "portalNameTextBox";
+            this.portalNameTextBox.Size = new System.Drawing.Size(560, 26);
+            this.portalNameTextBox.TabIndex = 23;
+            // 
+            // portalNameLabel
+            // 
+            this.portalNameLabel.AutoSize = true;
+            this.portalNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.portalNameLabel.Location = new System.Drawing.Point(56, 89);
+            this.portalNameLabel.Name = "portalNameLabel";
+            this.portalNameLabel.Size = new System.Drawing.Size(166, 20);
+            this.portalNameLabel.TabIndex = 22;
+            this.portalNameLabel.Text = "Name Of The Portal";
+            // 
+            // insidePortalsTabControl
+            // 
+            this.insidePortalsTabControl.Controls.Add(this.editPortalTab);
+            this.insidePortalsTabControl.Controls.Add(this.portalRoomsTab);
+            this.insidePortalsTabControl.Location = new System.Drawing.Point(6, 6);
+            this.insidePortalsTabControl.Name = "insidePortalsTabControl";
+            this.insidePortalsTabControl.SelectedIndex = 0;
+            this.insidePortalsTabControl.Size = new System.Drawing.Size(991, 661);
+            this.insidePortalsTabControl.TabIndex = 30;
+            // 
+            // editPortalTab
+            // 
+            this.editPortalTab.Controls.Add(this.portalNameLabel);
+            this.editPortalTab.Controls.Add(this.portalNameTextBox);
+            this.editPortalTab.Controls.Add(this.portalStoryLabel);
+            this.editPortalTab.Controls.Add(this.editPortalDetails);
+            this.editPortalTab.Controls.Add(this.portalStoryTextBox);
+            this.editPortalTab.Location = new System.Drawing.Point(4, 29);
+            this.editPortalTab.Name = "editPortalTab";
+            this.editPortalTab.Padding = new System.Windows.Forms.Padding(3);
+            this.editPortalTab.Size = new System.Drawing.Size(983, 628);
+            this.editPortalTab.TabIndex = 0;
+            this.editPortalTab.Text = "Edit Portal Details";
+            this.editPortalTab.UseVisualStyleBackColor = true;
+            // 
+            // portalRoomsTab
+            // 
+            this.portalRoomsTab.Controls.Add(this.currentPRoomsListLabel);
+            this.portalRoomsTab.Controls.Add(this.currentPortalRoomsList);
+            this.portalRoomsTab.Controls.Add(this.addPortalsToRooms);
+            this.portalRoomsTab.Location = new System.Drawing.Point(4, 29);
+            this.portalRoomsTab.Name = "portalRoomsTab";
+            this.portalRoomsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.portalRoomsTab.Size = new System.Drawing.Size(983, 628);
+            this.portalRoomsTab.TabIndex = 1;
+            this.portalRoomsTab.Text = "Add Portal To Rooms";
+            this.portalRoomsTab.UseVisualStyleBackColor = true;
+            // 
             // SealsOfHellMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1298,6 +1427,12 @@
             this.addEditRoomTab.PerformLayout();
             this.regionGateWaysTab.ResumeLayout(false);
             this.regionGateWaysTab.PerformLayout();
+            this.regionPortalTab.ResumeLayout(false);
+            this.insidePortalsTabControl.ResumeLayout(false);
+            this.editPortalTab.ResumeLayout(false);
+            this.editPortalTab.PerformLayout();
+            this.portalRoomsTab.ResumeLayout(false);
+            this.portalRoomsTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1412,6 +1547,17 @@
         private System.Windows.Forms.Label gatewayDirectionLabel;
         private System.Windows.Forms.ComboBox gatewayRoom1;
         private System.Windows.Forms.Label gatewayRoom1Label;
+        private System.Windows.Forms.Label currentPRoomsListLabel;
+        private System.Windows.Forms.ListBox currentPortalRoomsList;
+        private System.Windows.Forms.Button addPortalsToRooms;
+        private System.Windows.Forms.Button editPortalDetails;
+        private System.Windows.Forms.RichTextBox portalStoryTextBox;
+        private System.Windows.Forms.Label portalStoryLabel;
+        private System.Windows.Forms.TextBox portalNameTextBox;
+        private System.Windows.Forms.Label portalNameLabel;
+        private System.Windows.Forms.TabControl insidePortalsTabControl;
+        private System.Windows.Forms.TabPage editPortalTab;
+        private System.Windows.Forms.TabPage portalRoomsTab;
     }
 }
 
