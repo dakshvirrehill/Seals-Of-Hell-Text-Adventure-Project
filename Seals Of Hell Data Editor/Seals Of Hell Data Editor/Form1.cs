@@ -203,6 +203,18 @@ namespace Seals_Of_Hell_Data_Editor
         {
 
         }
+        private void DeleteKillZone_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditKillZoneDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditSelectedKillZone_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
 

@@ -149,22 +149,7 @@
             this.interactableDetailsTabControl = new System.Windows.Forms.TabControl();
             this.collectorDetailsTab = new System.Windows.Forms.TabPage();
             this.enemyDetailsTab = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.listBox4 = new System.Windows.Forms.ListBox();
-            this.listBox5 = new System.Windows.Forms.ListBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.killZoneDetailsTab = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -219,6 +204,23 @@
             this.enemyAttackStoryLabel = new System.Windows.Forms.Label();
             this.enemyLifeLabel = new System.Windows.Forms.Label();
             this.enemyLifeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.editKillZoneDetails = new System.Windows.Forms.Button();
+            this.deleteKillZone = new System.Windows.Forms.Button();
+            this.currentKillZoneListLabel = new System.Windows.Forms.Label();
+            this.currentKillZonesList = new System.Windows.Forms.ListBox();
+            this.editSelectedKillZone = new System.Windows.Forms.Button();
+            this.killZoneDisablerSelector = new System.Windows.Forms.ComboBox();
+            this.killZoneDisablerLable = new System.Windows.Forms.Label();
+            this.isKillZoneInteractable = new System.Windows.Forms.CheckBox();
+            this.isKillZoneVisible = new System.Windows.Forms.CheckBox();
+            this.killZoneDisablingStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.killZoneDisablingStoryLabel = new System.Windows.Forms.Label();
+            this.killZoneAttackStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.killZoneAttackStoryLabel = new System.Windows.Forms.Label();
+            this.killZoneStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.killZoneStoryLabel = new System.Windows.Forms.Label();
+            this.killZoneNameTextBox = new System.Windows.Forms.TextBox();
+            this.killZoneNameLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.gameStartTabControl.SuspendLayout();
             this.gameDetailsTab.SuspendLayout();
@@ -237,7 +239,7 @@
             this.interactableDetailsTabControl.SuspendLayout();
             this.collectorDetailsTab.SuspendLayout();
             this.enemyDetailsTab.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.killZoneDetailsTab.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.enemyLifeNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -1474,7 +1476,7 @@
             // 
             this.interactableDetailsTabControl.Controls.Add(this.collectorDetailsTab);
             this.interactableDetailsTabControl.Controls.Add(this.enemyDetailsTab);
-            this.interactableDetailsTabControl.Controls.Add(this.tabPage3);
+            this.interactableDetailsTabControl.Controls.Add(this.killZoneDetailsTab);
             this.interactableDetailsTabControl.Controls.Add(this.tabPage4);
             this.interactableDetailsTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.interactableDetailsTabControl.Location = new System.Drawing.Point(0, 27);
@@ -1542,180 +1544,32 @@
             this.enemyDetailsTab.Text = "Add/Edit Enemies";
             this.enemyDetailsTab.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // killZoneDetailsTab
             // 
-            this.tabPage3.Controls.Add(this.listBox1);
-            this.tabPage3.Controls.Add(this.listBox2);
-            this.tabPage3.Controls.Add(this.listBox3);
-            this.tabPage3.Controls.Add(this.listBox4);
-            this.tabPage3.Controls.Add(this.listBox5);
-            this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.label7);
-            this.tabPage3.Controls.Add(this.label8);
-            this.tabPage3.Controls.Add(this.label9);
-            this.tabPage3.Controls.Add(this.label10);
-            this.tabPage3.Controls.Add(this.button3);
-            this.tabPage3.Controls.Add(this.richTextBox4);
-            this.tabPage3.Controls.Add(this.label11);
-            this.tabPage3.Controls.Add(this.textBox4);
-            this.tabPage3.Controls.Add(this.label12);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1000, 670);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "First Room Details";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // listBox1
-            // 
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(801, 237);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox1.Size = new System.Drawing.Size(176, 324);
-            this.listBox1.TabIndex = 24;
-            // 
-            // listBox2
-            // 
-            this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 16;
-            this.listBox2.Location = new System.Drawing.Point(606, 237);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox2.Size = new System.Drawing.Size(176, 324);
-            this.listBox2.TabIndex = 23;
-            // 
-            // listBox3
-            // 
-            this.listBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 16;
-            this.listBox3.Location = new System.Drawing.Point(414, 237);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox3.Size = new System.Drawing.Size(176, 324);
-            this.listBox3.TabIndex = 22;
-            // 
-            // listBox4
-            // 
-            this.listBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox4.FormattingEnabled = true;
-            this.listBox4.ItemHeight = 16;
-            this.listBox4.Location = new System.Drawing.Point(217, 237);
-            this.listBox4.Name = "listBox4";
-            this.listBox4.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox4.Size = new System.Drawing.Size(176, 324);
-            this.listBox4.TabIndex = 21;
-            // 
-            // listBox5
-            // 
-            this.listBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox5.FormattingEnabled = true;
-            this.listBox5.ItemHeight = 16;
-            this.listBox5.Location = new System.Drawing.Point(23, 237);
-            this.listBox5.Name = "listBox5";
-            this.listBox5.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox5.Size = new System.Drawing.Size(176, 324);
-            this.listBox5.TabIndex = 20;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(829, 214);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(126, 20);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "Pickable Items";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(602, 214);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(184, 20);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "One Interaction Items";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(453, 214);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(87, 20);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Kill Zones";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(263, 214);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(78, 20);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Enemies";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(64, 214);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(89, 20);
-            this.label10.TabIndex = 15;
-            this.label10.Text = "Collectors";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(211, 584);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(538, 77);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Edit First Room Details";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox4
-            // 
-            this.richTextBox4.Location = new System.Drawing.Point(383, 70);
-            this.richTextBox4.Name = "richTextBox4";
-            this.richTextBox4.Size = new System.Drawing.Size(538, 134);
-            this.richTextBox4.TabIndex = 13;
-            this.richTextBox4.Text = "";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(81, 70);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(268, 20);
-            this.label11.TabIndex = 12;
-            this.label11.Text = "Current Story Of The First Room";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(383, 18);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(538, 26);
-            this.textBox4.TabIndex = 11;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(77, 21);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(272, 20);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "Current Name Of The First Room";
+            this.killZoneDetailsTab.Controls.Add(this.editKillZoneDetails);
+            this.killZoneDetailsTab.Controls.Add(this.deleteKillZone);
+            this.killZoneDetailsTab.Controls.Add(this.currentKillZoneListLabel);
+            this.killZoneDetailsTab.Controls.Add(this.currentKillZonesList);
+            this.killZoneDetailsTab.Controls.Add(this.editSelectedKillZone);
+            this.killZoneDetailsTab.Controls.Add(this.killZoneDisablerSelector);
+            this.killZoneDetailsTab.Controls.Add(this.killZoneDisablerLable);
+            this.killZoneDetailsTab.Controls.Add(this.isKillZoneInteractable);
+            this.killZoneDetailsTab.Controls.Add(this.isKillZoneVisible);
+            this.killZoneDetailsTab.Controls.Add(this.killZoneDisablingStoryTextBox);
+            this.killZoneDetailsTab.Controls.Add(this.killZoneDisablingStoryLabel);
+            this.killZoneDetailsTab.Controls.Add(this.killZoneAttackStoryTextBox);
+            this.killZoneDetailsTab.Controls.Add(this.killZoneAttackStoryLabel);
+            this.killZoneDetailsTab.Controls.Add(this.killZoneStoryTextBox);
+            this.killZoneDetailsTab.Controls.Add(this.killZoneStoryLabel);
+            this.killZoneDetailsTab.Controls.Add(this.killZoneNameTextBox);
+            this.killZoneDetailsTab.Controls.Add(this.killZoneNameLabel);
+            this.killZoneDetailsTab.Location = new System.Drawing.Point(4, 29);
+            this.killZoneDetailsTab.Name = "killZoneDetailsTab";
+            this.killZoneDetailsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.killZoneDetailsTab.Size = new System.Drawing.Size(1000, 670);
+            this.killZoneDetailsTab.TabIndex = 2;
+            this.killZoneDetailsTab.Text = "Add/Edit Kill Zones";
+            this.killZoneDetailsTab.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
@@ -2251,6 +2105,164 @@
             0,
             0});
             // 
+            // editKillZoneDetails
+            // 
+            this.editKillZoneDetails.Location = new System.Drawing.Point(445, 559);
+            this.editKillZoneDetails.Name = "editKillZoneDetails";
+            this.editKillZoneDetails.Size = new System.Drawing.Size(205, 77);
+            this.editKillZoneDetails.TabIndex = 69;
+            this.editKillZoneDetails.Text = "Add/Edit Kill Zone";
+            this.editKillZoneDetails.UseVisualStyleBackColor = true;
+            this.editKillZoneDetails.Click += new System.EventHandler(this.EditKillZoneDetails_Click);
+            // 
+            // deleteKillZone
+            // 
+            this.deleteKillZone.Location = new System.Drawing.Point(192, 559);
+            this.deleteKillZone.Name = "deleteKillZone";
+            this.deleteKillZone.Size = new System.Drawing.Size(205, 77);
+            this.deleteKillZone.TabIndex = 68;
+            this.deleteKillZone.Text = "Delete Kill Zone";
+            this.deleteKillZone.UseVisualStyleBackColor = true;
+            this.deleteKillZone.Click += new System.EventHandler(this.DeleteKillZone_Click);
+            // 
+            // currentKillZoneListLabel
+            // 
+            this.currentKillZoneListLabel.AutoSize = true;
+            this.currentKillZoneListLabel.Location = new System.Drawing.Point(790, 34);
+            this.currentKillZoneListLabel.Name = "currentKillZoneListLabel";
+            this.currentKillZoneListLabel.Size = new System.Drawing.Size(186, 20);
+            this.currentKillZoneListLabel.TabIndex = 67;
+            this.currentKillZoneListLabel.Text = "Current Kill Zones List";
+            // 
+            // currentKillZonesList
+            // 
+            this.currentKillZonesList.FormattingEnabled = true;
+            this.currentKillZonesList.ItemHeight = 20;
+            this.currentKillZonesList.Location = new System.Drawing.Point(777, 57);
+            this.currentKillZonesList.Name = "currentKillZonesList";
+            this.currentKillZonesList.Size = new System.Drawing.Size(205, 424);
+            this.currentKillZonesList.TabIndex = 66;
+            // 
+            // editSelectedKillZone
+            // 
+            this.editSelectedKillZone.Location = new System.Drawing.Point(778, 494);
+            this.editSelectedKillZone.Name = "editSelectedKillZone";
+            this.editSelectedKillZone.Size = new System.Drawing.Size(205, 77);
+            this.editSelectedKillZone.TabIndex = 65;
+            this.editSelectedKillZone.Text = "Edit Selected";
+            this.editSelectedKillZone.UseVisualStyleBackColor = true;
+            this.editSelectedKillZone.Click += new System.EventHandler(this.EditSelectedKillZone_Click);
+            // 
+            // killZoneDisablerSelector
+            // 
+            this.killZoneDisablerSelector.FormattingEnabled = true;
+            this.killZoneDisablerSelector.Location = new System.Drawing.Point(184, 213);
+            this.killZoneDisablerSelector.Name = "killZoneDisablerSelector";
+            this.killZoneDisablerSelector.Size = new System.Drawing.Size(538, 28);
+            this.killZoneDisablerSelector.TabIndex = 64;
+            // 
+            // killZoneDisablerLable
+            // 
+            this.killZoneDisablerLable.AutoSize = true;
+            this.killZoneDisablerLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.killZoneDisablerLable.Location = new System.Drawing.Point(27, 216);
+            this.killZoneDisablerLable.Name = "killZoneDisablerLable";
+            this.killZoneDisablerLable.Size = new System.Drawing.Size(140, 20);
+            this.killZoneDisablerLable.TabIndex = 63;
+            this.killZoneDisablerLable.Text = "Disabling Object";
+            // 
+            // isKillZoneInteractable
+            // 
+            this.isKillZoneInteractable.AutoSize = true;
+            this.isKillZoneInteractable.Location = new System.Drawing.Point(490, 413);
+            this.isKillZoneInteractable.Name = "isKillZoneInteractable";
+            this.isKillZoneInteractable.Size = new System.Drawing.Size(145, 24);
+            this.isKillZoneInteractable.TabIndex = 62;
+            this.isKillZoneInteractable.Text = "Is Interactable";
+            this.isKillZoneInteractable.UseVisualStyleBackColor = true;
+            // 
+            // isKillZoneVisible
+            // 
+            this.isKillZoneVisible.AutoSize = true;
+            this.isKillZoneVisible.Location = new System.Drawing.Point(275, 413);
+            this.isKillZoneVisible.Name = "isKillZoneVisible";
+            this.isKillZoneVisible.Size = new System.Drawing.Size(101, 24);
+            this.isKillZoneVisible.TabIndex = 61;
+            this.isKillZoneVisible.Text = "Is Visible";
+            this.isKillZoneVisible.UseVisualStyleBackColor = true;
+            // 
+            // killZoneDisablingStoryTextBox
+            // 
+            this.killZoneDisablingStoryTextBox.Location = new System.Drawing.Point(181, 342);
+            this.killZoneDisablingStoryTextBox.Name = "killZoneDisablingStoryTextBox";
+            this.killZoneDisablingStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.killZoneDisablingStoryTextBox.TabIndex = 60;
+            this.killZoneDisablingStoryTextBox.Text = "";
+            // 
+            // killZoneDisablingStoryLabel
+            // 
+            this.killZoneDisablingStoryLabel.AutoSize = true;
+            this.killZoneDisablingStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.killZoneDisablingStoryLabel.Location = new System.Drawing.Point(41, 355);
+            this.killZoneDisablingStoryLabel.Name = "killZoneDisablingStoryLabel";
+            this.killZoneDisablingStoryLabel.Size = new System.Drawing.Size(130, 20);
+            this.killZoneDisablingStoryLabel.TabIndex = 59;
+            this.killZoneDisablingStoryLabel.Text = "Disabling Story";
+            // 
+            // killZoneAttackStoryTextBox
+            // 
+            this.killZoneAttackStoryTextBox.Location = new System.Drawing.Point(184, 261);
+            this.killZoneAttackStoryTextBox.Name = "killZoneAttackStoryTextBox";
+            this.killZoneAttackStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.killZoneAttackStoryTextBox.TabIndex = 58;
+            this.killZoneAttackStoryTextBox.Text = "";
+            // 
+            // killZoneAttackStoryLabel
+            // 
+            this.killZoneAttackStoryLabel.AutoSize = true;
+            this.killZoneAttackStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.killZoneAttackStoryLabel.Location = new System.Drawing.Point(59, 269);
+            this.killZoneAttackStoryLabel.Name = "killZoneAttackStoryLabel";
+            this.killZoneAttackStoryLabel.Size = new System.Drawing.Size(103, 20);
+            this.killZoneAttackStoryLabel.TabIndex = 57;
+            this.killZoneAttackStoryLabel.Text = "Killing Story";
+            // 
+            // killZoneStoryTextBox
+            // 
+            this.killZoneStoryTextBox.Location = new System.Drawing.Point(185, 146);
+            this.killZoneStoryTextBox.Name = "killZoneStoryTextBox";
+            this.killZoneStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.killZoneStoryTextBox.TabIndex = 56;
+            this.killZoneStoryTextBox.Text = "";
+            // 
+            // killZoneStoryLabel
+            // 
+            this.killZoneStoryLabel.AutoSize = true;
+            this.killZoneStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.killZoneStoryLabel.Location = new System.Drawing.Point(45, 161);
+            this.killZoneStoryLabel.Name = "killZoneStoryLabel";
+            this.killZoneStoryLabel.Size = new System.Drawing.Size(125, 20);
+            this.killZoneStoryLabel.TabIndex = 55;
+            this.killZoneStoryLabel.Text = "Kill Zone Story";
+            // 
+            // killZoneNameTextBox
+            // 
+            this.killZoneNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.killZoneNameTextBox.Location = new System.Drawing.Point(185, 97);
+            this.killZoneNameTextBox.Name = "killZoneNameTextBox";
+            this.killZoneNameTextBox.Size = new System.Drawing.Size(538, 26);
+            this.killZoneNameTextBox.TabIndex = 54;
+            // 
+            // killZoneNameLabel
+            // 
+            this.killZoneNameLabel.AutoSize = true;
+            this.killZoneNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.killZoneNameLabel.Location = new System.Drawing.Point(41, 100);
+            this.killZoneNameLabel.Name = "killZoneNameLabel";
+            this.killZoneNameLabel.Size = new System.Drawing.Size(129, 20);
+            this.killZoneNameLabel.TabIndex = 53;
+            this.killZoneNameLabel.Text = "Kill Zone Name";
+            // 
             // SealsOfHellMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2299,8 +2311,8 @@
             this.collectorDetailsTab.PerformLayout();
             this.enemyDetailsTab.ResumeLayout(false);
             this.enemyDetailsTab.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.killZoneDetailsTab.ResumeLayout(false);
+            this.killZoneDetailsTab.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.enemyLifeNumericUpDown)).EndInit();
@@ -2470,22 +2482,7 @@
         private System.Windows.Forms.Label enemyStoryLabel;
         private System.Windows.Forms.TextBox enemyNameTextBox;
         private System.Windows.Forms.Label enemyNameLabel;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.ListBox listBox3;
-        private System.Windows.Forms.ListBox listBox4;
-        private System.Windows.Forms.ListBox listBox5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.RichTextBox richTextBox4;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabPage killZoneDetailsTab;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
@@ -2502,6 +2499,23 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button editKillZoneDetails;
+        private System.Windows.Forms.Button deleteKillZone;
+        private System.Windows.Forms.Label currentKillZoneListLabel;
+        private System.Windows.Forms.ListBox currentKillZonesList;
+        private System.Windows.Forms.Button editSelectedKillZone;
+        private System.Windows.Forms.ComboBox killZoneDisablerSelector;
+        private System.Windows.Forms.Label killZoneDisablerLable;
+        private System.Windows.Forms.CheckBox isKillZoneInteractable;
+        private System.Windows.Forms.CheckBox isKillZoneVisible;
+        private System.Windows.Forms.RichTextBox killZoneDisablingStoryTextBox;
+        private System.Windows.Forms.Label killZoneDisablingStoryLabel;
+        private System.Windows.Forms.RichTextBox killZoneAttackStoryTextBox;
+        private System.Windows.Forms.Label killZoneAttackStoryLabel;
+        private System.Windows.Forms.RichTextBox killZoneStoryTextBox;
+        private System.Windows.Forms.Label killZoneStoryLabel;
+        private System.Windows.Forms.TextBox killZoneNameTextBox;
+        private System.Windows.Forms.Label killZoneNameLabel;
     }
 }
 
