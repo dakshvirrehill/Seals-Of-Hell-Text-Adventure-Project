@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,22 +150,7 @@
             this.collectorDetailsTab = new System.Windows.Forms.TabPage();
             this.enemyDetailsTab = new System.Windows.Forms.TabPage();
             this.killZoneDetailsTab = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.richTextBox5 = new System.Windows.Forms.RichTextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.richTextBox6 = new System.Windows.Forms.RichTextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.listBox6 = new System.Windows.Forms.ListBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.listBox7 = new System.Windows.Forms.ListBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.richTextBox7 = new System.Windows.Forms.RichTextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.oneInteractionItemDetailsTab = new System.Windows.Forms.TabPage();
             this.isCollectorInteractable = new System.Windows.Forms.CheckBox();
             this.isCollectorVisible = new System.Windows.Forms.CheckBox();
             this.collectorEndUpdateStoryTextBox = new System.Windows.Forms.RichTextBox();
@@ -221,7 +206,38 @@
             this.killZoneStoryLabel = new System.Windows.Forms.Label();
             this.killZoneNameTextBox = new System.Windows.Forms.TextBox();
             this.killZoneNameLabel = new System.Windows.Forms.Label();
-            this.menuStrip1.SuspendLayout();
+            this.pickableItemDetailsTab = new System.Windows.Forms.TabPage();
+            this.editOIIDetails = new System.Windows.Forms.Button();
+            this.deleteOII = new System.Windows.Forms.Button();
+            this.currentOIIListLabel = new System.Windows.Forms.Label();
+            this.currentOIIList = new System.Windows.Forms.ListBox();
+            this.editSelectedOII = new System.Windows.Forms.Button();
+            this.oIITypeSelector = new System.Windows.Forms.ComboBox();
+            this.oIITypeLabel = new System.Windows.Forms.Label();
+            this.isOIIInteractable = new System.Windows.Forms.CheckBox();
+            this.isOIIVisible = new System.Windows.Forms.CheckBox();
+            this.oIIEndStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.oIIEndStoryLabel = new System.Windows.Forms.Label();
+            this.oIIUpdateStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.oIIUpdateStoryLabel = new System.Windows.Forms.Label();
+            this.oIIStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.oIIStoryLabel = new System.Windows.Forms.Label();
+            this.oIINameTextBox = new System.Windows.Forms.TextBox();
+            this.oIINameLabel = new System.Windows.Forms.Label();
+            this.editPickableItemDetails = new System.Windows.Forms.Button();
+            this.deletePickableItem = new System.Windows.Forms.Button();
+            this.currentPickableItemListLabel = new System.Windows.Forms.Label();
+            this.currentPickableItemsList = new System.Windows.Forms.ListBox();
+            this.editSelectedPickableItem = new System.Windows.Forms.Button();
+            this.pickableItemTypeSelector = new System.Windows.Forms.ComboBox();
+            this.pickableItemTypeLabel = new System.Windows.Forms.Label();
+            this.isPickableItemInteractable = new System.Windows.Forms.CheckBox();
+            this.isPickableItemVisible = new System.Windows.Forms.CheckBox();
+            this.pickableItemStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.pickableItemStoryLabel = new System.Windows.Forms.Label();
+            this.pickableItemNameTextBox = new System.Windows.Forms.TextBox();
+            this.pickableItemNameLabel = new System.Windows.Forms.Label();
+            this.mainMenuStrip.SuspendLayout();
             this.gameStartTabControl.SuspendLayout();
             this.gameDetailsTab.SuspendLayout();
             this.firstRegionTab.SuspendLayout();
@@ -240,23 +256,24 @@
             this.collectorDetailsTab.SuspendLayout();
             this.enemyDetailsTab.SuspendLayout();
             this.killZoneDetailsTab.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.oneInteractionItemDetailsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.enemyLifeNumericUpDown)).BeginInit();
+            this.pickableItemDetailsTab.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // mainMenuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editGameStartDataToolStripMenuItem,
             this.addNewRegionToolStripMenuItem,
             this.editRoomDataToolStripMenuItem,
             this.editInteractablesDataToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.mainMenuStrip.Name = "mainMenuStrip";
+            this.mainMenuStrip.Size = new System.Drawing.Size(1008, 24);
+            this.mainMenuStrip.TabIndex = 0;
+            this.mainMenuStrip.Text = "Main Menu";
             // 
             // fileToolStripMenuItem
             // 
@@ -329,6 +346,7 @@
             this.gameStartTabControl.SelectedIndex = 0;
             this.gameStartTabControl.Size = new System.Drawing.Size(1008, 703);
             this.gameStartTabControl.TabIndex = 1;
+            this.gameStartTabControl.Visible = false;
             this.gameStartTabControl.SelectedIndexChanged += new System.EventHandler(this.SetAllGameStartData);
             // 
             // gameDetailsTab
@@ -1477,13 +1495,15 @@
             this.interactableDetailsTabControl.Controls.Add(this.collectorDetailsTab);
             this.interactableDetailsTabControl.Controls.Add(this.enemyDetailsTab);
             this.interactableDetailsTabControl.Controls.Add(this.killZoneDetailsTab);
-            this.interactableDetailsTabControl.Controls.Add(this.tabPage4);
+            this.interactableDetailsTabControl.Controls.Add(this.oneInteractionItemDetailsTab);
+            this.interactableDetailsTabControl.Controls.Add(this.pickableItemDetailsTab);
             this.interactableDetailsTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.interactableDetailsTabControl.Location = new System.Drawing.Point(0, 27);
             this.interactableDetailsTabControl.Name = "interactableDetailsTabControl";
             this.interactableDetailsTabControl.SelectedIndex = 0;
             this.interactableDetailsTabControl.Size = new System.Drawing.Size(1008, 703);
             this.interactableDetailsTabControl.TabIndex = 4;
+            this.interactableDetailsTabControl.Visible = false;
             // 
             // collectorDetailsTab
             // 
@@ -1571,173 +1591,32 @@
             this.killZoneDetailsTab.Text = "Add/Edit Kill Zones";
             this.killZoneDetailsTab.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // oneInteractionItemDetailsTab
             // 
-            this.tabPage4.Controls.Add(this.checkBox1);
-            this.tabPage4.Controls.Add(this.checkBox2);
-            this.tabPage4.Controls.Add(this.richTextBox5);
-            this.tabPage4.Controls.Add(this.label13);
-            this.tabPage4.Controls.Add(this.richTextBox6);
-            this.tabPage4.Controls.Add(this.label14);
-            this.tabPage4.Controls.Add(this.listBox6);
-            this.tabPage4.Controls.Add(this.label15);
-            this.tabPage4.Controls.Add(this.listBox7);
-            this.tabPage4.Controls.Add(this.label16);
-            this.tabPage4.Controls.Add(this.button4);
-            this.tabPage4.Controls.Add(this.richTextBox7);
-            this.tabPage4.Controls.Add(this.label17);
-            this.tabPage4.Controls.Add(this.textBox5);
-            this.tabPage4.Controls.Add(this.label18);
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1000, 670);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Treasure Collector Details";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(419, 459);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(145, 24);
-            this.checkBox1.TabIndex = 34;
-            this.checkBox1.Text = "Is Interactable";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(419, 406);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(101, 24);
-            this.checkBox2.TabIndex = 33;
-            this.checkBox2.Text = "Is Visible";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox5
-            // 
-            this.richTextBox5.Location = new System.Drawing.Point(384, 199);
-            this.richTextBox5.Name = "richTextBox5";
-            this.richTextBox5.Size = new System.Drawing.Size(538, 54);
-            this.richTextBox5.TabIndex = 32;
-            this.richTextBox5.Text = "";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(78, 217);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(272, 20);
-            this.label13.TabIndex = 31;
-            this.label13.Text = "Current Win Story Of Tr Collector";
-            // 
-            // richTextBox6
-            // 
-            this.richTextBox6.Location = new System.Drawing.Point(384, 129);
-            this.richTextBox6.Name = "richTextBox6";
-            this.richTextBox6.Size = new System.Drawing.Size(538, 54);
-            this.richTextBox6.TabIndex = 30;
-            this.richTextBox6.Text = "";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(31, 154);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(320, 20);
-            this.label14.TabIndex = 29;
-            this.label14.Text = "Current After All Output Of Tr Collector";
-            // 
-            // listBox6
-            // 
-            this.listBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox6.FormattingEnabled = true;
-            this.listBox6.ItemHeight = 16;
-            this.listBox6.Location = new System.Drawing.Point(197, 292);
-            this.listBox6.Name = "listBox6";
-            this.listBox6.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox6.Size = new System.Drawing.Size(176, 356);
-            this.listBox6.TabIndex = 28;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(224, 269);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(101, 20);
-            this.label15.TabIndex = 27;
-            this.label15.Text = "Updatables";
-            // 
-            // listBox7
-            // 
-            this.listBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox7.FormattingEnabled = true;
-            this.listBox7.ItemHeight = 16;
-            this.listBox7.Location = new System.Drawing.Point(6, 292);
-            this.listBox7.Name = "listBox7";
-            this.listBox7.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox7.Size = new System.Drawing.Size(176, 356);
-            this.listBox7.TabIndex = 26;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(8, 269);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(161, 20);
-            this.label16.TabIndex = 25;
-            this.label16.Text = "Treasure Pickables";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(585, 406);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(337, 77);
-            this.button4.TabIndex = 19;
-            this.button4.Text = "Edit Treasure Collector Details";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox7
-            // 
-            this.richTextBox7.Location = new System.Drawing.Point(384, 58);
-            this.richTextBox7.Name = "richTextBox7";
-            this.richTextBox7.Size = new System.Drawing.Size(538, 54);
-            this.richTextBox7.TabIndex = 18;
-            this.richTextBox7.Text = "";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(31, 81);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(327, 20);
-            this.label17.TabIndex = 17;
-            this.label17.Text = "Current Story Of The Treasure Collector";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(384, 14);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(538, 26);
-            this.textBox5.TabIndex = 16;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(27, 20);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(331, 20);
-            this.label18.TabIndex = 15;
-            this.label18.Text = "Current Name Of The Treasure Collector";
+            this.oneInteractionItemDetailsTab.Controls.Add(this.editOIIDetails);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.deleteOII);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.currentOIIListLabel);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.currentOIIList);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.editSelectedOII);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.oIITypeSelector);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.oIITypeLabel);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.isOIIInteractable);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.isOIIVisible);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.oIIEndStoryTextBox);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.oIIEndStoryLabel);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.oIIUpdateStoryTextBox);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.oIIUpdateStoryLabel);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.oIIStoryTextBox);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.oIIStoryLabel);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.oIINameTextBox);
+            this.oneInteractionItemDetailsTab.Controls.Add(this.oIINameLabel);
+            this.oneInteractionItemDetailsTab.Location = new System.Drawing.Point(4, 29);
+            this.oneInteractionItemDetailsTab.Name = "oneInteractionItemDetailsTab";
+            this.oneInteractionItemDetailsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.oneInteractionItemDetailsTab.Size = new System.Drawing.Size(1000, 670);
+            this.oneInteractionItemDetailsTab.TabIndex = 3;
+            this.oneInteractionItemDetailsTab.Text = "Add/Edit One Interaction Items";
+            this.oneInteractionItemDetailsTab.UseVisualStyleBackColor = true;
             // 
             // isCollectorInteractable
             // 
@@ -2263,26 +2142,329 @@
             this.killZoneNameLabel.TabIndex = 53;
             this.killZoneNameLabel.Text = "Kill Zone Name";
             // 
+            // pickableItemDetailsTab
+            // 
+            this.pickableItemDetailsTab.Controls.Add(this.editPickableItemDetails);
+            this.pickableItemDetailsTab.Controls.Add(this.deletePickableItem);
+            this.pickableItemDetailsTab.Controls.Add(this.currentPickableItemListLabel);
+            this.pickableItemDetailsTab.Controls.Add(this.currentPickableItemsList);
+            this.pickableItemDetailsTab.Controls.Add(this.editSelectedPickableItem);
+            this.pickableItemDetailsTab.Controls.Add(this.pickableItemTypeSelector);
+            this.pickableItemDetailsTab.Controls.Add(this.pickableItemTypeLabel);
+            this.pickableItemDetailsTab.Controls.Add(this.isPickableItemInteractable);
+            this.pickableItemDetailsTab.Controls.Add(this.isPickableItemVisible);
+            this.pickableItemDetailsTab.Controls.Add(this.pickableItemStoryTextBox);
+            this.pickableItemDetailsTab.Controls.Add(this.pickableItemStoryLabel);
+            this.pickableItemDetailsTab.Controls.Add(this.pickableItemNameTextBox);
+            this.pickableItemDetailsTab.Controls.Add(this.pickableItemNameLabel);
+            this.pickableItemDetailsTab.Location = new System.Drawing.Point(4, 29);
+            this.pickableItemDetailsTab.Name = "pickableItemDetailsTab";
+            this.pickableItemDetailsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.pickableItemDetailsTab.Size = new System.Drawing.Size(1000, 670);
+            this.pickableItemDetailsTab.TabIndex = 4;
+            this.pickableItemDetailsTab.Text = "Add/Edit Pickable Items";
+            this.pickableItemDetailsTab.UseVisualStyleBackColor = true;
+            // 
+            // editOIIDetails
+            // 
+            this.editOIIDetails.Location = new System.Drawing.Point(445, 559);
+            this.editOIIDetails.Name = "editOIIDetails";
+            this.editOIIDetails.Size = new System.Drawing.Size(270, 77);
+            this.editOIIDetails.TabIndex = 69;
+            this.editOIIDetails.Text = "Add/Edit One Interaction Item";
+            this.editOIIDetails.UseVisualStyleBackColor = true;
+            this.editOIIDetails.Click += new System.EventHandler(this.EditOIIDetails_Click);
+            // 
+            // deleteOII
+            // 
+            this.deleteOII.Location = new System.Drawing.Point(128, 559);
+            this.deleteOII.Name = "deleteOII";
+            this.deleteOII.Size = new System.Drawing.Size(270, 77);
+            this.deleteOII.TabIndex = 68;
+            this.deleteOII.Text = "Delete One Interaction Item";
+            this.deleteOII.UseVisualStyleBackColor = true;
+            this.deleteOII.Click += new System.EventHandler(this.DeleteOII_Click);
+            // 
+            // currentOIIListLabel
+            // 
+            this.currentOIIListLabel.AutoSize = true;
+            this.currentOIIListLabel.Location = new System.Drawing.Point(790, 34);
+            this.currentOIIListLabel.Name = "currentOIIListLabel";
+            this.currentOIIListLabel.Size = new System.Drawing.Size(153, 20);
+            this.currentOIIListLabel.TabIndex = 67;
+            this.currentOIIListLabel.Text = "Current Items List";
+            // 
+            // currentOIIList
+            // 
+            this.currentOIIList.FormattingEnabled = true;
+            this.currentOIIList.ItemHeight = 20;
+            this.currentOIIList.Location = new System.Drawing.Point(777, 57);
+            this.currentOIIList.Name = "currentOIIList";
+            this.currentOIIList.Size = new System.Drawing.Size(205, 424);
+            this.currentOIIList.TabIndex = 66;
+            // 
+            // editSelectedOII
+            // 
+            this.editSelectedOII.Location = new System.Drawing.Point(778, 494);
+            this.editSelectedOII.Name = "editSelectedOII";
+            this.editSelectedOII.Size = new System.Drawing.Size(205, 77);
+            this.editSelectedOII.TabIndex = 65;
+            this.editSelectedOII.Text = "Edit Selected";
+            this.editSelectedOII.UseVisualStyleBackColor = true;
+            this.editSelectedOII.Click += new System.EventHandler(this.EditSelectedOII_Click);
+            // 
+            // oIITypeSelector
+            // 
+            this.oIITypeSelector.FormattingEnabled = true;
+            this.oIITypeSelector.Location = new System.Drawing.Point(184, 213);
+            this.oIITypeSelector.Name = "oIITypeSelector";
+            this.oIITypeSelector.Size = new System.Drawing.Size(538, 28);
+            this.oIITypeSelector.TabIndex = 64;
+            // 
+            // oIITypeLabel
+            // 
+            this.oIITypeLabel.AutoSize = true;
+            this.oIITypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oIITypeLabel.Location = new System.Drawing.Point(81, 216);
+            this.oIITypeLabel.Name = "oIITypeLabel";
+            this.oIITypeLabel.Size = new System.Drawing.Size(88, 20);
+            this.oIITypeLabel.TabIndex = 63;
+            this.oIITypeLabel.Text = "Item Type";
+            // 
+            // isOIIInteractable
+            // 
+            this.isOIIInteractable.AutoSize = true;
+            this.isOIIInteractable.Location = new System.Drawing.Point(490, 413);
+            this.isOIIInteractable.Name = "isOIIInteractable";
+            this.isOIIInteractable.Size = new System.Drawing.Size(145, 24);
+            this.isOIIInteractable.TabIndex = 62;
+            this.isOIIInteractable.Text = "Is Interactable";
+            this.isOIIInteractable.UseVisualStyleBackColor = true;
+            // 
+            // isOIIVisible
+            // 
+            this.isOIIVisible.AutoSize = true;
+            this.isOIIVisible.Location = new System.Drawing.Point(275, 413);
+            this.isOIIVisible.Name = "isOIIVisible";
+            this.isOIIVisible.Size = new System.Drawing.Size(101, 24);
+            this.isOIIVisible.TabIndex = 61;
+            this.isOIIVisible.Text = "Is Visible";
+            this.isOIIVisible.UseVisualStyleBackColor = true;
+            // 
+            // oIIEndStoryTextBox
+            // 
+            this.oIIEndStoryTextBox.Location = new System.Drawing.Point(181, 342);
+            this.oIIEndStoryTextBox.Name = "oIIEndStoryTextBox";
+            this.oIIEndStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.oIIEndStoryTextBox.TabIndex = 60;
+            this.oIIEndStoryTextBox.Text = "";
+            // 
+            // oIIEndStoryLabel
+            // 
+            this.oIIEndStoryLabel.AutoSize = true;
+            this.oIIEndStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oIIEndStoryLabel.Location = new System.Drawing.Point(41, 355);
+            this.oIIEndStoryLabel.Name = "oIIEndStoryLabel";
+            this.oIIEndStoryLabel.Size = new System.Drawing.Size(129, 20);
+            this.oIIEndStoryLabel.TabIndex = 59;
+            this.oIIEndStoryLabel.Text = "Item End Story";
+            // 
+            // oIIUpdateStoryTextBox
+            // 
+            this.oIIUpdateStoryTextBox.Location = new System.Drawing.Point(184, 261);
+            this.oIIUpdateStoryTextBox.Name = "oIIUpdateStoryTextBox";
+            this.oIIUpdateStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.oIIUpdateStoryTextBox.TabIndex = 58;
+            this.oIIUpdateStoryTextBox.Text = "";
+            // 
+            // oIIUpdateStoryLabel
+            // 
+            this.oIIUpdateStoryLabel.AutoSize = true;
+            this.oIIUpdateStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oIIUpdateStoryLabel.Location = new System.Drawing.Point(17, 277);
+            this.oIIUpdateStoryLabel.Name = "oIIUpdateStoryLabel";
+            this.oIIUpdateStoryLabel.Size = new System.Drawing.Size(156, 20);
+            this.oIIUpdateStoryLabel.TabIndex = 57;
+            this.oIIUpdateStoryLabel.Text = "Item Update Story";
+            // 
+            // oIIStoryTextBox
+            // 
+            this.oIIStoryTextBox.Location = new System.Drawing.Point(185, 146);
+            this.oIIStoryTextBox.Name = "oIIStoryTextBox";
+            this.oIIStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.oIIStoryTextBox.TabIndex = 56;
+            this.oIIStoryTextBox.Text = "";
+            // 
+            // oIIStoryLabel
+            // 
+            this.oIIStoryLabel.AutoSize = true;
+            this.oIIStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oIIStoryLabel.Location = new System.Drawing.Point(77, 158);
+            this.oIIStoryLabel.Name = "oIIStoryLabel";
+            this.oIIStoryLabel.Size = new System.Drawing.Size(92, 20);
+            this.oIIStoryLabel.TabIndex = 55;
+            this.oIIStoryLabel.Text = "Item Story";
+            // 
+            // oIINameTextBox
+            // 
+            this.oIINameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oIINameTextBox.Location = new System.Drawing.Point(185, 97);
+            this.oIINameTextBox.Name = "oIINameTextBox";
+            this.oIINameTextBox.Size = new System.Drawing.Size(538, 26);
+            this.oIINameTextBox.TabIndex = 54;
+            // 
+            // oIINameLabel
+            // 
+            this.oIINameLabel.AutoSize = true;
+            this.oIINameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.oIINameLabel.Location = new System.Drawing.Point(73, 100);
+            this.oIINameLabel.Name = "oIINameLabel";
+            this.oIINameLabel.Size = new System.Drawing.Size(96, 20);
+            this.oIINameLabel.TabIndex = 53;
+            this.oIINameLabel.Text = "Item Name";
+            // 
+            // editPickableItemDetails
+            // 
+            this.editPickableItemDetails.Location = new System.Drawing.Point(420, 398);
+            this.editPickableItemDetails.Name = "editPickableItemDetails";
+            this.editPickableItemDetails.Size = new System.Drawing.Size(270, 77);
+            this.editPickableItemDetails.TabIndex = 82;
+            this.editPickableItemDetails.Text = "Add/Edit Pickable Item";
+            this.editPickableItemDetails.UseVisualStyleBackColor = true;
+            this.editPickableItemDetails.Click += new System.EventHandler(this.EditPickableItemDetails_Click);
+            // 
+            // deletePickableItem
+            // 
+            this.deletePickableItem.Location = new System.Drawing.Point(103, 398);
+            this.deletePickableItem.Name = "deletePickableItem";
+            this.deletePickableItem.Size = new System.Drawing.Size(270, 77);
+            this.deletePickableItem.TabIndex = 81;
+            this.deletePickableItem.Text = "Delete Pickable Item";
+            this.deletePickableItem.UseVisualStyleBackColor = true;
+            this.deletePickableItem.Click += new System.EventHandler(this.DeletePickableItem_Click);
+            // 
+            // currentPickableItemListLabel
+            // 
+            this.currentPickableItemListLabel.AutoSize = true;
+            this.currentPickableItemListLabel.Location = new System.Drawing.Point(762, 34);
+            this.currentPickableItemListLabel.Name = "currentPickableItemListLabel";
+            this.currentPickableItemListLabel.Size = new System.Drawing.Size(153, 20);
+            this.currentPickableItemListLabel.TabIndex = 80;
+            this.currentPickableItemListLabel.Text = "Current Items List";
+            // 
+            // currentPickableItemsList
+            // 
+            this.currentPickableItemsList.FormattingEnabled = true;
+            this.currentPickableItemsList.ItemHeight = 20;
+            this.currentPickableItemsList.Location = new System.Drawing.Point(749, 57);
+            this.currentPickableItemsList.Name = "currentPickableItemsList";
+            this.currentPickableItemsList.Size = new System.Drawing.Size(205, 424);
+            this.currentPickableItemsList.TabIndex = 79;
+            // 
+            // editSelectedPickableItem
+            // 
+            this.editSelectedPickableItem.Location = new System.Drawing.Point(750, 494);
+            this.editSelectedPickableItem.Name = "editSelectedPickableItem";
+            this.editSelectedPickableItem.Size = new System.Drawing.Size(205, 77);
+            this.editSelectedPickableItem.TabIndex = 78;
+            this.editSelectedPickableItem.Text = "Edit Selected";
+            this.editSelectedPickableItem.UseVisualStyleBackColor = true;
+            this.editSelectedPickableItem.Click += new System.EventHandler(this.EditSelectedPickableItem_Click);
+            // 
+            // pickableItemTypeSelector
+            // 
+            this.pickableItemTypeSelector.FormattingEnabled = true;
+            this.pickableItemTypeSelector.Location = new System.Drawing.Point(155, 259);
+            this.pickableItemTypeSelector.Name = "pickableItemTypeSelector";
+            this.pickableItemTypeSelector.Size = new System.Drawing.Size(538, 28);
+            this.pickableItemTypeSelector.TabIndex = 77;
+            // 
+            // pickableItemTypeLabel
+            // 
+            this.pickableItemTypeLabel.AutoSize = true;
+            this.pickableItemTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickableItemTypeLabel.Location = new System.Drawing.Point(52, 262);
+            this.pickableItemTypeLabel.Name = "pickableItemTypeLabel";
+            this.pickableItemTypeLabel.Size = new System.Drawing.Size(88, 20);
+            this.pickableItemTypeLabel.TabIndex = 76;
+            this.pickableItemTypeLabel.Text = "Item Type";
+            // 
+            // isPickableItemInteractable
+            // 
+            this.isPickableItemInteractable.AutoSize = true;
+            this.isPickableItemInteractable.Location = new System.Drawing.Point(459, 319);
+            this.isPickableItemInteractable.Name = "isPickableItemInteractable";
+            this.isPickableItemInteractable.Size = new System.Drawing.Size(145, 24);
+            this.isPickableItemInteractable.TabIndex = 75;
+            this.isPickableItemInteractable.Text = "Is Interactable";
+            this.isPickableItemInteractable.UseVisualStyleBackColor = true;
+            // 
+            // isPickableItemVisible
+            // 
+            this.isPickableItemVisible.AutoSize = true;
+            this.isPickableItemVisible.Location = new System.Drawing.Point(244, 319);
+            this.isPickableItemVisible.Name = "isPickableItemVisible";
+            this.isPickableItemVisible.Size = new System.Drawing.Size(101, 24);
+            this.isPickableItemVisible.TabIndex = 74;
+            this.isPickableItemVisible.Text = "Is Visible";
+            this.isPickableItemVisible.UseVisualStyleBackColor = true;
+            // 
+            // pickableItemStoryTextBox
+            // 
+            this.pickableItemStoryTextBox.Location = new System.Drawing.Point(156, 192);
+            this.pickableItemStoryTextBox.Name = "pickableItemStoryTextBox";
+            this.pickableItemStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.pickableItemStoryTextBox.TabIndex = 73;
+            this.pickableItemStoryTextBox.Text = "";
+            // 
+            // pickableItemStoryLabel
+            // 
+            this.pickableItemStoryLabel.AutoSize = true;
+            this.pickableItemStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickableItemStoryLabel.Location = new System.Drawing.Point(48, 204);
+            this.pickableItemStoryLabel.Name = "pickableItemStoryLabel";
+            this.pickableItemStoryLabel.Size = new System.Drawing.Size(92, 20);
+            this.pickableItemStoryLabel.TabIndex = 72;
+            this.pickableItemStoryLabel.Text = "Item Story";
+            // 
+            // pickableItemNameTextBox
+            // 
+            this.pickableItemNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickableItemNameTextBox.Location = new System.Drawing.Point(156, 143);
+            this.pickableItemNameTextBox.Name = "pickableItemNameTextBox";
+            this.pickableItemNameTextBox.Size = new System.Drawing.Size(538, 26);
+            this.pickableItemNameTextBox.TabIndex = 71;
+            // 
+            // pickableItemNameLabel
+            // 
+            this.pickableItemNameLabel.AutoSize = true;
+            this.pickableItemNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickableItemNameLabel.Location = new System.Drawing.Point(44, 146);
+            this.pickableItemNameLabel.Name = "pickableItemNameLabel";
+            this.pickableItemNameLabel.Size = new System.Drawing.Size(96, 20);
+            this.pickableItemNameLabel.TabIndex = 70;
+            this.pickableItemNameLabel.Text = "Item Name";
+            // 
             // SealsOfHellMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1008, 729);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.mainMenuStrip);
             this.Controls.Add(this.interactableDetailsTabControl);
             this.Controls.Add(this.gameStartTabControl);
             this.Controls.Add(this.roomTabControl);
             this.Controls.Add(this.regionTabControl);
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.mainMenuStrip;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1440, 1078);
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "SealsOfHellMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Seals Of Hell Data Editor";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.mainMenuStrip.ResumeLayout(false);
+            this.mainMenuStrip.PerformLayout();
             this.gameStartTabControl.ResumeLayout(false);
             this.gameDetailsTab.ResumeLayout(false);
             this.gameDetailsTab.PerformLayout();
@@ -2313,9 +2495,11 @@
             this.enemyDetailsTab.PerformLayout();
             this.killZoneDetailsTab.ResumeLayout(false);
             this.killZoneDetailsTab.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.oneInteractionItemDetailsTab.ResumeLayout(false);
+            this.oneInteractionItemDetailsTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.enemyLifeNumericUpDown)).EndInit();
+            this.pickableItemDetailsTab.ResumeLayout(false);
+            this.pickableItemDetailsTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2323,7 +2507,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
@@ -2483,22 +2667,7 @@
         private System.Windows.Forms.TextBox enemyNameTextBox;
         private System.Windows.Forms.Label enemyNameLabel;
         private System.Windows.Forms.TabPage killZoneDetailsTab;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.RichTextBox richTextBox5;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.RichTextBox richTextBox6;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ListBox listBox6;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ListBox listBox7;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.RichTextBox richTextBox7;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TabPage oneInteractionItemDetailsTab;
         private System.Windows.Forms.Button editKillZoneDetails;
         private System.Windows.Forms.Button deleteKillZone;
         private System.Windows.Forms.Label currentKillZoneListLabel;
@@ -2516,6 +2685,37 @@
         private System.Windows.Forms.Label killZoneStoryLabel;
         private System.Windows.Forms.TextBox killZoneNameTextBox;
         private System.Windows.Forms.Label killZoneNameLabel;
+        private System.Windows.Forms.TabPage pickableItemDetailsTab;
+        private System.Windows.Forms.Button editOIIDetails;
+        private System.Windows.Forms.Button deleteOII;
+        private System.Windows.Forms.Label currentOIIListLabel;
+        private System.Windows.Forms.ListBox currentOIIList;
+        private System.Windows.Forms.Button editSelectedOII;
+        private System.Windows.Forms.ComboBox oIITypeSelector;
+        private System.Windows.Forms.Label oIITypeLabel;
+        private System.Windows.Forms.CheckBox isOIIInteractable;
+        private System.Windows.Forms.CheckBox isOIIVisible;
+        private System.Windows.Forms.RichTextBox oIIEndStoryTextBox;
+        private System.Windows.Forms.Label oIIEndStoryLabel;
+        private System.Windows.Forms.RichTextBox oIIUpdateStoryTextBox;
+        private System.Windows.Forms.Label oIIUpdateStoryLabel;
+        private System.Windows.Forms.RichTextBox oIIStoryTextBox;
+        private System.Windows.Forms.Label oIIStoryLabel;
+        private System.Windows.Forms.TextBox oIINameTextBox;
+        private System.Windows.Forms.Label oIINameLabel;
+        private System.Windows.Forms.Button editPickableItemDetails;
+        private System.Windows.Forms.Button deletePickableItem;
+        private System.Windows.Forms.Label currentPickableItemListLabel;
+        private System.Windows.Forms.ListBox currentPickableItemsList;
+        private System.Windows.Forms.Button editSelectedPickableItem;
+        private System.Windows.Forms.ComboBox pickableItemTypeSelector;
+        private System.Windows.Forms.Label pickableItemTypeLabel;
+        private System.Windows.Forms.CheckBox isPickableItemInteractable;
+        private System.Windows.Forms.CheckBox isPickableItemVisible;
+        private System.Windows.Forms.RichTextBox pickableItemStoryTextBox;
+        private System.Windows.Forms.Label pickableItemStoryLabel;
+        private System.Windows.Forms.TextBox pickableItemNameTextBox;
+        private System.Windows.Forms.Label pickableItemNameLabel;
     }
 }
 

@@ -215,6 +215,30 @@ namespace Seals_Of_Hell_Data_Editor
         {
 
         }
+        private void DeleteOII_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditOIIDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditSelectedOII_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void DeletePickableItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditPickableItemDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditSelectedPickableItem_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
 

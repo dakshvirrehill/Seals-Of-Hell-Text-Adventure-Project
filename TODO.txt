@@ -1,3 +1,2 @@
 Make a game icon
-
-Add win condition code
+Add dynamic window name to editor
