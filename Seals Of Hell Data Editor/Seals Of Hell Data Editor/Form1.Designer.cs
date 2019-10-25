@@ -120,6 +120,21 @@
             this.roomCollectorListLabel = new System.Windows.Forms.Label();
             this.regionGateWaysTab = new System.Windows.Forms.TabPage();
             this.regionPortalTab = new System.Windows.Forms.TabPage();
+            this.currentRegionGatewayListLabel = new System.Windows.Forms.Label();
+            this.currentGatewaysList = new System.Windows.Forms.ListBox();
+            this.editSelectedGateway = new System.Windows.Forms.Button();
+            this.deleteGatewayDetails = new System.Windows.Forms.Button();
+            this.editGatewayDetails = new System.Windows.Forms.Button();
+            this.gatewayStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.regionGatewayStoryLabel = new System.Windows.Forms.Label();
+            this.gatewayNameTextBox = new System.Windows.Forms.TextBox();
+            this.regionGatewayNameLabel = new System.Windows.Forms.Label();
+            this.gatewayRoom1 = new System.Windows.Forms.ComboBox();
+            this.gatewayRoom1Label = new System.Windows.Forms.Label();
+            this.gatewayDirection = new System.Windows.Forms.ComboBox();
+            this.gatewayDirectionLabel = new System.Windows.Forms.Label();
+            this.gatewayRoom2 = new System.Windows.Forms.ComboBox();
+            this.gatewayRoom2Label = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.gameStartTabControl.SuspendLayout();
             this.gameDetailsTab.SuspendLayout();
@@ -130,6 +145,7 @@
             this.addEditRegionTab.SuspendLayout();
             this.roomTabControl.SuspendLayout();
             this.addEditRoomTab.SuspendLayout();
+            this.regionGateWaysTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -1075,6 +1091,21 @@
             // 
             // regionGateWaysTab
             // 
+            this.regionGateWaysTab.Controls.Add(this.gatewayRoom2);
+            this.regionGateWaysTab.Controls.Add(this.gatewayRoom2Label);
+            this.regionGateWaysTab.Controls.Add(this.gatewayDirection);
+            this.regionGateWaysTab.Controls.Add(this.gatewayDirectionLabel);
+            this.regionGateWaysTab.Controls.Add(this.gatewayRoom1);
+            this.regionGateWaysTab.Controls.Add(this.gatewayRoom1Label);
+            this.regionGateWaysTab.Controls.Add(this.currentRegionGatewayListLabel);
+            this.regionGateWaysTab.Controls.Add(this.currentGatewaysList);
+            this.regionGateWaysTab.Controls.Add(this.editSelectedGateway);
+            this.regionGateWaysTab.Controls.Add(this.deleteGatewayDetails);
+            this.regionGateWaysTab.Controls.Add(this.editGatewayDetails);
+            this.regionGateWaysTab.Controls.Add(this.gatewayStoryTextBox);
+            this.regionGateWaysTab.Controls.Add(this.regionGatewayStoryLabel);
+            this.regionGateWaysTab.Controls.Add(this.gatewayNameTextBox);
+            this.regionGateWaysTab.Controls.Add(this.regionGatewayNameLabel);
             this.regionGateWaysTab.Location = new System.Drawing.Point(4, 29);
             this.regionGateWaysTab.Name = "regionGateWaysTab";
             this.regionGateWaysTab.Padding = new System.Windows.Forms.Padding(3);
@@ -1092,6 +1123,144 @@
             this.regionPortalTab.TabIndex = 2;
             this.regionPortalTab.Text = "Place Portals";
             this.regionPortalTab.UseVisualStyleBackColor = true;
+            // 
+            // currentRegionGatewayListLabel
+            // 
+            this.currentRegionGatewayListLabel.AutoSize = true;
+            this.currentRegionGatewayListLabel.Location = new System.Drawing.Point(781, 41);
+            this.currentRegionGatewayListLabel.Name = "currentRegionGatewayListLabel";
+            this.currentRegionGatewayListLabel.Size = new System.Drawing.Size(187, 20);
+            this.currentRegionGatewayListLabel.TabIndex = 21;
+            this.currentRegionGatewayListLabel.Text = "Current Gateways List";
+            // 
+            // currentGatewaysList
+            // 
+            this.currentGatewaysList.FormattingEnabled = true;
+            this.currentGatewaysList.ItemHeight = 20;
+            this.currentGatewaysList.Location = new System.Drawing.Point(772, 64);
+            this.currentGatewaysList.Name = "currentGatewaysList";
+            this.currentGatewaysList.Size = new System.Drawing.Size(205, 424);
+            this.currentGatewaysList.TabIndex = 20;
+            // 
+            // editSelectedGateway
+            // 
+            this.editSelectedGateway.Location = new System.Drawing.Point(773, 501);
+            this.editSelectedGateway.Name = "editSelectedGateway";
+            this.editSelectedGateway.Size = new System.Drawing.Size(205, 77);
+            this.editSelectedGateway.TabIndex = 19;
+            this.editSelectedGateway.Text = "Edit Selected";
+            this.editSelectedGateway.UseVisualStyleBackColor = true;
+            this.editSelectedGateway.Click += new System.EventHandler(this.EditSelectedGateway_Click);
+            // 
+            // deleteGatewayDetails
+            // 
+            this.deleteGatewayDetails.Location = new System.Drawing.Point(233, 555);
+            this.deleteGatewayDetails.Name = "deleteGatewayDetails";
+            this.deleteGatewayDetails.Size = new System.Drawing.Size(205, 77);
+            this.deleteGatewayDetails.TabIndex = 18;
+            this.deleteGatewayDetails.Text = "Delete Gateway";
+            this.deleteGatewayDetails.UseVisualStyleBackColor = true;
+            this.deleteGatewayDetails.Click += new System.EventHandler(this.DeleteGatewayDetails_Click);
+            // 
+            // editGatewayDetails
+            // 
+            this.editGatewayDetails.Location = new System.Drawing.Point(480, 555);
+            this.editGatewayDetails.Name = "editGatewayDetails";
+            this.editGatewayDetails.Size = new System.Drawing.Size(205, 77);
+            this.editGatewayDetails.TabIndex = 17;
+            this.editGatewayDetails.Text = "Add/Edit Gateway";
+            this.editGatewayDetails.UseVisualStyleBackColor = true;
+            this.editGatewayDetails.Click += new System.EventHandler(this.EditGatewayDetails_Click);
+            // 
+            // gatewayStoryTextBox
+            // 
+            this.gatewayStoryTextBox.Location = new System.Drawing.Point(196, 88);
+            this.gatewayStoryTextBox.Name = "gatewayStoryTextBox";
+            this.gatewayStoryTextBox.Size = new System.Drawing.Size(538, 180);
+            this.gatewayStoryTextBox.TabIndex = 16;
+            this.gatewayStoryTextBox.Text = "";
+            // 
+            // regionGatewayStoryLabel
+            // 
+            this.regionGatewayStoryLabel.AutoSize = true;
+            this.regionGatewayStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.regionGatewayStoryLabel.Location = new System.Drawing.Point(3, 95);
+            this.regionGatewayStoryLabel.Name = "regionGatewayStoryLabel";
+            this.regionGatewayStoryLabel.Size = new System.Drawing.Size(185, 20);
+            this.regionGatewayStoryLabel.TabIndex = 15;
+            this.regionGatewayStoryLabel.Text = "Story Of The Gateway";
+            // 
+            // gatewayNameTextBox
+            // 
+            this.gatewayNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gatewayNameTextBox.Location = new System.Drawing.Point(199, 35);
+            this.gatewayNameTextBox.Name = "gatewayNameTextBox";
+            this.gatewayNameTextBox.Size = new System.Drawing.Size(538, 26);
+            this.gatewayNameTextBox.TabIndex = 14;
+            // 
+            // regionGatewayNameLabel
+            // 
+            this.regionGatewayNameLabel.AutoSize = true;
+            this.regionGatewayNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.regionGatewayNameLabel.Location = new System.Drawing.Point(6, 40);
+            this.regionGatewayNameLabel.Name = "regionGatewayNameLabel";
+            this.regionGatewayNameLabel.Size = new System.Drawing.Size(189, 20);
+            this.regionGatewayNameLabel.TabIndex = 13;
+            this.regionGatewayNameLabel.Text = "Name Of The Gateway";
+            // 
+            // gatewayRoom1
+            // 
+            this.gatewayRoom1.FormattingEnabled = true;
+            this.gatewayRoom1.Location = new System.Drawing.Point(200, 309);
+            this.gatewayRoom1.Name = "gatewayRoom1";
+            this.gatewayRoom1.Size = new System.Drawing.Size(538, 28);
+            this.gatewayRoom1.TabIndex = 23;
+            // 
+            // gatewayRoom1Label
+            // 
+            this.gatewayRoom1Label.AutoSize = true;
+            this.gatewayRoom1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gatewayRoom1Label.Location = new System.Drawing.Point(27, 312);
+            this.gatewayRoom1Label.Name = "gatewayRoom1Label";
+            this.gatewayRoom1Label.Size = new System.Drawing.Size(167, 20);
+            this.gatewayRoom1Label.TabIndex = 22;
+            this.gatewayRoom1Label.Text = "Room 1 In Gateway";
+            // 
+            // gatewayDirection
+            // 
+            this.gatewayDirection.FormattingEnabled = true;
+            this.gatewayDirection.Location = new System.Drawing.Point(200, 385);
+            this.gatewayDirection.Name = "gatewayDirection";
+            this.gatewayDirection.Size = new System.Drawing.Size(538, 28);
+            this.gatewayDirection.TabIndex = 25;
+            // 
+            // gatewayDirectionLabel
+            // 
+            this.gatewayDirectionLabel.AutoSize = true;
+            this.gatewayDirectionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gatewayDirectionLabel.Location = new System.Drawing.Point(14, 388);
+            this.gatewayDirectionLabel.Name = "gatewayDirectionLabel";
+            this.gatewayDirectionLabel.Size = new System.Drawing.Size(180, 20);
+            this.gatewayDirectionLabel.TabIndex = 24;
+            this.gatewayDirectionLabel.Text = "Direction Of Gateway";
+            // 
+            // gatewayRoom2
+            // 
+            this.gatewayRoom2.FormattingEnabled = true;
+            this.gatewayRoom2.Location = new System.Drawing.Point(200, 460);
+            this.gatewayRoom2.Name = "gatewayRoom2";
+            this.gatewayRoom2.Size = new System.Drawing.Size(538, 28);
+            this.gatewayRoom2.TabIndex = 27;
+            // 
+            // gatewayRoom2Label
+            // 
+            this.gatewayRoom2Label.AutoSize = true;
+            this.gatewayRoom2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gatewayRoom2Label.Location = new System.Drawing.Point(27, 463);
+            this.gatewayRoom2Label.Name = "gatewayRoom2Label";
+            this.gatewayRoom2Label.Size = new System.Drawing.Size(167, 20);
+            this.gatewayRoom2Label.TabIndex = 26;
+            this.gatewayRoom2Label.Text = "Room 2 In Gateway";
             // 
             // SealsOfHellMain
             // 
@@ -1127,6 +1296,8 @@
             this.roomTabControl.ResumeLayout(false);
             this.addEditRoomTab.ResumeLayout(false);
             this.addEditRoomTab.PerformLayout();
+            this.regionGateWaysTab.ResumeLayout(false);
+            this.regionGateWaysTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1226,6 +1397,21 @@
         private System.Windows.Forms.Label roomCollectorListLabel;
         private System.Windows.Forms.TabPage regionGateWaysTab;
         private System.Windows.Forms.TabPage regionPortalTab;
+        private System.Windows.Forms.Label currentRegionGatewayListLabel;
+        private System.Windows.Forms.ListBox currentGatewaysList;
+        private System.Windows.Forms.Button editSelectedGateway;
+        private System.Windows.Forms.Button deleteGatewayDetails;
+        private System.Windows.Forms.Button editGatewayDetails;
+        private System.Windows.Forms.RichTextBox gatewayStoryTextBox;
+        private System.Windows.Forms.Label regionGatewayStoryLabel;
+        private System.Windows.Forms.TextBox gatewayNameTextBox;
+        private System.Windows.Forms.Label regionGatewayNameLabel;
+        private System.Windows.Forms.ComboBox gatewayRoom2;
+        private System.Windows.Forms.Label gatewayRoom2Label;
+        private System.Windows.Forms.ComboBox gatewayDirection;
+        private System.Windows.Forms.Label gatewayDirectionLabel;
+        private System.Windows.Forms.ComboBox gatewayRoom1;
+        private System.Windows.Forms.Label gatewayRoom1Label;
     }
 }
 

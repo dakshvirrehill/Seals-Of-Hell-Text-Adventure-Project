@@ -142,7 +142,18 @@ namespace Seals_Of_Hell_Data_Editor
         {
 
         }
+        private void EditSelectedGateway_Click(object sender, EventArgs e)
+        {
 
+        }
+        private void EditGatewayDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void DeleteGatewayDetails_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
         #region Room Data
         private void DeleteRoomDetails_Click(object sender, EventArgs e)
@@ -157,8 +168,10 @@ namespace Seals_Of_Hell_Data_Editor
         {
 
         }
+
+
+
+
         #endregion
-
-
     }
 }
