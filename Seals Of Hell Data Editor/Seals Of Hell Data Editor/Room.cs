@@ -31,61 +31,44 @@ namespace Seals_Of_Hell_Data_Editor
             if (mCollectors.ContainsKey(pOldCollectorName))
             {
                 mCollectors.Remove(pOldCollectorName);
-                if(mCollectors != null)
-                {
-                    foreach (Collector aCollector in mCollectors.Values)
-                    {
-                        if (aCollector.mUpdatableObjects.Contains(pOldCollectorName))
-                        {
-                            aCollector.mUpdatableObjects.Remove(pOldCollectorName);
-                            aCollector.mUpdatableObjects.Add(pNewCollector.mName);
-                        }
-                    }
-                }
-                if(mEnemies != null)
-                {
-                    foreach (Enemy aEnemy in mEnemies.Values)
-                    {
-                        if (aEnemy.mUpdatableObjects.Contains(pOldCollectorName))
-                        {
-                            aEnemy.mUpdatableObjects.Remove(pOldCollectorName);
-                            aEnemy.mUpdatableObjects.Add(pNewCollector.mName);
-                        }
-                    }
-                }
-                if(mKillZones != null)
-                {
-                    foreach (KillZone aKillZone in mKillZones.Values)
-                    {
-                        if (aKillZone.mUpdatableObjects.Contains(pOldCollectorName))
-                        {
-                            aKillZone.mUpdatableObjects.Remove(pOldCollectorName);
-                            aKillZone.mUpdatableObjects.Add(pNewCollector.mName);
-                        }
-                    }
-                }
-                if(mTreasureCollector != null)
-                {
-                    if(mTreasureCollector.mUpdatableObjects.Contains(pOldCollectorName))
-                    {
-                        mTreasureCollector.mUpdatableObjects.Remove(pOldCollectorName);
-                        mTreasureCollector.mUpdatableObjects.Add(pNewCollector.mName);
-                    }
-                }
-                if(mOneInteractionItems != null)
-                {
-                    foreach(OneInteractionItem aItem in mOneInteractionItems.Values)
-                    {
-                        if(aItem.mUpdatableObjects.Contains(pOldCollectorName))
-                        {
-                            aItem.mUpdatableObjects.Remove(pOldCollectorName);
-                            aItem.mUpdatableObjects.Add(pNewCollector.mName);
-                        }
-                    }
-                }
+                EditUpdatableNames(pOldCollectorName, pNewCollector.mName);
             }
             mCollectors.Add(pNewCollector.mName, pNewCollector);
         }
-
+        void EditUpdatableNames(string pOldName, string pNewName)
+        {
+            if (mCollectors != null)
+            {
+                foreach (Collector aCollector in mCollectors.Values)
+                {
+                    aCollector.ChangeUpdatableObjectName(pOldName, pNewName);
+                }
+            }
+            if (mEnemies != null)
+            {
+                foreach (Enemy aEnemy in mEnemies.Values)
+                {
+                    aEnemy.ChangeUpdatableObjectName(pOldName, pNewName);
+                }
+            }
+            if (mKillZones != null)
+            {
+                foreach (KillZone aKillZone in mKillZones.Values)
+                {
+                    aKillZone.ChangeUpdatableObjectName(pOldName, pNewName);
+                }
+            }
+            if (mTreasureCollector != null)
+            {
+                mTreasureCollector.ChangeUpdatableObjectName(pOldName, pNewName);
+            }
+            if (mOneInteractionItems != null)
+            {
+                foreach (OneInteractionItem aItem in mOneInteractionItems.Values)
+                {
+                    aItem.ChangeUpdatableObjectName(pOldName, pNewName);
+                }
+            }
+        }
     }
 }

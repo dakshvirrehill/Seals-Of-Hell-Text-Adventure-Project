@@ -361,11 +361,12 @@ namespace Seals_Of_Hell_Data_Editor
                     (string)this.collectorCollectionObjectSelector.SelectedItem)
                 };
                 mGameDetails.AssignGivable(mSelectedCollector.mCollectionObject.mName);
-                mGameDetails.AddCollector(mSelectedCollector);
                 if(aCollectorRoom != null)
                 {
                     aCollectorRoom.RemoveOldCollectorAndAddNew(aCollectorOldName, mSelectedCollector);
+                    mSelectedCollector.SetInRoom(aCollectorRoom.mName);
                 }
+                mGameDetails.AddCollector(mSelectedCollector);
                 mSelectedCollector = null;
             }
             ResetCollectorEditor();
