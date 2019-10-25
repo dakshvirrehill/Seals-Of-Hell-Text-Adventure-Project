@@ -108,7 +108,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.roomNameLabel = new System.Windows.Forms.Label();
-            this.roomPickableList = new System.Windows.Forms.ListBox();
+            this.roomPickableItemsList = new System.Windows.Forms.ListBox();
             this.roomOIIList = new System.Windows.Forms.ListBox();
             this.roomKillZonesList = new System.Windows.Forms.ListBox();
             this.roomEnemiesList = new System.Windows.Forms.ListBox();
@@ -237,6 +237,38 @@
             this.pickableItemStoryLabel = new System.Windows.Forms.Label();
             this.pickableItemNameTextBox = new System.Windows.Forms.TextBox();
             this.pickableItemNameLabel = new System.Windows.Forms.Label();
+            this.collectorUpdatablesTab = new System.Windows.Forms.TabPage();
+            this.enemyUpdatablesTab = new System.Windows.Forms.TabPage();
+            this.killZoneUpdatablesTab = new System.Windows.Forms.TabPage();
+            this.oIIUpdatablesTab = new System.Windows.Forms.TabPage();
+            this.colRoomSelListLabel = new System.Windows.Forms.Label();
+            this.inRoomCollectorsListLabel = new System.Windows.Forms.Label();
+            this.collectorUpdatableListLabel = new System.Windows.Forms.Label();
+            this.colCurRoomList = new System.Windows.Forms.ListBox();
+            this.colCollectorList = new System.Windows.Forms.ListBox();
+            this.collectorUpdatableList = new System.Windows.Forms.ListBox();
+            this.editCollectorUpdatableDetails = new System.Windows.Forms.Button();
+            this.editEnemyUpdatableDetails = new System.Windows.Forms.Button();
+            this.enemyUpdatableList = new System.Windows.Forms.ListBox();
+            this.enEnemyList = new System.Windows.Forms.ListBox();
+            this.enCurRoomList = new System.Windows.Forms.ListBox();
+            this.enEnemyUpdatableListLabel = new System.Windows.Forms.Label();
+            this.enRoomEnemyListLabel = new System.Windows.Forms.Label();
+            this.enCurRoomListLabel = new System.Windows.Forms.Label();
+            this.editKillZoneUpdatableDetails = new System.Windows.Forms.Button();
+            this.killZoneUpdatableList = new System.Windows.Forms.ListBox();
+            this.kzKillZoneList = new System.Windows.Forms.ListBox();
+            this.kzCurRoomList = new System.Windows.Forms.ListBox();
+            this.kzUpdatableListLabel = new System.Windows.Forms.Label();
+            this.kzRoomKillZoneListLabel = new System.Windows.Forms.Label();
+            this.kzCurRoomListLabel = new System.Windows.Forms.Label();
+            this.editOIIUpdatableDetails = new System.Windows.Forms.Button();
+            this.oIItemUpdatableList = new System.Windows.Forms.ListBox();
+            this.oIIItemList = new System.Windows.Forms.ListBox();
+            this.oIICurRoomList = new System.Windows.Forms.ListBox();
+            this.oIIUpdatableListLabel = new System.Windows.Forms.Label();
+            this.oIIRoomItemsListLabel = new System.Windows.Forms.Label();
+            this.oIICurRoomListLabel = new System.Windows.Forms.Label();
             this.mainMenuStrip.SuspendLayout();
             this.gameStartTabControl.SuspendLayout();
             this.gameDetailsTab.SuspendLayout();
@@ -259,6 +291,10 @@
             this.oneInteractionItemDetailsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.enemyLifeNumericUpDown)).BeginInit();
             this.pickableItemDetailsTab.SuspendLayout();
+            this.collectorUpdatablesTab.SuspendLayout();
+            this.enemyUpdatablesTab.SuspendLayout();
+            this.killZoneUpdatablesTab.SuspendLayout();
+            this.oIIUpdatablesTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenuStrip
@@ -977,6 +1013,10 @@
             // roomTabControl
             // 
             this.roomTabControl.Controls.Add(this.addEditRoomTab);
+            this.roomTabControl.Controls.Add(this.collectorUpdatablesTab);
+            this.roomTabControl.Controls.Add(this.enemyUpdatablesTab);
+            this.roomTabControl.Controls.Add(this.killZoneUpdatablesTab);
+            this.roomTabControl.Controls.Add(this.oIIUpdatablesTab);
             this.roomTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.roomTabControl.Location = new System.Drawing.Point(0, 27);
             this.roomTabControl.Name = "roomTabControl";
@@ -987,7 +1027,7 @@
             // 
             // addEditRoomTab
             // 
-            this.addEditRoomTab.Controls.Add(this.roomPickableList);
+            this.addEditRoomTab.Controls.Add(this.roomPickableItemsList);
             this.addEditRoomTab.Controls.Add(this.roomOIIList);
             this.addEditRoomTab.Controls.Add(this.roomKillZonesList);
             this.addEditRoomTab.Controls.Add(this.roomEnemiesList);
@@ -1099,16 +1139,16 @@
             this.roomNameLabel.TabIndex = 0;
             this.roomNameLabel.Text = "Name Of The Room";
             // 
-            // roomPickableList
+            // roomPickableItemsList
             // 
-            this.roomPickableList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roomPickableList.FormattingEnabled = true;
-            this.roomPickableList.ItemHeight = 16;
-            this.roomPickableList.Location = new System.Drawing.Point(526, 310);
-            this.roomPickableList.Name = "roomPickableList";
-            this.roomPickableList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.roomPickableList.Size = new System.Drawing.Size(200, 148);
-            this.roomPickableList.TabIndex = 34;
+            this.roomPickableItemsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomPickableItemsList.FormattingEnabled = true;
+            this.roomPickableItemsList.ItemHeight = 16;
+            this.roomPickableItemsList.Location = new System.Drawing.Point(526, 310);
+            this.roomPickableItemsList.Name = "roomPickableItemsList";
+            this.roomPickableItemsList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.roomPickableItemsList.Size = new System.Drawing.Size(200, 148);
+            this.roomPickableItemsList.TabIndex = 34;
             // 
             // roomOIIList
             // 
@@ -2445,6 +2485,338 @@
             this.pickableItemNameLabel.TabIndex = 70;
             this.pickableItemNameLabel.Text = "Item Name";
             // 
+            // collectorUpdatablesTab
+            // 
+            this.collectorUpdatablesTab.Controls.Add(this.editCollectorUpdatableDetails);
+            this.collectorUpdatablesTab.Controls.Add(this.collectorUpdatableList);
+            this.collectorUpdatablesTab.Controls.Add(this.colCollectorList);
+            this.collectorUpdatablesTab.Controls.Add(this.colCurRoomList);
+            this.collectorUpdatablesTab.Controls.Add(this.collectorUpdatableListLabel);
+            this.collectorUpdatablesTab.Controls.Add(this.inRoomCollectorsListLabel);
+            this.collectorUpdatablesTab.Controls.Add(this.colRoomSelListLabel);
+            this.collectorUpdatablesTab.Location = new System.Drawing.Point(4, 29);
+            this.collectorUpdatablesTab.Name = "collectorUpdatablesTab";
+            this.collectorUpdatablesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.collectorUpdatablesTab.Size = new System.Drawing.Size(1000, 670);
+            this.collectorUpdatablesTab.TabIndex = 1;
+            this.collectorUpdatablesTab.Text = "Collector Updatables";
+            this.collectorUpdatablesTab.UseVisualStyleBackColor = true;
+            // 
+            // enemyUpdatablesTab
+            // 
+            this.enemyUpdatablesTab.Controls.Add(this.editEnemyUpdatableDetails);
+            this.enemyUpdatablesTab.Controls.Add(this.enemyUpdatableList);
+            this.enemyUpdatablesTab.Controls.Add(this.enEnemyList);
+            this.enemyUpdatablesTab.Controls.Add(this.enCurRoomList);
+            this.enemyUpdatablesTab.Controls.Add(this.enEnemyUpdatableListLabel);
+            this.enemyUpdatablesTab.Controls.Add(this.enRoomEnemyListLabel);
+            this.enemyUpdatablesTab.Controls.Add(this.enCurRoomListLabel);
+            this.enemyUpdatablesTab.Location = new System.Drawing.Point(4, 29);
+            this.enemyUpdatablesTab.Name = "enemyUpdatablesTab";
+            this.enemyUpdatablesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.enemyUpdatablesTab.Size = new System.Drawing.Size(1000, 670);
+            this.enemyUpdatablesTab.TabIndex = 2;
+            this.enemyUpdatablesTab.Text = "Enemy Updatables";
+            this.enemyUpdatablesTab.UseVisualStyleBackColor = true;
+            // 
+            // killZoneUpdatablesTab
+            // 
+            this.killZoneUpdatablesTab.Controls.Add(this.editKillZoneUpdatableDetails);
+            this.killZoneUpdatablesTab.Controls.Add(this.killZoneUpdatableList);
+            this.killZoneUpdatablesTab.Controls.Add(this.kzKillZoneList);
+            this.killZoneUpdatablesTab.Controls.Add(this.kzCurRoomList);
+            this.killZoneUpdatablesTab.Controls.Add(this.kzUpdatableListLabel);
+            this.killZoneUpdatablesTab.Controls.Add(this.kzRoomKillZoneListLabel);
+            this.killZoneUpdatablesTab.Controls.Add(this.kzCurRoomListLabel);
+            this.killZoneUpdatablesTab.Location = new System.Drawing.Point(4, 29);
+            this.killZoneUpdatablesTab.Name = "killZoneUpdatablesTab";
+            this.killZoneUpdatablesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.killZoneUpdatablesTab.Size = new System.Drawing.Size(1000, 670);
+            this.killZoneUpdatablesTab.TabIndex = 3;
+            this.killZoneUpdatablesTab.Text = "Kill Zone Updatables";
+            this.killZoneUpdatablesTab.UseVisualStyleBackColor = true;
+            // 
+            // oIIUpdatablesTab
+            // 
+            this.oIIUpdatablesTab.Controls.Add(this.editOIIUpdatableDetails);
+            this.oIIUpdatablesTab.Controls.Add(this.oIItemUpdatableList);
+            this.oIIUpdatablesTab.Controls.Add(this.oIIItemList);
+            this.oIIUpdatablesTab.Controls.Add(this.oIICurRoomList);
+            this.oIIUpdatablesTab.Controls.Add(this.oIIUpdatableListLabel);
+            this.oIIUpdatablesTab.Controls.Add(this.oIIRoomItemsListLabel);
+            this.oIIUpdatablesTab.Controls.Add(this.oIICurRoomListLabel);
+            this.oIIUpdatablesTab.Location = new System.Drawing.Point(4, 29);
+            this.oIIUpdatablesTab.Name = "oIIUpdatablesTab";
+            this.oIIUpdatablesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.oIIUpdatablesTab.Size = new System.Drawing.Size(1000, 670);
+            this.oIIUpdatablesTab.TabIndex = 4;
+            this.oIIUpdatablesTab.Text = "One Interaction Item Updatables";
+            this.oIIUpdatablesTab.UseVisualStyleBackColor = true;
+            // 
+            // colRoomSelListLabel
+            // 
+            this.colRoomSelListLabel.AutoSize = true;
+            this.colRoomSelListLabel.Location = new System.Drawing.Point(73, 34);
+            this.colRoomSelListLabel.Name = "colRoomSelListLabel";
+            this.colRoomSelListLabel.Size = new System.Drawing.Size(164, 20);
+            this.colRoomSelListLabel.TabIndex = 0;
+            this.colRoomSelListLabel.Text = "Current Rooms List";
+            // 
+            // inRoomCollectorsListLabel
+            // 
+            this.inRoomCollectorsListLabel.AutoSize = true;
+            this.inRoomCollectorsListLabel.Location = new System.Drawing.Point(396, 34);
+            this.inRoomCollectorsListLabel.Name = "inRoomCollectorsListLabel";
+            this.inRoomCollectorsListLabel.Size = new System.Drawing.Size(196, 20);
+            this.inRoomCollectorsListLabel.TabIndex = 1;
+            this.inRoomCollectorsListLabel.Text = "In Room Collectors List";
+            // 
+            // collectorUpdatableListLabel
+            // 
+            this.collectorUpdatableListLabel.AutoSize = true;
+            this.collectorUpdatableListLabel.Location = new System.Drawing.Point(718, 34);
+            this.collectorUpdatableListLabel.Name = "collectorUpdatableListLabel";
+            this.collectorUpdatableListLabel.Size = new System.Drawing.Size(211, 20);
+            this.collectorUpdatableListLabel.TabIndex = 2;
+            this.collectorUpdatableListLabel.Text = "Collector Updatables List";
+            // 
+            // colCurRoomList
+            // 
+            this.colCurRoomList.FormattingEnabled = true;
+            this.colCurRoomList.ItemHeight = 20;
+            this.colCurRoomList.Location = new System.Drawing.Point(48, 70);
+            this.colCurRoomList.Name = "colCurRoomList";
+            this.colCurRoomList.Size = new System.Drawing.Size(233, 484);
+            this.colCurRoomList.TabIndex = 3;
+            this.colCurRoomList.SelectedIndexChanged += new System.EventHandler(this.ColCurRoomList_SelectedIndexChanged);
+            // 
+            // colCollectorList
+            // 
+            this.colCollectorList.FormattingEnabled = true;
+            this.colCollectorList.ItemHeight = 20;
+            this.colCollectorList.Location = new System.Drawing.Point(379, 70);
+            this.colCollectorList.Name = "colCollectorList";
+            this.colCollectorList.Size = new System.Drawing.Size(233, 484);
+            this.colCollectorList.TabIndex = 4;
+            this.colCollectorList.SelectedIndexChanged += new System.EventHandler(this.ColCollectorList_SelectedIndexChanged);
+            // 
+            // collectorUpdatableList
+            // 
+            this.collectorUpdatableList.FormattingEnabled = true;
+            this.collectorUpdatableList.ItemHeight = 20;
+            this.collectorUpdatableList.Location = new System.Drawing.Point(710, 70);
+            this.collectorUpdatableList.Name = "collectorUpdatableList";
+            this.collectorUpdatableList.Size = new System.Drawing.Size(233, 484);
+            this.collectorUpdatableList.TabIndex = 5;
+            // 
+            // editCollectorUpdatableDetails
+            // 
+            this.editCollectorUpdatableDetails.Location = new System.Drawing.Point(292, 584);
+            this.editCollectorUpdatableDetails.Name = "editCollectorUpdatableDetails";
+            this.editCollectorUpdatableDetails.Size = new System.Drawing.Size(398, 66);
+            this.editCollectorUpdatableDetails.TabIndex = 6;
+            this.editCollectorUpdatableDetails.Text = "Add/Edit Collector Updatables";
+            this.editCollectorUpdatableDetails.UseVisualStyleBackColor = true;
+            this.editCollectorUpdatableDetails.Click += new System.EventHandler(this.EditCollectorUpdatableDetails_Click);
+            // 
+            // editEnemyUpdatableDetails
+            // 
+            this.editEnemyUpdatableDetails.Location = new System.Drawing.Point(297, 577);
+            this.editEnemyUpdatableDetails.Name = "editEnemyUpdatableDetails";
+            this.editEnemyUpdatableDetails.Size = new System.Drawing.Size(398, 66);
+            this.editEnemyUpdatableDetails.TabIndex = 13;
+            this.editEnemyUpdatableDetails.Text = "Add/Edit Enemy Updatables";
+            this.editEnemyUpdatableDetails.UseVisualStyleBackColor = true;
+            this.editEnemyUpdatableDetails.Click += new System.EventHandler(this.EditEnemyUpdatableDetails_Click);
+            // 
+            // enemyUpdatableList
+            // 
+            this.enemyUpdatableList.FormattingEnabled = true;
+            this.enemyUpdatableList.ItemHeight = 20;
+            this.enemyUpdatableList.Location = new System.Drawing.Point(715, 63);
+            this.enemyUpdatableList.Name = "enemyUpdatableList";
+            this.enemyUpdatableList.Size = new System.Drawing.Size(233, 484);
+            this.enemyUpdatableList.TabIndex = 12;
+            // 
+            // enEnemyList
+            // 
+            this.enEnemyList.FormattingEnabled = true;
+            this.enEnemyList.ItemHeight = 20;
+            this.enEnemyList.Location = new System.Drawing.Point(384, 63);
+            this.enEnemyList.Name = "enEnemyList";
+            this.enEnemyList.Size = new System.Drawing.Size(233, 484);
+            this.enEnemyList.TabIndex = 11;
+            this.enEnemyList.SelectedIndexChanged += new System.EventHandler(this.EnEnemyList_SelectedIndexChanged);
+            // 
+            // enCurRoomList
+            // 
+            this.enCurRoomList.FormattingEnabled = true;
+            this.enCurRoomList.ItemHeight = 20;
+            this.enCurRoomList.Location = new System.Drawing.Point(53, 63);
+            this.enCurRoomList.Name = "enCurRoomList";
+            this.enCurRoomList.Size = new System.Drawing.Size(233, 484);
+            this.enCurRoomList.TabIndex = 10;
+            this.enCurRoomList.SelectedIndexChanged += new System.EventHandler(this.EnCurRoomList_SelectedIndexChanged);
+            // 
+            // enEnemyUpdatableListLabel
+            // 
+            this.enEnemyUpdatableListLabel.AutoSize = true;
+            this.enEnemyUpdatableListLabel.Location = new System.Drawing.Point(723, 27);
+            this.enEnemyUpdatableListLabel.Name = "enEnemyUpdatableListLabel";
+            this.enEnemyUpdatableListLabel.Size = new System.Drawing.Size(194, 20);
+            this.enEnemyUpdatableListLabel.TabIndex = 9;
+            this.enEnemyUpdatableListLabel.Text = "Enemy Updatables List";
+            // 
+            // enRoomEnemyListLabel
+            // 
+            this.enRoomEnemyListLabel.AutoSize = true;
+            this.enRoomEnemyListLabel.Location = new System.Drawing.Point(401, 27);
+            this.enRoomEnemyListLabel.Name = "enRoomEnemyListLabel";
+            this.enRoomEnemyListLabel.Size = new System.Drawing.Size(185, 20);
+            this.enRoomEnemyListLabel.TabIndex = 8;
+            this.enRoomEnemyListLabel.Text = "In Room Enemies List";
+            // 
+            // enCurRoomListLabel
+            // 
+            this.enCurRoomListLabel.AutoSize = true;
+            this.enCurRoomListLabel.Location = new System.Drawing.Point(78, 27);
+            this.enCurRoomListLabel.Name = "enCurRoomListLabel";
+            this.enCurRoomListLabel.Size = new System.Drawing.Size(164, 20);
+            this.enCurRoomListLabel.TabIndex = 7;
+            this.enCurRoomListLabel.Text = "Current Rooms List";
+            // 
+            // editKillZoneUpdatableDetails
+            // 
+            this.editKillZoneUpdatableDetails.Location = new System.Drawing.Point(297, 577);
+            this.editKillZoneUpdatableDetails.Name = "editKillZoneUpdatableDetails";
+            this.editKillZoneUpdatableDetails.Size = new System.Drawing.Size(398, 66);
+            this.editKillZoneUpdatableDetails.TabIndex = 13;
+            this.editKillZoneUpdatableDetails.Text = "Add/Edit Kill Zone Updatables";
+            this.editKillZoneUpdatableDetails.UseVisualStyleBackColor = true;
+            this.editKillZoneUpdatableDetails.Click += new System.EventHandler(this.EditKillZoneUpdatableDetails_Click);
+            // 
+            // killZoneUpdatableList
+            // 
+            this.killZoneUpdatableList.FormattingEnabled = true;
+            this.killZoneUpdatableList.ItemHeight = 20;
+            this.killZoneUpdatableList.Location = new System.Drawing.Point(715, 63);
+            this.killZoneUpdatableList.Name = "killZoneUpdatableList";
+            this.killZoneUpdatableList.Size = new System.Drawing.Size(233, 484);
+            this.killZoneUpdatableList.TabIndex = 12;
+            // 
+            // kzKillZoneList
+            // 
+            this.kzKillZoneList.FormattingEnabled = true;
+            this.kzKillZoneList.ItemHeight = 20;
+            this.kzKillZoneList.Location = new System.Drawing.Point(384, 63);
+            this.kzKillZoneList.Name = "kzKillZoneList";
+            this.kzKillZoneList.Size = new System.Drawing.Size(233, 484);
+            this.kzKillZoneList.TabIndex = 11;
+            this.kzKillZoneList.SelectedIndexChanged += new System.EventHandler(this.KzKillZoneList_SelectedIndexChanged);
+            // 
+            // kzCurRoomList
+            // 
+            this.kzCurRoomList.FormattingEnabled = true;
+            this.kzCurRoomList.ItemHeight = 20;
+            this.kzCurRoomList.Location = new System.Drawing.Point(53, 63);
+            this.kzCurRoomList.Name = "kzCurRoomList";
+            this.kzCurRoomList.Size = new System.Drawing.Size(233, 484);
+            this.kzCurRoomList.TabIndex = 10;
+            this.kzCurRoomList.SelectedIndexChanged += new System.EventHandler(this.KzCurRoomList_SelectedIndexChanged);
+            // 
+            // kzUpdatableListLabel
+            // 
+            this.kzUpdatableListLabel.AutoSize = true;
+            this.kzUpdatableListLabel.Location = new System.Drawing.Point(723, 27);
+            this.kzUpdatableListLabel.Name = "kzUpdatableListLabel";
+            this.kzUpdatableListLabel.Size = new System.Drawing.Size(204, 20);
+            this.kzUpdatableListLabel.TabIndex = 9;
+            this.kzUpdatableListLabel.Text = "KillZone Updatables List";
+            // 
+            // kzRoomKillZoneListLabel
+            // 
+            this.kzRoomKillZoneListLabel.AutoSize = true;
+            this.kzRoomKillZoneListLabel.Location = new System.Drawing.Point(401, 27);
+            this.kzRoomKillZoneListLabel.Name = "kzRoomKillZoneListLabel";
+            this.kzRoomKillZoneListLabel.Size = new System.Drawing.Size(194, 20);
+            this.kzRoomKillZoneListLabel.TabIndex = 8;
+            this.kzRoomKillZoneListLabel.Text = "In Room Kill Zones List";
+            // 
+            // kzCurRoomListLabel
+            // 
+            this.kzCurRoomListLabel.AutoSize = true;
+            this.kzCurRoomListLabel.Location = new System.Drawing.Point(78, 27);
+            this.kzCurRoomListLabel.Name = "kzCurRoomListLabel";
+            this.kzCurRoomListLabel.Size = new System.Drawing.Size(164, 20);
+            this.kzCurRoomListLabel.TabIndex = 7;
+            this.kzCurRoomListLabel.Text = "Current Rooms List";
+            // 
+            // editOIIUpdatableDetails
+            // 
+            this.editOIIUpdatableDetails.Location = new System.Drawing.Point(297, 577);
+            this.editOIIUpdatableDetails.Name = "editOIIUpdatableDetails";
+            this.editOIIUpdatableDetails.Size = new System.Drawing.Size(398, 66);
+            this.editOIIUpdatableDetails.TabIndex = 13;
+            this.editOIIUpdatableDetails.Text = "Add/Edit One Interaction Item Updatables";
+            this.editOIIUpdatableDetails.UseVisualStyleBackColor = true;
+            this.editOIIUpdatableDetails.Click += new System.EventHandler(this.EditOIIUpdatableDetails_Click);
+            // 
+            // oIItemUpdatableList
+            // 
+            this.oIItemUpdatableList.FormattingEnabled = true;
+            this.oIItemUpdatableList.ItemHeight = 20;
+            this.oIItemUpdatableList.Location = new System.Drawing.Point(715, 63);
+            this.oIItemUpdatableList.Name = "oIItemUpdatableList";
+            this.oIItemUpdatableList.Size = new System.Drawing.Size(233, 484);
+            this.oIItemUpdatableList.TabIndex = 12;
+            // 
+            // oIIItemList
+            // 
+            this.oIIItemList.FormattingEnabled = true;
+            this.oIIItemList.ItemHeight = 20;
+            this.oIIItemList.Location = new System.Drawing.Point(384, 63);
+            this.oIIItemList.Name = "oIIItemList";
+            this.oIIItemList.Size = new System.Drawing.Size(233, 484);
+            this.oIIItemList.TabIndex = 11;
+            this.oIIItemList.SelectedIndexChanged += new System.EventHandler(this.OIIItemList_SelectedIndexChanged);
+            // 
+            // oIICurRoomList
+            // 
+            this.oIICurRoomList.FormattingEnabled = true;
+            this.oIICurRoomList.ItemHeight = 20;
+            this.oIICurRoomList.Location = new System.Drawing.Point(53, 63);
+            this.oIICurRoomList.Name = "oIICurRoomList";
+            this.oIICurRoomList.Size = new System.Drawing.Size(233, 484);
+            this.oIICurRoomList.TabIndex = 10;
+            this.oIICurRoomList.SelectedIndexChanged += new System.EventHandler(this.OIICurRoomList_SelectedIndexChanged);
+            // 
+            // oIIUpdatableListLabel
+            // 
+            this.oIIUpdatableListLabel.AutoSize = true;
+            this.oIIUpdatableListLabel.Location = new System.Drawing.Point(723, 27);
+            this.oIIUpdatableListLabel.Name = "oIIUpdatableListLabel";
+            this.oIIUpdatableListLabel.Size = new System.Drawing.Size(185, 20);
+            this.oIIUpdatableListLabel.TabIndex = 9;
+            this.oIIUpdatableListLabel.Text = "Items Updatables List";
+            // 
+            // oIIRoomItemsListLabel
+            // 
+            this.oIIRoomItemsListLabel.AutoSize = true;
+            this.oIIRoomItemsListLabel.Location = new System.Drawing.Point(401, 27);
+            this.oIIRoomItemsListLabel.Name = "oIIRoomItemsListLabel";
+            this.oIIRoomItemsListLabel.Size = new System.Drawing.Size(161, 20);
+            this.oIIRoomItemsListLabel.TabIndex = 8;
+            this.oIIRoomItemsListLabel.Text = "In Room Items List";
+            // 
+            // oIICurRoomListLabel
+            // 
+            this.oIICurRoomListLabel.AutoSize = true;
+            this.oIICurRoomListLabel.Location = new System.Drawing.Point(78, 27);
+            this.oIICurRoomListLabel.Name = "oIICurRoomListLabel";
+            this.oIICurRoomListLabel.Size = new System.Drawing.Size(164, 20);
+            this.oIICurRoomListLabel.TabIndex = 7;
+            this.oIICurRoomListLabel.Text = "Current Rooms List";
+            // 
             // SealsOfHellMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2452,10 +2824,10 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.mainMenuStrip);
-            this.Controls.Add(this.interactableDetailsTabControl);
-            this.Controls.Add(this.gameStartTabControl);
             this.Controls.Add(this.roomTabControl);
             this.Controls.Add(this.regionTabControl);
+            this.Controls.Add(this.interactableDetailsTabControl);
+            this.Controls.Add(this.gameStartTabControl);
             this.MainMenuStrip = this.mainMenuStrip;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1440, 1078);
@@ -2500,6 +2872,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.enemyLifeNumericUpDown)).EndInit();
             this.pickableItemDetailsTab.ResumeLayout(false);
             this.pickableItemDetailsTab.PerformLayout();
+            this.collectorUpdatablesTab.ResumeLayout(false);
+            this.collectorUpdatablesTab.PerformLayout();
+            this.enemyUpdatablesTab.ResumeLayout(false);
+            this.enemyUpdatablesTab.PerformLayout();
+            this.killZoneUpdatablesTab.ResumeLayout(false);
+            this.killZoneUpdatablesTab.PerformLayout();
+            this.oIIUpdatablesTab.ResumeLayout(false);
+            this.oIIUpdatablesTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2587,7 +2967,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label roomNameLabel;
-        private System.Windows.Forms.ListBox roomPickableList;
+        private System.Windows.Forms.ListBox roomPickableItemsList;
         private System.Windows.Forms.ListBox roomOIIList;
         private System.Windows.Forms.ListBox roomKillZonesList;
         private System.Windows.Forms.ListBox roomEnemiesList;
@@ -2716,6 +3096,38 @@
         private System.Windows.Forms.Label pickableItemStoryLabel;
         private System.Windows.Forms.TextBox pickableItemNameTextBox;
         private System.Windows.Forms.Label pickableItemNameLabel;
+        private System.Windows.Forms.TabPage collectorUpdatablesTab;
+        private System.Windows.Forms.Button editCollectorUpdatableDetails;
+        private System.Windows.Forms.ListBox collectorUpdatableList;
+        private System.Windows.Forms.ListBox colCollectorList;
+        private System.Windows.Forms.ListBox colCurRoomList;
+        private System.Windows.Forms.Label collectorUpdatableListLabel;
+        private System.Windows.Forms.Label inRoomCollectorsListLabel;
+        private System.Windows.Forms.Label colRoomSelListLabel;
+        private System.Windows.Forms.TabPage enemyUpdatablesTab;
+        private System.Windows.Forms.TabPage killZoneUpdatablesTab;
+        private System.Windows.Forms.TabPage oIIUpdatablesTab;
+        private System.Windows.Forms.Button editEnemyUpdatableDetails;
+        private System.Windows.Forms.ListBox enemyUpdatableList;
+        private System.Windows.Forms.ListBox enEnemyList;
+        private System.Windows.Forms.ListBox enCurRoomList;
+        private System.Windows.Forms.Label enEnemyUpdatableListLabel;
+        private System.Windows.Forms.Label enRoomEnemyListLabel;
+        private System.Windows.Forms.Label enCurRoomListLabel;
+        private System.Windows.Forms.Button editKillZoneUpdatableDetails;
+        private System.Windows.Forms.ListBox killZoneUpdatableList;
+        private System.Windows.Forms.ListBox kzKillZoneList;
+        private System.Windows.Forms.ListBox kzCurRoomList;
+        private System.Windows.Forms.Label kzUpdatableListLabel;
+        private System.Windows.Forms.Label kzRoomKillZoneListLabel;
+        private System.Windows.Forms.Label kzCurRoomListLabel;
+        private System.Windows.Forms.Button editOIIUpdatableDetails;
+        private System.Windows.Forms.ListBox oIItemUpdatableList;
+        private System.Windows.Forms.ListBox oIIItemList;
+        private System.Windows.Forms.ListBox oIICurRoomList;
+        private System.Windows.Forms.Label oIIUpdatableListLabel;
+        private System.Windows.Forms.Label oIIRoomItemsListLabel;
+        private System.Windows.Forms.Label oIICurRoomListLabel;
     }
 }
 

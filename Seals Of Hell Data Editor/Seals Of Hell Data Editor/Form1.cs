@@ -177,6 +177,54 @@ namespace Seals_Of_Hell_Data_Editor
         {
 
         }
+        private void ColCurRoomList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void ColCollectorList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void EditCollectorUpdatableDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EnCurRoomList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void EnEnemyList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void EditEnemyUpdatableDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void KzCurRoomList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void KzKillZoneList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void EditKillZoneUpdatableDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void OIICurRoomList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void OIIItemList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void EditOIIUpdatableDetails_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
         #region Interactables Data
         private void DeleteCollectorDetails_Click(object sender, EventArgs e)
@@ -239,6 +287,15 @@ namespace Seals_Of_Hell_Data_Editor
         {
 
         }
+
+
+
+
+
+
+
+
+
         #endregion
 
 
