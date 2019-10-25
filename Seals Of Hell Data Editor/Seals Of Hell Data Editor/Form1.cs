@@ -129,5 +129,36 @@ namespace Seals_Of_Hell_Data_Editor
 
 
         #endregion
+        #region Region Data
+        private void DeleteRegionDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditRegionDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditSelectedRegion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+        #region Room Data
+        private void DeleteRoomDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditRoomDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void EditSelectedRoom_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+
     }
 }

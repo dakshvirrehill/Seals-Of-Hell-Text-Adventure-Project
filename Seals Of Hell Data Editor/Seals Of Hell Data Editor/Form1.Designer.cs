@@ -84,7 +84,7 @@
             this.treasureCollectorNameLabel = new System.Windows.Forms.Label();
             this.regionTabControl = new System.Windows.Forms.TabControl();
             this.addEditRegionTab = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.deleteRegionDetails = new System.Windows.Forms.Button();
             this.allRoomsRegionList = new System.Windows.Forms.ListBox();
             this.newRegionRoomsLabel = new System.Windows.Forms.Label();
             this.entryRoomSelector = new System.Windows.Forms.ComboBox();
@@ -94,6 +94,32 @@
             this.newRegionStoryLabel = new System.Windows.Forms.Label();
             this.regionNameTextBox = new System.Windows.Forms.TextBox();
             this.newRegionNameLabel = new System.Windows.Forms.Label();
+            this.editSelectedRegion = new System.Windows.Forms.Button();
+            this.currentRegionsList = new System.Windows.Forms.ListBox();
+            this.currentRegionsListLabel = new System.Windows.Forms.Label();
+            this.roomTabControl = new System.Windows.Forms.TabControl();
+            this.addEditRoomTab = new System.Windows.Forms.TabPage();
+            this.currentRoomsListLabel = new System.Windows.Forms.Label();
+            this.currentRoomsList = new System.Windows.Forms.ListBox();
+            this.editSelectedRoom = new System.Windows.Forms.Button();
+            this.deleteRoomDetails = new System.Windows.Forms.Button();
+            this.editRoomDetails = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.roomNameLabel = new System.Windows.Forms.Label();
+            this.roomPickableList = new System.Windows.Forms.ListBox();
+            this.roomOIIList = new System.Windows.Forms.ListBox();
+            this.roomKillZonesList = new System.Windows.Forms.ListBox();
+            this.roomEnemiesList = new System.Windows.Forms.ListBox();
+            this.roomCollectorsList = new System.Windows.Forms.ListBox();
+            this.roomPickableListLabel = new System.Windows.Forms.Label();
+            this.roomOIIListLabel = new System.Windows.Forms.Label();
+            this.roomKillZoneListLabel = new System.Windows.Forms.Label();
+            this.roomEnemyListLabel = new System.Windows.Forms.Label();
+            this.roomCollectorListLabel = new System.Windows.Forms.Label();
+            this.regionGateWaysTab = new System.Windows.Forms.TabPage();
+            this.regionPortalTab = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.gameStartTabControl.SuspendLayout();
             this.gameDetailsTab.SuspendLayout();
@@ -102,6 +128,8 @@
             this.treasureCollectorTab.SuspendLayout();
             this.regionTabControl.SuspendLayout();
             this.addEditRegionTab.SuspendLayout();
+            this.roomTabControl.SuspendLayout();
+            this.addEditRoomTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -661,6 +689,8 @@
             // regionTabControl
             // 
             this.regionTabControl.Controls.Add(this.addEditRegionTab);
+            this.regionTabControl.Controls.Add(this.regionGateWaysTab);
+            this.regionTabControl.Controls.Add(this.regionPortalTab);
             this.regionTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.regionTabControl.Location = new System.Drawing.Point(0, 27);
             this.regionTabControl.Name = "regionTabControl";
@@ -670,7 +700,10 @@
             // 
             // addEditRegionTab
             // 
-            this.addEditRegionTab.Controls.Add(this.button1);
+            this.addEditRegionTab.Controls.Add(this.currentRegionsListLabel);
+            this.addEditRegionTab.Controls.Add(this.currentRegionsList);
+            this.addEditRegionTab.Controls.Add(this.editSelectedRegion);
+            this.addEditRegionTab.Controls.Add(this.deleteRegionDetails);
             this.addEditRegionTab.Controls.Add(this.allRoomsRegionList);
             this.addEditRegionTab.Controls.Add(this.newRegionRoomsLabel);
             this.addEditRegionTab.Controls.Add(this.entryRoomSelector);
@@ -689,14 +722,15 @@
             this.addEditRegionTab.Text = "Add/Edit Region";
             this.addEditRegionTab.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // deleteRegionDetails
             // 
-            this.button1.Location = new System.Drawing.Point(190, 584);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(205, 77);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Edit Region Details";
-            this.button1.UseVisualStyleBackColor = true;
+            this.deleteRegionDetails.Location = new System.Drawing.Point(225, 584);
+            this.deleteRegionDetails.Name = "deleteRegionDetails";
+            this.deleteRegionDetails.Size = new System.Drawing.Size(205, 77);
+            this.deleteRegionDetails.TabIndex = 9;
+            this.deleteRegionDetails.Text = "Delete Region";
+            this.deleteRegionDetails.UseVisualStyleBackColor = true;
+            this.deleteRegionDetails.Click += new System.EventHandler(this.DeleteRegionDetails_Click);
             // 
             // allRoomsRegionList
             // 
@@ -737,12 +771,13 @@
             // 
             // editRegionDetails
             // 
-            this.editRegionDetails.Location = new System.Drawing.Point(521, 584);
+            this.editRegionDetails.Location = new System.Drawing.Point(472, 584);
             this.editRegionDetails.Name = "editRegionDetails";
             this.editRegionDetails.Size = new System.Drawing.Size(205, 77);
             this.editRegionDetails.TabIndex = 4;
-            this.editRegionDetails.Text = "Edit Region Details";
+            this.editRegionDetails.Text = "Add/Edit Region";
             this.editRegionDetails.UseVisualStyleBackColor = true;
+            this.editRegionDetails.Click += new System.EventHandler(this.EditRegionDetails_Click);
             // 
             // regionStoryTextBox
             // 
@@ -780,15 +815,294 @@
             this.newRegionNameLabel.TabIndex = 0;
             this.newRegionNameLabel.Text = "Name Of The Region";
             // 
+            // editSelectedRegion
+            // 
+            this.editSelectedRegion.Location = new System.Drawing.Point(769, 477);
+            this.editSelectedRegion.Name = "editSelectedRegion";
+            this.editSelectedRegion.Size = new System.Drawing.Size(205, 77);
+            this.editSelectedRegion.TabIndex = 10;
+            this.editSelectedRegion.Text = "Edit Selected";
+            this.editSelectedRegion.UseVisualStyleBackColor = true;
+            this.editSelectedRegion.Click += new System.EventHandler(this.EditSelectedRegion_Click);
+            // 
+            // currentRegionsList
+            // 
+            this.currentRegionsList.FormattingEnabled = true;
+            this.currentRegionsList.ItemHeight = 20;
+            this.currentRegionsList.Location = new System.Drawing.Point(768, 40);
+            this.currentRegionsList.Name = "currentRegionsList";
+            this.currentRegionsList.Size = new System.Drawing.Size(205, 424);
+            this.currentRegionsList.TabIndex = 11;
+            // 
+            // currentRegionsListLabel
+            // 
+            this.currentRegionsListLabel.AutoSize = true;
+            this.currentRegionsListLabel.Location = new System.Drawing.Point(781, 17);
+            this.currentRegionsListLabel.Name = "currentRegionsListLabel";
+            this.currentRegionsListLabel.Size = new System.Drawing.Size(174, 20);
+            this.currentRegionsListLabel.TabIndex = 12;
+            this.currentRegionsListLabel.Text = "Current Regions List";
+            // 
+            // roomTabControl
+            // 
+            this.roomTabControl.Controls.Add(this.addEditRoomTab);
+            this.roomTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomTabControl.Location = new System.Drawing.Point(0, 27);
+            this.roomTabControl.Name = "roomTabControl";
+            this.roomTabControl.SelectedIndex = 0;
+            this.roomTabControl.Size = new System.Drawing.Size(1008, 703);
+            this.roomTabControl.TabIndex = 3;
+            this.roomTabControl.Visible = false;
+            // 
+            // addEditRoomTab
+            // 
+            this.addEditRoomTab.Controls.Add(this.roomPickableList);
+            this.addEditRoomTab.Controls.Add(this.roomOIIList);
+            this.addEditRoomTab.Controls.Add(this.roomKillZonesList);
+            this.addEditRoomTab.Controls.Add(this.roomEnemiesList);
+            this.addEditRoomTab.Controls.Add(this.roomCollectorsList);
+            this.addEditRoomTab.Controls.Add(this.roomPickableListLabel);
+            this.addEditRoomTab.Controls.Add(this.roomOIIListLabel);
+            this.addEditRoomTab.Controls.Add(this.roomKillZoneListLabel);
+            this.addEditRoomTab.Controls.Add(this.roomEnemyListLabel);
+            this.addEditRoomTab.Controls.Add(this.roomCollectorListLabel);
+            this.addEditRoomTab.Controls.Add(this.currentRoomsListLabel);
+            this.addEditRoomTab.Controls.Add(this.currentRoomsList);
+            this.addEditRoomTab.Controls.Add(this.editSelectedRoom);
+            this.addEditRoomTab.Controls.Add(this.deleteRoomDetails);
+            this.addEditRoomTab.Controls.Add(this.editRoomDetails);
+            this.addEditRoomTab.Controls.Add(this.richTextBox1);
+            this.addEditRoomTab.Controls.Add(this.label4);
+            this.addEditRoomTab.Controls.Add(this.textBox1);
+            this.addEditRoomTab.Controls.Add(this.roomNameLabel);
+            this.addEditRoomTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addEditRoomTab.Location = new System.Drawing.Point(4, 29);
+            this.addEditRoomTab.Name = "addEditRoomTab";
+            this.addEditRoomTab.Padding = new System.Windows.Forms.Padding(3);
+            this.addEditRoomTab.Size = new System.Drawing.Size(1000, 670);
+            this.addEditRoomTab.TabIndex = 0;
+            this.addEditRoomTab.Text = "Add/Edit Room";
+            this.addEditRoomTab.UseVisualStyleBackColor = true;
+            // 
+            // currentRoomsListLabel
+            // 
+            this.currentRoomsListLabel.AutoSize = true;
+            this.currentRoomsListLabel.Location = new System.Drawing.Point(781, 17);
+            this.currentRoomsListLabel.Name = "currentRoomsListLabel";
+            this.currentRoomsListLabel.Size = new System.Drawing.Size(164, 20);
+            this.currentRoomsListLabel.TabIndex = 12;
+            this.currentRoomsListLabel.Text = "Current Rooms List";
+            // 
+            // currentRoomsList
+            // 
+            this.currentRoomsList.FormattingEnabled = true;
+            this.currentRoomsList.ItemHeight = 20;
+            this.currentRoomsList.Location = new System.Drawing.Point(768, 40);
+            this.currentRoomsList.Name = "currentRoomsList";
+            this.currentRoomsList.Size = new System.Drawing.Size(205, 424);
+            this.currentRoomsList.TabIndex = 11;
+            // 
+            // editSelectedRoom
+            // 
+            this.editSelectedRoom.Location = new System.Drawing.Point(769, 477);
+            this.editSelectedRoom.Name = "editSelectedRoom";
+            this.editSelectedRoom.Size = new System.Drawing.Size(205, 77);
+            this.editSelectedRoom.TabIndex = 10;
+            this.editSelectedRoom.Text = "Edit Selected";
+            this.editSelectedRoom.UseVisualStyleBackColor = true;
+            this.editSelectedRoom.Click += new System.EventHandler(this.EditSelectedRoom_Click);
+            // 
+            // deleteRoomDetails
+            // 
+            this.deleteRoomDetails.Location = new System.Drawing.Point(225, 584);
+            this.deleteRoomDetails.Name = "deleteRoomDetails";
+            this.deleteRoomDetails.Size = new System.Drawing.Size(205, 77);
+            this.deleteRoomDetails.TabIndex = 9;
+            this.deleteRoomDetails.Text = "Delete Room";
+            this.deleteRoomDetails.UseVisualStyleBackColor = true;
+            this.deleteRoomDetails.Click += new System.EventHandler(this.DeleteRoomDetails_Click);
+            // 
+            // editRoomDetails
+            // 
+            this.editRoomDetails.Location = new System.Drawing.Point(472, 584);
+            this.editRoomDetails.Name = "editRoomDetails";
+            this.editRoomDetails.Size = new System.Drawing.Size(205, 77);
+            this.editRoomDetails.TabIndex = 4;
+            this.editRoomDetails.Text = "Add/Edit Room";
+            this.editRoomDetails.UseVisualStyleBackColor = true;
+            this.editRoomDetails.Click += new System.EventHandler(this.EditRoomDetails_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(190, 58);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(538, 105);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(12, 69);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(162, 20);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Story Of The Room";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(190, 17);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(538, 26);
+            this.textBox1.TabIndex = 1;
+            // 
+            // roomNameLabel
+            // 
+            this.roomNameLabel.AutoSize = true;
+            this.roomNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomNameLabel.Location = new System.Drawing.Point(8, 20);
+            this.roomNameLabel.Name = "roomNameLabel";
+            this.roomNameLabel.Size = new System.Drawing.Size(166, 20);
+            this.roomNameLabel.TabIndex = 0;
+            this.roomNameLabel.Text = "Name Of The Room";
+            // 
+            // roomPickableList
+            // 
+            this.roomPickableList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomPickableList.FormattingEnabled = true;
+            this.roomPickableList.ItemHeight = 16;
+            this.roomPickableList.Location = new System.Drawing.Point(526, 310);
+            this.roomPickableList.Name = "roomPickableList";
+            this.roomPickableList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.roomPickableList.Size = new System.Drawing.Size(200, 148);
+            this.roomPickableList.TabIndex = 34;
+            // 
+            // roomOIIList
+            // 
+            this.roomOIIList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomOIIList.FormattingEnabled = true;
+            this.roomOIIList.ItemHeight = 16;
+            this.roomOIIList.Location = new System.Drawing.Point(284, 386);
+            this.roomOIIList.Name = "roomOIIList";
+            this.roomOIIList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.roomOIIList.Size = new System.Drawing.Size(200, 180);
+            this.roomOIIList.TabIndex = 33;
+            // 
+            // roomKillZonesList
+            // 
+            this.roomKillZonesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomKillZonesList.FormattingEnabled = true;
+            this.roomKillZonesList.ItemHeight = 16;
+            this.roomKillZonesList.Location = new System.Drawing.Point(284, 201);
+            this.roomKillZonesList.Name = "roomKillZonesList";
+            this.roomKillZonesList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.roomKillZonesList.Size = new System.Drawing.Size(200, 148);
+            this.roomKillZonesList.TabIndex = 32;
+            // 
+            // roomEnemiesList
+            // 
+            this.roomEnemiesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomEnemiesList.FormattingEnabled = true;
+            this.roomEnemiesList.ItemHeight = 16;
+            this.roomEnemiesList.Location = new System.Drawing.Point(27, 386);
+            this.roomEnemiesList.Name = "roomEnemiesList";
+            this.roomEnemiesList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.roomEnemiesList.Size = new System.Drawing.Size(200, 180);
+            this.roomEnemiesList.TabIndex = 31;
+            // 
+            // roomCollectorsList
+            // 
+            this.roomCollectorsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomCollectorsList.FormattingEnabled = true;
+            this.roomCollectorsList.ItemHeight = 16;
+            this.roomCollectorsList.Location = new System.Drawing.Point(27, 201);
+            this.roomCollectorsList.Name = "roomCollectorsList";
+            this.roomCollectorsList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.roomCollectorsList.Size = new System.Drawing.Size(200, 148);
+            this.roomCollectorsList.TabIndex = 30;
+            // 
+            // roomPickableListLabel
+            // 
+            this.roomPickableListLabel.AutoSize = true;
+            this.roomPickableListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomPickableListLabel.Location = new System.Drawing.Point(559, 287);
+            this.roomPickableListLabel.Name = "roomPickableListLabel";
+            this.roomPickableListLabel.Size = new System.Drawing.Size(126, 20);
+            this.roomPickableListLabel.TabIndex = 29;
+            this.roomPickableListLabel.Text = "Pickable Items";
+            // 
+            // roomOIIListLabel
+            // 
+            this.roomOIIListLabel.AutoSize = true;
+            this.roomOIIListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomOIIListLabel.Location = new System.Drawing.Point(294, 363);
+            this.roomOIIListLabel.Name = "roomOIIListLabel";
+            this.roomOIIListLabel.Size = new System.Drawing.Size(184, 20);
+            this.roomOIIListLabel.TabIndex = 28;
+            this.roomOIIListLabel.Text = "One Interaction Items";
+            // 
+            // roomKillZoneListLabel
+            // 
+            this.roomKillZoneListLabel.AutoSize = true;
+            this.roomKillZoneListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomKillZoneListLabel.Location = new System.Drawing.Point(341, 178);
+            this.roomKillZoneListLabel.Name = "roomKillZoneListLabel";
+            this.roomKillZoneListLabel.Size = new System.Drawing.Size(87, 20);
+            this.roomKillZoneListLabel.TabIndex = 27;
+            this.roomKillZoneListLabel.Text = "Kill Zones";
+            // 
+            // roomEnemyListLabel
+            // 
+            this.roomEnemyListLabel.AutoSize = true;
+            this.roomEnemyListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomEnemyListLabel.Location = new System.Drawing.Point(84, 363);
+            this.roomEnemyListLabel.Name = "roomEnemyListLabel";
+            this.roomEnemyListLabel.Size = new System.Drawing.Size(78, 20);
+            this.roomEnemyListLabel.TabIndex = 26;
+            this.roomEnemyListLabel.Text = "Enemies";
+            // 
+            // roomCollectorListLabel
+            // 
+            this.roomCollectorListLabel.AutoSize = true;
+            this.roomCollectorListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomCollectorListLabel.Location = new System.Drawing.Point(73, 178);
+            this.roomCollectorListLabel.Name = "roomCollectorListLabel";
+            this.roomCollectorListLabel.Size = new System.Drawing.Size(89, 20);
+            this.roomCollectorListLabel.TabIndex = 25;
+            this.roomCollectorListLabel.Text = "Collectors";
+            // 
+            // regionGateWaysTab
+            // 
+            this.regionGateWaysTab.Location = new System.Drawing.Point(4, 29);
+            this.regionGateWaysTab.Name = "regionGateWaysTab";
+            this.regionGateWaysTab.Padding = new System.Windows.Forms.Padding(3);
+            this.regionGateWaysTab.Size = new System.Drawing.Size(1000, 670);
+            this.regionGateWaysTab.TabIndex = 1;
+            this.regionGateWaysTab.Text = "Add/Edit Gateways";
+            this.regionGateWaysTab.UseVisualStyleBackColor = true;
+            // 
+            // regionPortalTab
+            // 
+            this.regionPortalTab.Location = new System.Drawing.Point(4, 29);
+            this.regionPortalTab.Name = "regionPortalTab";
+            this.regionPortalTab.Padding = new System.Windows.Forms.Padding(3);
+            this.regionPortalTab.Size = new System.Drawing.Size(1000, 670);
+            this.regionPortalTab.TabIndex = 2;
+            this.regionPortalTab.Text = "Place Portals";
+            this.regionPortalTab.UseVisualStyleBackColor = true;
+            // 
             // SealsOfHellMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.regionTabControl);
             this.Controls.Add(this.gameStartTabControl);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.roomTabControl);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1440, 1078);
@@ -810,6 +1124,9 @@
             this.regionTabControl.ResumeLayout(false);
             this.addEditRegionTab.ResumeLayout(false);
             this.addEditRegionTab.PerformLayout();
+            this.roomTabControl.ResumeLayout(false);
+            this.addEditRoomTab.ResumeLayout(false);
+            this.addEditRoomTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -873,7 +1190,7 @@
         private System.Windows.Forms.ToolStripMenuItem editInteractablesDataToolStripMenuItem;
         private System.Windows.Forms.TabControl regionTabControl;
         private System.Windows.Forms.TabPage addEditRegionTab;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button deleteRegionDetails;
         private System.Windows.Forms.ListBox allRoomsRegionList;
         private System.Windows.Forms.Label newRegionRoomsLabel;
         private System.Windows.Forms.ComboBox entryRoomSelector;
@@ -883,6 +1200,32 @@
         private System.Windows.Forms.Label newRegionStoryLabel;
         private System.Windows.Forms.TextBox regionNameTextBox;
         private System.Windows.Forms.Label newRegionNameLabel;
+        private System.Windows.Forms.Label currentRegionsListLabel;
+        private System.Windows.Forms.ListBox currentRegionsList;
+        private System.Windows.Forms.Button editSelectedRegion;
+        private System.Windows.Forms.TabControl roomTabControl;
+        private System.Windows.Forms.TabPage addEditRoomTab;
+        private System.Windows.Forms.Label currentRoomsListLabel;
+        private System.Windows.Forms.ListBox currentRoomsList;
+        private System.Windows.Forms.Button editSelectedRoom;
+        private System.Windows.Forms.Button deleteRoomDetails;
+        private System.Windows.Forms.Button editRoomDetails;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label roomNameLabel;
+        private System.Windows.Forms.ListBox roomPickableList;
+        private System.Windows.Forms.ListBox roomOIIList;
+        private System.Windows.Forms.ListBox roomKillZonesList;
+        private System.Windows.Forms.ListBox roomEnemiesList;
+        private System.Windows.Forms.ListBox roomCollectorsList;
+        private System.Windows.Forms.Label roomPickableListLabel;
+        private System.Windows.Forms.Label roomOIIListLabel;
+        private System.Windows.Forms.Label roomKillZoneListLabel;
+        private System.Windows.Forms.Label roomEnemyListLabel;
+        private System.Windows.Forms.Label roomCollectorListLabel;
+        private System.Windows.Forms.TabPage regionGateWaysTab;
+        private System.Windows.Forms.TabPage regionPortalTab;
     }
 }
 
