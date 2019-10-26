@@ -33,5 +33,29 @@ namespace Seals_Of_Hell_Data_Editor
         public Path mPath { get; set; }
         public string mRoom1 { get; set; }
         public string mRoom2 { get; set; }
+
+        public Direction GetRoom1Direction()
+        {
+            switch(mPath)
+            {
+                case Path.East_West: return Direction.East;
+                case Path.North_South: return Direction.North;
+                case Path.NorthWest_SouthEast:return Direction.NorthWest;
+                case Path.NorthEast_SouthWest:return Direction.NorthEast;
+            }
+            return Direction.North;
+        }
+        public Direction GetRoom2Direction()
+        {
+            switch (mPath)
+            {
+                case Path.East_West: return Direction.West;
+                case Path.North_South: return Direction.South;
+                case Path.NorthWest_SouthEast: return Direction.SouthEast;
+                case Path.NorthEast_SouthWest: return Direction.SouthWest;
+            }
+            return Direction.South;
+        }
+
     }
 }

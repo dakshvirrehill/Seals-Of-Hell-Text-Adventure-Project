@@ -21,5 +21,10 @@ namespace Seals_Of_Hell_Data_Editor
             mRooms.Add(mEntryRoom, new Room());
             mRooms[mEntryRoom].mName = mEntryRoom;
         }
+        public Region(string pEntryRoom)
+        {
+            mEntryRoom = pEntryRoom;
+            mRooms = new Dictionary<string, Room>();
+        }
     }
 }

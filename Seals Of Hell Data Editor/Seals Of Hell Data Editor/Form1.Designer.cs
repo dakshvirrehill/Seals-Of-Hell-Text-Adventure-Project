@@ -959,6 +959,7 @@
             // 
             // entryRoomSelector
             // 
+            this.entryRoomSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.entryRoomSelector.FormattingEnabled = true;
             this.entryRoomSelector.Location = new System.Drawing.Point(190, 192);
             this.entryRoomSelector.Name = "entryRoomSelector";
@@ -1071,6 +1072,7 @@
             // 
             // gatewayRoom2
             // 
+            this.gatewayRoom2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gatewayRoom2.FormattingEnabled = true;
             this.gatewayRoom2.Location = new System.Drawing.Point(439, 380);
             this.gatewayRoom2.Name = "gatewayRoom2";
@@ -1089,6 +1091,7 @@
             // 
             // gatewayDirection
             // 
+            this.gatewayDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gatewayDirection.FormattingEnabled = true;
             this.gatewayDirection.Location = new System.Drawing.Point(439, 284);
             this.gatewayDirection.Name = "gatewayDirection";
@@ -1108,6 +1111,7 @@
             // 
             // gatewayRoom1
             // 
+            this.gatewayRoom1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gatewayRoom1.FormattingEnabled = true;
             this.gatewayRoom1.Location = new System.Drawing.Point(439, 331);
             this.gatewayRoom1.Name = "gatewayRoom1";
@@ -2002,6 +2006,7 @@
             // 
             // collectorCollectionObjectSelector
             // 
+            this.collectorCollectionObjectSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.collectorCollectionObjectSelector.FormattingEnabled = true;
             this.collectorCollectionObjectSelector.Location = new System.Drawing.Point(175, 202);
             this.collectorCollectionObjectSelector.Name = "collectorCollectionObjectSelector";
@@ -2241,6 +2246,7 @@
             // 
             // enemyKillableWeaponSelector
             // 
+            this.enemyKillableWeaponSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.enemyKillableWeaponSelector.FormattingEnabled = true;
             this.enemyKillableWeaponSelector.Location = new System.Drawing.Point(181, 162);
             this.enemyKillableWeaponSelector.Name = "enemyKillableWeaponSelector";
@@ -2426,6 +2432,7 @@
             // 
             // killZoneDisablerSelector
             // 
+            this.killZoneDisablerSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.killZoneDisablerSelector.FormattingEnabled = true;
             this.killZoneDisablerSelector.Location = new System.Drawing.Point(184, 213);
             this.killZoneDisablerSelector.Name = "killZoneDisablerSelector";
@@ -2611,6 +2618,7 @@
             // 
             // oIITypeSelector
             // 
+            this.oIITypeSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.oIITypeSelector.FormattingEnabled = true;
             this.oIITypeSelector.Location = new System.Drawing.Point(184, 213);
             this.oIITypeSelector.Name = "oIITypeSelector";
@@ -2792,6 +2800,7 @@
             // 
             // pickableItemTypeSelector
             // 
+            this.pickableItemTypeSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pickableItemTypeSelector.FormattingEnabled = true;
             this.pickableItemTypeSelector.Location = new System.Drawing.Point(155, 259);
             this.pickableItemTypeSelector.Name = "pickableItemTypeSelector";
@@ -2929,10 +2938,10 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.mainMenuStrip);
+            this.Controls.Add(this.interactableDetailsTabControl);
             this.Controls.Add(this.gameStartTabControl);
             this.Controls.Add(this.roomTabControl);
             this.Controls.Add(this.regionTabControl);
-            this.Controls.Add(this.interactableDetailsTabControl);
             this.MainMenuStrip = this.mainMenuStrip;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1440, 1078);

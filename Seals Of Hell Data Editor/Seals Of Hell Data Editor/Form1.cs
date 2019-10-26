@@ -64,24 +64,28 @@ namespace Seals_Of_Hell_Data_Editor
             CleanUpAtEditorChange();
             this.gameStartTabControl.Visible = true;
             this.gameStartTabControl.SelectedIndex = 0;
+            GameStartTabControl_SelectedIndexChanged(null, null);
         }
         private void AddNewRegionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CleanUpAtEditorChange();
             this.regionTabControl.Visible = true;
             this.regionTabControl.SelectedIndex = 0;
+            RegionTabControl_SelectedIndexChanged(null, null);
         }
         private void EditRoomDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CleanUpAtEditorChange();
             this.roomTabControl.Visible = true;
             this.roomTabControl.SelectedIndex = 0;
+            RoomTabControl_SelectedIndexChanged(null, null);
         }
         private void EditInteractablesDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CleanUpAtEditorChange();
             this.interactableDetailsTabControl.Visible = true;
             this.interactableDetailsTabControl.SelectedIndex = 0;
+            InteractableDetailsTabControl_SelectedIndexChanged(null, null);
         }
         #endregion
         #region Game Start Data
@@ -305,6 +309,7 @@ namespace Seals_Of_Hell_Data_Editor
             List<string> aRegionNames = new List<string>(mGameDetails.mRegionDetails.Keys);
             aRegionNames.Remove(mGameDetails.mFirstRegion);
             this.currentRegionsList.DataSource = aRegionNames;
+            this.currentRegionsList.SelectedIndex = -1;
             this.regionNameTextBox.Text = "";
             this.regionStoryTextBox.Text = "";
             List<string> aRoomNames = mGameDetails.GetRoomNames();
@@ -317,6 +322,7 @@ namespace Seals_Of_Hell_Data_Editor
             }
             this.entryRoomSelector.DataSource = null;
             this.allRoomsRegionList.DataSource = aRoomNames;
+            this.allRoomsRegionList.SelectedIndex = -1;
         }
         bool IsRegionValid()
         {
@@ -325,6 +331,10 @@ namespace Seals_Of_Hell_Data_Editor
         }
         private void AllRoomsRegionList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.allRoomsRegionList.SelectedIndex == -1)
+            {
+                return;
+            }
             string aErRoom = "";
             if (this.entryRoomSelector.DataSource != null)
             {
@@ -354,6 +364,8 @@ namespace Seals_Of_Hell_Data_Editor
                     mGameDetails.UnAssignRoom(aRoom.mName);
                     aRoom.SetInRegion("");
                 }
+                mGameDetails.mRegionDetails[mGameDetails.mFirstRegion].mRooms[mGameDetails.mRegionDetails[mGameDetails.mFirstRegion].mEntryRoom].
+                    mPortals.Remove(mGameDetails.GetRegionPortal(mSelectedRegion.mName).mName);
                 mGameDetails.DeletePortal(mSelectedRegion.mName);
                 mGameDetails.mRegionDetails.Remove(mSelectedRegion.mName);
                 mSelectedRegion = null;
@@ -368,23 +380,28 @@ namespace Seals_Of_Hell_Data_Editor
                     return;
                 }
                 Portal aRegionPortal = null;
-                if(mSelectedRegion != null)
+                Room aFRoom = mGameDetails.mRegionDetails[mGameDetails.mFirstRegion].mRooms[mGameDetails.mRegionDetails[mGameDetails.mFirstRegion].mEntryRoom];
+                if (mSelectedRegion != null)
                 {
-                    foreach(Room aRoom in mSelectedRegion.mRooms.Values)
+                    aRegionPortal = mGameDetails.GetRegionPortal(mSelectedRegion.mName);
+                    foreach (Room aRoom in mSelectedRegion.mRooms.Values)
                     {
                         mGameDetails.UnAssignRoom(aRoom.mName);
                         aRoom.SetInRegion("");
+                        if(aRoom.mPortals.ContainsKey(aRegionPortal.mName))
+                        {
+                            aRoom.mPortals.Remove(aRegionPortal.mName);
+                        }
                     }
-                    aRegionPortal = mGameDetails.GetRegionPortal(mSelectedRegion.mName);
+                    aFRoom.mPortals.Remove(aRegionPortal.mName);
                     mGameDetails.DeletePortal(mSelectedRegion.mName);
                     mGameDetails.mRegionDetails.Remove(mSelectedRegion.mName);
                     mSelectedRegion = null;
                 }
-                mSelectedRegion = new Region()
+                mSelectedRegion = new Region((string)this.entryRoomSelector.SelectedItem)
                 {
                     mName = this.regionNameTextBox.Text,
                     mStory = this.regionStoryTextBox.Text,
-                    mEntryRoom = (string)this.entryRoomSelector.SelectedItem,
                 };
                 foreach(var aSelected in this.allRoomsRegionList.SelectedItems)
                 {
@@ -399,12 +416,18 @@ namespace Seals_Of_Hell_Data_Editor
                 aRegionPortal.mCurrentRegionName = mSelectedRegion.mName;
                 mGameDetails.AddPortal(aRegionPortal);
                 mGameDetails.mRegionDetails.Add(mSelectedRegion.mName, mSelectedRegion);
+                aFRoom.mPortals.Add(aRegionPortal);
                 mSelectedRegion = null;
             }
             ResetRegionEditor();
         }
         private void EditSelectedRegion_Click(object sender, EventArgs e)
         {
+            if(this.currentRegionsList.SelectedIndex == -1)
+            {
+                mSelectedRegion = null;
+                return;
+            }
             mSelectedRegion = mGameDetails.mRegionDetails[(string)this.currentRegionsList.SelectedItem];
             this.regionNameTextBox.Text = mSelectedRegion.mName;
             this.regionStoryTextBox.Text = mSelectedRegion.mStory;
@@ -436,6 +459,7 @@ namespace Seals_Of_Hell_Data_Editor
             List<string> aRegionNames = new List<string>(mGameDetails.mRegionDetails.Keys);
             aRegionNames.Remove(mGameDetails.mFirstRegion);
             this.gwCurrentRegionsList.DataSource = aRegionNames;
+            this.gwCurrentRegionsList.SelectedIndex = -1;
         }
         void DeleteGateway()
         {
@@ -444,21 +468,12 @@ namespace Seals_Of_Hell_Data_Editor
                 Room aR1 = mGameDetails.GetRoomObject(mSelectedGateway.mRoom1);
                 Room aR2 = mGameDetails.GetRoomObject(mSelectedGateway.mRoom2);
                 aR1.mGateways.Remove(mSelectedGateway.mName);
+                aR1.ToggleDirectionBlock(mSelectedGateway.GetRoom1Direction(), false);
                 aR2.mGateways.Remove(mSelectedGateway.mName);
+                aR2.ToggleDirectionBlock(mSelectedGateway.GetRoom2Direction(), false);
                 mGameDetails.DeleteGateway(mSelectedGateway.mName);
                 mSelectedGateway = null;
             }
-        }
-        private void GwCurrentRegionsList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mSelectedRegion = mGameDetails.mRegionDetails[(string)this.gwCurrentRegionsList.SelectedItem];
-            List<string> aCurGws = new List<string>();
-            foreach(Room aRoom in mSelectedRegion.mRooms.Values)
-            {
-                aCurGws.AddRange(aRoom.mGateways.Keys);
-            }
-            this.currentGatewaysList.DataSource = aCurGws;
-            this.gatewayDirection.DataSource = Enum.GetValues(typeof(Gateway.Path));
         }
         void PopulateRoomComboBox(Gateway.Direction pDirection1, Gateway.Direction pDirection2)
         {
@@ -470,12 +485,31 @@ namespace Seals_Of_Hell_Data_Editor
                 {
                     aRoom1List.Remove(aRoom.mName);
                 }
-                if(aRoom.IsBlocked(pDirection2))
+                if (aRoom.IsBlocked(pDirection2))
                 {
                     aRoom2List.Remove(aRoom.mName);
                 }
             }
         }
+
+        private void GwCurrentRegionsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(this.gwCurrentRegionsList.SelectedIndex == -1)
+            {
+                mSelectedRegion = null;
+                return;
+            }
+            mSelectedRegion = mGameDetails.mRegionDetails[(string)this.gwCurrentRegionsList.SelectedItem];
+            List<string> aCurGws = new List<string>();
+            foreach(Room aRoom in mSelectedRegion.mRooms.Values)
+            {
+                aCurGws.AddRange(aRoom.mGateways.Keys);
+            }
+            this.currentGatewaysList.DataSource = aCurGws;
+            this.currentGatewaysList.SelectedIndex = -1;
+            this.gatewayDirection.DataSource = Enum.GetValues(typeof(Gateway.Path));
+        }
+        
         private void GatewayDirection_SelectedIndexChanged(object sender, EventArgs e)
         {
             Gateway.Path aPath = (Gateway.Path)this.gatewayDirection.SelectedItem;
@@ -497,7 +531,21 @@ namespace Seals_Of_Hell_Data_Editor
         }
         private void EditSelectedGateway_Click(object sender, EventArgs e)
         {
+            if(this.currentGatewaysList.SelectedIndex == -1)
+            {
+                return;
+            }
             mSelectedGateway = mGameDetails.GetGatewayObject((string)this.currentGatewaysList.SelectedItem);
+            if(mGameDetails.GetRoomObject(mSelectedGateway.mRoom1).GetInRegion() != mSelectedRegion.mName)
+            {
+                DeleteGatewayDetails_Click(null, null);
+                return;
+            }
+            if (mGameDetails.GetRoomObject(mSelectedGateway.mRoom2).GetInRegion() != mSelectedRegion.mName)
+            {
+                DeleteGatewayDetails_Click(null,null);
+                return;
+            }
             this.gatewayNameTextBox.Text = mSelectedGateway.mName;
             this.gatewayStoryTextBox.Text = mSelectedGateway.mStory;
             this.gatewayDirection.SelectedItem = mSelectedGateway.mPath;
@@ -532,7 +580,9 @@ namespace Seals_Of_Hell_Data_Editor
                     mIsInteractable = this.isGatewayInteractable.Checked
                 };
                 mGameDetails.GetRoomObject(mSelectedGateway.mRoom1).mGateways.Add(mSelectedGateway.mName, mSelectedGateway);
+                mGameDetails.GetRoomObject(mSelectedGateway.mRoom1).ToggleDirectionBlock(mSelectedGateway.GetRoom1Direction(), true);
                 mGameDetails.GetRoomObject(mSelectedGateway.mRoom2).mGateways.Add(mSelectedGateway.mName, mSelectedGateway);
+                mGameDetails.GetRoomObject(mSelectedGateway.mRoom2).ToggleDirectionBlock(mSelectedGateway.GetRoom2Direction(), true);
                 mGameDetails.AddGateway(mSelectedGateway);
                 mSelectedGateway = null;
             }
@@ -557,16 +607,23 @@ namespace Seals_Of_Hell_Data_Editor
                 List<string> aRegionNames = new List<string>(mGameDetails.mRegionDetails.Keys);
                 aRegionNames.Remove(mGameDetails.mFirstRegion);
                 this.edPorCurrentRegionsList.DataSource = aRegionNames;
+                this.edPorCurrentRegionsList.SelectedIndex = -1;
             }
             else if(this.insidePortalsTabControl.SelectedTab == this.portalRoomsTab)
             {
                 List<string> aRegionNames = new List<string>(mGameDetails.mRegionDetails.Keys);
                 aRegionNames.Remove(mGameDetails.mFirstRegion);
                 this.adptrCurrentRegionsList.DataSource = aRegionNames;
+                this.adptrCurrentRegionsList.SelectedIndex = -1;
             }
         }
         private void EdPorCurrentRegionsList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.edPorCurrentRegionsList.SelectedIndex == -1)
+            {
+                mSelectedPortal = null;
+                return;
+            }
             mSelectedPortal = mGameDetails.GetRegionPortal((string)this.edPorCurrentRegionsList.SelectedItem);
             this.portalNameTextBox.Text = mSelectedPortal.mName;
             this.portalStoryTextBox.Text = mSelectedPortal.mStory;
@@ -594,12 +651,18 @@ namespace Seals_Of_Hell_Data_Editor
                     Room aFRoom = mGameDetails.mRegionDetails[mGameDetails.mFirstRegion].mRooms[mGameDetails.mRegionDetails[mGameDetails.mFirstRegion].mEntryRoom];
                     aFRoom.mPortals.Remove(mSelectedPortal.mName);
                     aFRoom.mPortals.Add(aNewPortal.mName, aNewPortal);
+                    aFRoom.EditUpdatableNames(mSelectedPortal.mName, aNewPortal.mName);
                 }
             }
             ResetPortalEditor();
         }
         private void AdptrCurrentRegionsList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.adptrCurrentRegionsList.SelectedIndex == -1)
+            {
+                mSelectedPortal = null;
+                return;
+            }
             mSelectedPortal = mGameDetails.GetRegionPortal((string)this.adptrCurrentRegionsList.SelectedItem);
             List<string> aAllRoomsInRegion = new List<string>(mGameDetails.mRegionDetails[mSelectedPortal.mCurrentRegionName].mRooms.Keys);
             List<string> aPortalContainingRooms = new List<string>();
@@ -621,16 +684,10 @@ namespace Seals_Of_Hell_Data_Editor
             }
             foreach(Room aRoom in mGameDetails.mRegionDetails[mSelectedPortal.mCurrentRegionName].mRooms.Values)
             {
-                if(!aSelectedRooms.Contains(aRoom.mName) && aRoom.mPortals.ContainsKey(mSelectedPortal.mName))
+                aRoom.mPortals = new Dictionary<string, Portal>();
+                if(aSelectedRooms.Contains(aRoom.mName))
                 {
-                    aRoom.mPortals.Remove(mSelectedPortal.mName);
-                }
-                else if(aSelectedRooms.Contains(aRoom.mName))
-                {
-                    if(!aRoom.mPortals.ContainsKey(mSelectedPortal.mName))
-                    {
-                        aRoom.mPortals.Add(mSelectedPortal.mName, mSelectedPortal);
-                    }
+                    aRoom.mPortals.Add(mSelectedPortal.mName, mSelectedPortal);
                 }
             }
             ResetPortalEditor();
@@ -664,6 +721,7 @@ namespace Seals_Of_Hell_Data_Editor
         void SetListBoxListAndSelection(ListBox pListBox, List<string> pListNames, List<string> pSelectedNames)
         {
             pListBox.DataSource = pListNames;
+            pListBox.SelectedIndex = -1;
             if (pSelectedNames != null)
             {
                 foreach (string aSelected in pSelectedNames)
@@ -714,6 +772,7 @@ namespace Seals_Of_Hell_Data_Editor
             SetListBoxListAndSelection(this.roomPickableItemsList, aAllPickableNames, aRPNames);
             SetListBoxListAndSelection(this.roomOIIList, aAllOIItemNames, aROIINames);
             this.currentRoomsList.DataSource = mGameDetails.GetRoomNames();
+            this.currentRoomsList.SelectedIndex = -1;
         }
         void RemoveAssigned(ObjectType pType, List<string> pListNames)
         {
@@ -838,17 +897,29 @@ namespace Seals_Of_Hell_Data_Editor
             this.collectorUpdatableList.DataSource = null;
             this.colCollectorList.DataSource = null;
             this.colCurRoomList.DataSource = mGameDetails.GetRoomNames();
+            this.colCurRoomList.SelectedIndex = -1;
         }
         private void ColCurRoomList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.colCurRoomList.SelectedIndex == -1)
+            {
+                mSelectedRoom = null;
+                return;
+            }
             mSelectedRoom = mGameDetails.GetRoomObject((string)this.colCurRoomList.SelectedItem);
             if(mSelectedRoom != null)
             {
                 this.colCollectorList.DataSource = new List<string>(mSelectedRoom.mCollectors.Keys);
+                this.colCollectorList.SelectedIndex = -1;
             }
         }
         private void ColCollectorList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.colCollectorList.SelectedIndex == -1)
+            {
+                mSelectedCollector = null;
+                return;
+            }
             mSelectedCollector = mGameDetails.GetCollectorObject((string)this.colCollectorList.SelectedItem);
             if(mSelectedCollector != null)
             {
@@ -876,17 +947,29 @@ namespace Seals_Of_Hell_Data_Editor
             this.enemyUpdatableList.DataSource = null;
             this.enEnemyList.DataSource = null;
             this.enCurRoomList.DataSource = mGameDetails.GetRoomNames();
+            this.enCurRoomList.SelectedIndex = -1;
         }
         private void EnCurRoomList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.enCurRoomList.SelectedIndex == -1)
+            {
+                mSelectedRoom = null;
+                return;
+            }
             mSelectedRoom = mGameDetails.GetRoomObject((string)this.enCurRoomList.SelectedItem);
             if (mSelectedRoom != null)
             {
                 this.enEnemyList.DataSource = new List<string>(mSelectedRoom.mEnemies.Keys);
+                this.enEnemyList.SelectedIndex = -1;
             }
         }
         private void EnEnemyList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.enEnemyList.SelectedIndex == -1)
+            {
+                mSelectedEnemy = null;
+                return;
+            }
             mSelectedEnemy = mGameDetails.GetEnemyObject((string)this.enEnemyList.SelectedItem);
             if (mSelectedEnemy != null)
             {
@@ -914,17 +997,29 @@ namespace Seals_Of_Hell_Data_Editor
             this.killZoneUpdatableList.DataSource = null;
             this.kzKillZoneList.DataSource = null;
             this.kzCurRoomList.DataSource = mGameDetails.GetRoomNames();
+            this.kzCurRoomList.SelectedIndex = -1;
         }
         private void KzCurRoomList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.kzCurRoomList.SelectedIndex == -1)
+            {
+                mSelectedRoom = null;
+                return;
+            }
             mSelectedRoom = mGameDetails.GetRoomObject((string)this.kzCurRoomList.SelectedItem);
             if (mSelectedRoom != null)
             {
                 this.kzKillZoneList.DataSource = new List<string>(mSelectedRoom.mKillZones.Keys);
+                this.kzKillZoneList.SelectedIndex = -1;
             }
         }
         private void KzKillZoneList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.kzKillZoneList.SelectedIndex == -1)
+            {
+                mSelectedKillZone = null;
+                return;
+            }
             mSelectedKillZone = mGameDetails.GetKillZoneObject((string)this.kzKillZoneList.SelectedItem);
             if (mSelectedKillZone != null)
             {
@@ -952,9 +1047,15 @@ namespace Seals_Of_Hell_Data_Editor
             this.oIItemUpdatableList.DataSource = null;
             this.oIIItemList.DataSource = null;
             this.oIICurRoomList.DataSource = mGameDetails.GetRoomNames();
+            this.oIICurRoomList.SelectedIndex = -1;
         }
         private void OIICurRoomList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.oIICurRoomList.SelectedIndex == -1)
+            {
+                mSelectedRoom = null;
+                return;
+            }
             mSelectedRoom = mGameDetails.GetRoomObject((string)this.oIICurRoomList.SelectedItem);
             if (mSelectedRoom != null)
             {
@@ -963,6 +1064,11 @@ namespace Seals_Of_Hell_Data_Editor
         }
         private void OIIItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.oIIItemList.SelectedIndex == -1)
+            {
+                mSelectedOIItem = null;
+                return;
+            }
             mSelectedOIItem = mGameDetails.GetOIItemObject((string)this.oIIItemList.SelectedItem);
             if (mSelectedOIItem != null)
             {
@@ -1035,6 +1141,7 @@ namespace Seals_Of_Hell_Data_Editor
                 this.isCollectorVisible.Checked = mSelectedCollector.mIsVisible;
                 this.isCollectorInteractable.Checked = mSelectedCollector.mIsInteractable;
                 this.collectorCollectionObjectSelector.SelectedItem = mSelectedCollector.mConditionalObject;
+                this.currentCollectorsList.SelectedItem = mSelectedCollector.mName;
                 return;
             }
             this.collectorNameTextBox.Text = "";
@@ -1045,6 +1152,7 @@ namespace Seals_Of_Hell_Data_Editor
             this.isCollectorInteractable.Checked = false;
             this.collectorCollectionObjectSelector.SelectedIndex = 0;
             this.currentCollectorsList.DataSource = mGameDetails.GetCollectorNames();
+            this.currentCollectorsList.SelectedIndex = -1;
         }
         void DeleteSelectedCollector()
         {
@@ -1118,6 +1226,10 @@ namespace Seals_Of_Hell_Data_Editor
             {
                 mSelectedCollector = null;
             }
+            if(this.currentCollectorsList.SelectedIndex == -1)
+            {
+                return;
+            }
             mSelectedCollector = mGameDetails.GetCollectorObject((string)this.currentCollectorsList.SelectedItem);
             ResetCollectorEditor();
             this.currentCollectorsList.SelectedItem = mSelectedCollector.mName;
@@ -1142,6 +1254,7 @@ namespace Seals_Of_Hell_Data_Editor
                 this.isEnemyVisible.Checked = mSelectedEnemy.mIsVisible;
                 this.isEnemyInteractable.Checked = mSelectedEnemy.mIsInteractable;
                 this.enemyKillableWeaponSelector.SelectedItem = mSelectedEnemy.mConditionalObject;
+                this.currentEnemyList.SelectedItem = mSelectedEnemy.mName;
                 return;
             }
             this.enemyNameTextBox.Text = "";
@@ -1154,6 +1267,7 @@ namespace Seals_Of_Hell_Data_Editor
             this.isEnemyInteractable.Checked = false;
             this.enemyKillableWeaponSelector.SelectedIndex = 0;
             this.currentEnemyList.DataSource = mGameDetails.GetEnemyNames();
+            this.currentEnemyList.SelectedIndex = -1;
         }
         void DeleteSelectedEnemy()
         {
@@ -1226,6 +1340,10 @@ namespace Seals_Of_Hell_Data_Editor
             {
                 mSelectedEnemy = null;
             }
+            if(this.currentEnemyList.SelectedIndex == -1)
+            {
+                return;
+            }
             mSelectedEnemy = mGameDetails.GetEnemyObject((string)this.currentEnemyList.SelectedItem);
             ResetEnemyEditor();
             this.currentEnemyList.SelectedItem = mSelectedEnemy.mName;
@@ -1253,6 +1371,7 @@ namespace Seals_Of_Hell_Data_Editor
                 {
                     this.killZoneDisablerSelector.SelectedItem = mSelectedKillZone.mConditionalObject;
                 }
+                this.currentKillZonesList.SelectedItem = mSelectedKillZone.mName;
                 return;
             }
             this.killZoneNameTextBox.Text = "";
@@ -1263,6 +1382,7 @@ namespace Seals_Of_Hell_Data_Editor
             this.isKillZoneInteractable.Checked = false;
             this.killZoneDisablerSelector.SelectedIndex = 0;
             this.currentKillZonesList.DataSource = mGameDetails.GetKillZoneNames();
+            this.currentKillZonesList.SelectedIndex = -1;
         }
         void DeleteSelectedKillZone()
         {
@@ -1336,6 +1456,10 @@ namespace Seals_Of_Hell_Data_Editor
             {
                 mSelectedKillZone = null;
             }
+            if(this.currentKillZonesList.SelectedIndex == -1)
+            {
+                return;
+            }
             mSelectedKillZone = mGameDetails.GetKillZoneObject((string)this.currentKillZonesList.SelectedItem);
             ResetKillZoneEditor();
             this.currentKillZonesList.SelectedItem = mSelectedKillZone.mName;
@@ -1355,6 +1479,7 @@ namespace Seals_Of_Hell_Data_Editor
                 this.isOIIVisible.Checked = mSelectedOIItem.mIsVisible;
                 this.isOIIInteractable.Checked = mSelectedOIItem.mIsInteractable;
                 this.oIITypeSelector.SelectedItem = mSelectedOIItem.mType;
+                this.currentOIIList.SelectedItem = mSelectedOIItem.mName;
                 return;
             }
             this.oIINameTextBox.Text = "";
@@ -1365,6 +1490,7 @@ namespace Seals_Of_Hell_Data_Editor
             this.isOIIInteractable.Checked = false;
             this.oIITypeSelector.SelectedIndex = 0;
             this.currentOIIList.DataSource = mGameDetails.GetOIItemNames();
+            this.currentOIIList.SelectedIndex = -1;
         }
         void DeleteSelectedOIItem()
         {
@@ -1427,6 +1553,10 @@ namespace Seals_Of_Hell_Data_Editor
             {
                 mSelectedOIItem = null;
             }
+            if(this.currentOIIList.SelectedIndex == -1)
+            {
+                return;
+            }
             mSelectedOIItem = mGameDetails.GetOIItemObject((string)this.currentOIIList.SelectedItem);
             ResetOIIEditor();
             this.currentOIIList.SelectedItem = mSelectedOIItem.mName;
@@ -1444,6 +1574,7 @@ namespace Seals_Of_Hell_Data_Editor
                 this.isPickableItemVisible.Checked = mSelectedPickable.mIsVisible;
                 this.isPickableItemInteractable.Checked = mSelectedPickable.mIsInteractable;
                 this.pickableItemTypeSelector.SelectedItem = mSelectedPickable.mType;
+                this.currentPickableItemsList.SelectedItem = mSelectedPickable.mName;
                 return;
             }
             this.pickableItemNameTextBox.Text = "";
@@ -1452,6 +1583,7 @@ namespace Seals_Of_Hell_Data_Editor
             this.isPickableItemInteractable.Checked = false;
             this.pickableItemTypeSelector.SelectedIndex = 0;
             this.currentPickableItemsList.DataSource = mGameDetails.GetPickableItemNames();
+            this.currentPickableItemsList.SelectedIndex = -1;
         }
         void DeleteSelectedPickable()
         {
@@ -1505,21 +1637,28 @@ namespace Seals_Of_Hell_Data_Editor
                     aPickableRoom.RemoveOldPickableAndAddNew(aPickableOldName, mSelectedPickable);
                     mSelectedPickable.SetInRoom(aPickableRoom.mName);
                 }
-                if(aConditionalOf != null || aConditionalOf.Count > 0)
+                if(aConditionalOf != null)
                 {
-                    mGameDetails.UpdatePickableName(aConditionalOf, mSelectedPickable.mName);
-                    mSelectedPickable.AddConditionalOf(aConditionalOf);
+                    if(aConditionalOf.Count > 0)
+                    {
+                        mGameDetails.UpdatePickableName(aConditionalOf, mSelectedPickable.mName);
+                        mSelectedPickable.AddConditionalOf(aConditionalOf);
+                    }
                 }
-                mGameDetails.AddOIItem(mSelectedOIItem);
-                mSelectedOIItem = null;
+                mGameDetails.AddPickable(mSelectedPickable);
+                mSelectedPickable = null;
             }
-            ResetOIIEditor();
+            ResetPickableEditor();
         }
         private void EditSelectedPickableItem_Click(object sender, EventArgs e)
         {
             if (mSelectedPickable != null)
             {
                 mSelectedPickable = null;
+            }
+            if(this.currentPickableItemsList.SelectedIndex == -1)
+            {
+                return;
             }
             mSelectedPickable = mGameDetails.GetPickableItem((string)this.currentPickableItemsList.SelectedItem);
             ResetPickableEditor();

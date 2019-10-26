@@ -262,7 +262,7 @@ namespace Seals_Of_Hell_Data_Editor
             aPickableItems.AddRange(mPickableItems[PickableItem.Type.Giveable].Keys);
             aPickableItems.AddRange(mPickableItems[PickableItem.Type.Shield].Keys);
             aPickableItems.AddRange(mPickableItems[PickableItem.Type.Weapon].Keys);
-            aPickableItems.AddRange(mPickableItems[PickableItem.Type.Weapon].Keys);
+            aPickableItems.AddRange(mPickableItems[PickableItem.Type.Wearable].Keys);
             return aPickableItems;
         }
         public PickableItem GetPickableItem(PickableItem.Type pType, string pName)
@@ -294,6 +294,13 @@ namespace Seals_Of_Hell_Data_Editor
             else
             {
                 return null;
+            }
+        }
+        public void AddPickable(PickableItem pItem)
+        {
+            if(!mPickableItems[pItem.mType].ContainsKey(pItem.mName))
+            {
+                mPickableItems[pItem.mType].Add(pItem.mName, pItem);
             }
         }
         public void DeletePickableItem(PickableItem.Type pType, string pName)
