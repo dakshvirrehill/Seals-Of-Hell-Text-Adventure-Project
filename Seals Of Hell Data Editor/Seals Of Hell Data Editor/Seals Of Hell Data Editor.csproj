@@ -68,6 +68,7 @@
     <Compile Include="Region.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="TreasureCollector.cs" />
+    <Compile Include="Updater.cs" />
     <EmbeddedResource Include="Form1.en-CA.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
