@@ -40,6 +40,8 @@ namespace Seals_Of_Hell_Data_Editor
         List<string> mAssignedKillZones;
         Dictionary<string, OneInteractionItem> mOIItems;
         List<string> mAssignedOIItems;
+        Dictionary<string, Portal> mPortals;
+        Dictionary<string, Gateway> mGateways;
         void InitializeImpPrivMembers()
         {
             mRooms = new Dictionary<string, Room>();
@@ -61,6 +63,8 @@ namespace Seals_Of_Hell_Data_Editor
             mAssignedKillZones = new List<string>();
             mOIItems = new Dictionary<string, OneInteractionItem>();
             mAssignedOIItems = new List<string>();
+            mPortals = new Dictionary<string, Portal>();
+            mGateways = new Dictionary<string, Gateway>();
         }
 
         #endregion
@@ -94,6 +98,20 @@ namespace Seals_Of_Hell_Data_Editor
         public bool IsRoomAssigned(string pRoomName)
         {
             return mAssignedRooms.Contains(pRoomName);
+        }
+        public void UnAssignRoom(string pRoomName)
+        {
+            if(mAssignedRooms.Contains(pRoomName))
+            {
+                mAssignedRooms.Remove(pRoomName);
+            }
+        }
+        public void AssignRoom(string pRoomName)
+        {
+            if(!mAssignedRooms.Contains(pRoomName))
+            {
+                mAssignedRooms.Add(pRoomName);
+            }
         }
         public void AddRoom(Room pRoom)
         {
@@ -461,6 +479,56 @@ namespace Seals_Of_Hell_Data_Editor
             }
         }
         #endregion
+        #endregion
+        #region Region
+        public void AddPortal(Portal pRegionPortal)
+        {
+            if(!mPortals.ContainsKey(pRegionPortal.mName))
+            {
+                mPortals.Add(pRegionPortal.mName, pRegionPortal);
+            }
+        }
+        public void DeletePortal(string pRegionName)
+        {
+            if(mPortals.ContainsKey(pRegionName))
+            {
+                mPortals.Remove(pRegionName);
+            }
+        }
+        public Portal GetRegionPortal(string pRegionName)
+        {
+            if(mPortals.ContainsKey(pRegionName))
+            {
+                return mPortals[pRegionName];
+            }
+            return null;
+        }
+        public Gateway GetGatewayObject(string pGatewayName)
+        {
+            if(mGateways.ContainsKey(pGatewayName))
+            {
+                return mGateways[pGatewayName];
+            }
+            return null;
+        }
+        public void DeleteGateway(string pGatewayName)
+        {
+            if(mGateways.ContainsKey(pGatewayName))
+            {
+                mGateways.Remove(pGatewayName);
+            }
+        }
+        public void AddGateway(Gateway pGateway)
+        {
+            if(!mGateways.ContainsKey(pGateway.mName))
+            {
+                mGateways.Add(pGateway.mName,pGateway);
+            }
+        }
+        public bool IsGatewayPresent(string pGatewayName)
+        {
+            return mGateways.ContainsKey(pGatewayName);
+        }
         #endregion
     }
 }

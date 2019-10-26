@@ -98,6 +98,8 @@
             this.regionNameTextBox = new System.Windows.Forms.TextBox();
             this.newRegionNameLabel = new System.Windows.Forms.Label();
             this.regionGateWaysTab = new System.Windows.Forms.TabPage();
+            this.gwCurrentRegionsListLabel = new System.Windows.Forms.Label();
+            this.gwCurrentRegionsList = new System.Windows.Forms.ListBox();
             this.gatewayRoom2 = new System.Windows.Forms.ComboBox();
             this.gatewayRoom2Label = new System.Windows.Forms.Label();
             this.gatewayDirection = new System.Windows.Forms.ComboBox();
@@ -269,6 +271,12 @@
             this.pickableItemStoryLabel = new System.Windows.Forms.Label();
             this.pickableItemNameTextBox = new System.Windows.Forms.TextBox();
             this.pickableItemNameLabel = new System.Windows.Forms.Label();
+            this.edPorCurrentRegionsListLabel = new System.Windows.Forms.Label();
+            this.edPorCurrentRegionsList = new System.Windows.Forms.ListBox();
+            this.adptrCurrentRegionListLabel = new System.Windows.Forms.Label();
+            this.adptrCurrentRegionsList = new System.Windows.Forms.ListBox();
+            this.isGatewayVisible = new System.Windows.Forms.CheckBox();
+            this.isGatewayInteractable = new System.Windows.Forms.CheckBox();
             this.mainMenuStrip.SuspendLayout();
             this.gameStartTabControl.SuspendLayout();
             this.gameDetailsTab.SuspendLayout();
@@ -864,6 +872,7 @@
             this.regionTabControl.SelectedIndex = 0;
             this.regionTabControl.Size = new System.Drawing.Size(1008, 703);
             this.regionTabControl.TabIndex = 2;
+            this.regionTabControl.SelectedIndexChanged += new System.EventHandler(this.RegionTabControl_SelectedIndexChanged);
             // 
             // addEditRegionTab
             // 
@@ -933,8 +942,10 @@
             this.allRoomsRegionList.ItemHeight = 20;
             this.allRoomsRegionList.Location = new System.Drawing.Point(190, 250);
             this.allRoomsRegionList.Name = "allRoomsRegionList";
+            this.allRoomsRegionList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.allRoomsRegionList.Size = new System.Drawing.Size(538, 304);
             this.allRoomsRegionList.TabIndex = 8;
+            this.allRoomsRegionList.SelectedIndexChanged += new System.EventHandler(this.AllRoomsRegionList_SelectedIndexChanged);
             // 
             // newRegionRoomsLabel
             // 
@@ -1012,6 +1023,10 @@
             // 
             // regionGateWaysTab
             // 
+            this.regionGateWaysTab.Controls.Add(this.isGatewayInteractable);
+            this.regionGateWaysTab.Controls.Add(this.isGatewayVisible);
+            this.regionGateWaysTab.Controls.Add(this.gwCurrentRegionsListLabel);
+            this.regionGateWaysTab.Controls.Add(this.gwCurrentRegionsList);
             this.regionGateWaysTab.Controls.Add(this.gatewayRoom2);
             this.regionGateWaysTab.Controls.Add(this.gatewayRoom2Label);
             this.regionGateWaysTab.Controls.Add(this.gatewayDirection);
@@ -1035,19 +1050,38 @@
             this.regionGateWaysTab.Text = "Add/Edit Gateways";
             this.regionGateWaysTab.UseVisualStyleBackColor = true;
             // 
+            // gwCurrentRegionsListLabel
+            // 
+            this.gwCurrentRegionsListLabel.AutoSize = true;
+            this.gwCurrentRegionsListLabel.Location = new System.Drawing.Point(17, 36);
+            this.gwCurrentRegionsListLabel.Name = "gwCurrentRegionsListLabel";
+            this.gwCurrentRegionsListLabel.Size = new System.Drawing.Size(174, 20);
+            this.gwCurrentRegionsListLabel.TabIndex = 29;
+            this.gwCurrentRegionsListLabel.Text = "Current Regions List";
+            // 
+            // gwCurrentRegionsList
+            // 
+            this.gwCurrentRegionsList.FormattingEnabled = true;
+            this.gwCurrentRegionsList.ItemHeight = 20;
+            this.gwCurrentRegionsList.Location = new System.Drawing.Point(8, 59);
+            this.gwCurrentRegionsList.Name = "gwCurrentRegionsList";
+            this.gwCurrentRegionsList.Size = new System.Drawing.Size(205, 424);
+            this.gwCurrentRegionsList.TabIndex = 28;
+            this.gwCurrentRegionsList.SelectedIndexChanged += new System.EventHandler(this.GwCurrentRegionsList_SelectedIndexChanged);
+            // 
             // gatewayRoom2
             // 
             this.gatewayRoom2.FormattingEnabled = true;
-            this.gatewayRoom2.Location = new System.Drawing.Point(200, 460);
+            this.gatewayRoom2.Location = new System.Drawing.Point(439, 380);
             this.gatewayRoom2.Name = "gatewayRoom2";
-            this.gatewayRoom2.Size = new System.Drawing.Size(538, 28);
+            this.gatewayRoom2.Size = new System.Drawing.Size(293, 28);
             this.gatewayRoom2.TabIndex = 27;
             // 
             // gatewayRoom2Label
             // 
             this.gatewayRoom2Label.AutoSize = true;
             this.gatewayRoom2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gatewayRoom2Label.Location = new System.Drawing.Point(27, 463);
+            this.gatewayRoom2Label.Location = new System.Drawing.Point(247, 383);
             this.gatewayRoom2Label.Name = "gatewayRoom2Label";
             this.gatewayRoom2Label.Size = new System.Drawing.Size(167, 20);
             this.gatewayRoom2Label.TabIndex = 26;
@@ -1056,16 +1090,17 @@
             // gatewayDirection
             // 
             this.gatewayDirection.FormattingEnabled = true;
-            this.gatewayDirection.Location = new System.Drawing.Point(200, 385);
+            this.gatewayDirection.Location = new System.Drawing.Point(439, 284);
             this.gatewayDirection.Name = "gatewayDirection";
-            this.gatewayDirection.Size = new System.Drawing.Size(538, 28);
+            this.gatewayDirection.Size = new System.Drawing.Size(293, 28);
             this.gatewayDirection.TabIndex = 25;
+            this.gatewayDirection.SelectedIndexChanged += new System.EventHandler(this.GatewayDirection_SelectedIndexChanged);
             // 
             // gatewayDirectionLabel
             // 
             this.gatewayDirectionLabel.AutoSize = true;
             this.gatewayDirectionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gatewayDirectionLabel.Location = new System.Drawing.Point(14, 388);
+            this.gatewayDirectionLabel.Location = new System.Drawing.Point(234, 287);
             this.gatewayDirectionLabel.Name = "gatewayDirectionLabel";
             this.gatewayDirectionLabel.Size = new System.Drawing.Size(180, 20);
             this.gatewayDirectionLabel.TabIndex = 24;
@@ -1074,16 +1109,16 @@
             // gatewayRoom1
             // 
             this.gatewayRoom1.FormattingEnabled = true;
-            this.gatewayRoom1.Location = new System.Drawing.Point(200, 309);
+            this.gatewayRoom1.Location = new System.Drawing.Point(439, 331);
             this.gatewayRoom1.Name = "gatewayRoom1";
-            this.gatewayRoom1.Size = new System.Drawing.Size(538, 28);
+            this.gatewayRoom1.Size = new System.Drawing.Size(293, 28);
             this.gatewayRoom1.TabIndex = 23;
             // 
             // gatewayRoom1Label
             // 
             this.gatewayRoom1Label.AutoSize = true;
             this.gatewayRoom1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gatewayRoom1Label.Location = new System.Drawing.Point(27, 312);
+            this.gatewayRoom1Label.Location = new System.Drawing.Point(247, 334);
             this.gatewayRoom1Label.Name = "gatewayRoom1Label";
             this.gatewayRoom1Label.Size = new System.Drawing.Size(167, 20);
             this.gatewayRoom1Label.TabIndex = 22;
@@ -1139,9 +1174,9 @@
             // 
             // gatewayStoryTextBox
             // 
-            this.gatewayStoryTextBox.Location = new System.Drawing.Point(196, 88);
+            this.gatewayStoryTextBox.Location = new System.Drawing.Point(441, 88);
             this.gatewayStoryTextBox.Name = "gatewayStoryTextBox";
-            this.gatewayStoryTextBox.Size = new System.Drawing.Size(538, 180);
+            this.gatewayStoryTextBox.Size = new System.Drawing.Size(293, 180);
             this.gatewayStoryTextBox.TabIndex = 16;
             this.gatewayStoryTextBox.Text = "";
             // 
@@ -1149,7 +1184,7 @@
             // 
             this.regionGatewayStoryLabel.AutoSize = true;
             this.regionGatewayStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.regionGatewayStoryLabel.Location = new System.Drawing.Point(3, 95);
+            this.regionGatewayStoryLabel.Location = new System.Drawing.Point(229, 95);
             this.regionGatewayStoryLabel.Name = "regionGatewayStoryLabel";
             this.regionGatewayStoryLabel.Size = new System.Drawing.Size(185, 20);
             this.regionGatewayStoryLabel.TabIndex = 15;
@@ -1158,16 +1193,16 @@
             // gatewayNameTextBox
             // 
             this.gatewayNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gatewayNameTextBox.Location = new System.Drawing.Point(199, 35);
+            this.gatewayNameTextBox.Location = new System.Drawing.Point(444, 35);
             this.gatewayNameTextBox.Name = "gatewayNameTextBox";
-            this.gatewayNameTextBox.Size = new System.Drawing.Size(538, 26);
+            this.gatewayNameTextBox.Size = new System.Drawing.Size(293, 26);
             this.gatewayNameTextBox.TabIndex = 14;
             // 
             // regionGatewayNameLabel
             // 
             this.regionGatewayNameLabel.AutoSize = true;
             this.regionGatewayNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.regionGatewayNameLabel.Location = new System.Drawing.Point(-1, 38);
+            this.regionGatewayNameLabel.Location = new System.Drawing.Point(225, 38);
             this.regionGatewayNameLabel.Name = "regionGatewayNameLabel";
             this.regionGatewayNameLabel.Size = new System.Drawing.Size(189, 20);
             this.regionGatewayNameLabel.TabIndex = 13;
@@ -1193,9 +1228,12 @@
             this.insidePortalsTabControl.SelectedIndex = 0;
             this.insidePortalsTabControl.Size = new System.Drawing.Size(991, 661);
             this.insidePortalsTabControl.TabIndex = 30;
+            this.insidePortalsTabControl.SelectedIndexChanged += new System.EventHandler(this.InsidePortalsTabControl_SelectedIndexChanged);
             // 
             // editPortalTab
             // 
+            this.editPortalTab.Controls.Add(this.edPorCurrentRegionsListLabel);
+            this.editPortalTab.Controls.Add(this.edPorCurrentRegionsList);
             this.editPortalTab.Controls.Add(this.portalNameLabel);
             this.editPortalTab.Controls.Add(this.portalNameTextBox);
             this.editPortalTab.Controls.Add(this.portalStoryLabel);
@@ -1213,7 +1251,7 @@
             // 
             this.portalNameLabel.AutoSize = true;
             this.portalNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portalNameLabel.Location = new System.Drawing.Point(56, 89);
+            this.portalNameLabel.Location = new System.Drawing.Point(284, 89);
             this.portalNameLabel.Name = "portalNameLabel";
             this.portalNameLabel.Size = new System.Drawing.Size(166, 20);
             this.portalNameLabel.TabIndex = 22;
@@ -1222,16 +1260,16 @@
             // portalNameTextBox
             // 
             this.portalNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portalNameTextBox.Location = new System.Drawing.Point(324, 83);
+            this.portalNameTextBox.Location = new System.Drawing.Point(474, 83);
             this.portalNameTextBox.Name = "portalNameTextBox";
-            this.portalNameTextBox.Size = new System.Drawing.Size(560, 26);
+            this.portalNameTextBox.Size = new System.Drawing.Size(410, 26);
             this.portalNameTextBox.TabIndex = 23;
             // 
             // portalStoryLabel
             // 
             this.portalStoryLabel.AutoSize = true;
             this.portalStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portalStoryLabel.Location = new System.Drawing.Point(60, 155);
+            this.portalStoryLabel.Location = new System.Drawing.Point(293, 158);
             this.portalStoryLabel.Name = "portalStoryLabel";
             this.portalStoryLabel.Size = new System.Drawing.Size(162, 20);
             this.portalStoryLabel.TabIndex = 24;
@@ -1239,9 +1277,9 @@
             // 
             // editPortalDetails
             // 
-            this.editPortalDetails.Location = new System.Drawing.Point(324, 430);
+            this.editPortalDetails.Location = new System.Drawing.Point(474, 430);
             this.editPortalDetails.Name = "editPortalDetails";
-            this.editPortalDetails.Size = new System.Drawing.Size(560, 77);
+            this.editPortalDetails.Size = new System.Drawing.Size(410, 77);
             this.editPortalDetails.TabIndex = 26;
             this.editPortalDetails.Text = "Edit Portal Details";
             this.editPortalDetails.UseVisualStyleBackColor = true;
@@ -1249,14 +1287,16 @@
             // 
             // portalStoryTextBox
             // 
-            this.portalStoryTextBox.Location = new System.Drawing.Point(321, 155);
+            this.portalStoryTextBox.Location = new System.Drawing.Point(471, 155);
             this.portalStoryTextBox.Name = "portalStoryTextBox";
-            this.portalStoryTextBox.Size = new System.Drawing.Size(563, 229);
+            this.portalStoryTextBox.Size = new System.Drawing.Size(413, 229);
             this.portalStoryTextBox.TabIndex = 25;
             this.portalStoryTextBox.Text = "";
             // 
             // portalRoomsTab
             // 
+            this.portalRoomsTab.Controls.Add(this.adptrCurrentRegionListLabel);
+            this.portalRoomsTab.Controls.Add(this.adptrCurrentRegionsList);
             this.portalRoomsTab.Controls.Add(this.currentPRoomsListLabel);
             this.portalRoomsTab.Controls.Add(this.currentPortalRoomsList);
             this.portalRoomsTab.Controls.Add(this.addPortalsToRooms);
@@ -1271,7 +1311,7 @@
             // currentPRoomsListLabel
             // 
             this.currentPRoomsListLabel.AutoSize = true;
-            this.currentPRoomsListLabel.Location = new System.Drawing.Point(369, 23);
+            this.currentPRoomsListLabel.Location = new System.Drawing.Point(622, 35);
             this.currentPRoomsListLabel.Name = "currentPRoomsListLabel";
             this.currentPRoomsListLabel.Size = new System.Drawing.Size(164, 20);
             this.currentPRoomsListLabel.TabIndex = 29;
@@ -1281,9 +1321,10 @@
             // 
             this.currentPortalRoomsList.FormattingEnabled = true;
             this.currentPortalRoomsList.ItemHeight = 20;
-            this.currentPortalRoomsList.Location = new System.Drawing.Point(78, 58);
+            this.currentPortalRoomsList.Location = new System.Drawing.Point(498, 58);
             this.currentPortalRoomsList.Name = "currentPortalRoomsList";
-            this.currentPortalRoomsList.Size = new System.Drawing.Size(833, 424);
+            this.currentPortalRoomsList.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.currentPortalRoomsList.Size = new System.Drawing.Size(413, 424);
             this.currentPortalRoomsList.TabIndex = 28;
             // 
             // addPortalsToRooms
@@ -2823,6 +2864,64 @@
             this.pickableItemNameLabel.TabIndex = 70;
             this.pickableItemNameLabel.Text = "Item Name";
             // 
+            // edPorCurrentRegionsListLabel
+            // 
+            this.edPorCurrentRegionsListLabel.AutoSize = true;
+            this.edPorCurrentRegionsListLabel.Location = new System.Drawing.Point(43, 57);
+            this.edPorCurrentRegionsListLabel.Name = "edPorCurrentRegionsListLabel";
+            this.edPorCurrentRegionsListLabel.Size = new System.Drawing.Size(174, 20);
+            this.edPorCurrentRegionsListLabel.TabIndex = 31;
+            this.edPorCurrentRegionsListLabel.Text = "Current Regions List";
+            // 
+            // edPorCurrentRegionsList
+            // 
+            this.edPorCurrentRegionsList.FormattingEnabled = true;
+            this.edPorCurrentRegionsList.ItemHeight = 20;
+            this.edPorCurrentRegionsList.Location = new System.Drawing.Point(34, 80);
+            this.edPorCurrentRegionsList.Name = "edPorCurrentRegionsList";
+            this.edPorCurrentRegionsList.Size = new System.Drawing.Size(205, 424);
+            this.edPorCurrentRegionsList.TabIndex = 30;
+            this.edPorCurrentRegionsList.SelectedIndexChanged += new System.EventHandler(this.EdPorCurrentRegionsList_SelectedIndexChanged);
+            // 
+            // adptrCurrentRegionListLabel
+            // 
+            this.adptrCurrentRegionListLabel.AutoSize = true;
+            this.adptrCurrentRegionListLabel.Location = new System.Drawing.Point(117, 35);
+            this.adptrCurrentRegionListLabel.Name = "adptrCurrentRegionListLabel";
+            this.adptrCurrentRegionListLabel.Size = new System.Drawing.Size(174, 20);
+            this.adptrCurrentRegionListLabel.TabIndex = 33;
+            this.adptrCurrentRegionListLabel.Text = "Current Regions List";
+            // 
+            // adptrCurrentRegionsList
+            // 
+            this.adptrCurrentRegionsList.FormattingEnabled = true;
+            this.adptrCurrentRegionsList.ItemHeight = 20;
+            this.adptrCurrentRegionsList.Location = new System.Drawing.Point(17, 58);
+            this.adptrCurrentRegionsList.Name = "adptrCurrentRegionsList";
+            this.adptrCurrentRegionsList.Size = new System.Drawing.Size(401, 424);
+            this.adptrCurrentRegionsList.TabIndex = 32;
+            this.adptrCurrentRegionsList.SelectedIndexChanged += new System.EventHandler(this.AdptrCurrentRegionsList_SelectedIndexChanged);
+            // 
+            // isGatewayVisible
+            // 
+            this.isGatewayVisible.AutoSize = true;
+            this.isGatewayVisible.Location = new System.Drawing.Point(325, 464);
+            this.isGatewayVisible.Name = "isGatewayVisible";
+            this.isGatewayVisible.Size = new System.Drawing.Size(101, 24);
+            this.isGatewayVisible.TabIndex = 30;
+            this.isGatewayVisible.Text = "Is Visible";
+            this.isGatewayVisible.UseVisualStyleBackColor = true;
+            // 
+            // isGatewayInteractable
+            // 
+            this.isGatewayInteractable.AutoSize = true;
+            this.isGatewayInteractable.Location = new System.Drawing.Point(526, 464);
+            this.isGatewayInteractable.Name = "isGatewayInteractable";
+            this.isGatewayInteractable.Size = new System.Drawing.Size(138, 24);
+            this.isGatewayInteractable.TabIndex = 31;
+            this.isGatewayInteractable.Text = "isInteractable";
+            this.isGatewayInteractable.UseVisualStyleBackColor = true;
+            // 
             // SealsOfHellMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2830,10 +2929,10 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.mainMenuStrip);
-            this.Controls.Add(this.roomTabControl);
             this.Controls.Add(this.regionTabControl);
             this.Controls.Add(this.interactableDetailsTabControl);
             this.Controls.Add(this.gameStartTabControl);
+            this.Controls.Add(this.roomTabControl);
             this.MainMenuStrip = this.mainMenuStrip;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1440, 1078);
@@ -3134,6 +3233,14 @@
         private System.Windows.Forms.Label oIIUpdatableListLabel;
         private System.Windows.Forms.Label oIIRoomItemsListLabel;
         private System.Windows.Forms.Label oIICurRoomListLabel;
+        private System.Windows.Forms.Label gwCurrentRegionsListLabel;
+        private System.Windows.Forms.ListBox gwCurrentRegionsList;
+        private System.Windows.Forms.Label edPorCurrentRegionsListLabel;
+        private System.Windows.Forms.ListBox edPorCurrentRegionsList;
+        private System.Windows.Forms.Label adptrCurrentRegionListLabel;
+        private System.Windows.Forms.ListBox adptrCurrentRegionsList;
+        private System.Windows.Forms.CheckBox isGatewayInteractable;
+        private System.Windows.Forms.CheckBox isGatewayVisible;
     }
 }
 

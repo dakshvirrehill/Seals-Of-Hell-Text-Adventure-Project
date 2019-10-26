@@ -20,6 +20,8 @@ namespace Seals_Of_Hell_Data_Editor
         KillZone mSelectedKillZone;
         OneInteractionItem mSelectedOIItem;
         PickableItem mSelectedPickable;
+        Portal mSelectedPortal;
+        Gateway mSelectedGateway;
         public SealsOfHellMain()
         {
             mGameDetails = new DataHandler();
@@ -36,6 +38,8 @@ namespace Seals_Of_Hell_Data_Editor
             mSelectedKillZone = null;
             mSelectedOIItem = null;
             mSelectedPickable = null;
+            mSelectedPortal = null;
+            mSelectedGateway = null;
             this.gameStartTabControl.Visible = 
             this.interactableDetailsTabControl.Visible = 
             this.regionTabControl.Visible =
@@ -164,38 +168,360 @@ namespace Seals_Of_Hell_Data_Editor
         }
         #endregion
         #region Region Data
+        private void RegionTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(this.regionTabControl.SelectedTab == this.addEditRegionTab)
+            {
+                ResetRegionEditor();
+            }
+            else if(this.regionTabControl.SelectedTab == this.regionGateWaysTab)
+            {
+                ResetGatewayEditor();
+            }
+            else if(this.regionTabControl.SelectedTab == this.regionPortalTab)
+            {
+                this.insidePortalsTabControl.SelectedIndex = 0;
+            }
+        }
+        #region Region Editor Code
+        void ResetRegionEditor()
+        {
+            mSelectedRegion = null;
+            List<string> aRegionNames = new List<string>(mGameDetails.mRegionDetails.Keys);
+            aRegionNames.Remove(mGameDetails.mFirstRegion);
+            this.currentRegionsList.DataSource = aRegionNames;
+            this.regionNameTextBox.Text = "";
+            this.regionStoryTextBox.Text = "";
+            List<string> aRoomNames = mGameDetails.GetRoomNames();
+            for(int aI = 0; aI < aRoomNames.Count; aI ++)
+            {
+                if(mGameDetails.IsRoomAssigned(aRoomNames[aI]))
+                {
+                    aRoomNames.RemoveAt(aI--);
+                }
+            }
+            this.entryRoomSelector.DataSource = null;
+            this.allRoomsRegionList.DataSource = aRoomNames;
+        }
+        bool IsRegionValid()
+        {
+            return !(string.IsNullOrEmpty(this.regionNameTextBox.Text) || string.IsNullOrEmpty(this.regionStoryTextBox.Text)
+                || this.entryRoomSelector.DataSource == null || this.allRoomsRegionList.SelectedItems.Count <= 0);
+        }
+        private void AllRoomsRegionList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string aErRoom = "";
+            if (this.entryRoomSelector.DataSource != null)
+            {
+                aErRoom = (string)this.entryRoomSelector.SelectedItem;
+            }
+            this.entryRoomSelector.DataSource = null;
+            List<string> aRooms = new List<string>();
+            foreach(var aSelection in this.allRoomsRegionList.SelectedItems)
+            {
+                aRooms.Add((string)aSelection);
+            }
+            this.entryRoomSelector.DataSource = aRooms;
+            if(!string.IsNullOrEmpty(aErRoom))
+            {
+                if(aRooms.Contains(aErRoom))
+                {
+                    this.entryRoomSelector.SelectedItem = aErRoom;
+                }
+            }
+        }
         private void DeleteRegionDetails_Click(object sender, EventArgs e)
         {
-
+            if(mSelectedRegion != null)
+            {
+                foreach(Room aRoom in mSelectedRegion.mRooms.Values)
+                {
+                    mGameDetails.UnAssignRoom(aRoom.mName);
+                    aRoom.SetInRegion("");
+                }
+                mGameDetails.DeletePortal(mSelectedRegion.mName);
+                mGameDetails.mRegionDetails.Remove(mSelectedRegion.mName);
+                mSelectedRegion = null;
+            }
         }
         private void EditRegionDetails_Click(object sender, EventArgs e)
         {
-
+            if(IsRegionValid())
+            {
+                if(mSelectedRegion == null && mGameDetails.mRegionDetails.ContainsKey(this.regionNameTextBox.Text))
+                {
+                    return;
+                }
+                Portal aRegionPortal = null;
+                if(mSelectedRegion != null)
+                {
+                    foreach(Room aRoom in mSelectedRegion.mRooms.Values)
+                    {
+                        mGameDetails.UnAssignRoom(aRoom.mName);
+                        aRoom.SetInRegion("");
+                    }
+                    aRegionPortal = mGameDetails.GetRegionPortal(mSelectedRegion.mName);
+                    mGameDetails.DeletePortal(mSelectedRegion.mName);
+                    mGameDetails.mRegionDetails.Remove(mSelectedRegion.mName);
+                    mSelectedRegion = null;
+                }
+                mSelectedRegion = new Region()
+                {
+                    mName = this.regionNameTextBox.Text,
+                    mStory = this.regionStoryTextBox.Text,
+                    mEntryRoom = (string)this.entryRoomSelector.SelectedItem,
+                };
+                foreach(var aSelected in this.allRoomsRegionList.SelectedItems)
+                {
+                    mSelectedRegion.mRooms.Add((string)aSelected, mGameDetails.GetRoomObject((string)aSelected));
+                    mSelectedRegion.mRooms[(string)aSelected].SetInRegion(mSelectedRegion.mName);
+                    mGameDetails.AssignRoom((string)aSelected);
+                }
+                if(aRegionPortal == null)
+                {
+                    aRegionPortal = new Portal(mSelectedRegion.mName);
+                }
+                aRegionPortal.mCurrentRegionName = mSelectedRegion.mName;
+                mGameDetails.AddPortal(aRegionPortal);
+                mGameDetails.mRegionDetails.Add(mSelectedRegion.mName, mSelectedRegion);
+                mSelectedRegion = null;
+            }
+            ResetRegionEditor();
         }
         private void EditSelectedRegion_Click(object sender, EventArgs e)
         {
-
+            mSelectedRegion = mGameDetails.mRegionDetails[(string)this.currentRegionsList.SelectedItem];
+            this.regionNameTextBox.Text = mSelectedRegion.mName;
+            this.regionStoryTextBox.Text = mSelectedRegion.mStory;
+            List<string> aRoomNames = mGameDetails.GetRoomNames();
+            for (int aI = 0; aI < aRoomNames.Count; aI++)
+            {
+                if (mGameDetails.IsRoomAssigned(aRoomNames[aI]))
+                {
+                    aRoomNames.RemoveAt(aI--);
+                }
+            }
+            aRoomNames.AddRange(mSelectedRegion.mRooms.Keys);
+            SetListBoxListAndSelection(this.allRoomsRegionList, aRoomNames, new List<string>(mSelectedRegion.mRooms.Keys));
+            this.entryRoomSelector.SelectedItem = mSelectedRegion.mEntryRoom;
+        }
+        #endregion
+        #region Gateway Editor Code
+        void ResetGatewayEditor()
+        {
+            mSelectedRegion = null;
+            mSelectedGateway = null;
+            this.gatewayNameTextBox.Text = "";
+            this.gatewayStoryTextBox.Text = "";
+            this.isGatewayVisible.Checked =
+            this.isGatewayInteractable.Checked = false;
+            this.gatewayDirection.DataSource = null;
+            this.gatewayRoom1.DataSource = null;
+            this.gatewayRoom2.DataSource = null;
+            List<string> aRegionNames = new List<string>(mGameDetails.mRegionDetails.Keys);
+            aRegionNames.Remove(mGameDetails.mFirstRegion);
+            this.gwCurrentRegionsList.DataSource = aRegionNames;
+        }
+        void DeleteGateway()
+        {
+            if (mSelectedGateway != null)
+            {
+                Room aR1 = mGameDetails.GetRoomObject(mSelectedGateway.mRoom1);
+                Room aR2 = mGameDetails.GetRoomObject(mSelectedGateway.mRoom2);
+                aR1.mGateways.Remove(mSelectedGateway.mName);
+                aR2.mGateways.Remove(mSelectedGateway.mName);
+                mGameDetails.DeleteGateway(mSelectedGateway.mName);
+                mSelectedGateway = null;
+            }
+        }
+        private void GwCurrentRegionsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mSelectedRegion = mGameDetails.mRegionDetails[(string)this.gwCurrentRegionsList.SelectedItem];
+            List<string> aCurGws = new List<string>();
+            foreach(Room aRoom in mSelectedRegion.mRooms.Values)
+            {
+                aCurGws.AddRange(aRoom.mGateways.Keys);
+            }
+            this.currentGatewaysList.DataSource = aCurGws;
+            this.gatewayDirection.DataSource = Enum.GetValues(typeof(Gateway.Path));
+        }
+        void PopulateRoomComboBox(Gateway.Direction pDirection1, Gateway.Direction pDirection2)
+        {
+            List<string> aRoom1List = new List<string>(mSelectedRegion.mRooms.Keys);
+            List<string> aRoom2List = new List<string>(mSelectedRegion.mRooms.Keys);
+            foreach (Room aRoom in mSelectedRegion.mRooms.Values)
+            {
+                if (aRoom.IsBlocked(pDirection1))
+                {
+                    aRoom1List.Remove(aRoom.mName);
+                }
+                if(aRoom.IsBlocked(pDirection2))
+                {
+                    aRoom2List.Remove(aRoom.mName);
+                }
+            }
+        }
+        private void GatewayDirection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Gateway.Path aPath = (Gateway.Path)this.gatewayDirection.SelectedItem;
+            switch(aPath)
+            {
+                case Gateway.Path.North_South:
+                    PopulateRoomComboBox(Gateway.Direction.North, Gateway.Direction.South);
+                    break;
+                case Gateway.Path.East_West:
+                    PopulateRoomComboBox(Gateway.Direction.East, Gateway.Direction.West);
+                    break;
+                case Gateway.Path.NorthWest_SouthEast:
+                    PopulateRoomComboBox(Gateway.Direction.NorthWest, Gateway.Direction.SouthEast);
+                    break;
+                case Gateway.Path.NorthEast_SouthWest:
+                    PopulateRoomComboBox(Gateway.Direction.NorthEast, Gateway.Direction.SouthWest);
+                    break;
+            }
         }
         private void EditSelectedGateway_Click(object sender, EventArgs e)
         {
-
+            mSelectedGateway = mGameDetails.GetGatewayObject((string)this.currentGatewaysList.SelectedItem);
+            this.gatewayNameTextBox.Text = mSelectedGateway.mName;
+            this.gatewayStoryTextBox.Text = mSelectedGateway.mStory;
+            this.gatewayDirection.SelectedItem = mSelectedGateway.mPath;
+            this.gatewayRoom1.Items.Add(mSelectedGateway.mRoom1);
+            this.gatewayRoom1.SelectedItem = mSelectedGateway.mRoom1;
+            this.gatewayRoom2.Items.Add(mSelectedGateway.mRoom2);
+            this.gatewayRoom2.SelectedItem = mSelectedGateway.mRoom2;
+            this.isGatewayVisible.Checked = mSelectedGateway.mIsVisible;
+            this.isGatewayInteractable.Checked = mSelectedGateway.mIsInteractable;
         }
         private void EditGatewayDetails_Click(object sender, EventArgs e)
         {
-
+            if(mSelectedRegion == null)
+            {
+                return;
+            }
+            if (!(string.IsNullOrEmpty(this.gatewayNameTextBox.Text) || string.IsNullOrEmpty(this.gatewayStoryTextBox.Text)))
+            {
+                if(mSelectedGateway == null && mGameDetails.IsGatewayPresent(this.gameNameTextBox.Text))
+                {
+                    return;
+                }
+                DeleteGateway();
+                mSelectedGateway = new Gateway
+                {
+                    mName = this.gatewayNameTextBox.Text,
+                    mStory = this.gatewayStoryTextBox.Text,
+                    mPath = (Gateway.Path)this.gatewayDirection.SelectedItem,
+                    mRoom1 = (string)this.gatewayRoom1.SelectedItem,
+                    mRoom2 = (string)this.gatewayRoom2.SelectedItem,
+                    mIsVisible = this.isGatewayVisible.Checked,
+                    mIsInteractable = this.isGatewayInteractable.Checked
+                };
+                mGameDetails.GetRoomObject(mSelectedGateway.mRoom1).mGateways.Add(mSelectedGateway.mName, mSelectedGateway);
+                mGameDetails.GetRoomObject(mSelectedGateway.mRoom2).mGateways.Add(mSelectedGateway.mName, mSelectedGateway);
+                mGameDetails.AddGateway(mSelectedGateway);
+                mSelectedGateway = null;
+            }
+            ResetGatewayEditor();
         }
         private void DeleteGatewayDetails_Click(object sender, EventArgs e)
         {
-
+            DeleteGateway();
+            ResetGatewayEditor();
+        }
+        #endregion
+        #region Portal Editor Code
+        private void InsidePortalsTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ResetPortalEditor();
+        }
+        void ResetPortalEditor()
+        {
+            mSelectedPortal = null;
+            if (this.insidePortalsTabControl.SelectedTab == this.editPortalTab)
+            {
+                List<string> aRegionNames = new List<string>(mGameDetails.mRegionDetails.Keys);
+                aRegionNames.Remove(mGameDetails.mFirstRegion);
+                this.edPorCurrentRegionsList.DataSource = aRegionNames;
+            }
+            else if(this.insidePortalsTabControl.SelectedTab == this.portalRoomsTab)
+            {
+                List<string> aRegionNames = new List<string>(mGameDetails.mRegionDetails.Keys);
+                aRegionNames.Remove(mGameDetails.mFirstRegion);
+                this.adptrCurrentRegionsList.DataSource = aRegionNames;
+            }
+        }
+        private void EdPorCurrentRegionsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mSelectedPortal = mGameDetails.GetRegionPortal((string)this.edPorCurrentRegionsList.SelectedItem);
+            this.portalNameTextBox.Text = mSelectedPortal.mName;
+            this.portalStoryTextBox.Text = mSelectedPortal.mStory;
         }
         private void EditPortalDetails_Click(object sender, EventArgs e)
         {
-
+            if (!(string.IsNullOrEmpty(this.portalNameTextBox.Text) || string.IsNullOrEmpty(this.portalStoryTextBox.Text)))
+            {
+                if (mSelectedPortal != null)
+                {
+                    Portal aNewPortal = new Portal
+                    {
+                        mName = this.portalNameTextBox.Text,
+                        mStory = this.portalStoryTextBox.Text,
+                        mCurrentRegionName = mSelectedPortal.mCurrentRegionName
+                    };
+                    foreach (Room aRoom in mGameDetails.mRegionDetails[mSelectedPortal.mCurrentRegionName].mRooms.Values)
+                    {
+                        if(aRoom.mPortals.ContainsKey(mSelectedPortal.mName))
+                        {
+                            aRoom.mPortals.Remove(mSelectedPortal.mName);
+                            aRoom.mPortals.Add(aNewPortal.mName, aNewPortal);
+                            aRoom.EditUpdatableNames(mSelectedPortal.mName, aNewPortal.mName);
+                        }
+                    }
+                    Room aFRoom = mGameDetails.mRegionDetails[mGameDetails.mFirstRegion].mRooms[mGameDetails.mRegionDetails[mGameDetails.mFirstRegion].mEntryRoom];
+                    aFRoom.mPortals.Remove(mSelectedPortal.mName);
+                    aFRoom.mPortals.Add(aNewPortal.mName, aNewPortal);
+                }
+            }
+            ResetPortalEditor();
+        }
+        private void AdptrCurrentRegionsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mSelectedPortal = mGameDetails.GetRegionPortal((string)this.adptrCurrentRegionsList.SelectedItem);
+            List<string> aAllRoomsInRegion = new List<string>(mGameDetails.mRegionDetails[mSelectedPortal.mCurrentRegionName].mRooms.Keys);
+            List<string> aPortalContainingRooms = new List<string>();
+            foreach (Room aRoom in mGameDetails.mRegionDetails[mSelectedPortal.mCurrentRegionName].mRooms.Values)
+            {
+                if (aRoom.mPortals.ContainsKey(mSelectedPortal.mName))
+                {
+                    aPortalContainingRooms.Add(aRoom.mName);
+                }
+            }
+            SetListBoxListAndSelection(this.currentPortalRoomsList, aAllRoomsInRegion, aPortalContainingRooms);
         }
         private void AddPortalsToRooms_Click(object sender, EventArgs e)
         {
-
+            List<string> aSelectedRooms = new List<string>();
+            foreach(var aSelected in this.currentPortalRoomsList.SelectedItems)
+            {
+                aSelectedRooms.Add((string)aSelected);
+            }
+            foreach(Room aRoom in mGameDetails.mRegionDetails[mSelectedPortal.mCurrentRegionName].mRooms.Values)
+            {
+                if(!aSelectedRooms.Contains(aRoom.mName) && aRoom.mPortals.ContainsKey(mSelectedPortal.mName))
+                {
+                    aRoom.mPortals.Remove(mSelectedPortal.mName);
+                }
+                else if(aSelectedRooms.Contains(aRoom.mName))
+                {
+                    if(!aRoom.mPortals.ContainsKey(mSelectedPortal.mName))
+                    {
+                        aRoom.mPortals.Add(mSelectedPortal.mName, mSelectedPortal);
+                    }
+                }
+            }
+            ResetPortalEditor();
         }
+        #endregion
         #endregion
         #region Room Data
         private void RoomTabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -295,7 +621,7 @@ namespace Seals_Of_Hell_Data_Editor
         }
         bool IsRoomDataValid()
         {
-            return string.IsNullOrEmpty(this.roomNameTextBox.Text) || string.IsNullOrEmpty(this.roomStoryTextBox.Text);
+            return !(string.IsNullOrEmpty(this.roomNameTextBox.Text) || string.IsNullOrEmpty(this.roomStoryTextBox.Text));
         }
         private void DeleteRoomDetails_Click(object sender, EventArgs e)
         {
@@ -1085,6 +1411,9 @@ namespace Seals_Of_Hell_Data_Editor
             ResetPickableEditor();
             this.currentPickableItemsList.SelectedItem = mSelectedPickable.mName;
         }
+
+
+
         #endregion
 
         #endregion

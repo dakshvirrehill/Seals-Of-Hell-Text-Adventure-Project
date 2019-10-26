@@ -20,6 +20,7 @@ namespace Seals_Of_Hell_Data_Editor
         public Dictionary<string, Gateway> mGateways { get; set; }
 
         string mRegion;
+        Dictionary<Gateway.Direction, bool> mIsBlocked;
 
         public Room()
         {
@@ -33,6 +34,17 @@ namespace Seals_Of_Hell_Data_Editor
             mPickableItems = new Dictionary<string, PickableItem>();
             mPortals = new Dictionary<string, Portal>();
             mGateways = new Dictionary<string, Gateway>();
+            mIsBlocked = new Dictionary<Gateway.Direction, bool>()
+            {
+                {Gateway.Direction.North,false },
+                {Gateway.Direction.South,false },
+                {Gateway.Direction.East,false },
+                {Gateway.Direction.West,false },
+                {Gateway.Direction.NorthEast,false },
+                {Gateway.Direction.NorthWest,false },
+                {Gateway.Direction.SouthEast,false },
+                {Gateway.Direction.SouthWest,false }
+            };
         }
         public List<string> GetAllInteractableNames(string pExcept = "")
         {
@@ -119,7 +131,20 @@ namespace Seals_Of_Hell_Data_Editor
             }
             mPickableItems.Add(pNewPickableItem.mName, pNewPickableItem);
         }
-        void EditUpdatableNames(string pOldName, string pNewName)
+        public void RemoveOldGatewayAndAddNew(string pOldGatewayName, Gateway pNewGateway)
+        {
+            if (mGateways == null)
+            {
+                return;
+            }
+            if (mGateways.ContainsKey(pOldGatewayName))
+            {
+                mGateways.Remove(pOldGatewayName);
+                EditUpdatableNames(pOldGatewayName, pNewGateway.mName);
+            }
+            mGateways.Add(pNewGateway.mName, pNewGateway);
+        }
+        public void EditUpdatableNames(string pOldName, string pNewName)
         {
             if (mCollectors != null)
             {
@@ -168,5 +193,13 @@ namespace Seals_Of_Hell_Data_Editor
             return !string.IsNullOrEmpty(mRegion);
         }
 
+        public bool IsBlocked(Gateway.Direction pDirection)
+        {
+            return mIsBlocked[pDirection];
+        }
+        public void ToggleDirectionBlock(Gateway.Direction pDirection, bool pBlock)
+        {
+            mIsBlocked[pDirection] = pBlock;
+        }
     }
 }
