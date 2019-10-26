@@ -27,13 +27,28 @@ namespace Seals_Of_Hell_Data_Editor
         public void RemoveOldCollectorAndAddNew(string pOldCollectorName, Collector pNewCollector)
         {
             if (mCollectors == null)
+            {
                 return;
+            }
             if (mCollectors.ContainsKey(pOldCollectorName))
             {
                 mCollectors.Remove(pOldCollectorName);
                 EditUpdatableNames(pOldCollectorName, pNewCollector.mName);
             }
             mCollectors.Add(pNewCollector.mName, pNewCollector);
+        }
+        public void RemoveOldEnemyAndAddNew(string pOldEnemyName, Enemy pNewEnemy)
+        {
+            if(mEnemies == null)
+            {
+                return;
+            }
+            if(mEnemies.ContainsKey(pOldEnemyName))
+            {
+                mEnemies.Remove(pOldEnemyName);
+                EditUpdatableNames(pOldEnemyName, pNewEnemy.mName);
+            }
+            mEnemies.Add(pNewEnemy.mName, pNewEnemy);
         }
         void EditUpdatableNames(string pOldName, string pNewName)
         {

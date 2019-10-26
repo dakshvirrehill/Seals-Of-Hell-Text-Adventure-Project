@@ -8,6 +8,8 @@ namespace Seals_Of_Hell_Data_Editor
 {
     class Enemy : Updater
     {
+        public int mLife;
+        public string mBlockStory;
 
     }
 }

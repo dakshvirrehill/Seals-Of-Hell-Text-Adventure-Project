@@ -16,6 +16,7 @@ namespace Seals_Of_Hell_Data_Editor
         Region mSelectedRegion;
         Room mSelectedRoom;
         Collector mSelectedCollector;
+        Enemy mSelectedEnemy;
         public SealsOfHellMain()
         {
             mGameDetails = new DataHandler();
@@ -28,6 +29,7 @@ namespace Seals_Of_Hell_Data_Editor
             mSelectedRegion = null;
             mSelectedRoom = null;
             mSelectedCollector = null;
+            mSelectedEnemy = null;
             this.gameStartTabControl.Visible = 
             this.interactableDetailsTabControl.Visible = 
             this.regionTabControl.Visible =
@@ -260,7 +262,7 @@ namespace Seals_Of_Hell_Data_Editor
             }
             else if(this.interactableDetailsTabControl.SelectedTab == this.enemyDetailsTab)
             {
-
+                ResetEnemyEditor();
             }
             else if(this.interactableDetailsTabControl.SelectedTab == this.killZoneDetailsTab)
             {
@@ -290,7 +292,7 @@ namespace Seals_Of_Hell_Data_Editor
             }
             if(mSelectedCollector != null)
             {
-                aGivableObjs.Add(mSelectedCollector.mCollectionObject.mName);
+                aGivableObjs.Add(mSelectedCollector.mConditionalObject);
             }
             this.collectorCollectionObjectSelector.DataSource = aGivableObjs;
             this.collectorCollectionObjectSelector.SelectedIndex = 0;
@@ -302,7 +304,7 @@ namespace Seals_Of_Hell_Data_Editor
                 this.collectorEndUpdateStoryTextBox.Text = mSelectedCollector.mEndStory;
                 this.isCollectorVisible.Checked = mSelectedCollector.mIsVisible;
                 this.isCollectorInteractable.Checked = mSelectedCollector.mIsInteractable;
-                this.collectorCollectionObjectSelector.SelectedItem = mSelectedCollector.mCollectionObject.mName;
+                this.collectorCollectionObjectSelector.SelectedItem = mSelectedCollector.mConditionalObject;
                 return;
             }
             this.collectorNameTextBox.Text = "";
@@ -318,9 +320,9 @@ namespace Seals_Of_Hell_Data_Editor
         {
             if (mSelectedCollector != null)
             {
-                if (mSelectedCollector.mCollectionObject != null)
+                if (mSelectedCollector.mConditionalObject != null)
                 {
-                    mGameDetails.UnAssignGivable(mSelectedCollector.mCollectionObject.mName);
+                    mGameDetails.UnAssignGivable(mSelectedCollector.mConditionalObject);
                 }
                 mGameDetails.DeleteCollector(mSelectedCollector.mName);
                 mSelectedCollector = null;
@@ -341,6 +343,11 @@ namespace Seals_Of_Hell_Data_Editor
         {
             if(IsCollectorDataValid())
             {
+
+                if (mSelectedCollector == null && mGameDetails.IsCollectorPresent(this.collectorNameTextBox.Text))
+                {
+                    return;
+                }
                 Room aCollectorRoom = null;
                 string aCollectorOldName = "";
                 if (mSelectedCollector != null && mSelectedCollector.IsInRoom())
@@ -357,10 +364,9 @@ namespace Seals_Of_Hell_Data_Editor
                     mEndStory = this.collectorEndUpdateStoryTextBox.Text,
                     mIsVisible = this.isCollectorVisible.Checked,
                     mIsInteractable = this.isCollectorInteractable.Checked,
-                    mCollectionObject = mGameDetails.GetPickableItem(PickableItem.Type.Giveable,
-                    (string)this.collectorCollectionObjectSelector.SelectedItem)
+                    mConditionalObject = (string)this.collectorCollectionObjectSelector.SelectedItem
                 };
-                mGameDetails.AssignGivable(mSelectedCollector.mCollectionObject.mName);
+                mGameDetails.AssignGivable(mSelectedCollector.mConditionalObject);
                 if(aCollectorRoom != null)
                 {
                     aCollectorRoom.RemoveOldCollectorAndAddNew(aCollectorOldName, mSelectedCollector);
@@ -382,18 +388,107 @@ namespace Seals_Of_Hell_Data_Editor
             this.currentCollectorsList.SelectedItem = mSelectedCollector.mName;
         }
         #endregion
+        #region Enemy Editor Code
+        void ResetEnemyEditor()
+        {
+            List<string> aKillableWeapons = new List<string>();
+            aKillableWeapons.Add("Select Killable Weapon");
+            aKillableWeapons.AddRange(mGameDetails.GetPickableItemNames(PickableItem.Type.Weapon));
+            this.enemyKillableWeaponSelector.DataSource = aKillableWeapons;
+            this.enemyKillableWeaponSelector.SelectedIndex = 0;
+            if (mSelectedEnemy != null)
+            {
+                this.enemyNameTextBox.Text = mSelectedEnemy.mName;
+                this.enemyStoryTextBox.Text = mSelectedEnemy.mStory;
+                this.enemyLifeNumericUpDown.Value = mSelectedEnemy.mLife;
+                this.enemyBlockStoryTextBox.Text = mSelectedEnemy.mBlockStory;
+                this.enemyAttackStoryTextBox.Text = mSelectedEnemy.mUpdateStory;
+                this.enemyDeathStoryTextBox.Text = mSelectedEnemy.mEndStory;
+                this.isEnemyVisible.Checked = mSelectedEnemy.mIsVisible;
+                this.isEnemyInteractable.Checked = mSelectedEnemy.mIsInteractable;
+                this.enemyKillableWeaponSelector.SelectedItem = mSelectedEnemy.mConditionalObject;
+                return;
+            }
+            this.enemyNameTextBox.Text = "";
+            this.enemyStoryTextBox.Text = "";
+            this.enemyLifeNumericUpDown.Value = 1;
+            this.enemyBlockStoryTextBox.Text = "";
+            this.enemyAttackStoryTextBox.Text = "";
+            this.enemyDeathStoryTextBox.Text = "";
+            this.isEnemyVisible.Checked =
+            this.isEnemyInteractable.Checked = false;
+            this.enemyKillableWeaponSelector.SelectedIndex = 0;
+            this.currentEnemyList.DataSource = mGameDetails.GetEnemyNames();
+        }
+        void DeleteSelectedEnemy()
+        {
+            if (mSelectedEnemy != null)
+            {
+                mGameDetails.DeleteEnemy(mSelectedEnemy.mName);
+                mSelectedEnemy = null;
+            }
+        }
+        bool IsEnemyDataValid()
+        {
+            return !(string.IsNullOrEmpty(this.enemyNameTextBox.Text) || string.IsNullOrEmpty(this.enemyStoryTextBox.Text)
+                || string.IsNullOrEmpty(this.enemyBlockStoryTextBox.Text) || string.IsNullOrEmpty(this.enemyAttackStoryTextBox.Text)
+                || string.IsNullOrEmpty(this.enemyDeathStoryTextBox.Text) || this.enemyKillableWeaponSelector.SelectedIndex == 0);
+        }
         private void DeleteEnemy_Click(object sender, EventArgs e)
         {
-
+            DeleteSelectedEnemy();
+            ResetEnemyEditor();
         }
         private void EditEnemyDetails_Click(object sender, EventArgs e)
         {
+            if (IsEnemyDataValid())
+            {
 
+                if (mSelectedEnemy == null && mGameDetails.IsEnemyPresent(this.enemyNameTextBox.Text))
+                {
+                    return;
+                }
+                Room aEnemyRoom = null;
+                string aEnemyOldName = "";
+                if (mSelectedEnemy != null && mSelectedEnemy.IsInRoom())
+                {
+                    aEnemyRoom = mGameDetails.GetRoomObject(mSelectedEnemy.GetInRoom());
+                    aEnemyOldName = mSelectedEnemy.mName;
+                }
+                DeleteSelectedEnemy();
+                mSelectedEnemy = new Enemy
+                {
+                    mName = this.enemyNameTextBox.Text,
+                    mStory = this.enemyStoryTextBox.Text,
+                    mLife = (int)this.enemyLifeNumericUpDown.Value,
+                    mBlockStory = this.enemyBlockStoryTextBox.Text,
+                    mUpdateStory = this.enemyAttackStoryTextBox.Text,
+                    mEndStory = this.enemyDeathStoryTextBox.Text,
+                    mIsVisible = this.isEnemyVisible.Checked,
+                    mIsInteractable = this.isEnemyInteractable.Checked,
+                    mConditionalObject = (string)this.enemyKillableWeaponSelector.SelectedItem
+                };
+                if (aEnemyRoom != null)
+                {
+                    aEnemyRoom.RemoveOldEnemyAndAddNew(aEnemyOldName, mSelectedEnemy);
+                    mSelectedEnemy.SetInRoom(aEnemyRoom.mName);
+                }
+                mGameDetails.AddEnemy(mSelectedEnemy);
+                mSelectedEnemy = null;
+            }
+            ResetCollectorEditor();
         }
         private void EditSelectedEnemy_Click(object sender, EventArgs e)
         {
-
+            if (mSelectedEnemy != null)
+            {
+                mSelectedEnemy = null;
+            }
+            mSelectedEnemy = mGameDetails.GetEnemyObject((string)this.currentEnemyList.SelectedItem);
+            ResetEnemyEditor();
+            this.currentEnemyList.SelectedItem = mSelectedEnemy.mName;
         }
+        #endregion
         private void DeleteKillZone_Click(object sender, EventArgs e)
         {
 

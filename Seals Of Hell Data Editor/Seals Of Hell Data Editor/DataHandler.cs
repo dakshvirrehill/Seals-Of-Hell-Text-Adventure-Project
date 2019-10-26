@@ -18,6 +18,8 @@ namespace Seals_Of_Hell_Data_Editor
         List<string> mAssignedGiveables;
         Dictionary<string, Collector> mCollectors;
         List<string> mAssignedCollectors;
+        Dictionary<string, Enemy> mEnemies;
+        List<string> mAssignedEnemies;
         Dictionary<string, Room> mRooms;
         List<string> mAssignedRooms;
         void InitializeImpPrivMembers()
@@ -122,6 +124,42 @@ namespace Seals_Of_Hell_Data_Editor
             }
         }
         #endregion
+        #region Enemy
+        public List<string> GetEnemyNames()
+        {
+            return new List<string>(mEnemies.Keys);
+        }
+        public Enemy GetEnemyObject(string pEnemyName)
+        {
+            if (mEnemies.ContainsKey(pEnemyName))
+            {
+                return mEnemies[pEnemyName];
+            }
+            return null;
+        }
+        public bool IsEnemyAssigned(string pEnemyName)
+        {
+            return mAssignedEnemies.Contains(pEnemyName);
+        }
+        public void AddEnemy(Enemy pEnemy)
+        {
+            if (!mEnemies.ContainsKey(pEnemy.mName))
+            {
+                mEnemies.Add(pEnemy.mName, pEnemy);
+            }
+        }
+        public bool IsEnemyPresent(string pEnemyName)
+        {
+            return mEnemies.ContainsKey(pEnemyName);
+        }
+        public void DeleteEnemy(string pEnemyName)
+        {
+            if (mEnemies.ContainsKey(pEnemyName))
+            {
+                mEnemies.Remove(pEnemyName);
+            }
+        }
+        #endregion
         #region Room
         public List<string> GetRoomNames()
         {
@@ -155,5 +193,6 @@ namespace Seals_Of_Hell_Data_Editor
             mRooms.Remove(pRoomName);
         }
         #endregion
+
     }
 }

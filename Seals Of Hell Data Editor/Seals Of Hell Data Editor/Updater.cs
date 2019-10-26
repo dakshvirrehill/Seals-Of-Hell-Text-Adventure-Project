@@ -13,7 +13,7 @@ namespace Seals_Of_Hell_Data_Editor
         public string mStory { get; set; }
         public bool mIsVisible { get; set; }
         public bool mIsInteractable { get; set; }
-        public PickableItem mCollectionObject { get; set; }
+        public string mConditionalObject { get; set; }
         public string mUpdateStory { get; set; }
         public string mEndStory { get; set; }
         public List<string> mUpdatableObjects { get; set; }
