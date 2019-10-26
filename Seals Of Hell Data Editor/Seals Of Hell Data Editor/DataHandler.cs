@@ -157,9 +157,27 @@ namespace Seals_Of_Hell_Data_Editor
         {
             foreach(string aObjName in pConditionalOf)
             {
-                //find object from all dictionaries
-                //if object found
-                //update conditional object name
+                
+                if(mCollectors.ContainsKey(aObjName))
+                {
+                    mCollectors[aObjName].mConditionalObject = pNewName;
+                }
+                else if(mEnemies.ContainsKey(aObjName))
+                {
+                    mEnemies[aObjName].mConditionalObject = pNewName;
+                }
+                else if(mKillZones.ContainsKey(aObjName))
+                {
+                    mKillZones[aObjName].mConditionalObject = pNewName;
+                }
+                else if(mOIItems.ContainsKey(aObjName))
+                {
+                    mOIItems[aObjName].mConditionalObject = pNewName;
+                }
+                else if (mRegionDetails[mFirstRegion].mRooms[mRegionDetails[mFirstRegion].mEntryRoom].mTreasureCollector.mName == aObjName)
+                {
+                    mRegionDetails[mFirstRegion].mRooms[mRegionDetails[mFirstRegion].mEntryRoom].mTreasureCollector.mConditionalObject = pNewName;
+                }
             }
         }
         #region Giveable Pickable Item
