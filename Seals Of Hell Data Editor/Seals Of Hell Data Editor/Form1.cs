@@ -1680,11 +1680,31 @@ namespace Seals_Of_Hell_Data_Editor
         #region Open And Save File
         private void OpenGameJSONData_Click(object sender, CancelEventArgs e)
         {
-
+            try
+            {
+                using(System.IO.StreamReader aReader = new System.IO.StreamReader(openGameJSONData.FileName))
+                {
+                    mGameDetails.ConvertFromJSON(aReader.ReadToEnd());
+                }
+            }
+            catch(Exception aE)
+            {
+                Console.WriteLine(aE.StackTrace);
+            }
         }
         private void SaveGameJSONData_Click(object sender, CancelEventArgs e)
         {
-
+            try
+            {
+                using(System.IO.StreamWriter aWriter = new System.IO.StreamWriter(saveGameJSONData.FileName,false))
+                {
+                    aWriter.WriteLine(mGameDetails.ConvertDataToJSON());
+                }
+            }
+            catch(Exception aE)
+            {
+                Console.WriteLine(aE.StackTrace);
+            }
         }
         #endregion
     }

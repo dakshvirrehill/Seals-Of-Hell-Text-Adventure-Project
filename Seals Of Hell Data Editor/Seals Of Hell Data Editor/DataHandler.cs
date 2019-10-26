@@ -557,5 +557,10 @@ namespace Seals_Of_Hell_Data_Editor
             }
         }
 
+        public void ConvertFromJSON(string pJSON)
+        {
+
+        }
+
     }
 }
