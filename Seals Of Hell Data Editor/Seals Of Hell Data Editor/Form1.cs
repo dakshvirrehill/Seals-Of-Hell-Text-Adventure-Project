@@ -198,66 +198,350 @@ namespace Seals_Of_Hell_Data_Editor
         }
         #endregion
         #region Room Data
+        private void RoomTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(this.roomTabControl.SelectedTab == this.addEditRoomTab)
+            {
+                ResetRoomEditor();
+            }
+            else if(this.roomTabControl.SelectedTab == this.collectorUpdatablesTab)
+            {
+                ResetCollectorUpdatablesEditor();
+            }
+            else if(this.roomTabControl.SelectedTab == this.enemyUpdatablesTab)
+            {
+                ResetEnemyUpdatablesEditor();
+            }
+            else if(this.roomTabControl.SelectedTab == this.killZoneUpdatablesTab)
+            {
+                ResetKillZoneUpdatablesEditor();
+            }
+            else if(this.roomTabControl.SelectedTab == this.oIIUpdatablesTab)
+            {
+                ResetOIIUpdatablesEditor();
+            }
+        }
+        void SetListBoxListAndSelection(ListBox pListBox, List<string> pListNames, List<string> pSelectedNames)
+        {
+            pListBox.DataSource = pListNames;
+            if (pSelectedNames != null)
+            {
+                foreach (string aSelected in pSelectedNames)
+                {
+                    pListBox.SetSelected(pListNames.IndexOf(aSelected), true);
+                }
+            }
+        }
+        #region Add Edit Room Editor Code
+        void ResetRoomEditor()
+        {
+            List<string> aAllCollectorNames = mGameDetails.GetCollectorNames();
+            List<string> aRCNames = null;
+            RemoveAssigned(ObjectType.Collector, aAllCollectorNames);
+            List<string> aAllEnemyNames = mGameDetails.GetEnemyNames();
+            List<string> aRENames = null;
+            RemoveAssigned(ObjectType.Enemy, aAllEnemyNames);
+            List<string> aAllKillZoneNames = mGameDetails.GetKillZoneNames();
+            List<string> aRKZNames = null;
+            RemoveAssigned(ObjectType.KillZone, aAllKillZoneNames);
+            List<string> aAllOIItemNames = mGameDetails.GetOIItemNames();
+            List<string> aROIINames = null;
+            RemoveAssigned(ObjectType.OneInteractionItem, aAllOIItemNames);
+            List<string> aAllPickableNames = mGameDetails.GetPickableItemNames();
+            List<string> aRPNames = null;
+            RemoveAssigned(ObjectType.PickableItem, aAllPickableNames);
+            if (mSelectedRoom != null)
+            {
+                this.roomNameTextBox.Text = mSelectedRoom.mName;
+                this.roomStoryTextBox.Text = mSelectedRoom.mStory;
+                aRCNames = new List<string>(mSelectedRoom.mCollectors.Keys);
+                aAllCollectorNames.AddRange(aRCNames);
+                aRENames = new List<string>(mSelectedRoom.mEnemies.Keys);
+                aAllEnemyNames.AddRange(aRENames);
+                aRKZNames = new List<string>(mSelectedRoom.mKillZones.Keys);
+                aAllKillZoneNames.AddRange(aRKZNames);
+                aROIINames = new List<string>(mSelectedRoom.mOneInteractionItems.Keys);
+                aAllOIItemNames.AddRange(aROIINames);
+                aRPNames = new List<string>(mSelectedRoom.mPickableItems.Keys);
+                aAllPickableNames.AddRange(aRPNames);
+                return;
+            }
+            this.roomNameTextBox.Text = "";
+            this.roomStoryTextBox.Text = "";
+            SetListBoxListAndSelection(this.roomCollectorsList, aAllCollectorNames, aRCNames);
+            SetListBoxListAndSelection(this.roomEnemiesList, aAllEnemyNames, aRENames);
+            SetListBoxListAndSelection(this.roomKillZonesList, aAllKillZoneNames, aRKZNames);
+            SetListBoxListAndSelection(this.roomPickableItemsList, aAllPickableNames, aRPNames);
+            SetListBoxListAndSelection(this.roomOIIList, aAllOIItemNames, aROIINames);
+            this.currentRoomsList.DataSource = mGameDetails.GetRoomNames();
+        }
+        void RemoveAssigned(ObjectType pType, List<string> pListNames)
+        {
+            for (int aI = 0; aI < pListNames.Count; aI++)
+            {
+                if (mGameDetails.IsObjectAssigned(pType, pListNames[aI]))
+                {
+                    pListNames.RemoveAt(aI--);
+                }
+            }
+        }
+        void DeleteSelectedRoom()
+        {
+            if (mSelectedRoom != null)
+            {
+                mGameDetails.DeleteRoom(mSelectedRoom.mName);
+                mSelectedRoom = null;
+            }
+        }
+        bool IsRoomDataValid()
+        {
+            return string.IsNullOrEmpty(this.roomNameTextBox.Text) || string.IsNullOrEmpty(this.roomStoryTextBox.Text);
+        }
         private void DeleteRoomDetails_Click(object sender, EventArgs e)
         {
-
+            DeleteSelectedRoom();
+            ResetRoomEditor();
         }
         private void EditRoomDetails_Click(object sender, EventArgs e)
         {
-
+            if(IsRoomDataValid())
+            {
+                if(mSelectedRoom == null && mGameDetails.IsRoomPresent(this.roomNameTextBox.Text))
+                {
+                    return;
+                }
+                Region aRoomRegion = null;
+                string aRoomOldName = "";
+                if (mSelectedRoom != null && mSelectedRoom.IsInRegion())
+                {
+                    aRoomRegion = mGameDetails.mRegionDetails[mSelectedRoom.GetInRegion()];
+                    aRoomOldName = mSelectedRoom.mName;
+                }
+                DeleteSelectedRoom();
+                mSelectedRoom = new Room
+                {
+                    mName = this.roomNameTextBox.Text,
+                    mStory = this.roomStoryTextBox.Text
+                };
+                if(this.roomCollectorsList.SelectedItems.Count > 0)
+                {
+                    foreach(var aSelection in this.roomCollectorsList.SelectedItems)
+                    {
+                        mSelectedRoom.mCollectors.Add((string)aSelection, mGameDetails.GetCollectorObject((string)aSelection));
+                        mSelectedRoom.mCollectors[(string)aSelection].SetInRoom(mSelectedRoom.mName);
+                        mGameDetails.AssignObject(ObjectType.Collector, (string)aSelection);
+                    }
+                }
+                if(this.roomEnemiesList.SelectedItems.Count > 0)
+                {
+                    foreach (var aSelection in this.roomEnemiesList.SelectedItems)
+                    {
+                        mSelectedRoom.mEnemies.Add((string)aSelection, mGameDetails.GetEnemyObject((string)aSelection));
+                        mSelectedRoom.mEnemies[(string)aSelection].SetInRoom(mSelectedRoom.mName);
+                        mGameDetails.AssignObject(ObjectType.Enemy, (string)aSelection);
+                    }
+                }
+                if(this.roomKillZonesList.SelectedItems.Count > 0)
+                {
+                    foreach (var aSelection in this.roomKillZonesList.SelectedItems)
+                    {
+                        mSelectedRoom.mKillZones.Add((string)aSelection, mGameDetails.GetKillZoneObject((string)aSelection));
+                        mSelectedRoom.mKillZones[(string)aSelection].SetInRoom(mSelectedRoom.mName);
+                        mGameDetails.AssignObject(ObjectType.KillZone, (string)aSelection);
+                    }
+                }
+                if(this.roomOIIList.SelectedItems.Count > 0)
+                {
+                    foreach (var aSelection in this.roomOIIList.SelectedItems)
+                    {
+                        mSelectedRoom.mOneInteractionItems.Add((string)aSelection, mGameDetails.GetOIItemObject((string)aSelection));
+                        mSelectedRoom.mOneInteractionItems[(string)aSelection].SetInRoom(mSelectedRoom.mName);
+                        mGameDetails.AssignObject(ObjectType.OneInteractionItem, (string)aSelection);
+                    }
+                }
+                if(this.roomPickableItemsList.SelectedItems.Count > 0)
+                {
+                    foreach (var aSelection in this.roomPickableItemsList.SelectedItems)
+                    {
+                        mSelectedRoom.mPickableItems.Add((string)aSelection, mGameDetails.GetPickableItem((string)aSelection));
+                        mSelectedRoom.mPickableItems[(string)aSelection].SetInRoom(mSelectedRoom.mName);
+                        mGameDetails.AssignObject(ObjectType.PickableItem, (string)aSelection);
+                    }
+                }
+                if(aRoomRegion != null)
+                {
+                    aRoomRegion.mRooms.Remove(aRoomOldName);
+                    aRoomRegion.mRooms.Add(mSelectedRoom.mName, mSelectedRoom);
+                    mSelectedRoom.SetInRegion(aRoomRegion.mName);
+                }
+                mGameDetails.AddRoom(mSelectedRoom);
+                mSelectedRoom = null;
+            }
+            ResetRoomEditor();
         }
         private void EditSelectedRoom_Click(object sender, EventArgs e)
         {
-
+            if (mSelectedRoom != null)
+            {
+                mSelectedRoom = null;
+            }
+            mSelectedRoom = mGameDetails.GetRoomObject((string)this.currentRoomsList.SelectedItem);
+            ResetRoomEditor();
+            this.currentRoomsList.SelectedItem = mSelectedRoom.mName;
+        }
+        #endregion
+        #region Collector Updatables Editor Code
+        void ResetCollectorUpdatablesEditor()
+        {
+            mSelectedRoom = null;
+            mSelectedCollector = null;
+            this.collectorUpdatableList.DataSource = null;
+            this.colCollectorList.DataSource = null;
+            this.colCurRoomList.DataSource = mGameDetails.GetRoomNames();
         }
         private void ColCurRoomList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            mSelectedRoom = mGameDetails.GetRoomObject((string)this.colCurRoomList.SelectedItem);
+            if(mSelectedRoom != null)
+            {
+                this.colCollectorList.DataSource = new List<string>(mSelectedRoom.mCollectors.Keys);
+            }
         }
         private void ColCollectorList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            mSelectedCollector = mGameDetails.GetCollectorObject((string)this.colCollectorList.SelectedItem);
+            if(mSelectedCollector != null)
+            {
+                SetListBoxListAndSelection(this.collectorUpdatableList, mSelectedRoom.GetAllInteractableNames(mSelectedCollector.mName), mSelectedCollector.mUpdatableObjects);
+            }
         }
         private void EditCollectorUpdatableDetails_Click(object sender, EventArgs e)
         {
-
+            if(mSelectedCollector != null)
+            {
+                mSelectedCollector.mUpdatableObjects = new List<string>();
+                foreach(var aSelection in this.collectorUpdatableList.SelectedItems)
+                {
+                    mSelectedCollector.mUpdatableObjects.Add((string)aSelection);
+                }
+            }
+            ResetCollectorUpdatablesEditor();
+        }
+        #endregion
+        #region Enemy Updatables Editor Code
+        void ResetEnemyUpdatablesEditor()
+        {
+            mSelectedRoom = null;
+            mSelectedEnemy = null;
+            this.enemyUpdatableList.DataSource = null;
+            this.enEnemyList.DataSource = null;
+            this.enCurRoomList.DataSource = mGameDetails.GetRoomNames();
         }
         private void EnCurRoomList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            mSelectedRoom = mGameDetails.GetRoomObject((string)this.enCurRoomList.SelectedItem);
+            if (mSelectedRoom != null)
+            {
+                this.enEnemyList.DataSource = new List<string>(mSelectedRoom.mEnemies.Keys);
+            }
         }
         private void EnEnemyList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            mSelectedEnemy = mGameDetails.GetEnemyObject((string)this.enEnemyList.SelectedItem);
+            if (mSelectedEnemy != null)
+            {
+                SetListBoxListAndSelection(this.enemyUpdatableList, mSelectedRoom.GetAllInteractableNames(mSelectedEnemy.mName), mSelectedEnemy.mUpdatableObjects);
+            }
         }
         private void EditEnemyUpdatableDetails_Click(object sender, EventArgs e)
         {
-
+            if (mSelectedEnemy != null)
+            {
+                mSelectedEnemy.mUpdatableObjects = new List<string>();
+                foreach (var aSelection in this.enemyUpdatableList.SelectedItems)
+                {
+                    mSelectedEnemy.mUpdatableObjects.Add((string)aSelection);
+                }
+            }
+            ResetEnemyUpdatablesEditor();
+        }
+        #endregion
+        #region Kill Zone Updatables Editor Code
+        void ResetKillZoneUpdatablesEditor()
+        {
+            mSelectedRoom = null;
+            mSelectedKillZone = null;
+            this.killZoneUpdatableList.DataSource = null;
+            this.kzKillZoneList.DataSource = null;
+            this.kzCurRoomList.DataSource = mGameDetails.GetRoomNames();
         }
         private void KzCurRoomList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            mSelectedRoom = mGameDetails.GetRoomObject((string)this.kzCurRoomList.SelectedItem);
+            if (mSelectedRoom != null)
+            {
+                this.kzKillZoneList.DataSource = new List<string>(mSelectedRoom.mKillZones.Keys);
+            }
         }
         private void KzKillZoneList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            mSelectedKillZone = mGameDetails.GetKillZoneObject((string)this.kzKillZoneList.SelectedItem);
+            if (mSelectedKillZone != null)
+            {
+                SetListBoxListAndSelection(this.killZoneUpdatableList, mSelectedRoom.GetAllInteractableNames(mSelectedKillZone.mName), mSelectedKillZone.mUpdatableObjects);
+            }
         }
         private void EditKillZoneUpdatableDetails_Click(object sender, EventArgs e)
         {
-
+            if (mSelectedKillZone != null)
+            {
+                mSelectedKillZone.mUpdatableObjects = new List<string>();
+                foreach (var aSelection in this.killZoneUpdatableList.SelectedItems)
+                {
+                    mSelectedKillZone.mUpdatableObjects.Add((string)aSelection);
+                }
+            }
+            ResetKillZoneUpdatablesEditor();
+        }
+        #endregion
+        #region One Interaction Item Updatables Editor Code
+        void ResetOIIUpdatablesEditor()
+        {
+            mSelectedRoom = null;
+            mSelectedOIItem = null;
+            this.oIItemUpdatableList.DataSource = null;
+            this.oIIItemList.DataSource = null;
+            this.oIICurRoomList.DataSource = mGameDetails.GetRoomNames();
         }
         private void OIICurRoomList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            mSelectedRoom = mGameDetails.GetRoomObject((string)this.oIICurRoomList.SelectedItem);
+            if (mSelectedRoom != null)
+            {
+                this.oIIItemList.DataSource = new List<string>(mSelectedRoom.mOneInteractionItems.Keys);
+            }
         }
         private void OIIItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            mSelectedOIItem = mGameDetails.GetOIItemObject((string)this.oIIItemList.SelectedItem);
+            if (mSelectedOIItem != null)
+            {
+                SetListBoxListAndSelection(this.oIItemUpdatableList, mSelectedRoom.GetAllInteractableNames(mSelectedOIItem.mName), mSelectedOIItem.mUpdatableObjects);
+            }
         }
         private void EditOIIUpdatableDetails_Click(object sender, EventArgs e)
         {
-
+            if (mSelectedOIItem != null)
+            {
+                mSelectedOIItem.mUpdatableObjects = new List<string>();
+                foreach (var aSelection in this.oIItemUpdatableList.SelectedItems)
+                {
+                    mSelectedOIItem.mUpdatableObjects.Add((string)aSelection);
+                }
+            }
+            ResetOIIUpdatablesEditor();
         }
+        #endregion
         #endregion
         #region Interactables Data
         private void InteractableDetailsTabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -802,6 +1086,7 @@ namespace Seals_Of_Hell_Data_Editor
             this.currentPickableItemsList.SelectedItem = mSelectedPickable.mName;
         }
         #endregion
+
         #endregion
     }
 }

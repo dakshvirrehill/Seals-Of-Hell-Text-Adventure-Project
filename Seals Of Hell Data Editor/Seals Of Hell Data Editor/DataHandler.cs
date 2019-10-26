@@ -6,6 +6,19 @@ using System.Threading.Tasks;
 
 namespace Seals_Of_Hell_Data_Editor
 {
+    public enum ObjectType
+    {
+        Region,
+        Room,
+        TreasureCollector,
+        Collector,
+        Enemy,
+        Gateway,
+        KillZone,
+        OneInteractionItem,
+        PickableItem,
+        Portal
+    }
     class DataHandler
     {
         public string mName { get; set; }
@@ -17,6 +30,7 @@ namespace Seals_Of_Hell_Data_Editor
         Dictionary<string, Room> mRooms;
         List<string> mAssignedRooms;
         Dictionary<PickableItem.Type, Dictionary<string,PickableItem>> mPickableItems;
+        List<string> mAssignedPickables;
         List<string> mAssignedGiveables;
         Dictionary<string, Collector> mCollectors;
         List<string> mAssignedCollectors;
@@ -37,6 +51,7 @@ namespace Seals_Of_Hell_Data_Editor
                 { PickableItem.Type.Giveable, new Dictionary<string,PickableItem>() },
                 { PickableItem.Type.Wearable, new Dictionary<string,PickableItem>() }
             };
+            mAssignedPickables = new List<string>();
             mAssignedGiveables = new List<string>();
             mCollectors = new Dictionary<string, Collector>();
             mAssignedCollectors = new List<string>();
@@ -93,9 +108,126 @@ namespace Seals_Of_Hell_Data_Editor
         }
         public void DeleteRoom(string pRoomName)
         {
-            mRooms.Remove(pRoomName);
+            Room aRoom = mRooms[pRoomName];
+            if(aRoom  != null)
+            {
+                mRooms.Remove(pRoomName);
+                List<string> aObjs = new List<string>(aRoom.mCollectors.Keys);
+                UnAssignListOfObjects(ObjectType.Collector, aObjs);
+                aObjs = new List<string>(aRoom.mEnemies.Keys);
+                UnAssignListOfObjects(ObjectType.Enemy, aObjs);
+                aObjs = new List<string>(aRoom.mKillZones.Keys);
+                UnAssignListOfObjects(ObjectType.KillZone, aObjs);
+                aObjs = new List<string>(aRoom.mOneInteractionItems.Keys);
+                UnAssignListOfObjects(ObjectType.OneInteractionItem, aObjs);
+                aObjs = new List<string>(aRoom.mPickableItems.Keys);
+                UnAssignListOfObjects(ObjectType.PickableItem, aObjs);
+            }
+            
         }
-        #endregion        
+        #endregion
+        #region Interactables
+        public bool IsObjectAssigned(ObjectType pType, string pName)
+        {
+            switch (pType)
+            {
+                case ObjectType.Collector:
+                    return mAssignedCollectors.Contains(pName);
+                case ObjectType.Enemy:
+                    return mAssignedEnemies.Contains(pName);
+                case ObjectType.KillZone:
+                    return mAssignedKillZones.Contains(pName);
+                case ObjectType.OneInteractionItem:
+                    return mAssignedOIItems.Contains(pName);
+                case ObjectType.PickableItem:
+                    return mAssignedPickables.Contains(pName);
+            }
+            return false;
+        }
+        public void UnAssignObject(ObjectType pType, string pName)
+        {
+            switch (pType)
+            {
+                case ObjectType.Collector:
+                    if (mAssignedCollectors.Contains(pName))
+                    {
+                        mCollectors[pName].SetInRoom("");
+                        mAssignedCollectors.Remove(pName);
+                    }
+                    break;
+                case ObjectType.Enemy:
+                    if (mAssignedEnemies.Contains(pName))
+                    {
+                        mEnemies[pName].SetInRoom("");
+                        mAssignedEnemies.Remove(pName);
+                    }
+                    break;
+                case ObjectType.KillZone:
+                    if (mAssignedKillZones.Contains(pName))
+                    {
+                        mKillZones[pName].SetInRoom("");
+                        mAssignedKillZones.Remove(pName);
+                    }
+                    break;
+                case ObjectType.OneInteractionItem:
+                    if (mAssignedOIItems.Contains(pName))
+                    {
+                        mOIItems[pName].SetInRoom("");
+                        mAssignedOIItems.Remove(pName);
+                    }
+                    break;
+                case ObjectType.PickableItem:
+                    if (mAssignedPickables.Contains(pName))
+                    {
+                        GetPickableItem(pName).SetInRoom("");
+                        mAssignedPickables.Remove(pName);
+                    }
+                    break;
+            }
+        }
+        public void UnAssignListOfObjects(ObjectType pType, List<string> pNames)
+        {
+            foreach(string aName in pNames)
+            {
+                UnAssignObject(pType, aName);
+            }
+        }
+        public void AssignObject(ObjectType pType, string pName)
+        {
+            switch (pType)
+            {
+                case ObjectType.Collector:
+                    if (!mAssignedCollectors.Contains(pName))
+                    {
+                        mAssignedCollectors.Add(pName);
+                    }
+                    break;
+                case ObjectType.Enemy:
+                    if (!mAssignedEnemies.Contains(pName))
+                    {
+                        mAssignedEnemies.Add(pName);
+                    }
+                    break;
+                case ObjectType.KillZone:
+                    if (!mAssignedKillZones.Contains(pName))
+                    {
+                        mAssignedKillZones.Add(pName);
+                    }
+                    break;
+                case ObjectType.OneInteractionItem:
+                    if (!mAssignedOIItems.Contains(pName))
+                    {
+                        mAssignedOIItems.Add(pName);
+                    }
+                    break;
+                case ObjectType.PickableItem:
+                    if (!mAssignedPickables.Contains(pName))
+                    {
+                        mAssignedPickables.Add(pName);
+                    }
+                    break;
+            }
+        }
         #region Pickable Item
         public bool IsPickableItemPresent(string pName)
         {
@@ -214,10 +346,6 @@ namespace Seals_Of_Hell_Data_Editor
             }
             return null;
         }
-        public bool IsCollectorAssigned(string pCollectorName)
-        {
-            return mAssignedCollectors.Contains(pCollectorName);
-        }
         public void AddCollector(Collector pCollector)
         {
             if(!mCollectors.ContainsKey(pCollector.mName))
@@ -249,10 +377,6 @@ namespace Seals_Of_Hell_Data_Editor
                 return mEnemies[pEnemyName];
             }
             return null;
-        }
-        public bool IsEnemyAssigned(string pEnemyName)
-        {
-            return mAssignedEnemies.Contains(pEnemyName);
         }
         public void AddEnemy(Enemy pEnemy)
         {
@@ -286,10 +410,6 @@ namespace Seals_Of_Hell_Data_Editor
             }
             return null;
         }
-        public bool IsKillZoneAssigned(string pKillZoneName)
-        {
-            return mAssignedKillZones.Contains(pKillZoneName);
-        }
         public void AddKillZone(KillZone pKillZone)
         {
             if (!mKillZones.ContainsKey(pKillZone.mName))
@@ -322,10 +442,6 @@ namespace Seals_Of_Hell_Data_Editor
             }
             return null;
         }
-        public bool IsOIItemAssigned(string pOIItemName)
-        {
-            return mAssignedOIItems.Contains(pOIItemName);
-        }
         public void AddOIItem(OneInteractionItem pOIItem)
         {
             if (!mOIItems.ContainsKey(pOIItem.mName))
@@ -344,6 +460,7 @@ namespace Seals_Of_Hell_Data_Editor
                 mOIItems.Remove(pOIItemName);
             }
         }
+        #endregion
         #endregion
     }
 }

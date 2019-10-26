@@ -17,13 +17,43 @@ namespace Seals_Of_Hell_Data_Editor
         public Dictionary<string,OneInteractionItem> mOneInteractionItems { get; set; }
         public Dictionary<string, PickableItem> mPickableItems { get; set; }
         public Dictionary<string, Portal> mPortals { get; set; }
+        public Dictionary<string, Gateway> mGateways { get; set; }
+
+        string mRegion;
 
         public Room()
         {
             mName = "Default Name";
             mStory = "Default Story";
+            mTreasureCollector = null;
+            mCollectors = new Dictionary<string, Collector>();
+            mEnemies = new Dictionary<string, Enemy>();
+            mKillZones = new Dictionary<string, KillZone>();
+            mOneInteractionItems = new Dictionary<string, OneInteractionItem>();
+            mPickableItems = new Dictionary<string, PickableItem>();
+            mPortals = new Dictionary<string, Portal>();
+            mGateways = new Dictionary<string, Gateway>();
         }
-
+        public List<string> GetAllInteractableNames(string pExcept = "")
+        {
+            List<string> aInteractables = new List<string>();
+            aInteractables.AddRange(mCollectors.Keys);
+            aInteractables.AddRange(mEnemies.Keys);
+            aInteractables.AddRange(mKillZones.Keys);
+            aInteractables.AddRange(mOneInteractionItems.Keys);
+            aInteractables.AddRange(mPickableItems.Keys);
+            aInteractables.AddRange(mPortals.Keys);
+            aInteractables.AddRange(mGateways.Keys);
+            if(mTreasureCollector != null)
+            {
+                aInteractables.Add(mTreasureCollector.mName);
+            }
+            if(!string.IsNullOrEmpty(pExcept))
+            {
+                aInteractables.Remove(pExcept);
+            }
+            return aInteractables;
+        }
         public void RemoveOldCollectorAndAddNew(string pOldCollectorName, Collector pNewCollector)
         {
             if (mCollectors == null)
@@ -78,7 +108,16 @@ namespace Seals_Of_Hell_Data_Editor
         }
         public void RemoveOldPickableAndAddNew(string pOldPickableName, PickableItem pNewPickableItem)
         {
-
+            if (mPickableItems == null)
+            {
+                return;
+            }
+            if (mPickableItems.ContainsKey(pOldPickableName))
+            {
+                mPickableItems.Remove(pOldPickableName);
+                EditUpdatableNames(pOldPickableName, pNewPickableItem.mName);
+            }
+            mPickableItems.Add(pNewPickableItem.mName, pNewPickableItem);
         }
         void EditUpdatableNames(string pOldName, string pNewName)
         {
@@ -115,5 +154,19 @@ namespace Seals_Of_Hell_Data_Editor
                 }
             }
         }
+
+        public void SetInRegion(string pRegion)
+        {
+            mRegion = pRegion;
+        }
+        public string GetInRegion()
+        {
+            return mRegion;
+        }
+        public bool IsInRegion()
+        {
+            return !string.IsNullOrEmpty(mRegion);
+        }
+
     }
 }
