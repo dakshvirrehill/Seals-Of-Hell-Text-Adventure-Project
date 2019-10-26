@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Seals_Of_Hell_Data_Editor
 {
@@ -537,5 +538,24 @@ namespace Seals_Of_Hell_Data_Editor
             return mGateways.ContainsKey(pGatewayName);
         }
         #endregion
+        public bool IsDataValid()
+        {
+            //check if data is valid
+            return true;
+        }
+        public string ConvertDataToJSON()
+        {
+            try
+            {
+                string aJSON = "";
+                return aJSON;
+            }
+            catch(Exception aE)
+            {
+                Console.WriteLine(aE.StackTrace);
+                return null;
+            }
+        }
+
     }
 }

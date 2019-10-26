@@ -49,11 +49,18 @@ namespace Seals_Of_Hell_Data_Editor
         #region Main Menu
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            openGameJSONData.ShowDialog();
         }
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if(mGameDetails.IsDataValid())
+            {
+                saveGameJSONData.ShowDialog();
+            }
+            else
+            {
+                return;
+            }
         }
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1669,6 +1676,16 @@ namespace Seals_Of_Hell_Data_Editor
 
         #endregion
 
+        #endregion
+        #region Open And Save File
+        private void OpenGameJSONData_Click(object sender, CancelEventArgs e)
+        {
+
+        }
+        private void SaveGameJSONData_Click(object sender, CancelEventArgs e)
+        {
+
+        }
         #endregion
     }
 }

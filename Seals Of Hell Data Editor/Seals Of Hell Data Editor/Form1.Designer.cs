@@ -98,6 +98,8 @@
             this.regionNameTextBox = new System.Windows.Forms.TextBox();
             this.newRegionNameLabel = new System.Windows.Forms.Label();
             this.regionGateWaysTab = new System.Windows.Forms.TabPage();
+            this.isGatewayInteractable = new System.Windows.Forms.CheckBox();
+            this.isGatewayVisible = new System.Windows.Forms.CheckBox();
             this.gwCurrentRegionsListLabel = new System.Windows.Forms.Label();
             this.gwCurrentRegionsList = new System.Windows.Forms.ListBox();
             this.gatewayRoom2 = new System.Windows.Forms.ComboBox();
@@ -118,12 +120,16 @@
             this.regionPortalTab = new System.Windows.Forms.TabPage();
             this.insidePortalsTabControl = new System.Windows.Forms.TabControl();
             this.editPortalTab = new System.Windows.Forms.TabPage();
+            this.edPorCurrentRegionsListLabel = new System.Windows.Forms.Label();
+            this.edPorCurrentRegionsList = new System.Windows.Forms.ListBox();
             this.portalNameLabel = new System.Windows.Forms.Label();
             this.portalNameTextBox = new System.Windows.Forms.TextBox();
             this.portalStoryLabel = new System.Windows.Forms.Label();
             this.editPortalDetails = new System.Windows.Forms.Button();
             this.portalStoryTextBox = new System.Windows.Forms.RichTextBox();
             this.portalRoomsTab = new System.Windows.Forms.TabPage();
+            this.adptrCurrentRegionListLabel = new System.Windows.Forms.Label();
+            this.adptrCurrentRegionsList = new System.Windows.Forms.ListBox();
             this.currentPRoomsListLabel = new System.Windows.Forms.Label();
             this.currentPortalRoomsList = new System.Windows.Forms.ListBox();
             this.addPortalsToRooms = new System.Windows.Forms.Button();
@@ -271,12 +277,8 @@
             this.pickableItemStoryLabel = new System.Windows.Forms.Label();
             this.pickableItemNameTextBox = new System.Windows.Forms.TextBox();
             this.pickableItemNameLabel = new System.Windows.Forms.Label();
-            this.edPorCurrentRegionsListLabel = new System.Windows.Forms.Label();
-            this.edPorCurrentRegionsList = new System.Windows.Forms.ListBox();
-            this.adptrCurrentRegionListLabel = new System.Windows.Forms.Label();
-            this.adptrCurrentRegionsList = new System.Windows.Forms.ListBox();
-            this.isGatewayVisible = new System.Windows.Forms.CheckBox();
-            this.isGatewayInteractable = new System.Windows.Forms.CheckBox();
+            this.saveGameJSONData = new System.Windows.Forms.SaveFileDialog();
+            this.openGameJSONData = new System.Windows.Forms.OpenFileDialog();
             this.mainMenuStrip.SuspendLayout();
             this.gameStartTabControl.SuspendLayout();
             this.gameDetailsTab.SuspendLayout();
@@ -326,27 +328,27 @@
             this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(122, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -1051,6 +1053,26 @@
             this.regionGateWaysTab.Text = "Add/Edit Gateways";
             this.regionGateWaysTab.UseVisualStyleBackColor = true;
             // 
+            // isGatewayInteractable
+            // 
+            this.isGatewayInteractable.AutoSize = true;
+            this.isGatewayInteractable.Location = new System.Drawing.Point(526, 464);
+            this.isGatewayInteractable.Name = "isGatewayInteractable";
+            this.isGatewayInteractable.Size = new System.Drawing.Size(138, 24);
+            this.isGatewayInteractable.TabIndex = 31;
+            this.isGatewayInteractable.Text = "isInteractable";
+            this.isGatewayInteractable.UseVisualStyleBackColor = true;
+            // 
+            // isGatewayVisible
+            // 
+            this.isGatewayVisible.AutoSize = true;
+            this.isGatewayVisible.Location = new System.Drawing.Point(325, 464);
+            this.isGatewayVisible.Name = "isGatewayVisible";
+            this.isGatewayVisible.Size = new System.Drawing.Size(101, 24);
+            this.isGatewayVisible.TabIndex = 30;
+            this.isGatewayVisible.Text = "Is Visible";
+            this.isGatewayVisible.UseVisualStyleBackColor = true;
+            // 
             // gwCurrentRegionsListLabel
             // 
             this.gwCurrentRegionsListLabel.AutoSize = true;
@@ -1251,6 +1273,25 @@
             this.editPortalTab.Text = "Edit Portal Details";
             this.editPortalTab.UseVisualStyleBackColor = true;
             // 
+            // edPorCurrentRegionsListLabel
+            // 
+            this.edPorCurrentRegionsListLabel.AutoSize = true;
+            this.edPorCurrentRegionsListLabel.Location = new System.Drawing.Point(43, 57);
+            this.edPorCurrentRegionsListLabel.Name = "edPorCurrentRegionsListLabel";
+            this.edPorCurrentRegionsListLabel.Size = new System.Drawing.Size(174, 20);
+            this.edPorCurrentRegionsListLabel.TabIndex = 31;
+            this.edPorCurrentRegionsListLabel.Text = "Current Regions List";
+            // 
+            // edPorCurrentRegionsList
+            // 
+            this.edPorCurrentRegionsList.FormattingEnabled = true;
+            this.edPorCurrentRegionsList.ItemHeight = 20;
+            this.edPorCurrentRegionsList.Location = new System.Drawing.Point(34, 80);
+            this.edPorCurrentRegionsList.Name = "edPorCurrentRegionsList";
+            this.edPorCurrentRegionsList.Size = new System.Drawing.Size(205, 424);
+            this.edPorCurrentRegionsList.TabIndex = 30;
+            this.edPorCurrentRegionsList.SelectedIndexChanged += new System.EventHandler(this.EdPorCurrentRegionsList_SelectedIndexChanged);
+            // 
             // portalNameLabel
             // 
             this.portalNameLabel.AutoSize = true;
@@ -1311,6 +1352,25 @@
             this.portalRoomsTab.TabIndex = 1;
             this.portalRoomsTab.Text = "Add Portal To Rooms";
             this.portalRoomsTab.UseVisualStyleBackColor = true;
+            // 
+            // adptrCurrentRegionListLabel
+            // 
+            this.adptrCurrentRegionListLabel.AutoSize = true;
+            this.adptrCurrentRegionListLabel.Location = new System.Drawing.Point(117, 35);
+            this.adptrCurrentRegionListLabel.Name = "adptrCurrentRegionListLabel";
+            this.adptrCurrentRegionListLabel.Size = new System.Drawing.Size(174, 20);
+            this.adptrCurrentRegionListLabel.TabIndex = 33;
+            this.adptrCurrentRegionListLabel.Text = "Current Regions List";
+            // 
+            // adptrCurrentRegionsList
+            // 
+            this.adptrCurrentRegionsList.FormattingEnabled = true;
+            this.adptrCurrentRegionsList.ItemHeight = 20;
+            this.adptrCurrentRegionsList.Location = new System.Drawing.Point(17, 58);
+            this.adptrCurrentRegionsList.Name = "adptrCurrentRegionsList";
+            this.adptrCurrentRegionsList.Size = new System.Drawing.Size(401, 424);
+            this.adptrCurrentRegionsList.TabIndex = 32;
+            this.adptrCurrentRegionsList.SelectedIndexChanged += new System.EventHandler(this.AdptrCurrentRegionsList_SelectedIndexChanged);
             // 
             // currentPRoomsListLabel
             // 
@@ -2873,63 +2933,19 @@
             this.pickableItemNameLabel.TabIndex = 70;
             this.pickableItemNameLabel.Text = "Item Name";
             // 
-            // edPorCurrentRegionsListLabel
+            // saveGameJSONData
             // 
-            this.edPorCurrentRegionsListLabel.AutoSize = true;
-            this.edPorCurrentRegionsListLabel.Location = new System.Drawing.Point(43, 57);
-            this.edPorCurrentRegionsListLabel.Name = "edPorCurrentRegionsListLabel";
-            this.edPorCurrentRegionsListLabel.Size = new System.Drawing.Size(174, 20);
-            this.edPorCurrentRegionsListLabel.TabIndex = 31;
-            this.edPorCurrentRegionsListLabel.Text = "Current Regions List";
+            this.saveGameJSONData.DefaultExt = "json";
+            this.saveGameJSONData.Filter = "JSON Files|.json";
+            this.saveGameJSONData.Title = "Save Game Data To JSON File";
+            this.saveGameJSONData.FileOk += new System.ComponentModel.CancelEventHandler(this.SaveGameJSONData_Click);
             // 
-            // edPorCurrentRegionsList
+            // openGameJSONData
             // 
-            this.edPorCurrentRegionsList.FormattingEnabled = true;
-            this.edPorCurrentRegionsList.ItemHeight = 20;
-            this.edPorCurrentRegionsList.Location = new System.Drawing.Point(34, 80);
-            this.edPorCurrentRegionsList.Name = "edPorCurrentRegionsList";
-            this.edPorCurrentRegionsList.Size = new System.Drawing.Size(205, 424);
-            this.edPorCurrentRegionsList.TabIndex = 30;
-            this.edPorCurrentRegionsList.SelectedIndexChanged += new System.EventHandler(this.EdPorCurrentRegionsList_SelectedIndexChanged);
-            // 
-            // adptrCurrentRegionListLabel
-            // 
-            this.adptrCurrentRegionListLabel.AutoSize = true;
-            this.adptrCurrentRegionListLabel.Location = new System.Drawing.Point(117, 35);
-            this.adptrCurrentRegionListLabel.Name = "adptrCurrentRegionListLabel";
-            this.adptrCurrentRegionListLabel.Size = new System.Drawing.Size(174, 20);
-            this.adptrCurrentRegionListLabel.TabIndex = 33;
-            this.adptrCurrentRegionListLabel.Text = "Current Regions List";
-            // 
-            // adptrCurrentRegionsList
-            // 
-            this.adptrCurrentRegionsList.FormattingEnabled = true;
-            this.adptrCurrentRegionsList.ItemHeight = 20;
-            this.adptrCurrentRegionsList.Location = new System.Drawing.Point(17, 58);
-            this.adptrCurrentRegionsList.Name = "adptrCurrentRegionsList";
-            this.adptrCurrentRegionsList.Size = new System.Drawing.Size(401, 424);
-            this.adptrCurrentRegionsList.TabIndex = 32;
-            this.adptrCurrentRegionsList.SelectedIndexChanged += new System.EventHandler(this.AdptrCurrentRegionsList_SelectedIndexChanged);
-            // 
-            // isGatewayVisible
-            // 
-            this.isGatewayVisible.AutoSize = true;
-            this.isGatewayVisible.Location = new System.Drawing.Point(325, 464);
-            this.isGatewayVisible.Name = "isGatewayVisible";
-            this.isGatewayVisible.Size = new System.Drawing.Size(101, 24);
-            this.isGatewayVisible.TabIndex = 30;
-            this.isGatewayVisible.Text = "Is Visible";
-            this.isGatewayVisible.UseVisualStyleBackColor = true;
-            // 
-            // isGatewayInteractable
-            // 
-            this.isGatewayInteractable.AutoSize = true;
-            this.isGatewayInteractable.Location = new System.Drawing.Point(526, 464);
-            this.isGatewayInteractable.Name = "isGatewayInteractable";
-            this.isGatewayInteractable.Size = new System.Drawing.Size(138, 24);
-            this.isGatewayInteractable.TabIndex = 31;
-            this.isGatewayInteractable.Text = "isInteractable";
-            this.isGatewayInteractable.UseVisualStyleBackColor = true;
+            this.openGameJSONData.DefaultExt = "json";
+            this.openGameJSONData.Filter = "JSON Files | .json";
+            this.openGameJSONData.Title = "Open Game JSON Data to Edit";
+            this.openGameJSONData.FileOk += new System.ComponentModel.CancelEventHandler(this.OpenGameJSONData_Click);
             // 
             // SealsOfHellMain
             // 
@@ -3250,6 +3266,8 @@
         private System.Windows.Forms.ListBox adptrCurrentRegionsList;
         private System.Windows.Forms.CheckBox isGatewayInteractable;
         private System.Windows.Forms.CheckBox isGatewayVisible;
+        private System.Windows.Forms.SaveFileDialog saveGameJSONData;
+        private System.Windows.Forms.OpenFileDialog openGameJSONData;
     }
 }
 
