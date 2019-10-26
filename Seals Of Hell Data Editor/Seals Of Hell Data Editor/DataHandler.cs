@@ -79,7 +79,7 @@ namespace Seals_Of_Hell_Data_Editor
                 { mFirstRegion, new Region() }
             };
             mRegionDetails[mFirstRegion].mName = mFirstRegion;
-
+            mRegionDetails[mFirstRegion].mRooms[mRegionDetails[mFirstRegion].mEntryRoom].mTreasureCollector = new TreasureCollector();
             InitializeImpPrivMembers();
         }
         #region Room

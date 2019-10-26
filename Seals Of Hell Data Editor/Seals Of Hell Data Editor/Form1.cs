@@ -103,11 +103,40 @@ namespace Seals_Of_Hell_Data_Editor
             {
                 this.firstRoomNameTextBox.Text = mSelectedRegion.mEntryRoom;
                 this.firstRoomNameTextBox.Text = mSelectedRoom.mStory;
-                //add interactable code
+                List<string> aAllCollectorNames = mGameDetails.GetCollectorNames();
+                List<string> aRCNames = null;
+                RemoveAssigned(ObjectType.Collector, aAllCollectorNames);
+                List<string> aAllEnemyNames = mGameDetails.GetEnemyNames();
+                List<string> aRENames = null;
+                RemoveAssigned(ObjectType.Enemy, aAllEnemyNames);
+                List<string> aAllKillZoneNames = mGameDetails.GetKillZoneNames();
+                List<string> aRKZNames = null;
+                RemoveAssigned(ObjectType.KillZone, aAllKillZoneNames);
+                List<string> aAllOIItemNames = mGameDetails.GetOIItemNames();
+                List<string> aROIINames = null;
+                RemoveAssigned(ObjectType.OneInteractionItem, aAllOIItemNames);
+                List<string> aAllPickableNames = mGameDetails.GetPickableItemNames();
+                List<string> aRPNames = null;
+                RemoveAssigned(ObjectType.PickableItem, aAllPickableNames);
+                aRCNames = new List<string>(mSelectedRoom.mCollectors.Keys);
+                aAllCollectorNames.AddRange(aRCNames);
+                aRENames = new List<string>(mSelectedRoom.mEnemies.Keys);
+                aAllEnemyNames.AddRange(aRENames);
+                aRKZNames = new List<string>(mSelectedRoom.mKillZones.Keys);
+                aAllKillZoneNames.AddRange(aRKZNames);
+                aROIINames = new List<string>(mSelectedRoom.mOneInteractionItems.Keys);
+                aAllOIItemNames.AddRange(aROIINames);
+                aRPNames = new List<string>(mSelectedRoom.mPickableItems.Keys);
+                aAllPickableNames.AddRange(aRPNames);
+                SetListBoxListAndSelection(this.firstRoomCollectorList, aAllCollectorNames, aRCNames);
+                SetListBoxListAndSelection(this.firstRoomEnemyList, aAllEnemyNames, aRENames);
+                SetListBoxListAndSelection(this.firstRoomKillZoneList, aAllKillZoneNames, aRKZNames);
+                SetListBoxListAndSelection(this.firstRoomPIList, aAllPickableNames, aRPNames);
+                SetListBoxListAndSelection(this.firstRoomOIIList, aAllOIItemNames, aROIINames);
             }
             else if(this.gameStartTabControl.SelectedTab == this.treasureCollectorTab)
             {
-                //add treasure collector setup code
+                ResetTreasureCollector();
             }
         }
         private void EditGameDetails_Click(object sender, EventArgs e)
@@ -159,12 +188,98 @@ namespace Seals_Of_Hell_Data_Editor
             mSelectedRoom.mName = this.firstRoomNameTextBox.Text;
             mSelectedRoom.mStory = this.firstRoomStoryTextBox.Text;
             mSelectedRegion.mEntryRoom = mSelectedRoom.mName;
-            //add code to add in dictionary
+
+            if (this.firstRoomCollectorList.SelectedItems.Count > 0)
+            {
+                foreach (var aSelection in this.firstRoomCollectorList.SelectedItems)
+                {
+                    mSelectedRoom.mCollectors.Add((string)aSelection, mGameDetails.GetCollectorObject((string)aSelection));
+                    mSelectedRoom.mCollectors[(string)aSelection].SetInRoom(mSelectedRoom.mName);
+                    mGameDetails.AssignObject(ObjectType.Collector, (string)aSelection);
+                }
+            }
+            if (this.firstRoomEnemyList.SelectedItems.Count > 0)
+            {
+                foreach (var aSelection in this.firstRoomEnemyList.SelectedItems)
+                {
+                    mSelectedRoom.mEnemies.Add((string)aSelection, mGameDetails.GetEnemyObject((string)aSelection));
+                    mSelectedRoom.mEnemies[(string)aSelection].SetInRoom(mSelectedRoom.mName);
+                    mGameDetails.AssignObject(ObjectType.Enemy, (string)aSelection);
+                }
+            }
+            if (this.firstRoomKillZoneList.SelectedItems.Count > 0)
+            {
+                foreach (var aSelection in this.firstRoomKillZoneList.SelectedItems)
+                {
+                    mSelectedRoom.mKillZones.Add((string)aSelection, mGameDetails.GetKillZoneObject((string)aSelection));
+                    mSelectedRoom.mKillZones[(string)aSelection].SetInRoom(mSelectedRoom.mName);
+                    mGameDetails.AssignObject(ObjectType.KillZone, (string)aSelection);
+                }
+            }
+            if (this.firstRoomOIIList.SelectedItems.Count > 0)
+            {
+                foreach (var aSelection in this.firstRoomOIIList.SelectedItems)
+                {
+                    mSelectedRoom.mOneInteractionItems.Add((string)aSelection, mGameDetails.GetOIItemObject((string)aSelection));
+                    mSelectedRoom.mOneInteractionItems[(string)aSelection].SetInRoom(mSelectedRoom.mName);
+                    mGameDetails.AssignObject(ObjectType.OneInteractionItem, (string)aSelection);
+                }
+            }
+            if (this.firstRoomPIList.SelectedItems.Count > 0)
+            {
+                foreach (var aSelection in this.firstRoomPIList.SelectedItems)
+                {
+                    mSelectedRoom.mPickableItems.Add((string)aSelection, mGameDetails.GetPickableItem((string)aSelection));
+                    mSelectedRoom.mPickableItems[(string)aSelection].SetInRoom(mSelectedRoom.mName);
+                    mGameDetails.AssignObject(ObjectType.PickableItem, (string)aSelection);
+                }
+            }
+
             mSelectedRegion.mRooms.Add(mSelectedRegion.mEntryRoom, mSelectedRoom);
+        }
+        void ResetTreasureCollector()
+        {
+            List<string> aAllPickableNames = mGameDetails.GetPickableItemNames(PickableItem.Type.Giveable);
+            for (int aI = 0; aI < aAllPickableNames.Count; aI++)
+            {
+                if (mGameDetails.IsGivableAssigned(aAllPickableNames[aI]))
+                {
+                    aAllPickableNames.RemoveAt(aI--);
+                }
+            }
+            aAllPickableNames.AddRange(mSelectedRoom.mTreasureCollector.mTreasures);
+            SetListBoxListAndSelection(this.treasureList, aAllPickableNames, mSelectedRoom.mTreasureCollector.mTreasures);
+            SetListBoxListAndSelection(this.updatableList, mSelectedRoom.GetAllInteractableNames(mSelectedRoom.mTreasureCollector.mName), mSelectedRoom.mTreasureCollector.mUpdatableObjects);
+            this.TrCollectorNameTextBox.Text = mSelectedRoom.mTreasureCollector.mName;
+            this.TrCollectorStoryTextBox.Text = mSelectedRoom.mTreasureCollector.mStory;
+            this.visibleTrCol.Checked = mSelectedRoom.mTreasureCollector.mIsVisible;
+            this.interactableTrCol.Checked = mSelectedRoom.mTreasureCollector.mIsInteractable;
+        }
+        bool IsTreasureCollectorValid()
+        {
+            return !(string.IsNullOrEmpty(this.TrCollectorNameTextBox.Text) || string.IsNullOrEmpty(this.TrCollectorStoryTextBox.Text)
+                || this.treasureList.SelectedItems.Count <= 0);
         }
         private void EditTreasureCollectorDetails_Click(object sender, EventArgs e)
         {
-
+            if(IsTreasureCollectorValid())
+            {
+                mSelectedRoom.mTreasureCollector.mName = this.TrCollectorNameTextBox.Text;
+                mSelectedRoom.mTreasureCollector.mStory = this.TrCollectorStoryTextBox.Text;
+                mSelectedRoom.mTreasureCollector.mIsVisible = this.visibleTrCol.Checked;
+                mSelectedRoom.mTreasureCollector.mIsInteractable = this.interactableTrCol.Checked;
+                mSelectedRoom.mTreasureCollector.mTreasures = new List<string>();
+                foreach(var aSelected in this.treasureList.SelectedItems)
+                {
+                    mSelectedRoom.mTreasureCollector.mTreasures.Add((string)aSelected);
+                }
+                mSelectedRoom.mTreasureCollector.mUpdatableObjects = new List<string>();
+                foreach(var aSelected in this.updatableList.SelectedItems)
+                {
+                    mSelectedRoom.mTreasureCollector.mUpdatableObjects.Add((string)aSelected);
+                }
+            }
+            ResetTreasureCollector();
         }
         #endregion
         #region Region Data
@@ -462,11 +577,10 @@ namespace Seals_Of_Hell_Data_Editor
             {
                 if (mSelectedPortal != null)
                 {
-                    Portal aNewPortal = new Portal
+                    Portal aNewPortal = new Portal(mSelectedPortal.mCurrentRegionName)
                     {
                         mName = this.portalNameTextBox.Text,
-                        mStory = this.portalStoryTextBox.Text,
-                        mCurrentRegionName = mSelectedPortal.mCurrentRegionName
+                        mStory = this.portalStoryTextBox.Text
                     };
                     foreach (Room aRoom in mGameDetails.mRegionDetails[mSelectedPortal.mCurrentRegionName].mRooms.Values)
                     {

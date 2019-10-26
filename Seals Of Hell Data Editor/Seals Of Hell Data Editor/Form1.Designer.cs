@@ -2929,10 +2929,10 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.mainMenuStrip);
-            this.Controls.Add(this.regionTabControl);
-            this.Controls.Add(this.interactableDetailsTabControl);
             this.Controls.Add(this.gameStartTabControl);
             this.Controls.Add(this.roomTabControl);
+            this.Controls.Add(this.regionTabControl);
+            this.Controls.Add(this.interactableDetailsTabControl);
             this.MainMenuStrip = this.mainMenuStrip;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1440, 1078);
