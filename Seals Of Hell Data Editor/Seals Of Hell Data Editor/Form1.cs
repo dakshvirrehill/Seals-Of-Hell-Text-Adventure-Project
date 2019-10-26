@@ -1099,7 +1099,12 @@ namespace Seals_Of_Hell_Data_Editor
         #region Interactables Data
         private void InteractableDetailsTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(this.interactableDetailsTabControl.SelectedTab == this.collectorDetailsTab)
+            mSelectedCollector = null;
+            mSelectedEnemy = null;
+            mSelectedKillZone = null;
+            mSelectedOIItem = null;
+            mSelectedPickable = null;
+            if (this.interactableDetailsTabControl.SelectedTab == this.collectorDetailsTab)
             {
                 ResetCollectorEditor();
             }
