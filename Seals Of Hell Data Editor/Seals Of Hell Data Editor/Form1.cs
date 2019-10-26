@@ -17,6 +17,7 @@ namespace Seals_Of_Hell_Data_Editor
         Room mSelectedRoom;
         Collector mSelectedCollector;
         Enemy mSelectedEnemy;
+        KillZone mSelectedKillZone;
         public SealsOfHellMain()
         {
             mGameDetails = new DataHandler();
@@ -30,6 +31,7 @@ namespace Seals_Of_Hell_Data_Editor
             mSelectedRoom = null;
             mSelectedCollector = null;
             mSelectedEnemy = null;
+            mSelectedKillZone = null;
             this.gameStartTabControl.Visible = 
             this.interactableDetailsTabControl.Visible = 
             this.regionTabControl.Visible =
@@ -266,7 +268,7 @@ namespace Seals_Of_Hell_Data_Editor
             }
             else if(this.interactableDetailsTabControl.SelectedTab == this.killZoneDetailsTab)
             {
-
+                ResetKillZoneEditor();
             }
             else if(this.interactableDetailsTabControl.SelectedTab == this.oneInteractionItemDetailsTab)
             {
@@ -476,7 +478,7 @@ namespace Seals_Of_Hell_Data_Editor
                 mGameDetails.AddEnemy(mSelectedEnemy);
                 mSelectedEnemy = null;
             }
-            ResetCollectorEditor();
+            ResetEnemyEditor();
         }
         private void EditSelectedEnemy_Click(object sender, EventArgs e)
         {
@@ -489,18 +491,104 @@ namespace Seals_Of_Hell_Data_Editor
             this.currentEnemyList.SelectedItem = mSelectedEnemy.mName;
         }
         #endregion
+        #region Kill Zone Editor Code
+        void ResetKillZoneEditor()
+        {
+            List<string> aDisablingObjects = new List<string>();
+            aDisablingObjects.Add("No Disabling Object");
+            aDisablingObjects.AddRange(mGameDetails.GetPickableItemNames(PickableItem.Type.Wearable));
+            aDisablingObjects.AddRange(mGameDetails.GetPickableItemNames(PickableItem.Type.Weapon));
+            aDisablingObjects.AddRange(mGameDetails.GetPickableItemNames(PickableItem.Type.Shield));
+            this.killZoneDisablerSelector.DataSource = aDisablingObjects;
+            this.killZoneDisablerSelector.SelectedIndex = 0;
+            if (mSelectedKillZone != null)
+            {
+                this.killZoneNameTextBox.Text = mSelectedKillZone.mName;
+                this.killZoneStoryTextBox.Text = mSelectedKillZone.mStory;
+                this.killZoneAttackStoryTextBox.Text = mSelectedKillZone.mUpdateStory;
+                this.killZoneDisablingStoryTextBox.Text = mSelectedKillZone.mEndStory;
+                this.isKillZoneVisible.Checked = mSelectedKillZone.mIsVisible;
+                this.isKillZoneInteractable.Checked = mSelectedKillZone.mIsInteractable;
+                if(!string.IsNullOrEmpty(mSelectedKillZone.mConditionalObject))
+                {
+                    this.killZoneDisablerSelector.SelectedItem = mSelectedKillZone.mConditionalObject;
+                }
+                return;
+            }
+            this.killZoneNameTextBox.Text = "";
+            this.killZoneStoryTextBox.Text = "";
+            this.killZoneAttackStoryTextBox.Text = "";
+            this.killZoneDisablingStoryTextBox.Text = "";
+            this.isKillZoneVisible.Checked =
+            this.isKillZoneInteractable.Checked = false;
+            this.killZoneDisablerSelector.SelectedIndex = 0;
+            this.currentKillZonesList.DataSource = mGameDetails.GetKillZoneNames();
+        }
+        void DeleteSelectedKillZone()
+        {
+            if (mSelectedKillZone != null)
+            {
+                mGameDetails.DeleteKillZone(mSelectedKillZone.mName);
+                mSelectedKillZone = null;
+            }
+        }
+        bool IsKillZoneDataValid()
+        {
+            return !(string.IsNullOrEmpty(this.killZoneNameTextBox.Text) || string.IsNullOrEmpty(this.killZoneStoryTextBox.Text)
+                || string.IsNullOrEmpty(this.killZoneAttackStoryTextBox.Text) || string.IsNullOrEmpty(this.killZoneDisablingStoryTextBox.Text);
+        }
         private void DeleteKillZone_Click(object sender, EventArgs e)
         {
-
+            DeleteSelectedKillZone();
+            ResetKillZoneEditor();
         }
         private void EditKillZoneDetails_Click(object sender, EventArgs e)
         {
-
+            if (mSelectedKillZone != null)
+            {
+                mSelectedKillZone = null;
+            }
+            mSelectedKillZone = mGameDetails.GetKillZoneObject((string)this.currentKillZonesList.SelectedItem);
+            ResetKillZoneEditor();
+            this.currentKillZonesList.SelectedItem = mSelectedKillZone.mName;
         }
         private void EditSelectedKillZone_Click(object sender, EventArgs e)
         {
+            if (IsKillZoneDataValid())
+            {
 
+                if (mSelectedKillZone == null && mGameDetails.IsKillZonePresent(this.killZoneNameTextBox.Text))
+                {
+                    return;
+                }
+                Room aKillZoneRoom = null;
+                string aKillZoneOldName = "";
+                if (mSelectedKillZone != null && mSelectedKillZone.IsInRoom())
+                {
+                    aKillZoneRoom = mGameDetails.GetRoomObject(mSelectedKillZone.GetInRoom());
+                    aKillZoneOldName = mSelectedKillZone.mName;
+                }
+                DeleteSelectedKillZone();
+                mSelectedKillZone = new KillZone
+                {
+                    mName = this.killZoneNameTextBox.Text,
+                    mStory = this.killZoneStoryTextBox.Text,
+                    mUpdateStory = this.killZoneAttackStoryTextBox.Text,
+                    mEndStory = this.killZoneDisablingStoryTextBox.Text,
+                    mIsVisible = this.isKillZoneVisible.Checked,
+                    mIsInteractable = this.isKillZoneInteractable.Checked
+                };
+                if (aKillZoneRoom != null)
+                {
+                    aKillZoneRoom.RemoveOldKillZoneAndAddNew(aKillZoneOldName, mSelectedKillZone);
+                    mSelectedKillZone.SetInRoom(aKillZoneRoom.mName);
+                }
+                mGameDetails.AddKillZone(mSelectedKillZone);
+                mSelectedKillZone = null;
+            }
+            ResetKillZoneEditor();
         }
+        #endregion
         private void DeleteOII_Click(object sender, EventArgs e)
         {
 

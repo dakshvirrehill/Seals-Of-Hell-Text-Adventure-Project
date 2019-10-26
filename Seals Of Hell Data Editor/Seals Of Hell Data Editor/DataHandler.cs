@@ -14,16 +14,20 @@ namespace Seals_Of_Hell_Data_Editor
         public Dictionary<string, Region> mRegionDetails { get; set; }
 
         #region Private Members
+        Dictionary<string, Room> mRooms;
+        List<string> mAssignedRooms;
         Dictionary<PickableItem.Type, Dictionary<string,PickableItem>> mPickableItems;
         List<string> mAssignedGiveables;
         Dictionary<string, Collector> mCollectors;
         List<string> mAssignedCollectors;
         Dictionary<string, Enemy> mEnemies;
         List<string> mAssignedEnemies;
-        Dictionary<string, Room> mRooms;
-        List<string> mAssignedRooms;
+        Dictionary<string, KillZone> mKillZones;
+        List<string> mAssignedKillZones;
         void InitializeImpPrivMembers()
         {
+            mRooms = new Dictionary<string, Room>();
+            mAssignedRooms = new List<string>();
             mPickableItems = new Dictionary<PickableItem.Type, Dictionary<string, PickableItem>>
             {
                 { PickableItem.Type.Weapon, new Dictionary<string,PickableItem>() },
@@ -34,8 +38,10 @@ namespace Seals_Of_Hell_Data_Editor
             mAssignedGiveables = new List<string>();
             mCollectors = new Dictionary<string, Collector>();
             mAssignedCollectors = new List<string>();
-            mRooms = new Dictionary<string, Room>();
-            mAssignedRooms = new List<string>();
+            mEnemies = new Dictionary<string, Enemy>();
+            mAssignedEnemies = new List<string>();
+            mKillZones = new Dictionary<string, KillZone>();
+            mAssignedKillZones = new List<string>();
         }
 
         #endregion
@@ -53,8 +59,40 @@ namespace Seals_Of_Hell_Data_Editor
 
             InitializeImpPrivMembers();
         }
-        
-        #region Pickable Items
+        #region Room
+        public List<string> GetRoomNames()
+        {
+            return new List<string>(mRooms.Keys);
+        }
+        public Room GetRoomObject(string pRoomName)
+        {
+            if (mRooms.ContainsKey(pRoomName))
+            {
+                return mRooms[pRoomName];
+            }
+            return null;
+        }
+        public bool IsRoomAssigned(string pRoomName)
+        {
+            return mAssignedRooms.Contains(pRoomName);
+        }
+        public void AddRoom(Room pRoom)
+        {
+            if (!mRooms.ContainsKey(pRoom.mName))
+            {
+                mRooms.Add(pRoom.mName, pRoom);
+            }
+        }
+        public bool IsRoomPresent(string pRoomName)
+        {
+            return mRooms.ContainsKey(pRoomName);
+        }
+        public void DeleteRoom(string pRoomName)
+        {
+            mRooms.Remove(pRoomName);
+        }
+        #endregion        
+        #region Pickable Item
         public List<string> GetPickableItemNames(PickableItem.Type pType)
         {
             return new List<string>(mPickableItems[pType].Keys);
@@ -160,39 +198,41 @@ namespace Seals_Of_Hell_Data_Editor
             }
         }
         #endregion
-        #region Room
-        public List<string> GetRoomNames()
+        #region Kill Zone
+        public List<string> GetKillZoneNames()
         {
-            return new List<string>(mRooms.Keys);
+            return new List<string>(mKillZones.Keys);
         }
-        public Room GetRoomObject(string pRoomName)
+        public KillZone GetKillZoneObject(string pKillZoneName)
         {
-            if(mRooms.ContainsKey(pRoomName))
+            if (mKillZones.ContainsKey(pKillZoneName))
             {
-                return mRooms[pRoomName];
+                return mKillZones[pKillZoneName];
             }
             return null;
         }
-        public bool IsRoomAssigned(string pRoomName)
+        public bool IsKillZoneAssigned(string pKillZoneName)
         {
-            return mAssignedRooms.Contains(pRoomName);
+            return mAssignedKillZones.Contains(pKillZoneName);
         }
-        public void AddRoom(Room pRoom)
+        public void AddKillZone(KillZone pKillZone)
         {
-            if(!mRooms.ContainsKey(pRoom.mName))
+            if (!mKillZones.ContainsKey(pKillZone.mName))
             {
-                mRooms.Add(pRoom.mName, pRoom);
+                mKillZones.Add(pKillZone.mName, pKillZone);
             }
         }
-        public bool IsRoomPresent(string pRoomName)
+        public bool IsKillZonePresent(string pKillZoneName)
         {
-            return mRooms.ContainsKey(pRoomName);
+            return mKillZones.ContainsKey(pKillZoneName);
         }
-        public void DeleteRoom(string pRoomName)
+        public void DeleteKillZone(string pKillZoneName)
         {
-            mRooms.Remove(pRoomName);
+            if (mKillZones.ContainsKey(pKillZoneName))
+            {
+                mKillZones.Remove(pKillZoneName);
+            }
         }
         #endregion
-
     }
 }
