@@ -19,6 +19,7 @@ namespace Seals_Of_Hell_Data_Editor
         Enemy mSelectedEnemy;
         KillZone mSelectedKillZone;
         OneInteractionItem mSelectedOIItem;
+        PickableItem mSelectedPickable;
         public SealsOfHellMain()
         {
             mGameDetails = new DataHandler();
@@ -34,6 +35,7 @@ namespace Seals_Of_Hell_Data_Editor
             mSelectedEnemy = null;
             mSelectedKillZone = null;
             mSelectedOIItem = null;
+            mSelectedPickable = null;
             this.gameStartTabControl.Visible = 
             this.interactableDetailsTabControl.Visible = 
             this.regionTabControl.Visible =
@@ -278,7 +280,7 @@ namespace Seals_Of_Hell_Data_Editor
             }
             else if(this.interactableDetailsTabControl.SelectedTab == this.pickableItemDetailsTab)
             {
-
+                ResetPickableEditor();
             }
         }
         #region Collector Editor Code
@@ -324,9 +326,12 @@ namespace Seals_Of_Hell_Data_Editor
         {
             if (mSelectedCollector != null)
             {
-                if (mSelectedCollector.mConditionalObject != null)
+                if (string.IsNullOrEmpty(mSelectedCollector.mConditionalObject))
                 {
+                    PickableItem aItem = mGameDetails.GetPickableItem(PickableItem.Type.Giveable, mSelectedCollector.mConditionalObject);
+                    aItem.GetConditionalOf().Remove(mSelectedCollector.mName);
                     mGameDetails.UnAssignGivable(mSelectedCollector.mConditionalObject);
+
                 }
                 mGameDetails.DeleteCollector(mSelectedCollector.mName);
                 mSelectedCollector = null;
@@ -371,7 +376,9 @@ namespace Seals_Of_Hell_Data_Editor
                     mConditionalObject = (string)this.collectorCollectionObjectSelector.SelectedItem
                 };
                 mGameDetails.AssignGivable(mSelectedCollector.mConditionalObject);
-                if(aCollectorRoom != null)
+                PickableItem aItem = mGameDetails.GetPickableItem(PickableItem.Type.Giveable, mSelectedCollector.mConditionalObject);
+                aItem.AddConditionalOf(mSelectedCollector.mName);
+                if (aCollectorRoom != null)
                 {
                     aCollectorRoom.RemoveOldCollectorAndAddNew(aCollectorOldName, mSelectedCollector);
                     mSelectedCollector.SetInRoom(aCollectorRoom.mName);
@@ -428,6 +435,11 @@ namespace Seals_Of_Hell_Data_Editor
         {
             if (mSelectedEnemy != null)
             {
+                if(string.IsNullOrEmpty(mSelectedEnemy.mConditionalObject))
+                {
+                    PickableItem aItem = mGameDetails.GetPickableItem(PickableItem.Type.Weapon, mSelectedEnemy.mConditionalObject);
+                    aItem.GetConditionalOf().Remove(mSelectedEnemy.mName);
+                }
                 mGameDetails.DeleteEnemy(mSelectedEnemy.mName);
                 mSelectedEnemy = null;
             }
@@ -477,6 +489,8 @@ namespace Seals_Of_Hell_Data_Editor
                     aEnemyRoom.RemoveOldEnemyAndAddNew(aEnemyOldName, mSelectedEnemy);
                     mSelectedEnemy.SetInRoom(aEnemyRoom.mName);
                 }
+                PickableItem aItem = mGameDetails.GetPickableItem(PickableItem.Type.Weapon, mSelectedEnemy.mConditionalObject);
+                aItem.AddConditionalOf(mSelectedEnemy.mName);
                 mGameDetails.AddEnemy(mSelectedEnemy);
                 mSelectedEnemy = null;
             }
@@ -530,6 +544,11 @@ namespace Seals_Of_Hell_Data_Editor
         {
             if (mSelectedKillZone != null)
             {
+                if(string.IsNullOrEmpty(mSelectedKillZone.mConditionalObject))
+                {
+                    PickableItem aItem = mGameDetails.GetPickableItem(mSelectedKillZone.mConditionalObject);
+                    aItem.GetConditionalOf().Remove(mSelectedKillZone.mName);
+                }
                 mGameDetails.DeleteKillZone(mSelectedKillZone.mName);
                 mSelectedKillZone = null;
             }
@@ -570,6 +589,12 @@ namespace Seals_Of_Hell_Data_Editor
                     mIsVisible = this.isKillZoneVisible.Checked,
                     mIsInteractable = this.isKillZoneInteractable.Checked
                 };
+                if(this.killZoneDisablerSelector.SelectedIndex != 0)
+                {
+                    mSelectedKillZone.mConditionalObject = (string)this.killZoneDisablerSelector.SelectedItem;
+                    PickableItem aItem = mGameDetails.GetPickableItem(mSelectedKillZone.mConditionalObject);
+                    aItem.AddConditionalOf(mSelectedKillZone.mName);
+                }
                 if (aKillZoneRoom != null)
                 {
                     aKillZoneRoom.RemoveOldKillZoneAndAddNew(aKillZoneOldName, mSelectedKillZone);
@@ -683,18 +708,100 @@ namespace Seals_Of_Hell_Data_Editor
             this.currentOIIList.SelectedItem = mSelectedOIItem.mName;
         }
         #endregion
+        #region Pickable Item Editor Code
+        void ResetPickableEditor()
+        {
+            this.pickableItemTypeSelector.DataSource = Enum.GetValues(typeof(PickableItem.Type));
+            this.pickableItemTypeSelector.SelectedIndex = 0;
+            if (mSelectedPickable != null)
+            {
+                this.pickableItemNameTextBox.Text = mSelectedPickable.mName;
+                this.pickableItemStoryTextBox.Text = mSelectedPickable.mStory;
+                this.isPickableItemVisible.Checked = mSelectedPickable.mIsVisible;
+                this.isPickableItemInteractable.Checked = mSelectedPickable.mIsInteractable;
+                this.pickableItemTypeSelector.SelectedItem = mSelectedPickable.mType;
+                return;
+            }
+            this.pickableItemNameTextBox.Text = "";
+            this.pickableItemStoryTextBox.Text = "";
+            this.isPickableItemVisible.Checked =
+            this.isPickableItemInteractable.Checked = false;
+            this.pickableItemTypeSelector.SelectedIndex = 0;
+            this.currentPickableItemsList.DataSource = mGameDetails.GetPickableItemNames();
+        }
+        void DeleteSelectedPickable()
+        {
+            if (mSelectedPickable != null)
+            {
+                mGameDetails.DeletePickableItem(mSelectedPickable.mType,mSelectedPickable.mName);
+                mSelectedPickable = null;
+            }
+        }
+        bool IsPickableDataValid()
+        {
+            return !(string.IsNullOrEmpty(this.pickableItemNameTextBox.Text) || string.IsNullOrEmpty(this.pickableItemStoryTextBox.Text));
+        }
         private void DeletePickableItem_Click(object sender, EventArgs e)
         {
-
+            DeleteSelectedPickable();
+            ResetPickableEditor();
         }
         private void EditPickableItemDetails_Click(object sender, EventArgs e)
         {
+            if (IsPickableDataValid())
+            {
 
+                if (mSelectedPickable == null && mGameDetails.IsPickableItemPresent(this.pickableItemNameTextBox.Text))
+                {
+                    return;
+                }
+                Room aPickableRoom = null;
+                string aPickableOldName = "";
+                if (mSelectedPickable != null && mSelectedPickable.IsInRoom())
+                {
+                    aPickableRoom = mGameDetails.GetRoomObject(mSelectedPickable.GetInRoom());
+                    aPickableOldName = mSelectedPickable.mName;
+                }
+                List<string> aConditionalOf = null;
+                if(mSelectedPickable != null)
+                {
+                    aConditionalOf = mSelectedPickable.GetConditionalOf();
+                }
+                DeleteSelectedPickable();
+                mSelectedPickable = new PickableItem
+                {
+                    mName = this.pickableItemNameTextBox.Text,
+                    mStory = this.pickableItemStoryTextBox.Text,
+                    mType = (PickableItem.Type)this.pickableItemTypeSelector.SelectedItem,
+                    mIsVisible = this.isPickableItemVisible.Checked,
+                    mIsInteractable = this.isPickableItemInteractable.Checked
+                };
+                if (aPickableRoom != null)
+                {
+                    aPickableRoom.RemoveOldPickableAndAddNew(aPickableOldName, mSelectedPickable);
+                    mSelectedPickable.SetInRoom(aPickableRoom.mName);
+                }
+                if(aConditionalOf != null || aConditionalOf.Count > 0)
+                {
+                    mGameDetails.UpdatePickableName(aConditionalOf, mSelectedPickable.mName);
+                    mSelectedPickable.AddConditionalOf(aConditionalOf);
+                }
+                mGameDetails.AddOIItem(mSelectedOIItem);
+                mSelectedOIItem = null;
+            }
+            ResetOIIEditor();
         }
         private void EditSelectedPickableItem_Click(object sender, EventArgs e)
         {
-
+            if (mSelectedPickable != null)
+            {
+                mSelectedPickable = null;
+            }
+            mSelectedPickable = mGameDetails.GetPickableItem((string)this.currentPickableItemsList.SelectedItem);
+            ResetPickableEditor();
+            this.currentPickableItemsList.SelectedItem = mSelectedPickable.mName;
         }
+        #endregion
         #endregion
     }
 }

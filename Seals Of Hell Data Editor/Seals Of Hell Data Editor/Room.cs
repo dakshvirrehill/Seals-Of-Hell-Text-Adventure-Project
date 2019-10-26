@@ -76,6 +76,10 @@ namespace Seals_Of_Hell_Data_Editor
             }
             mOneInteractionItems.Add(pNewOIItem.mName, pNewOIItem);
         }
+        public void RemoveOldPickableAndAddNew(string pOldPickableName, PickableItem pNewPickableItem)
+        {
+
+        }
         void EditUpdatableNames(string pOldName, string pNewName)
         {
             if (mCollectors != null)

@@ -97,9 +97,23 @@ namespace Seals_Of_Hell_Data_Editor
         }
         #endregion        
         #region Pickable Item
+        public bool IsPickableItemPresent(string pName)
+        {
+            return mPickableItems[PickableItem.Type.Giveable].ContainsKey(pName) || mPickableItems[PickableItem.Type.Weapon].ContainsKey(pName)
+                || mPickableItems[PickableItem.Type.Shield].ContainsKey(pName) || mPickableItems[PickableItem.Type.Wearable].ContainsKey(pName);
+        }
         public List<string> GetPickableItemNames(PickableItem.Type pType)
         {
             return new List<string>(mPickableItems[pType].Keys);
+        }
+        public List<string> GetPickableItemNames()
+        {
+            List<string> aPickableItems = new List<string>();
+            aPickableItems.AddRange(mPickableItems[PickableItem.Type.Giveable].Keys);
+            aPickableItems.AddRange(mPickableItems[PickableItem.Type.Shield].Keys);
+            aPickableItems.AddRange(mPickableItems[PickableItem.Type.Weapon].Keys);
+            aPickableItems.AddRange(mPickableItems[PickableItem.Type.Weapon].Keys);
+            return aPickableItems;
         }
         public PickableItem GetPickableItem(PickableItem.Type pType, string pName)
         {
@@ -108,6 +122,45 @@ namespace Seals_Of_Hell_Data_Editor
                 return mPickableItems[pType][pName];
             }
             return null;
+        }
+        public PickableItem GetPickableItem(string pName)
+        {
+            if(mPickableItems[PickableItem.Type.Giveable].ContainsKey(pName))
+            {
+                return mPickableItems[PickableItem.Type.Giveable][pName];
+            }
+            else if(mPickableItems[PickableItem.Type.Shield].ContainsKey(pName))
+            {
+                return mPickableItems[PickableItem.Type.Shield][pName];
+            }
+            else if(mPickableItems[PickableItem.Type.Weapon].ContainsKey(pName))
+            {
+                return mPickableItems[PickableItem.Type.Weapon][pName];
+            }
+            else if(mPickableItems[PickableItem.Type.Wearable].ContainsKey(pName))
+            {
+                return mPickableItems[PickableItem.Type.Wearable][pName];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public void DeletePickableItem(PickableItem.Type pType, string pName)
+        {
+            if(mPickableItems[pType].ContainsKey(pName))
+            {
+                mPickableItems[pType].Remove(pName);
+            }
+        }
+        public void UpdatePickableName(List<string> pConditionalOf, string pNewName)
+        {
+            foreach(string aObjName in pConditionalOf)
+            {
+                //find object from all dictionaries
+                //if object found
+                //update conditional object name
+            }
         }
         #region Giveable Pickable Item
         public void AssignGivable(string pGiveableName)
