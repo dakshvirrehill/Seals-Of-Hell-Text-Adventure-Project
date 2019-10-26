@@ -24,6 +24,8 @@ namespace Seals_Of_Hell_Data_Editor
         List<string> mAssignedEnemies;
         Dictionary<string, KillZone> mKillZones;
         List<string> mAssignedKillZones;
+        Dictionary<string, OneInteractionItem> mOIItems;
+        List<string> mAssignedOIItems;
         void InitializeImpPrivMembers()
         {
             mRooms = new Dictionary<string, Room>();
@@ -42,6 +44,8 @@ namespace Seals_Of_Hell_Data_Editor
             mAssignedEnemies = new List<string>();
             mKillZones = new Dictionary<string, KillZone>();
             mAssignedKillZones = new List<string>();
+            mOIItems = new Dictionary<string, OneInteractionItem>();
+            mAssignedOIItems = new List<string>();
         }
 
         #endregion
@@ -231,6 +235,42 @@ namespace Seals_Of_Hell_Data_Editor
             if (mKillZones.ContainsKey(pKillZoneName))
             {
                 mKillZones.Remove(pKillZoneName);
+            }
+        }
+        #endregion
+        #region One Interaction Items
+        public List<string> GetOIItemNames()
+        {
+            return new List<string>(mOIItems.Keys);
+        }
+        public OneInteractionItem GetOIItemObject(string pOIItemName)
+        {
+            if (mOIItems.ContainsKey(pOIItemName))
+            {
+                return mOIItems[pOIItemName];
+            }
+            return null;
+        }
+        public bool IsOIItemAssigned(string pOIItemName)
+        {
+            return mAssignedOIItems.Contains(pOIItemName);
+        }
+        public void AddOIItem(OneInteractionItem pOIItem)
+        {
+            if (!mOIItems.ContainsKey(pOIItem.mName))
+            {
+                mOIItems.Add(pOIItem.mName, pOIItem);
+            }
+        }
+        public bool IsOIItemPresent(string pOIItemName)
+        {
+            return mOIItems.ContainsKey(pOIItemName);
+        }
+        public void DeleteOIItem(string pOIItemName)
+        {
+            if (mOIItems.ContainsKey(pOIItemName))
+            {
+                mOIItems.Remove(pOIItemName);
             }
         }
         #endregion

@@ -17,6 +17,7 @@ namespace Seals_Of_Hell_Data_Editor
         }
 
         public string mName;
-
+        public string mStory;
+        public Type mType;
     }
 }

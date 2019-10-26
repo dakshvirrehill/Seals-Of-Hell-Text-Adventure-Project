@@ -15,5 +15,7 @@ namespace Seals_Of_Hell_Data_Editor
             Eatable,
             Riddle
         }
+
+        public Type mType;
     }
 }

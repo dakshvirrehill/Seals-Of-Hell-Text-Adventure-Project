@@ -63,6 +63,19 @@ namespace Seals_Of_Hell_Data_Editor
             }
             mKillZones.Add(pNewKillZone.mName, pNewKillZone);
         }
+        public void RemoveOldOIItemAndAddNew(string pOldOIItemName, OneInteractionItem pNewOIItem)
+        {
+            if (mOneInteractionItems == null)
+            {
+                return;
+            }
+            if (mOneInteractionItems.ContainsKey(pOldOIItemName))
+            {
+                mOneInteractionItems.Remove(pOldOIItemName);
+                EditUpdatableNames(pOldOIItemName, pNewOIItem.mName);
+            }
+            mOneInteractionItems.Add(pNewOIItem.mName, pNewOIItem);
+        }
         void EditUpdatableNames(string pOldName, string pNewName)
         {
             if (mCollectors != null)

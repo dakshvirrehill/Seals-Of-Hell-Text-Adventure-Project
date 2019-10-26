@@ -18,6 +18,7 @@ namespace Seals_Of_Hell_Data_Editor
         Collector mSelectedCollector;
         Enemy mSelectedEnemy;
         KillZone mSelectedKillZone;
+        OneInteractionItem mSelectedOIItem;
         public SealsOfHellMain()
         {
             mGameDetails = new DataHandler();
@@ -32,6 +33,7 @@ namespace Seals_Of_Hell_Data_Editor
             mSelectedCollector = null;
             mSelectedEnemy = null;
             mSelectedKillZone = null;
+            mSelectedOIItem = null;
             this.gameStartTabControl.Visible = 
             this.interactableDetailsTabControl.Visible = 
             this.regionTabControl.Visible =
@@ -272,7 +274,7 @@ namespace Seals_Of_Hell_Data_Editor
             }
             else if(this.interactableDetailsTabControl.SelectedTab == this.oneInteractionItemDetailsTab)
             {
-
+                ResetOIIEditor();
             }
             else if(this.interactableDetailsTabControl.SelectedTab == this.pickableItemDetailsTab)
             {
@@ -535,7 +537,7 @@ namespace Seals_Of_Hell_Data_Editor
         bool IsKillZoneDataValid()
         {
             return !(string.IsNullOrEmpty(this.killZoneNameTextBox.Text) || string.IsNullOrEmpty(this.killZoneStoryTextBox.Text)
-                || string.IsNullOrEmpty(this.killZoneAttackStoryTextBox.Text) || string.IsNullOrEmpty(this.killZoneDisablingStoryTextBox.Text);
+                || string.IsNullOrEmpty(this.killZoneAttackStoryTextBox.Text) || string.IsNullOrEmpty(this.killZoneDisablingStoryTextBox.Text));
         }
         private void DeleteKillZone_Click(object sender, EventArgs e)
         {
@@ -543,16 +545,6 @@ namespace Seals_Of_Hell_Data_Editor
             ResetKillZoneEditor();
         }
         private void EditKillZoneDetails_Click(object sender, EventArgs e)
-        {
-            if (mSelectedKillZone != null)
-            {
-                mSelectedKillZone = null;
-            }
-            mSelectedKillZone = mGameDetails.GetKillZoneObject((string)this.currentKillZonesList.SelectedItem);
-            ResetKillZoneEditor();
-            this.currentKillZonesList.SelectedItem = mSelectedKillZone.mName;
-        }
-        private void EditSelectedKillZone_Click(object sender, EventArgs e)
         {
             if (IsKillZoneDataValid())
             {
@@ -587,20 +579,110 @@ namespace Seals_Of_Hell_Data_Editor
                 mSelectedKillZone = null;
             }
             ResetKillZoneEditor();
+
+        }
+        private void EditSelectedKillZone_Click(object sender, EventArgs e)
+        {
+            if (mSelectedKillZone != null)
+            {
+                mSelectedKillZone = null;
+            }
+            mSelectedKillZone = mGameDetails.GetKillZoneObject((string)this.currentKillZonesList.SelectedItem);
+            ResetKillZoneEditor();
+            this.currentKillZonesList.SelectedItem = mSelectedKillZone.mName;
         }
         #endregion
+        #region OII Editor Code
+        void ResetOIIEditor()
+        {
+            this.oIITypeSelector.DataSource = Enum.GetValues(typeof(OneInteractionItem.Type));
+            this.oIITypeSelector.SelectedIndex = 0;
+            if (mSelectedOIItem != null)
+            {
+                this.oIINameTextBox.Text = mSelectedOIItem.mName;
+                this.oIIStoryTextBox.Text = mSelectedOIItem.mStory;
+                this.oIIUpdateStoryTextBox.Text = mSelectedOIItem.mUpdateStory;
+                this.oIIEndStoryTextBox.Text = mSelectedOIItem.mEndStory;
+                this.isOIIVisible.Checked = mSelectedOIItem.mIsVisible;
+                this.isOIIInteractable.Checked = mSelectedOIItem.mIsInteractable;
+                this.oIITypeSelector.SelectedItem = mSelectedOIItem.mType;
+                return;
+            }
+            this.oIINameTextBox.Text = "";
+            this.oIIStoryTextBox.Text = "";
+            this.oIIUpdateStoryTextBox.Text = "";
+            this.oIIEndStoryTextBox.Text = "";
+            this.isOIIVisible.Checked =
+            this.isOIIInteractable.Checked = false;
+            this.oIITypeSelector.SelectedIndex = 0;
+            this.currentOIIList.DataSource = mGameDetails.GetOIItemNames();
+        }
+        void DeleteSelectedOIItem()
+        {
+            if (mSelectedOIItem != null)
+            {
+                mGameDetails.DeleteOIItem(mSelectedOIItem.mName);
+                mSelectedOIItem = null;
+            }
+        }
+        bool IsOIItemDataValid()
+        {
+            return !(string.IsNullOrEmpty(this.oIINameTextBox.Text) || string.IsNullOrEmpty(this.oIIStoryTextBox.Text)
+                || string.IsNullOrEmpty(this.oIIUpdateStoryTextBox.Text) || string.IsNullOrEmpty(this.oIIEndStoryTextBox.Text));
+        }
         private void DeleteOII_Click(object sender, EventArgs e)
         {
-
+            DeleteSelectedOIItem();
+            ResetOIIEditor();
         }
         private void EditOIIDetails_Click(object sender, EventArgs e)
         {
+            if (IsOIItemDataValid())
+            {
 
+                if (mSelectedOIItem == null && mGameDetails.IsOIItemPresent(this.oIINameTextBox.Text))
+                {
+                    return;
+                }
+                Room aOIRoom = null;
+                string aOIOldName = "";
+                if (mSelectedOIItem != null && mSelectedOIItem.IsInRoom())
+                {
+                    aOIRoom = mGameDetails.GetRoomObject(mSelectedOIItem.GetInRoom());
+                    aOIOldName = mSelectedOIItem.mName;
+                }
+                DeleteSelectedOIItem();
+                mSelectedOIItem = new OneInteractionItem
+                {
+                    mName = this.oIINameTextBox.Text,
+                    mStory = this.oIIStoryTextBox.Text,
+                    mUpdateStory = this.oIIUpdateStoryTextBox.Text,
+                    mEndStory = this.oIIEndStoryTextBox.Text,
+                    mType = (OneInteractionItem.Type) this.oIITypeSelector.SelectedItem,
+                    mIsVisible = this.isOIIVisible.Checked,
+                    mIsInteractable = this.isOIIInteractable.Checked
+                };
+                if (aOIRoom != null)
+                {
+                    aOIRoom.RemoveOldOIItemAndAddNew(aOIOldName, mSelectedOIItem);
+                    mSelectedOIItem.SetInRoom(aOIRoom.mName);
+                }
+                mGameDetails.AddOIItem(mSelectedOIItem);
+                mSelectedOIItem = null;
+            }
+            ResetOIIEditor();
         }
         private void EditSelectedOII_Click(object sender, EventArgs e)
         {
-
+            if (mSelectedOIItem != null)
+            {
+                mSelectedOIItem = null;
+            }
+            mSelectedOIItem = mGameDetails.GetOIItemObject((string)this.currentOIIList.SelectedItem);
+            ResetOIIEditor();
+            this.currentOIIList.SelectedItem = mSelectedOIItem.mName;
         }
+        #endregion
         private void DeletePickableItem_Click(object sender, EventArgs e)
         {
 
