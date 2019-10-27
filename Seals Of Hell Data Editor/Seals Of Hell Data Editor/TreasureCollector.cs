@@ -8,6 +8,7 @@ namespace Seals_Of_Hell_Data_Editor
 {
     class TreasureCollector : Updater
     {
+        public string mKey { get; set; }
         public List<string> mTreasures { get; set; }
         public TreasureCollector()
         {

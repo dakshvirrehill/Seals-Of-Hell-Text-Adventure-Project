@@ -46,6 +46,7 @@ namespace Seals_Of_Hell_Data_Editor
                 {Gateway.Direction.SouthWest,false }
             };
         }
+        #region Helpers
         public List<string> GetAllInteractableNames(string pExcept = "")
         {
             List<string> aInteractables = new List<string>();
@@ -213,17 +214,20 @@ namespace Seals_Of_Hell_Data_Editor
             }
             return true;
         }
+        #endregion
         public bool IsRoomValid(bool pIsEntry = false, bool pIsFirst = false)
         {
             bool aValidity = true;
             aValidity = aValidity && !string.IsNullOrEmpty(mName);
             if(!aValidity)
             {
+                DataHandler.SetErrorMessage("Room has no name");
                 return aValidity;
             }
             aValidity = aValidity && !string.IsNullOrEmpty(mStory);
             if (!aValidity)
             {
+                DataHandler.SetErrorMessage("Room has no story");
                 return aValidity;
             }
             if(pIsFirst && pIsEntry)
@@ -231,11 +235,13 @@ namespace Seals_Of_Hell_Data_Editor
                 aValidity = aValidity && mGateways.Count == 0;
                 if (!aValidity)
                 {
+                    DataHandler.SetErrorMessage("First Room can't have gateways");
                     return aValidity;
                 }
                 aValidity = aValidity && mPortals.Count > 0;
                 if (!aValidity)
                 {
+                    DataHandler.SetErrorMessage("First Room should have all region portals");
                     return aValidity;
                 }
                 aValidity = aValidity && mTreasureCollector.IsTCValid();
@@ -249,6 +255,7 @@ namespace Seals_Of_Hell_Data_Editor
                 aValidity = aValidity && mTreasureCollector == null;
                 if(!aValidity)
                 {
+                    DataHandler.SetErrorMessage("Only first room should have treasure collector");
                     return aValidity;
                 }
                 if (pIsEntry)
@@ -256,6 +263,7 @@ namespace Seals_Of_Hell_Data_Editor
                     aValidity = aValidity && mPortals.Count == 1;
                     if (!aValidity)
                     {
+                        DataHandler.SetErrorMessage("Entry Room of Region should have portal");
                         return aValidity;
                     }
                 }
@@ -301,7 +309,7 @@ namespace Seals_Of_Hell_Data_Editor
                 }
                 foreach (Portal aPortal in mPortals.Values)
                 {
-                    aValidity = aValidity && aCollector.IsValid();
+                    aValidity = aValidity && aPortal.IsValid();
                     if (!aValidity)
                     {
                         return aValidity;

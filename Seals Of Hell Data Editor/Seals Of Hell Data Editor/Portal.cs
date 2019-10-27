@@ -24,6 +24,24 @@ namespace Seals_Of_Hell_Data_Editor
         public bool IsValid()
         {
             bool aValidity = true;
+            aValidity = aValidity && !string.IsNullOrEmpty(mName);
+            if(!aValidity)
+            {
+                DataHandler.SetErrorMessage("Portal has no name");
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mStory);
+            if(!aValidity)
+            {
+                DataHandler.SetErrorMessage("Portal has no story");
+                return aValidity;
+            }
+            aValidity = aValidity && DataHandler.IsRegionPresent(mCurrentRegionName);
+            if(!aValidity)
+            {
+                DataHandler.SetErrorMessage("Region not present");
+                return aValidity;
+            }
             return aValidity;
         }
 

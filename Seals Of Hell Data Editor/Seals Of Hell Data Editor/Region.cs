@@ -32,21 +32,25 @@ namespace Seals_Of_Hell_Data_Editor
             aValidity = aValidity && !string.IsNullOrEmpty(mName);
             if(!aValidity)
             {
+                DataHandler.SetErrorMessage("Region has no name");
                 return aValidity;
             }
             aValidity = aValidity && !string.IsNullOrEmpty(mStory);
             if (!aValidity)
             {
+                DataHandler.SetErrorMessage("Region has no story");
                 return aValidity;
             }
             aValidity = aValidity && !string.IsNullOrEmpty(mEntryRoom);
             if (!aValidity)
             {
+                DataHandler.SetErrorMessage("Region has no entry room");
                 return aValidity;
             }
             aValidity = aValidity && mRooms.ContainsKey(mEntryRoom);
             if (!aValidity)
             {
+                DataHandler.SetErrorMessage("Entry room not in rooms");
                 return aValidity;
             }
             if(pFirst)
@@ -54,6 +58,7 @@ namespace Seals_Of_Hell_Data_Editor
                 aValidity = aValidity && mRooms.Count == 1;
                 if (!aValidity)
                 {
+                    DataHandler.SetErrorMessage("Only one room can be there in first region");
                     return aValidity;
                 }
                 aValidity = aValidity && mRooms[mEntryRoom].IsRoomValid(true, true);

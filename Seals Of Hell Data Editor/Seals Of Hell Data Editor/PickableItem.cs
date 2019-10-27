@@ -65,6 +65,63 @@ namespace Seals_Of_Hell_Data_Editor
         public bool IsValid()
         {
             bool aValidity = true;
+            aValidity = aValidity && !string.IsNullOrEmpty(mName);
+            if(!aValidity)
+            {
+                DataHandler.SetErrorMessage("Pickable has no name");
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mStory);
+            if(!aValidity)
+            {
+                DataHandler.SetErrorMessage("Pickable has no story");
+                return aValidity;
+            }
+            aValidity = aValidity && IsInRoom();
+            if(!aValidity)
+            {
+                DataHandler.SetErrorMessage("Pickable has no room");
+                return aValidity;
+            }
+            if(mType == Type.Weapon || mType == Type.Wearable)
+            {
+                aValidity = aValidity && IsConditionalOf();
+                if(!aValidity)
+                {
+                    DataHandler.SetErrorMessage("Weapon or Wearable not a conditional");
+                    return aValidity;
+                }
+                aValidity = aValidity && DataHandler.AreUpdatersPresent(mConditionalOf);
+                if(!aValidity)
+                {
+                    DataHandler.SetErrorMessage("Pickable Updaters not present");
+                    return aValidity;
+                }
+            }
+            else if(mType == Type.Shield)
+            {
+                aValidity = aValidity && !IsConditionalOf();
+                if(!aValidity)
+                {
+                    DataHandler.SetErrorMessage("Shield cannot be a conditional");
+                    return aValidity;
+                }
+            }
+            else
+            {
+                aValidity = aValidity && mConditionalOf.Count == 1;
+                if(!aValidity)
+                {
+                    DataHandler.SetErrorMessage("Giveable needs to be given to only 1 collector");
+                    return aValidity;
+                }
+                aValidity = aValidity && DataHandler.AreUpdatersPresent(mConditionalOf);
+                if(!aValidity)
+                {
+                    DataHandler.SetErrorMessage("Collector not present");
+                    return aValidity;
+                }
+            }
             return aValidity;
         }
 

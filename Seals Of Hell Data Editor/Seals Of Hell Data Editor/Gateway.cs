@@ -60,6 +60,36 @@ namespace Seals_Of_Hell_Data_Editor
         public bool IsValid()
         {
             bool aValidity = true;
+            aValidity = aValidity && !string.IsNullOrEmpty(mName);
+            if(!aValidity)
+            {
+                DataHandler.SetErrorMessage("Gateway has no name");
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mStory);
+            if(!aValidity)
+            {
+                DataHandler.SetErrorMessage("Gateway has no story");
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mRoom1);
+            if(!aValidity)
+            {
+                DataHandler.SetErrorMessage("Gateway has no room 1");
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mRoom2);
+            if (!aValidity)
+            {
+                DataHandler.SetErrorMessage("Gateway has no room 2");
+                return aValidity;
+            }
+            aValidity = aValidity && DataHandler.IsGatewayValid(mName);
+            if(!aValidity)
+            {
+                DataHandler.SetErrorMessage("Gateway path not valid");
+                return aValidity;
+            }
             return aValidity;
         }
 

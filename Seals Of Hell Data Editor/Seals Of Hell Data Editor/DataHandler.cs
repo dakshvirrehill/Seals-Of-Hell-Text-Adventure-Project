@@ -29,6 +29,7 @@ namespace Seals_Of_Hell_Data_Editor
 
         #region Private Members
         static DataHandler mInstance; //for validity checks
+        string mErrorMessage = "";
         Dictionary<string, Room> mRooms;
         List<string> mAssignedRooms;
         Dictionary<PickableItem.Type, Dictionary<string,PickableItem>> mPickableItems;
@@ -549,21 +550,25 @@ namespace Seals_Of_Hell_Data_Editor
             aValidity = aValidity && !string.IsNullOrEmpty(mName);
             if(!aValidity)
             {
+                SetErrorMessage("Game Name not set");
                 return aValidity;
             }
             aValidity = aValidity && !string.IsNullOrEmpty(mStory);
             if (!aValidity)
             {
+                SetErrorMessage("Game Story not set");
                 return aValidity;
             }
             aValidity = aValidity && !string.IsNullOrEmpty(mFirstRegion);
             if (!aValidity)
             {
+                SetErrorMessage("First Region not set");
                 return aValidity;
             }
             aValidity = aValidity && mRegionDetails.ContainsKey(mFirstRegion);
             if (!aValidity)
             {
+                SetErrorMessage("First Region not in All regions");
                 return aValidity;
             }
             aValidity = aValidity && mRegionDetails[mFirstRegion].IsRegionValid(true);
@@ -574,6 +579,7 @@ namespace Seals_Of_Hell_Data_Editor
             aValidity = aValidity && mRegionDetails[mFirstRegion].mRooms[mRegionDetails[mFirstRegion].mEntryRoom].mPortals.Count == (mRegionDetails.Count-1);
             if (!aValidity)
             {
+                SetErrorMessage("First room doesn't have all portals");
                 return aValidity;
             }
             foreach (Region aRegion in mRegionDetails.Values)
@@ -588,6 +594,7 @@ namespace Seals_Of_Hell_Data_Editor
                     return aValidity;
                 }
             }
+            mErrorMessage = "";
             return aValidity;
         }
         public string ConvertDataToJSON()
@@ -595,6 +602,37 @@ namespace Seals_Of_Hell_Data_Editor
             try
             {
                 string aJSON = "";
+                DataHandler mGameDetails = new DataHandler();
+                mGameDetails.mName = mName;
+                mGameDetails.mStory = mStory;
+                mGameDetails.mFirstRegion = mFirstRegion;
+                mGameDetails.mRegionDetails = new Dictionary<string, Region>();
+                foreach(Region aCurrentRegion in mRegionDetails.Values)
+                {
+                    mGameDetails.mRegionDetails.Add(aCurrentRegion.mName, new Region());
+                    Region aJSONRegion = mGameDetails.mRegionDetails[aCurrentRegion.mName];
+                    aJSONRegion.mName = aCurrentRegion.mName;
+                    aJSONRegion.mStory = aCurrentRegion.mStory;
+                    aJSONRegion.mEntryRoom = aCurrentRegion.mName + "_" + aCurrentRegion.mEntryRoom;
+                    aJSONRegion.mRooms = new Dictionary<string, Room>();
+                    foreach(Room aCurrentRoom in aCurrentRegion.mRooms.Values)
+                    {
+                        string aRoomKey = aCurrentRegion.mName + "_" + aCurrentRoom.mName;
+                        aJSONRegion.mRooms.Add(aRoomKey, new Room());
+                        Room aJSONRoom = aJSONRegion.mRooms[aRoomKey];
+                        aJSONRoom.mName = aCurrentRoom.mName;
+                        aJSONRoom.mStory = aCurrentRoom.mStory;
+                        if(aRoomKey == aJSONRegion.mEntryRoom && aJSONRegion.mName == mGameDetails.mFirstRegion)
+                        {
+                            aJSONRoom.mTreasureCollector = new TreasureCollector();
+                            aJSONRoom.mTreasureCollector.mKey = aRoomKey + "_" + 
+                        }
+                        else
+                        {
+                            aJSONRoom.mTreasureCollector = null;
+                        }
+                    }
+                }
                 return aJSON;
             }
             catch(Exception aE)
@@ -606,17 +644,61 @@ namespace Seals_Of_Hell_Data_Editor
 
         public void ConvertFromJSON(string pJSON)
         {
-
+            
         }
 
         public static bool IsConditionalPresent(string pConditional)
         {
             return mInstance.IsPickableItemPresent(pConditional);
         }
+        public static bool IsRegionPresent(string pRegionName)
+        {
+            return mInstance.mRegionDetails.ContainsKey(pRegionName);
+        }
 
+        public static bool AreUpdatersPresent(List<string> pUpdaters)
+        {
+            foreach(string aUpd in pUpdaters)
+            {
+                if(!(mInstance.mCollectors.ContainsKey(aUpd) || mInstance.mEnemies.ContainsKey(aUpd) || mInstance.mKillZones.ContainsKey(aUpd)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public static bool IsGatewayValid(string pGateway)
+        {
+            if(mInstance.mGateways.ContainsKey(pGateway))
+            {
+                Gateway aG = mInstance.mGateways[pGateway];
+                Room aR = mInstance.mRooms[aG.mRoom1];
+                if(!aR.IsBlocked(aG.GetRoom1Direction()) && !aR.mGateways.ContainsKey(pGateway))
+                {
+                    return false;
+                }
+                aR = mInstance.mRooms[aG.mRoom2];
+                if(!aR.IsBlocked(aG.GetRoom2Direction()) && !aR.mGateways.ContainsKey(pGateway))
+                {
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
         public static bool AreUpdatablesInSameRoom(string pRoomName, List<string> pUpdatables)
         {
             return mInstance.GetRoomObject(pRoomName).AreObjectsInRoom(pUpdatables);
+        }
+
+        public static void SetErrorMessage(string pMessage)
+        {
+            mInstance.mErrorMessage = pMessage;
+        }
+
+        public string GetErrorMessage()
+        {
+            return mErrorMessage;
         }
 
     }

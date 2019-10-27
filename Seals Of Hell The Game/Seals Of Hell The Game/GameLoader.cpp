@@ -96,7 +96,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 		_ASSERT_EXPR(aRegion.second.hasKey("mEntryRoom"), "Region has no entry room");
 		_ASSERT_EXPR(aRegion.second.hasKey("mRooms"), "Region has no rooms");
 		aRegionPtr = nullptr;
-		if (aRegionMap.find(aRegion.first) == aRegionMap.end())
+		if (aRegionMap.count(aRegion.first) == 0)
 		{
 			aRegionPtr = new Region();
 			aRegionMap.emplace(aRegion.first, aRegionPtr);
@@ -107,7 +107,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 		}
 		initializeBasicObject(aRegion.second, aRegionPtr);
 		Room* aEntryRoomPtr = nullptr;
-		if (aRoomMap.find(aRegion.second["mEntryRoom"].ToString()) == aRoomMap.end())
+		if (aRoomMap.count(aRegion.second["mEntryRoom"].ToString()) == 0)
 		{
 			aEntryRoomPtr = new Room();
 			aRoomMap.emplace(aRegion.second["mEntryRoom"].ToString(), aEntryRoomPtr);
@@ -130,7 +130,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 		for (auto& aRoom : aRooms.ObjectRange())
 		{
 			Room* aRoomPtr = nullptr;
-			if (aRoomMap.find(aRoom.first) == aRoomMap.end())
+			if (aRoomMap.count(aRoom.first) == 0)
 			{
 				aRoomPtr = new Room();
 				aRoomMap.emplace(aRoom.first, aRoomPtr);

@@ -59,12 +59,13 @@ namespace Seals_Of_Hell_Data_Editor
             }
             else
             {
+                MessageBox.Show(mGameDetails.GetErrorMessage(), "Data Not Valid", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Application.Exit();
         }
         private void EditGameStartDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1368,7 +1369,6 @@ namespace Seals_Of_Hell_Data_Editor
             aDisablingObjects.Add("No Disabling Object");
             aDisablingObjects.AddRange(mGameDetails.GetPickableItemNames(PickableItem.Type.Wearable));
             aDisablingObjects.AddRange(mGameDetails.GetPickableItemNames(PickableItem.Type.Weapon));
-            aDisablingObjects.AddRange(mGameDetails.GetPickableItemNames(PickableItem.Type.Shield));
             this.killZoneDisablerSelector.DataSource = aDisablingObjects;
             this.killZoneDisablerSelector.SelectedIndex = 0;
             if (mSelectedKillZone != null)
