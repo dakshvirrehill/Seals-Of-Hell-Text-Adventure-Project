@@ -201,7 +201,18 @@ namespace Seals_Of_Hell_Data_Editor
         {
             mIsBlocked[pDirection] = pBlock;
         }
-
+        public bool AreObjectsInRoom(List<string> pObjNames)
+        {
+            foreach(string aObj in pObjNames)
+            {
+                if(!(mCollectors.ContainsKey(aObj) || mEnemies.ContainsKey(aObj) || mKillZones.ContainsKey(aObj) || mOneInteractionItems.ContainsKey(aObj)
+                    || mPickableItems.ContainsKey(aObj) || mPortals.ContainsKey(aObj) || mGateways.ContainsKey(aObj)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         public bool IsRoomValid(bool pIsEntry = false, bool pIsFirst = false)
         {
             bool aValidity = true;

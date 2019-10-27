@@ -28,6 +28,7 @@ namespace Seals_Of_Hell_Data_Editor
         public Dictionary<string, Region> mRegionDetails { get; set; }
 
         #region Private Members
+        static DataHandler mInstance; //for validity checks
         Dictionary<string, Room> mRooms;
         List<string> mAssignedRooms;
         Dictionary<PickableItem.Type, Dictionary<string,PickableItem>> mPickableItems;
@@ -66,6 +67,10 @@ namespace Seals_Of_Hell_Data_Editor
             mAssignedOIItems = new List<string>();
             mPortals = new Dictionary<string, Portal>();
             mGateways = new Dictionary<string, Gateway>();
+            if(mInstance == null)
+            {
+                mInstance = this;
+            }
         }
 
         #endregion
@@ -602,6 +607,16 @@ namespace Seals_Of_Hell_Data_Editor
         public void ConvertFromJSON(string pJSON)
         {
 
+        }
+
+        public static bool IsConditionalPresent(string pConditional)
+        {
+            return mInstance.IsPickableItemPresent(pConditional);
+        }
+
+        public static bool AreUpdatablesInSameRoom(string pRoomName, List<string> pUpdatables)
+        {
+            return mInstance.GetRoomObject(pRoomName).AreObjectsInRoom(pUpdatables);
         }
 
     }
