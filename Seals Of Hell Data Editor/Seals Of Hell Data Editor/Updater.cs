@@ -17,6 +17,7 @@ namespace Seals_Of_Hell_Data_Editor
         public string mUpdateStory { get; set; }
         public string mEndStory { get; set; }
         public List<string> mUpdatableObjects { get; set; }
+        public Dictionary<string,string> mUpdatableObjectsWithType { get; set; }
         public Updater()
         {
             mUpdatableObjects = new List<string>();

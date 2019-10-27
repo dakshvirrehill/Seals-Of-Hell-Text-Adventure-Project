@@ -36,23 +36,21 @@ void GameLoader::initializeIInteractable(json::JSON pData, IInteractable* pObjec
 
 void GameLoader::initializeIUpdatable(json::JSON pData, IUpdatable* pObject, std::map<std::string,IInteractable*>& pInteractableMap)
 {
-	_ASSERT_EXPR(pData.hasKey("mAttackStory"), "Data has no attack story");
-	_ASSERT_EXPR(pData.hasKey("mDeathStory"), "Data has no death story");
-	_ASSERT_EXPR(pData.hasKey("mUpdatableObjects"), "Data has no updatable objects");
-	pObject->initialize(pData["mAttackStory"].ToString(), pData["mDeathStory"].ToString());
-	for (auto& aUpdatableObj : pData["mUpdatableObjects"].ObjectRange())
+	_ASSERT_EXPR(pData.hasKey("mUpdateStory"), "Data has no attack story");
+	_ASSERT_EXPR(pData.hasKey("mEndStory"), "Data has no death story");
+	_ASSERT_EXPR(pData.hasKey("mUpdatableObjectsWithType"), "Data has no updatable objects");
+	pObject->initialize(pData["mUpdateStory"].ToString(), pData["mEndStory"].ToString());
+	for (auto& aUpdatableObj : pData["mUpdatableObjectsWithType"].ObjectRange())
 	{
-		_ASSERT_EXPR(aUpdatableObj.second.hasKey("mClassName"), "Updatable Object can't be created without class name");
-		_ASSERT_EXPR(aUpdatableObj.second.hasKey("mObjName"), "Updatable Object can't be created without obj name");
 		IInteractable* aUpdatable = nullptr;
-		if (pInteractableMap.find(aUpdatableObj.second["mObjName"].ToString()) == pInteractableMap.end())
+		if (pInteractableMap.find(aUpdatableObj.first) == pInteractableMap.end())
 		{
-			aUpdatable = mObjectCreator[aUpdatableObj.second["mClassName"].ToString()](instance());
-			pInteractableMap.emplace(aUpdatableObj.second["mObjName"].ToString(), aUpdatable);
+			aUpdatable = mObjectCreator[aUpdatableObj.second.ToString()](instance());
+			pInteractableMap.emplace(aUpdatableObj.first, aUpdatable);
 		}
 		else
 		{
-			aUpdatable = pInteractableMap[aUpdatableObj.second["mObjName"].ToString()];
+			aUpdatable = pInteractableMap[aUpdatableObj.first];
 		}
 		pObject->addConditionUpdateObjects(aUpdatable);
 	}
@@ -140,18 +138,6 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 				aRoomPtr = aRoomMap[aRoom.first];
 			}
 			initializeBasicObject(aRoom.second, aRoomPtr);
-			_ASSERT_EXPR(aRoom.second.hasKey("mHasCollectors"), "Room has no collector bool");
-			bool aHasCollector = aRoom.second["mHasCollectors"].ToBool();
-			_ASSERT_EXPR(aRoom.second.hasKey("mHasEnemies"), "Room has no enemy bool");
-			bool aHasEnemy = aRoom.second["mHasEnemies"].ToBool();
-			_ASSERT_EXPR(aRoom.second.hasKey("mHasKillZones"), "Room has no KillZone bool");
-			bool aHasKillZone = aRoom.second["mHasKillZones"].ToBool();
-			_ASSERT_EXPR(aRoom.second.hasKey("mHasOneInteractionItems"), "Room has no OneInteractionItem bool");
-			bool aHasOneInteractionItem = aRoom.second["mHasOneInteractionItems"].ToBool();
-			_ASSERT_EXPR(aRoom.second.hasKey("mHasPickableItems"), "Room has no PickableItem bool");
-			bool aHasPickableItem = aRoom.second["mHasPickableItems"].ToBool();
-			_ASSERT_EXPR(aRoom.second.hasKey("mHasPortals"), "Room has no PortalItem bool");
-			bool aHasPortal = aRoom.second["mHasPortals"].ToBool();
 			if (aRoomPtr == aEntryRoomPtr && aMakeTreasureCollector)
 			{
 				_ASSERT_EXPR(aRoom.second.hasKey("mTreasureCollector"), "Room has no treasure collector");
@@ -197,10 +183,11 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 				//figure out gateway logic
 				for (auto& aGateway : aRoom.second["mGateways"].ObjectRange())
 				{
-					_ASSERT_EXPR(aGateway.second.hasKey("mCurrentRoom"), "Gateway has no current room");
-					_ASSERT_EXPR(aGateway.second.hasKey("mConnectedRoom"), "Gateway has no connected room");
+					_ASSERT_EXPR(aGateway.second.hasKey("mRoom1"), "Gateway has no current room");
+					_ASSERT_EXPR(aGateway.second.hasKey("mRoom2"), "Gateway has no connected room");
+					_ASSERT_EXPR(aGateway.second.hasKey("mPath"), "Gateway has no path");
 					Gateway* aNewGateway = nullptr;
-					if (aInteractableMap.find(aGateway.first) == aInteractableMap.end())
+					if (aInteractableMap.count(aGateway.first) == 0)
 					{
 						aNewGateway = new Gateway();
 						aInteractableMap.emplace(aGateway.first, aNewGateway);
@@ -209,39 +196,41 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					{
 						aNewGateway = (Gateway*)aInteractableMap[aGateway.first];
 					}
-					initializeIInteractable(aGateway.second, aNewGateway);
 					Room* aCurRoom = nullptr;
-					if (aRoomMap.find(aGateway.second["mCurrentRoom"].ToString()) == aRoomMap.end())
+					if (aRoomMap.count(aGateway.second["mRoom1"].ToString()) == 0)
 					{
 						aCurRoom = new Room();
-						aRoomMap.emplace(aGateway.second["mCurrentRoom"].ToString(), aCurRoom);
+						aRoomMap.emplace(aGateway.second["mRoom1"].ToString(), aCurRoom);
 					}
 					else
 					{
-						aCurRoom = aRoomMap[aGateway.second["mCurrentRoom"].ToString()];
+						aCurRoom = aRoomMap[aGateway.second["mRoom1"].ToString()];
 					}
-					Room* aConRoom = nullptr;
-					if (aRoomMap.find(aGateway.second["mConnectedRoom"].ToString()) == aRoomMap.end())
+					if (!aNewGateway->isInitialized())
 					{
-						aConRoom = new Room();
-						aRoomMap.emplace(aGateway.second["mConnectedRoom"].ToString(), aConRoom);
+						Room* aConRoom = nullptr;
+						if (aRoomMap.count(aGateway.second["mRoom2"].ToString()) == 0)
+						{
+							aConRoom = new Room();
+							aRoomMap.emplace(aGateway.second["mRoom2"].ToString(), aConRoom);
+						}
+						else
+						{
+							aConRoom = aRoomMap[aGateway.second["mRoom2"].ToString()];
+						}
+						aNewGateway->initialize(aCurRoom, aConRoom);
 					}
-					else
-					{
-						aConRoom = aRoomMap[aGateway.second["mConnectedRoom"].ToString()];
-					}
-					aNewGateway->initialize(aCurRoom, aConRoom);
-					aRoomPtr->addInteractable(aInteractableMap[aGateway.first]);
+					initializeIInteractable(aGateway.second, aNewGateway);
+					aRoomPtr->addGateway(aInteractableMap[aGateway.first],aGateway.second["mPath"].ToInt(),aRoomPtr == aCurRoom ? 0:1);
 				}
 			}
-			if (aHasCollector)
+			if (aRoom.second.hasKey("mCollectors"))
 			{
-				_ASSERT_EXPR(aRoom.second.hasKey("mCollectors"), "Room has no Collectors");
 				for (auto& aCollector : aRoom.second["mCollectors"].ObjectRange())
 				{
-					_ASSERT_EXPR(aCollector.second.hasKey("mGiveableObject"), "Collector has no giveable object");
+					_ASSERT_EXPR(aCollector.second.hasKey("mConditionalObject"), "Collector has no giveable object");
 					Collector* aNewCollector = nullptr;
-					if (aInteractableMap.find(aCollector.first) == aInteractableMap.end())
+					if (aInteractableMap.count(aCollector.first) == 0)
 					{
 						aNewCollector = new Collector();
 						aInteractableMap.emplace(aCollector.first, aNewCollector);
@@ -253,30 +242,29 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					initializeIInteractable(aCollector.second, aNewCollector);
 					initializeIUpdatable(aCollector.second, aNewCollector, aInteractableMap);
 					IInteractable* aGiveableObject = nullptr;
-					if (aInteractableMap.find(aCollector.second["mGiveableObject"].ToString()) == aInteractableMap.end())
+					if (aInteractableMap.count(aCollector.second["mConditionalObject"].ToString()) == 0)
 					{
 						aGiveableObject = new PickableItem();
-						aInteractableMap.emplace(aCollector.second["mGiveableObject"].ToString(), aGiveableObject);
+						aInteractableMap.emplace(aCollector.second["mConditionalObject"].ToString(), aGiveableObject);
 					}
 					else
 					{
-						aGiveableObject = aInteractableMap[aCollector.second["mGiveableObject"].ToString()];
+						aGiveableObject = aInteractableMap[aCollector.second["mConditionalObject"].ToString()];
 					}
 					aNewCollector->setConditionalObject(aGiveableObject);
 					aRoomPtr->addInteractable(aInteractableMap[aCollector.first]);
 					aRoomPtr->addUpdatable(aNewCollector);
 				}
 			}
-			if (aHasEnemy)
+			if (aRoom.second.hasKey("mEnemies"))
 			{
-				_ASSERT_EXPR(aRoom.second.hasKey("mEnemies"), "Room has no Enemies");
 				for (auto& aEnemy : aRoom.second["mEnemies"].ObjectRange())
 				{
 					_ASSERT_EXPR(aEnemy.second.hasKey("mLife"), "Enemy has no life");
 					_ASSERT_EXPR(aEnemy.second.hasKey("mBlockStory"), "Enemy has no block story");
-					_ASSERT_EXPR(aEnemy.second.hasKey("mKillingWeapon"), "Enemy has no killing weapon");
+					_ASSERT_EXPR(aEnemy.second.hasKey("mConditionalObject"), "Enemy has no killing weapon");
 					Enemy* aNewEnemy = nullptr;
-					if (aInteractableMap.find(aEnemy.first) == aInteractableMap.end())
+					if (aInteractableMap.count(aEnemy.first) == 0)
 					{
 						aNewEnemy = new Enemy();
 						aInteractableMap.emplace(aEnemy.first, aNewEnemy);
@@ -289,33 +277,26 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					initializeIUpdatable(aEnemy.second, aNewEnemy, aInteractableMap);
 					aNewEnemy->initialize(aEnemy.second["mLife"].ToInt(), aEnemy.second["mBlockStory"].ToString());
 					IInteractable* aKillingWeapon = nullptr;
-					if (aInteractableMap.find(aEnemy.second["mKillingWeapon"].ToString()) == aInteractableMap.end())
+					if (aInteractableMap.count(aEnemy.second["mConditionalObject"].ToString()) == 0)
 					{
 						aKillingWeapon = new PickableItem();
-						aInteractableMap.emplace(aEnemy.second["mKillingWeapon"].ToString(), aKillingWeapon);
+						aInteractableMap.emplace(aEnemy.second["mConditionalObject"].ToString(), aKillingWeapon);
 					}
 					else
 					{
-						aKillingWeapon = aInteractableMap[aEnemy.second["mKillingWeapon"].ToString()];
+						aKillingWeapon = aInteractableMap[aEnemy.second["mConditionalObject"].ToString()];
 					}
 					aNewEnemy->setConditionalObject(aKillingWeapon);
 					aRoomPtr->addInteractable(aInteractableMap[aEnemy.first]);
 					aRoomPtr->addUpdatable(aNewEnemy);
 				}
 			}
-			if (aHasKillZone)
+			if (aRoom.second.hasKey("mKillZones"))
 			{
-				_ASSERT_EXPR(aRoom.second.hasKey("mKillZones"), "Room has no Killzones");
 				for (auto& aKillZone : aRoom.second["mKillZones"].ObjectRange())
 				{
-					_ASSERT_EXPR(aKillZone.second.hasKey("mHasCondition"), "Killzone has no has condition bool");
-					bool aHasCond = aKillZone.second["mHasCondition"].ToBool();
-					if (aHasCond)
-					{
-						_ASSERT_EXPR(aKillZone.second.hasKey("mDisabler"), "Killzone has no conditional object");
-					}
 					KillZone* aNewKillZone = nullptr;
-					if (aInteractableMap.find(aKillZone.first) == aInteractableMap.end())
+					if (aInteractableMap.count(aKillZone.first) == 0)
 					{
 						aNewKillZone = new KillZone();
 						aInteractableMap.emplace(aKillZone.first, aNewKillZone);
@@ -326,13 +307,13 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					}
 					initializeIInteractable(aKillZone.second, aNewKillZone);
 					initializeIUpdatable(aKillZone.second, aNewKillZone, aInteractableMap);
-					if (aHasCond)
+					if (aKillZone.second.hasKey("mConditionalObject"))
 					{
 						IInteractable* aConditionalObject = nullptr;
-						if (aInteractableMap.find(aKillZone.second["mDisabler"].ToString()) == aInteractableMap.end())
+						if (aInteractableMap.count(aKillZone.second["mConditionalObject"].ToString()) == 0)
 						{
 							aConditionalObject = new PickableItem();
-							aInteractableMap.emplace(aKillZone.second["mDisabler"].ToString(), aConditionalObject);
+							aInteractableMap.emplace(aKillZone.second["mConditionalObject"].ToString(), aConditionalObject);
 						}
 						else
 						{
@@ -348,14 +329,13 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					aRoomPtr->addUpdatable(aNewKillZone);
 				}
 			}
-			if (aHasOneInteractionItem)
+			if (aRoom.second.hasKey("mOneInteractionItems"))
 			{
-				_ASSERT_EXPR(aRoom.second.hasKey("mOneInteractionItems"), "Room has no OneInteractionItems");
 				for (auto& aOneInteractionItem : aRoom.second["mOneInteractionItems"].ObjectRange())
 				{
 					_ASSERT_EXPR(aOneInteractionItem.second.hasKey("mType"), "OneInteractionItem has no trype");
 					OneInteractionItem* aNewItem = nullptr;
-					if (aInteractableMap.find(aOneInteractionItem.first) == aInteractableMap.end())
+					if (aInteractableMap.count(aOneInteractionItem.first) == 0)
 					{
 						aNewItem = new OneInteractionItem();
 						aInteractableMap.emplace(aOneInteractionItem.first, aNewItem);
@@ -372,9 +352,8 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					aRoomPtr->addUpdatable(aNewItem);
 				}
 			}
-			if (aHasPickableItem)
+			if (aRoom.second.hasKey("mPickableItems"))
 			{
-				_ASSERT_EXPR(aRoom.second.hasKey("mPickableItems"), "Room has no Pickable Items");
 				for (auto& aPickableItem : aRoom.second["mPickableItems"].ObjectRange())
 				{
 					_ASSERT_EXPR(aPickableItem.second.hasKey("mType"), "Pickable Item has no type");
@@ -401,15 +380,14 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					aRoomPtr->addInteractable(aInteractableMap[aPickableItem.first]);
 				}
 			}
-			if (aHasPortal)
+			if (aRoom.second.hasKey("mPortals"))
 			{
-				_ASSERT_EXPR(aRoom.second.hasKey("mPortals"), "Room has no Portals");
 				for (auto& aPortal : aRoom.second["mPortals"].ObjectRange())
 				{
 					_ASSERT_EXPR(aPortal.second.hasKey("mActiveRegion"), "Portal has no active region");
 					_ASSERT_EXPR(aPortal.second.hasKey("mConnectedRegion"), "Portal has no connected region");
 					Portal* aNewPortal = nullptr;
-					if (aInteractableMap.find(aPortal.first) == aInteractableMap.end())
+					if (aInteractableMap.count(aPortal.first) == 0)
 					{
 						aNewPortal = new Portal();
 						aInteractableMap.emplace(aPortal.first, aNewPortal);
@@ -418,28 +396,31 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					{
 						aNewPortal = (Portal*)aInteractableMap[aPortal.first];
 					}
-					initializeIInteractable(aPortal.second, aNewPortal);
-					Region* aActiveRegion = nullptr;
-					if (aRegionMap.find(aPortal.second["mActiveRegion"].ToString()) == aRegionMap.end())
+					if (!aNewPortal->isInitialized())
 					{
-						aActiveRegion = new Region();
-						aRegionMap.emplace(aPortal.second["mActiveRegion"].ToString(), aActiveRegion);
+						initializeIInteractable(aPortal.second, aNewPortal);
+						Region* aActiveRegion = nullptr;
+						if (aRegionMap.find(aPortal.second["mActiveRegion"].ToString()) == aRegionMap.end())
+						{
+							aActiveRegion = new Region();
+							aRegionMap.emplace(aPortal.second["mActiveRegion"].ToString(), aActiveRegion);
+						}
+						else
+						{
+							aActiveRegion = aRegionMap[aPortal.second["mActiveRegion"].ToString()];
+						}
+						Region* aConnectedRegion = nullptr;
+						if (aRegionMap.find(aPortal.second["mConnectedRegion"].ToString()) == aRegionMap.end())
+						{
+							aConnectedRegion = new Region();
+							aRegionMap.emplace(aPortal.second["mConnectedRegion"].ToString(), aConnectedRegion);
+						}
+						else
+						{
+							aConnectedRegion = aRegionMap[aPortal.second["mConnectedRegion"].ToString()];
+						}
+						aNewPortal->initialize(aActiveRegion, aConnectedRegion);
 					}
-					else
-					{
-						aActiveRegion = aRegionMap[aPortal.second["mActiveRegion"].ToString()];
-					}
-					Region* aConnectedRegion = nullptr;
-					if (aRegionMap.find(aPortal.second["mConnectedRegion"].ToString()) == aRegionMap.end())
-					{
-						aConnectedRegion = new Region();
-						aRegionMap.emplace(aPortal.second["mConnectedRegion"].ToString(), aConnectedRegion);
-					}
-					else
-					{
-						aConnectedRegion = aRegionMap[aPortal.second["mConnectedRegion"].ToString()];
-					}
-					aNewPortal->initialize(aActiveRegion, aConnectedRegion);
 					aRoomPtr->addInteractable(aInteractableMap[aPortal.first]);
 				}
 			}

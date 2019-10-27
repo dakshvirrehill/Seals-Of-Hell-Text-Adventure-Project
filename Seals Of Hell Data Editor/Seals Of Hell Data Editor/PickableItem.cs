@@ -98,16 +98,7 @@ namespace Seals_Of_Hell_Data_Editor
                     return aValidity;
                 }
             }
-            else if(mType == Type.Shield)
-            {
-                aValidity = aValidity && !IsConditionalOf();
-                if(!aValidity)
-                {
-                    DataHandler.SetErrorMessage("Shield cannot be a conditional");
-                    return aValidity;
-                }
-            }
-            else
+            else if(mType == Type.Giveable)
             {
                 aValidity = aValidity && mConditionalOf.Count == 1;
                 if(!aValidity)
@@ -120,6 +111,18 @@ namespace Seals_Of_Hell_Data_Editor
                 {
                     DataHandler.SetErrorMessage("Collector not present");
                     return aValidity;
+                }
+            }
+            else
+            {
+                if(IsConditionalOf())
+                {
+                    aValidity = aValidity && DataHandler.AreUpdatersPresent(mConditionalOf);
+                    if (!aValidity)
+                    {
+                        DataHandler.SetErrorMessage("Pickable Updaters not present");
+                        return aValidity;
+                    }
                 }
             }
             return aValidity;

@@ -7,10 +7,12 @@ class Portal : public IInteractable
 {
 	Region* mActiveRegion;
 	Region* mConnectedRegion;
+	bool mInitialized;
 public:
-	Portal() : IInteractable(), mActiveRegion(nullptr), mConnectedRegion(nullptr) {};
+	Portal() : IInteractable(), mActiveRegion(nullptr), mConnectedRegion(nullptr), mInitialized(false) {};
 	~Portal();
 	void initialize(Region*,Region*);
 	void teleportRegion() override;
+	bool& isInitialized() { return mInitialized; }
 };
 #endif

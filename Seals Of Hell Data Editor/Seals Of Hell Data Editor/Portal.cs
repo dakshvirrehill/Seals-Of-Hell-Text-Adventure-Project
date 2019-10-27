@@ -14,6 +14,9 @@ namespace Seals_Of_Hell_Data_Editor
         public bool mIsInteractable { get; set; }
         public string mCurrentRegionName { get; set; }
 
+        public string mActiveRegion { get; set; }
+        public string mConnectedRegion { get; set; }
+
         public Portal(string pRegionName)
         {
             mCurrentRegionName = pRegionName;

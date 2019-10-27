@@ -87,6 +87,7 @@ namespace Seals_Of_Hell_Data_Editor
             };
             mRegionDetails[mFirstRegion].mName = mFirstRegion;
             mRegionDetails[mFirstRegion].mRooms[mRegionDetails[mFirstRegion].mEntryRoom].mTreasureCollector = new TreasureCollector();
+            mRegionDetails[mFirstRegion].mRooms[mRegionDetails[mFirstRegion].mEntryRoom].mTreasureCollector.SetInRoom(mRegionDetails[mFirstRegion].mEntryRoom);
             InitializeImpPrivMembers();
         }
         #region Room
@@ -252,6 +253,44 @@ namespace Seals_Of_Hell_Data_Editor
                     }
                     break;
             }
+        }
+        public string GetObjectType(string pName)
+        {
+            if(mCollectors.ContainsKey(pName))
+            {
+                return "Collector";
+            }
+            if(mEnemies.ContainsKey(pName))
+            {
+                return "Enemy";
+            }
+            if(mGateways.ContainsKey(pName))
+            {
+                return "Gateway";
+            }
+            if(mKillZones.ContainsKey(pName))
+            {
+                return "KillZone";
+            }
+            if(mOIItems.ContainsKey(pName))
+            {
+                return "OneInteractionItem";
+            }
+            if(mPickableItems[PickableItem.Type.Giveable].ContainsKey(pName) ||
+                mPickableItems[PickableItem.Type.Shield].ContainsKey(pName) ||
+                mPickableItems[PickableItem.Type.Weapon].ContainsKey(pName) ||
+                mPickableItems[PickableItem.Type.Wearable].ContainsKey(pName))
+            {
+                return "PickableItem";
+            }
+            foreach(Portal aPortal in mPortals.Values)
+            {
+                if(aPortal.mName == pName)
+                {
+                    return "Portal";
+                }
+            }
+            return null;
         }
         #region Pickable Item
         public bool IsPickableItemPresent(string pName)
@@ -594,8 +633,38 @@ namespace Seals_Of_Hell_Data_Editor
                     return aValidity;
                 }
             }
+            aValidity = aValidity && mPickableItems[PickableItem.Type.Shield].Count >= 1;
+            if(!aValidity)
+            {
+                SetErrorMessage("Game Has No Shield Object");
+                return aValidity;
+            }
             mErrorMessage = "";
             return aValidity;
+        }
+        Dictionary<string,string> GetUpdatableObjectsWithType(List<string> pUpdatableObjects,string pRoomKey,string pRegionKey)
+        {
+            Dictionary<string, string> aUpdtObjWType = new Dictionary<string, string>();
+            foreach (string aObjName in pUpdatableObjects)
+            {
+                string aType = GetObjectType(aObjName);
+                if (aType != null)
+                {
+                    if(aType.Equals("Gateway"))
+                    {
+                        aUpdtObjWType.Add(pRegionKey + "_" + aObjName, aType);
+                    }
+                    else if(aType.Equals("Portal"))
+                    {
+                        aUpdtObjWType.Add(aObjName, aType);
+                    }
+                    else
+                    {
+                        aUpdtObjWType.Add(pRoomKey + "_" + aObjName, aType);
+                    }
+                }
+            }
+            return aUpdtObjWType;
         }
         public string ConvertDataToJSON()
         {
@@ -607,6 +676,8 @@ namespace Seals_Of_Hell_Data_Editor
                 mGameDetails.mStory = mStory;
                 mGameDetails.mFirstRegion = mFirstRegion;
                 mGameDetails.mRegionDetails = new Dictionary<string, Region>();
+                Dictionary<string, Portal> aPortals = new Dictionary<string, Portal>();
+                Dictionary<string, Gateway> aGateway = new Dictionary<string, Gateway>();
                 foreach(Region aCurrentRegion in mRegionDetails.Values)
                 {
                     mGameDetails.mRegionDetails.Add(aCurrentRegion.mName, new Region());
@@ -625,14 +696,207 @@ namespace Seals_Of_Hell_Data_Editor
                         if(aRoomKey == aJSONRegion.mEntryRoom && aJSONRegion.mName == mGameDetails.mFirstRegion)
                         {
                             aJSONRoom.mTreasureCollector = new TreasureCollector();
-                            aJSONRoom.mTreasureCollector.mKey = aRoomKey + "_" + 
+                            aJSONRoom.mTreasureCollector.mKey = aRoomKey + "_" + aCurrentRoom.mTreasureCollector.mName;
+                            aJSONRoom.mTreasureCollector.mName = aCurrentRoom.mTreasureCollector.mName;
+                            aJSONRoom.mTreasureCollector.mStory = aCurrentRoom.mTreasureCollector.mStory;
+                            aJSONRoom.mTreasureCollector.mIsVisible = aCurrentRoom.mTreasureCollector.mIsVisible;
+                            aJSONRoom.mTreasureCollector.mIsInteractable = aCurrentRoom.mTreasureCollector.mIsInteractable;
+                            aJSONRoom.mTreasureCollector.mUpdateStory = aCurrentRoom.mTreasureCollector.mUpdateStory;
+                            aJSONRoom.mTreasureCollector.mEndStory = aCurrentRoom.mTreasureCollector.mEndStory;
+                            aJSONRoom.mTreasureCollector.mConditionalObject = null;
+                            aJSONRoom.mTreasureCollector.mUpdatableObjects = null;
+                            if(aCurrentRoom.mTreasureCollector.mUpdatableObjects.Count > 0)
+                            {
+                                aJSONRoom.mTreasureCollector.mUpdatableObjectsWithType = GetUpdatableObjectsWithType(aCurrentRoom.mTreasureCollector.mUpdatableObjects, aRoomKey, mGameDetails.mFirstRegion);
+                            }
+                            aJSONRoom.mTreasureCollector.mTreasures = new List<string>();
+                            foreach(string aObjName in aCurrentRoom.mTreasureCollector.mTreasures)
+                            {
+                                PickableItem aItem = GetPickableItem(aObjName);
+                                if(aItem != null)
+                                {
+                                    Room aRoom = GetRoomObject(aItem.GetInRoom());
+                                    if(aRoom != null)
+                                    {
+                                        aJSONRoom.mTreasureCollector.mTreasures.Add(aRoom.GetInRegion() + "_" + aRoom.mName + "_" + aObjName);
+                                    }
+                                }
+                            }
+                            aJSONRoom.mPortals = new Dictionary<string, Portal>();
+                            foreach (Portal aCurrentPortal in aCurrentRoom.mPortals.Values)
+                            {
+                                string aPortalKey = aCurrentPortal.mName;
+                                aJSONRoom.mPortals.Add(aPortalKey, new Portal(aCurrentPortal.mCurrentRegionName));
+                                aJSONRoom.mPortals[aPortalKey].mName = aCurrentPortal.mName;
+                                aJSONRoom.mPortals[aPortalKey].mStory = aCurrentPortal.mStory;
+                                aJSONRoom.mPortals[aPortalKey].mCurrentRegionName = null;
+                                aJSONRoom.mPortals[aPortalKey].mActiveRegion = mGameDetails.mFirstRegion;
+                                aJSONRoom.mPortals[aPortalKey].mConnectedRegion = aCurrentPortal.mCurrentRegionName;
+                            }
+                            aPortals = aJSONRoom.mPortals;
+                            aJSONRoom.mGateways = null;
                         }
                         else
                         {
                             aJSONRoom.mTreasureCollector = null;
+                            if (aCurrentRoom.mPortals.Count > 0)
+                            {
+                                aJSONRoom.mPortals = new Dictionary<string, Portal>();
+                                foreach (string aCurrentPortal in aCurrentRoom.mPortals.Keys)
+                                {
+                                    aJSONRoom.mPortals.Add(aCurrentPortal, aPortals[aCurrentPortal]);
+                                }
+                            }
+                            else
+                            {
+                                aJSONRoom.mPortals = null;
+                            }
+                            aJSONRoom.mGateways = new Dictionary<string, Gateway>();
+                            foreach(Gateway aCurrentGateway in aCurrentRoom.mGateways.Values)
+                            {
+                                string aGatewayKey = aJSONRegion.mName + "_" + aCurrentGateway.mName;
+                                if(!aGateway.ContainsKey(aGatewayKey))
+                                {
+                                    aGateway.Add(aGatewayKey, new Gateway());
+                                    aGateway[aGatewayKey].mName = aCurrentGateway.mName;
+                                    aGateway[aGatewayKey].mStory = aCurrentGateway.mStory;
+                                    aGateway[aGatewayKey].mIsInteractable = aCurrentGateway.mIsInteractable;
+                                    aGateway[aGatewayKey].mIsVisible = aCurrentGateway.mIsVisible;
+                                    aGateway[aGatewayKey].mPath = aCurrentGateway.mPath;
+                                    aGateway[aGatewayKey].mRoom1 = aCurrentGateway.mRoom1;
+                                    aGateway[aGatewayKey].mRoom2 = aCurrentGateway.mRoom2;
+                                }
+                                aJSONRoom.mGateways.Add(aGatewayKey, aGateway[aGatewayKey]);
+                            }
                         }
+                        aJSONRoom.mCollectors = null;
+                        aJSONRoom.mEnemies = null;
+                        aJSONRoom.mKillZones = null;
+                        aJSONRoom.mOneInteractionItems = null;
+                        aJSONRoom.mPickableItems = null;
+                        if(aCurrentRoom.mCollectors.Count > 0)
+                        {
+                            aJSONRoom.mCollectors = new Dictionary<string, Collector>();
+                            foreach (Collector aCurrentCollector in aCurrentRoom.mCollectors.Values)
+                            {
+                                PickableItem aItem = GetPickableItem(PickableItem.Type.Giveable,aCurrentCollector.mConditionalObject);
+                                if (aItem != null)
+                                {
+                                    Room aRoom = GetRoomObject(aItem.GetInRoom());
+                                    if (aRoom != null)
+                                    {
+                                        string aCollectorKey = aRoomKey + "_" + aCurrentCollector.mName;
+                                        aJSONRoom.mCollectors.Add(aCollectorKey, new Collector());
+                                        aJSONRoom.mCollectors[aCollectorKey].mName = aCurrentCollector.mName;
+                                        aJSONRoom.mCollectors[aCollectorKey].mStory = aCurrentCollector.mStory;
+                                        aJSONRoom.mCollectors[aCollectorKey].mUpdateStory = aCurrentCollector.mUpdateStory;
+                                        aJSONRoom.mCollectors[aCollectorKey].mEndStory = aCurrentCollector.mEndStory;
+                                        aJSONRoom.mCollectors[aCollectorKey].mIsInteractable = aCurrentCollector.mIsInteractable;
+                                        aJSONRoom.mCollectors[aCollectorKey].mIsVisible = aCurrentCollector.mIsVisible;
+                                        aJSONRoom.mCollectors[aCollectorKey].mConditionalObject = aRoom.GetInRegion() + "_" + aRoom.mName + "_" + aCurrentCollector.mConditionalObject;
+                                        aJSONRoom.mCollectors[aCollectorKey].mUpdatableObjectsWithType = GetUpdatableObjectsWithType(aCurrentCollector.mUpdatableObjects, aRoomKey, aJSONRegion.mName);
+                                    }
+                                }
+                            }
+                        }
+                        if(aCurrentRoom.mEnemies.Count > 0)
+                        {
+                            aJSONRoom.mEnemies = new Dictionary<string, Enemy>();
+                            foreach (Enemy aCurentEnemy in aCurrentRoom.mEnemies.Values)
+                            {
+                                PickableItem aItem = GetPickableItem(PickableItem.Type.Weapon, aCurentEnemy.mConditionalObject);
+                                if (aItem != null)
+                                {
+                                    Room aRoom = GetRoomObject(aItem.GetInRoom());
+                                    if (aRoom != null)
+                                    {
+                                        string aEnemyKey = aRoomKey + "_" + aCurentEnemy.mName;
+                                        aJSONRoom.mEnemies.Add(aEnemyKey, new Enemy());
+                                        aJSONRoom.mEnemies[aEnemyKey].mName = aCurentEnemy.mName;
+                                        aJSONRoom.mEnemies[aEnemyKey].mStory = aCurentEnemy.mStory;
+                                        aJSONRoom.mEnemies[aEnemyKey].mBlockStory = aCurentEnemy.mBlockStory;
+                                        aJSONRoom.mEnemies[aEnemyKey].mLife = aCurentEnemy.mLife;
+                                        aJSONRoom.mEnemies[aEnemyKey].mUpdateStory = aCurentEnemy.mUpdateStory;
+                                        aJSONRoom.mEnemies[aEnemyKey].mEndStory = aCurentEnemy.mEndStory;
+                                        aJSONRoom.mEnemies[aEnemyKey].mIsInteractable = aCurentEnemy.mIsInteractable;
+                                        aJSONRoom.mEnemies[aEnemyKey].mIsVisible = aCurentEnemy.mIsVisible;
+                                        aJSONRoom.mEnemies[aEnemyKey].mConditionalObject = aRoom.GetInRegion() + "_" + aRoom.mName + "_" + aCurentEnemy.mConditionalObject;
+                                        aJSONRoom.mEnemies[aEnemyKey].mUpdatableObjectsWithType = GetUpdatableObjectsWithType(aCurentEnemy.mUpdatableObjects, aRoomKey, aJSONRegion.mName);
+                                    }
+                                }
+                            }
+                        }
+                        if(aCurrentRoom.mKillZones.Count > 0)
+                        {
+                            aJSONRoom.mKillZones = new Dictionary<string, KillZone>();
+                            foreach (KillZone aCurrentKillZone in aCurrentRoom.mKillZones.Values)
+                            {
+                                string aKillZoneKey = aRoomKey + "_" + aCurrentKillZone.mName;
+                                aJSONRoom.mKillZones.Add(aKillZoneKey, new KillZone());
+                                aJSONRoom.mKillZones[aKillZoneKey].mName = aCurrentKillZone.mName;
+                                aJSONRoom.mKillZones[aKillZoneKey].mStory = aCurrentKillZone.mStory;
+                                aJSONRoom.mKillZones[aKillZoneKey].mUpdateStory = aCurrentKillZone.mUpdateStory;
+                                aJSONRoom.mKillZones[aKillZoneKey].mEndStory = aCurrentKillZone.mEndStory;
+                                aJSONRoom.mKillZones[aKillZoneKey].mIsInteractable = aCurrentKillZone.mIsInteractable;
+                                aJSONRoom.mKillZones[aKillZoneKey].mIsVisible = aCurrentKillZone.mIsVisible;
+                                aJSONRoom.mKillZones[aKillZoneKey].mUpdatableObjectsWithType = GetUpdatableObjectsWithType(aCurrentKillZone.mUpdatableObjects, aRoomKey, aJSONRegion.mName);
+                                if(string.IsNullOrEmpty(aCurrentKillZone.mConditionalObject))
+                                {
+                                    aJSONRoom.mKillZones[aKillZoneKey].mConditionalObject = null;
+                                }
+                                else
+                                {
+                                    PickableItem aItem = GetPickableItem(aCurrentKillZone.mConditionalObject);
+                                    if (aItem != null)
+                                    {
+                                        Room aRoom = GetRoomObject(aItem.GetInRoom());
+                                        if (aRoom != null)
+                                        {
+                                            aJSONRoom.mKillZones[aKillZoneKey].mConditionalObject = aRoom.GetInRegion() + "_" + aRoom.mName + "_" + aCurrentKillZone.mConditionalObject;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if(aCurrentRoom.mOneInteractionItems.Count > 0)
+                        {
+                            aJSONRoom.mOneInteractionItems = new Dictionary<string, OneInteractionItem>();
+                            foreach (OneInteractionItem aCurrentOII in aCurrentRoom.mOneInteractionItems.Values)
+                            {
+                                string aOIIKey = aRoomKey + "_" + aCurrentOII.mName;
+                                aJSONRoom.mOneInteractionItems.Add(aOIIKey, new OneInteractionItem());
+                                aJSONRoom.mOneInteractionItems[aOIIKey].mName = aCurrentOII.mName;
+                                aJSONRoom.mOneInteractionItems[aOIIKey].mStory = aCurrentOII.mStory;
+                                aJSONRoom.mOneInteractionItems[aOIIKey].mType = aCurrentOII.mType;
+                                aJSONRoom.mOneInteractionItems[aOIIKey].mUpdateStory = aCurrentOII.mUpdateStory;
+                                aJSONRoom.mOneInteractionItems[aOIIKey].mEndStory = aCurrentOII.mEndStory;
+                                aJSONRoom.mOneInteractionItems[aOIIKey].mIsInteractable = aCurrentOII.mIsInteractable;
+                                aJSONRoom.mOneInteractionItems[aOIIKey].mIsVisible = aCurrentOII.mIsVisible;
+                                aJSONRoom.mOneInteractionItems[aOIIKey].mConditionalObject = null;
+                                if(aCurrentOII.mType == OneInteractionItem.Type.Moveable || aCurrentOII.mType == OneInteractionItem.Type.Playable)
+                                {
+                                    aJSONRoom.mOneInteractionItems[aOIIKey].mUpdatableObjectsWithType = GetUpdatableObjectsWithType(aCurrentOII.mUpdatableObjects, aRoomKey, aJSONRegion.mName);
+                                }
+                                else
+                                {
+                                    aJSONRoom.mOneInteractionItems[aOIIKey].mUpdatableObjectsWithType = new Dictionary<string, string>();
+                                }
+                            }
+                        }
+                        if(aCurrentRoom.mPickableItems.Count > 0)
+                        {
+                            aJSONRoom.mPickableItems = new Dictionary<string, PickableItem>();
+                            foreach(PickableItem aItem in aCurrentRoom.mPickableItems.Values)
+                            {
+                                string aItemKey = aRoomKey + "_" + aItem.mName;
+                                aJSONRoom.mPickableItems.Add(aItemKey, aItem);
+                            }
+                        }
+                        aJSONRegion.mRooms[aRoomKey] = aJSONRoom;
                     }
+                    mGameDetails.mRegionDetails[aCurrentRegion.mName] = aJSONRegion;
                 }
+                aJSON = JsonConvert.SerializeObject(mGameDetails, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
                 return aJSON;
             }
             catch(Exception aE)

@@ -11,6 +11,7 @@ void Gateway::initialize(Room* pCurrentRoom, Room* pConnectedRoom)
 {
 	mCurrentRoom = pCurrentRoom;
 	mConnectedRoom = pConnectedRoom;
+	mInitialized = true;
 }
 
 void Gateway::lookObject()

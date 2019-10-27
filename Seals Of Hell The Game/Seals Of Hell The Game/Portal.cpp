@@ -10,6 +10,7 @@ void Portal::initialize(Region* pActiveRegion, Region* pConnectedRegion)
 {
 	mActiveRegion = pActiveRegion;
 	mConnectedRegion = pConnectedRegion;
+	mInitialized = true;
 }
 
 void Portal::teleportRegion()

@@ -19,6 +19,7 @@ public:
 	void removeInteractable(IInteractable*);
 	void removeUpdatable(IUpdatable*);
 	void addInteractable(IInteractable*);
+	void addGateway(IInteractable*, int, int);
 	void addUpdatable(IUpdatable*);
 	void updateRoom();
 };

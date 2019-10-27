@@ -200,7 +200,7 @@ namespace Seals_Of_Hell_Data_Editor
             mSelectedRoom.mName = this.firstRoomNameTextBox.Text;
             mSelectedRoom.mStory = this.firstRoomStoryTextBox.Text;
             mSelectedRegion.mEntryRoom = mSelectedRoom.mName;
-
+            mSelectedRoom.mTreasureCollector.SetInRoom(mSelectedRoom.mName);
             if (this.firstRoomCollectorList.SelectedItems.Count > 0)
             {
                 foreach (var aSelection in this.firstRoomCollectorList.SelectedItems)
@@ -1369,6 +1369,7 @@ namespace Seals_Of_Hell_Data_Editor
             aDisablingObjects.Add("No Disabling Object");
             aDisablingObjects.AddRange(mGameDetails.GetPickableItemNames(PickableItem.Type.Wearable));
             aDisablingObjects.AddRange(mGameDetails.GetPickableItemNames(PickableItem.Type.Weapon));
+            aDisablingObjects.AddRange(mGameDetails.GetPickableItemNames(PickableItem.Type.Shield));
             this.killZoneDisablerSelector.DataSource = aDisablingObjects;
             this.killZoneDisablerSelector.SelectedIndex = 0;
             if (mSelectedKillZone != null)
