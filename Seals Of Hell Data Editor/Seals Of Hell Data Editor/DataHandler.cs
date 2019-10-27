@@ -540,8 +540,50 @@ namespace Seals_Of_Hell_Data_Editor
         #endregion
         public bool IsDataValid()
         {
-            //check if data is valid
-            return true;
+            bool aValidity = true;
+            aValidity = aValidity && !string.IsNullOrEmpty(mName);
+            if(!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mStory);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mFirstRegion);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && mRegionDetails.ContainsKey(mFirstRegion);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && mRegionDetails[mFirstRegion].IsRegionValid(true);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && mRegionDetails[mFirstRegion].mRooms[mRegionDetails[mFirstRegion].mEntryRoom].mPortals.Count == (mRegionDetails.Count-1);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            foreach (Region aRegion in mRegionDetails.Values)
+            {
+                if(aRegion.mName == mFirstRegion)
+                {
+                    continue;
+                }
+                aValidity = aValidity && aRegion.IsRegionValid();
+                if (!aValidity)
+                {
+                    return aValidity;
+                }
+            }
+            return aValidity;
         }
         public string ConvertDataToJSON()
         {

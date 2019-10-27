@@ -13,5 +13,42 @@ namespace Seals_Of_Hell_Data_Editor
         {
             mTreasures = new List<string>();
         }
+
+        public bool IsTCValid()
+        {
+            bool aValidity = true;
+            aValidity = aValidity && !string.IsNullOrEmpty(mName);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mStory);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mUpdateStory);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mEndStory);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && string.IsNullOrEmpty(mConditionalObject);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && mTreasures.Count >= 1;
+            if(!aValidity)
+            {
+                return aValidity;
+            }
+            return aValidity;
+        }
+
     }
 }

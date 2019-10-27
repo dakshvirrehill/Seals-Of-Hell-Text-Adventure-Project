@@ -11,5 +11,11 @@ namespace Seals_Of_Hell_Data_Editor
         public int mLife;
         public string mBlockStory;
 
+        public bool IsValid()
+        {
+            bool aValidity = true;
+            return aValidity;
+        }
+
     }
 }

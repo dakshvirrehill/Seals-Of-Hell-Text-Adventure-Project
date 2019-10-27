@@ -62,5 +62,11 @@ namespace Seals_Of_Hell_Data_Editor
             return mConditionalOf.Count > 0;
         }
 
+        public bool IsValid()
+        {
+            bool aValidity = true;
+            return aValidity;
+        }
+
     }
 }

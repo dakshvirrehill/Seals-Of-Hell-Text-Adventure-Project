@@ -26,5 +26,63 @@ namespace Seals_Of_Hell_Data_Editor
             mEntryRoom = pEntryRoom;
             mRooms = new Dictionary<string, Room>();
         }
+        public bool IsRegionValid(bool pFirst = false)
+        {
+            bool aValidity = true;
+            aValidity = aValidity && !string.IsNullOrEmpty(mName);
+            if(!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mStory);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mEntryRoom);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && mRooms.ContainsKey(mEntryRoom);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            if(pFirst)
+            {
+                aValidity = aValidity && mRooms.Count == 1;
+                if (!aValidity)
+                {
+                    return aValidity;
+                }
+                aValidity = aValidity && mRooms[mEntryRoom].IsRoomValid(true, true);
+                if (!aValidity)
+                {
+                    return aValidity;
+                }
+            }
+            else
+            {
+                aValidity = aValidity && mRooms[mEntryRoom].IsRoomValid(true, false);
+                if (!aValidity)
+                {
+                    return aValidity;
+                }
+                foreach(Room aRoom in mRooms.Values)
+                {
+                    if(aRoom.mName == mEntryRoom)
+                    {
+                        continue;
+                    }
+                    aValidity = aValidity && aRoom.IsRoomValid();
+                    if (!aValidity)
+                    {
+                        return aValidity;
+                    }
+                }
+            }
+            return aValidity;
+        }
     }
 }

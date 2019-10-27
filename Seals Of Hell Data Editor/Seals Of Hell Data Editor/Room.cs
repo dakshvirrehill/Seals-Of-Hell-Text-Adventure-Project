@@ -201,5 +201,112 @@ namespace Seals_Of_Hell_Data_Editor
         {
             mIsBlocked[pDirection] = pBlock;
         }
+
+        public bool IsRoomValid(bool pIsEntry = false, bool pIsFirst = false)
+        {
+            bool aValidity = true;
+            aValidity = aValidity && !string.IsNullOrEmpty(mName);
+            if(!aValidity)
+            {
+                return aValidity;
+            }
+            aValidity = aValidity && !string.IsNullOrEmpty(mStory);
+            if (!aValidity)
+            {
+                return aValidity;
+            }
+            if(pIsFirst && pIsEntry)
+            {
+                aValidity = aValidity && mGateways.Count == 0;
+                if (!aValidity)
+                {
+                    return aValidity;
+                }
+                aValidity = aValidity && mPortals.Count > 0;
+                if (!aValidity)
+                {
+                    return aValidity;
+                }
+                aValidity = aValidity && mTreasureCollector.IsTCValid();
+                if (!aValidity)
+                {
+                    return aValidity;
+                }
+            }
+            else
+            {
+                aValidity = aValidity && mTreasureCollector == null;
+                if(!aValidity)
+                {
+                    return aValidity;
+                }
+                if (pIsEntry)
+                {
+                    aValidity = aValidity && mPortals.Count == 1;
+                    if (!aValidity)
+                    {
+                        return aValidity;
+                    }
+                }
+                foreach(Collector aCollector in mCollectors.Values)
+                {
+                    aValidity = aValidity && aCollector.IsValid();
+                    if(!aValidity)
+                    {
+                        return aValidity;
+                    }
+                }
+                foreach (Enemy aEnemy in mEnemies.Values)
+                {
+                    aValidity = aValidity && aEnemy.IsValid();
+                    if (!aValidity)
+                    {
+                        return aValidity;
+                    }
+                }
+                foreach (KillZone aKillZone in mKillZones.Values)
+                {
+                    aValidity = aValidity && aKillZone.IsValid();
+                    if (!aValidity)
+                    {
+                        return aValidity;
+                    }
+                }
+                foreach (OneInteractionItem aOIItem in mOneInteractionItems.Values)
+                {
+                    aValidity = aValidity && aOIItem.IsValid();
+                    if (!aValidity)
+                    {
+                        return aValidity;
+                    }
+                }
+                foreach (PickableItem aItem in mPickableItems.Values)
+                {
+                    aValidity = aValidity && aItem.IsValid();
+                    if (!aValidity)
+                    {
+                        return aValidity;
+                    }
+                }
+                foreach (Portal aPortal in mPortals.Values)
+                {
+                    aValidity = aValidity && aCollector.IsValid();
+                    if (!aValidity)
+                    {
+                        return aValidity;
+                    }
+                }
+                foreach (Gateway aGateway in mGateways.Values)
+                {
+                    aValidity = aValidity && aGateway.IsValid();
+                    if (!aValidity)
+                    {
+                        return aValidity;
+                    }
+                }
+            }
+            return aValidity;
+        }
+
     }
 }

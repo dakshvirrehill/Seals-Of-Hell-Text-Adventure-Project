@@ -17,5 +17,12 @@ namespace Seals_Of_Hell_Data_Editor
         }
 
         public Type mType;
+
+        public bool IsValid()
+        {
+            bool aValidity = true;
+            return aValidity;
+        }
+
     }
 }

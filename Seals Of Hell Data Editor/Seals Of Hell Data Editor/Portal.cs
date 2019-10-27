@@ -21,5 +21,11 @@ namespace Seals_Of_Hell_Data_Editor
             mStory = pRegionName + " Portal";
         }
 
+        public bool IsValid()
+        {
+            bool aValidity = true;
+            return aValidity;
+        }
+
     }
 }

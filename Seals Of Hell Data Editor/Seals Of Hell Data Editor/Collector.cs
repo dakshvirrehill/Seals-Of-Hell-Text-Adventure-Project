@@ -8,6 +8,10 @@ namespace Seals_Of_Hell_Data_Editor
 {
     class Collector : Updater
     {
-
+        public bool IsValid()
+        {
+            bool aValidity = true;
+            return aValidity;
+        }
     }
 }

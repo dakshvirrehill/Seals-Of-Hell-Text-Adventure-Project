@@ -57,5 +57,11 @@ namespace Seals_Of_Hell_Data_Editor
             return Direction.South;
         }
 
+        public bool IsValid()
+        {
+            bool aValidity = true;
+            return aValidity;
+        }
+
     }
 }
