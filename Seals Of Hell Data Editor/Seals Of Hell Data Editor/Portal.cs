@@ -22,6 +22,8 @@ namespace Seals_Of_Hell_Data_Editor
             mCurrentRegionName = pRegionName;
             mName = pRegionName + " Portal";
             mStory = pRegionName + " Portal";
+            mIsInteractable = true;
+            mIsVisible = true;
         }
 
         public bool IsValid()

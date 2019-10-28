@@ -925,7 +925,7 @@ namespace Seals_Of_Hell_Data_Editor
         {
             foreach(string aUpd in pUpdaters)
             {
-                if(!(mInstance.mCollectors.ContainsKey(aUpd) || mInstance.mEnemies.ContainsKey(aUpd) || mInstance.mKillZones.ContainsKey(aUpd)))
+                if(!(mInstance.mCollectors.ContainsKey(aUpd) || mInstance.mEnemies.ContainsKey(aUpd) || mInstance.mKillZones.ContainsKey(aUpd) || mInstance.mRegionDetails[mInstance.mFirstRegion].mRooms[mInstance.mRegionDetails[mInstance.mFirstRegion].mEntryRoom].mTreasureCollector.mName.Equals(aUpd)))
                 {
                     return false;
                 }
