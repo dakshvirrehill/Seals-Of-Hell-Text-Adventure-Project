@@ -305,6 +305,7 @@ namespace Seals_Of_Hell_Data_Editor
             else if(this.regionTabControl.SelectedTab == this.regionPortalTab)
             {
                 this.insidePortalsTabControl.SelectedIndex = 0;
+                InsidePortalsTabControl_SelectedIndexChanged(null, null);
             }
         }
         #region Region Editor Code
@@ -338,6 +339,7 @@ namespace Seals_Of_Hell_Data_Editor
         {
             if(this.allRoomsRegionList.SelectedIndex == -1)
             {
+                this.entryRoomSelector.DataSource = null;
                 return;
             }
             string aErRoom = "";
@@ -421,7 +423,7 @@ namespace Seals_Of_Hell_Data_Editor
                 aRegionPortal.mCurrentRegionName = mSelectedRegion.mName;
                 mGameDetails.AddPortal(aRegionPortal);
                 mGameDetails.mRegionDetails.Add(mSelectedRegion.mName, mSelectedRegion);
-                aFRoom.mPortals.Add(aRegionPortal.mName,aRegionPortal);
+                aFRoom.mPortals.Add(mSelectedRegion.mName, aRegionPortal);
                 mSelectedRegion = null;
             }
             ResetRegionEditor();
