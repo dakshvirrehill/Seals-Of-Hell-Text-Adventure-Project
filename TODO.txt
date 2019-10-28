@@ -1,2 +1,1 @@
 Make a game icon
-Add dynamic window name to editor

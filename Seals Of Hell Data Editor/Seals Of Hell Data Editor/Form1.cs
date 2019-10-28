@@ -26,6 +26,7 @@ namespace Seals_Of_Hell_Data_Editor
         {
             mGameDetails = new DataHandler();
             InitializeComponent();
+            this.Text = mGameDetails.mName;
             CleanUpAtEditorChange();
         }
 
@@ -165,6 +166,7 @@ namespace Seals_Of_Hell_Data_Editor
             }
             mGameDetails.mName = this.gameNameTextBox.Text;
             mGameDetails.mStory = this.gameStoryTextBox.Text;
+            this.Text = mGameDetails.mName;
         }
         private void EditFirstRegionDetails_Click(object sender, EventArgs e)
         {
