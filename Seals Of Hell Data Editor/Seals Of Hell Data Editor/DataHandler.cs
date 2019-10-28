@@ -953,7 +953,14 @@ namespace Seals_Of_Hell_Data_Editor
         }
         public static bool AreUpdatablesInSameRoom(string pRoomName, List<string> pUpdatables)
         {
-            return mInstance.GetRoomObject(pRoomName).AreObjectsInRoom(pUpdatables);
+            if(pRoomName.Equals(mInstance.mRegionDetails[mInstance.mFirstRegion].mEntryRoom))
+            {
+                return mInstance.mRegionDetails[mInstance.mFirstRegion].mRooms[mInstance.mRegionDetails[mInstance.mFirstRegion].mEntryRoom].AreObjectsInRoom(pUpdatables);
+            }
+            else
+            {
+                return mInstance.GetRoomObject(pRoomName).AreObjectsInRoom(pUpdatables);
+            }
         }
 
         public static void SetErrorMessage(string pMessage)

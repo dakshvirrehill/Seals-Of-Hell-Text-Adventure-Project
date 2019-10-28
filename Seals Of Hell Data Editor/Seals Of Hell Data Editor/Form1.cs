@@ -115,7 +115,7 @@ namespace Seals_Of_Hell_Data_Editor
             else if(this.gameStartTabControl.SelectedTab == this.firstRoomTab)
             {
                 this.firstRoomNameTextBox.Text = mSelectedRegion.mEntryRoom;
-                this.firstRoomNameTextBox.Text = mSelectedRoom.mStory;
+                this.firstRoomStoryTextBox.Text = mSelectedRoom.mStory;
                 List<string> aAllCollectorNames = mGameDetails.GetCollectorNames();
                 RemoveAssigned(ObjectType.Collector, aAllCollectorNames);
                 List<string> aRCNames = new List<string>(mSelectedRoom.mCollectors.Keys);
@@ -238,9 +238,12 @@ namespace Seals_Of_Hell_Data_Editor
             {
                 foreach (var aSelection in this.firstRoomPIList.SelectedItems)
                 {
-                    mSelectedRoom.mPickableItems.Add((string)aSelection, mGameDetails.GetPickableItem((string)aSelection));
-                    mSelectedRoom.mPickableItems[(string)aSelection].SetInRoom(mSelectedRoom.mName);
-                    mGameDetails.AssignObject(ObjectType.PickableItem, (string)aSelection);
+                    if(!mSelectedRoom.mPickableItems.ContainsKey((string)aSelection))
+                    {
+                        mSelectedRoom.mPickableItems.Add((string)aSelection, mGameDetails.GetPickableItem((string)aSelection));
+                        mSelectedRoom.mPickableItems[(string)aSelection].SetInRoom(mSelectedRoom.mName);
+                        mGameDetails.AssignObject(ObjectType.PickableItem, (string)aSelection);
+                    }
                 }
             }
 
@@ -261,13 +264,16 @@ namespace Seals_Of_Hell_Data_Editor
             SetListBoxListAndSelection(this.updatableList, mSelectedRoom.GetAllInteractableNames(mSelectedRoom.mTreasureCollector.mName), mSelectedRoom.mTreasureCollector.mUpdatableObjects);
             this.TrCollectorNameTextBox.Text = mSelectedRoom.mTreasureCollector.mName;
             this.TrCollectorStoryTextBox.Text = mSelectedRoom.mTreasureCollector.mStory;
+            this.TrCollectorAllOutputTextBox.Text = mSelectedRoom.mTreasureCollector.mUpdateStory;
+            this.TrCollectorWinStoryTextBox.Text = mSelectedRoom.mTreasureCollector.mEndStory;
             this.visibleTrCol.Checked = mSelectedRoom.mTreasureCollector.mIsVisible;
             this.interactableTrCol.Checked = mSelectedRoom.mTreasureCollector.mIsInteractable;
         }
         bool IsTreasureCollectorValid()
         {
             return !(string.IsNullOrEmpty(this.TrCollectorNameTextBox.Text) || string.IsNullOrEmpty(this.TrCollectorStoryTextBox.Text)
-                || this.treasureList.SelectedItems.Count <= 0);
+                || this.treasureList.SelectedItems.Count <= 0 || string.IsNullOrEmpty(this.TrCollectorAllOutputTextBox.Text)
+                || string.IsNullOrEmpty(this.TrCollectorWinStoryTextBox.Text));
         }
         private void EditTreasureCollectorDetails_Click(object sender, EventArgs e)
         {
@@ -275,12 +281,17 @@ namespace Seals_Of_Hell_Data_Editor
             {
                 mSelectedRoom.mTreasureCollector.mName = this.TrCollectorNameTextBox.Text;
                 mSelectedRoom.mTreasureCollector.mStory = this.TrCollectorStoryTextBox.Text;
+                mSelectedRoom.mTreasureCollector.mUpdateStory = this.TrCollectorAllOutputTextBox.Text;
+                mSelectedRoom.mTreasureCollector.mEndStory = this.TrCollectorWinStoryTextBox.Text;
                 mSelectedRoom.mTreasureCollector.mIsVisible = this.visibleTrCol.Checked;
                 mSelectedRoom.mTreasureCollector.mIsInteractable = this.interactableTrCol.Checked;
                 mSelectedRoom.mTreasureCollector.mTreasures = new List<string>();
                 foreach(var aSelected in this.treasureList.SelectedItems)
                 {
                     mSelectedRoom.mTreasureCollector.mTreasures.Add((string)aSelected);
+                    mGameDetails.AssignGivable((string)aSelected);
+                    PickableItem aItem = mGameDetails.GetPickableItem(PickableItem.Type.Giveable, (string)aSelected);
+                    aItem.AddConditionalOf(mSelectedRoom.mTreasureCollector.mName);
                 }
                 mSelectedRoom.mTreasureCollector.mUpdatableObjects = new List<string>();
                 foreach(var aSelected in this.updatableList.SelectedItems)
@@ -497,6 +508,10 @@ namespace Seals_Of_Hell_Data_Editor
                     aRoom2List.Remove(aRoom.mName);
                 }
             }
+            this.gatewayRoom1.DataSource = aRoom1List;
+            this.gatewayRoom1.SelectedIndex = -1;
+            this.gatewayRoom2.DataSource = aRoom2List;
+            this.gatewayRoom2.SelectedIndex = -1;
         }
 
         private void GwCurrentRegionsList_SelectedIndexChanged(object sender, EventArgs e)
@@ -504,6 +519,8 @@ namespace Seals_Of_Hell_Data_Editor
             if(this.gwCurrentRegionsList.SelectedIndex == -1)
             {
                 mSelectedRegion = null;
+                this.currentGatewaysList.DataSource = null;
+                this.gatewayDirection.DataSource = null;
                 return;
             }
             mSelectedRegion = mGameDetails.mRegionDetails[(string)this.gwCurrentRegionsList.SelectedItem];
@@ -515,10 +532,17 @@ namespace Seals_Of_Hell_Data_Editor
             this.currentGatewaysList.DataSource = aCurGws;
             this.currentGatewaysList.SelectedIndex = -1;
             this.gatewayDirection.DataSource = Enum.GetValues(typeof(Gateway.Path));
+            this.gatewayDirection.SelectedIndex = -1;
         }
         
         private void GatewayDirection_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(this.gatewayDirection.SelectedIndex == -1)
+            {
+                this.gatewayRoom1.DataSource = null;
+                this.gatewayRoom2.DataSource = null;
+                return;
+            }
             Gateway.Path aPath = (Gateway.Path)this.gatewayDirection.SelectedItem;
             switch(aPath)
             {
@@ -540,6 +564,7 @@ namespace Seals_Of_Hell_Data_Editor
         {
             if(this.currentGatewaysList.SelectedIndex == -1)
             {
+                mSelectedGateway = null;
                 return;
             }
             mSelectedGateway = mGameDetails.GetGatewayObject((string)this.currentGatewaysList.SelectedItem);
@@ -569,7 +594,8 @@ namespace Seals_Of_Hell_Data_Editor
             {
                 return;
             }
-            if (!(string.IsNullOrEmpty(this.gatewayNameTextBox.Text) || string.IsNullOrEmpty(this.gatewayStoryTextBox.Text)))
+            if (!(string.IsNullOrEmpty(this.gatewayNameTextBox.Text) || string.IsNullOrEmpty(this.gatewayStoryTextBox.Text) ||
+                this.gatewayDirection.SelectedIndex == -1 || this.gatewayRoom1.SelectedIndex == -1 || this.gatewayRoom2.SelectedIndex == -1))
             {
                 if(mSelectedGateway == null && mGameDetails.IsGatewayPresent(this.gameNameTextBox.Text))
                 {

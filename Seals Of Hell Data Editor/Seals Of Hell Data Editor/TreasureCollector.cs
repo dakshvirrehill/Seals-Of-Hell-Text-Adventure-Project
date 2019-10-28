@@ -12,6 +12,10 @@ namespace Seals_Of_Hell_Data_Editor
         public List<string> mTreasures { get; set; }
         public TreasureCollector()
         {
+            mName = "Treasure Collector";
+            mStory = "Default Story";
+            mUpdateStory = "Default Story";
+            mEndStory = "Default Story";
             mTreasures = new List<string>();
         }
 
