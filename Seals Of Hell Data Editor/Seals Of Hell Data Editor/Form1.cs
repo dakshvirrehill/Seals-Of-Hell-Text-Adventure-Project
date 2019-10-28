@@ -117,35 +117,30 @@ namespace Seals_Of_Hell_Data_Editor
                 this.firstRoomNameTextBox.Text = mSelectedRegion.mEntryRoom;
                 this.firstRoomNameTextBox.Text = mSelectedRoom.mStory;
                 List<string> aAllCollectorNames = mGameDetails.GetCollectorNames();
-                List<string> aRCNames = null;
                 RemoveAssigned(ObjectType.Collector, aAllCollectorNames);
-                List<string> aAllEnemyNames = mGameDetails.GetEnemyNames();
-                List<string> aRENames = null;
-                RemoveAssigned(ObjectType.Enemy, aAllEnemyNames);
-                List<string> aAllKillZoneNames = mGameDetails.GetKillZoneNames();
-                List<string> aRKZNames = null;
-                RemoveAssigned(ObjectType.KillZone, aAllKillZoneNames);
-                List<string> aAllOIItemNames = mGameDetails.GetOIItemNames();
-                List<string> aROIINames = null;
-                RemoveAssigned(ObjectType.OneInteractionItem, aAllOIItemNames);
-                List<string> aAllPickableNames = mGameDetails.GetPickableItemNames();
-                List<string> aRPNames = null;
-                RemoveAssigned(ObjectType.PickableItem, aAllPickableNames);
-                aRCNames = new List<string>(mSelectedRoom.mCollectors.Keys);
+                List<string> aRCNames = new List<string>(mSelectedRoom.mCollectors.Keys);
                 aAllCollectorNames.AddRange(aRCNames);
-                aRENames = new List<string>(mSelectedRoom.mEnemies.Keys);
-                aAllEnemyNames.AddRange(aRENames);
-                aRKZNames = new List<string>(mSelectedRoom.mKillZones.Keys);
-                aAllKillZoneNames.AddRange(aRKZNames);
-                aROIINames = new List<string>(mSelectedRoom.mOneInteractionItems.Keys);
-                aAllOIItemNames.AddRange(aROIINames);
-                aRPNames = new List<string>(mSelectedRoom.mPickableItems.Keys);
-                aAllPickableNames.AddRange(aRPNames);
                 SetListBoxListAndSelection(this.firstRoomCollectorList, aAllCollectorNames, aRCNames);
+                List<string> aAllEnemyNames = mGameDetails.GetEnemyNames();
+                RemoveAssigned(ObjectType.Enemy, aAllEnemyNames);
+                List<string> aRENames = new List<string>(mSelectedRoom.mEnemies.Keys);
+                aAllEnemyNames.AddRange(aRENames);
                 SetListBoxListAndSelection(this.firstRoomEnemyList, aAllEnemyNames, aRENames);
+                List<string> aAllKillZoneNames = mGameDetails.GetKillZoneNames();
+                RemoveAssigned(ObjectType.KillZone, aAllKillZoneNames);
+                List<string> aRKZNames = new List<string>(mSelectedRoom.mKillZones.Keys);
+                aAllKillZoneNames.AddRange(aRKZNames);
                 SetListBoxListAndSelection(this.firstRoomKillZoneList, aAllKillZoneNames, aRKZNames);
-                SetListBoxListAndSelection(this.firstRoomPIList, aAllPickableNames, aRPNames);
+                List<string> aAllOIItemNames = mGameDetails.GetOIItemNames();
+                RemoveAssigned(ObjectType.OneInteractionItem, aAllOIItemNames);
+                List<string> aROIINames = new List<string>(mSelectedRoom.mOneInteractionItems.Keys);
+                aAllOIItemNames.AddRange(aROIINames);
                 SetListBoxListAndSelection(this.firstRoomOIIList, aAllOIItemNames, aROIINames);
+                List<string> aAllPickableNames = mGameDetails.GetPickableItemNames();
+                RemoveAssigned(ObjectType.PickableItem, aAllPickableNames);
+                List<string> aRPNames = new List<string>(mSelectedRoom.mPickableItems.Keys);
+                aAllPickableNames.AddRange(aRPNames);
+                SetListBoxListAndSelection(this.firstRoomPIList, aAllPickableNames, aRPNames);
             }
             else if(this.gameStartTabControl.SelectedTab == this.treasureCollectorTab)
             {
@@ -772,10 +767,12 @@ namespace Seals_Of_Hell_Data_Editor
                 aAllOIItemNames.AddRange(aROIINames);
                 aRPNames = new List<string>(mSelectedRoom.mPickableItems.Keys);
                 aAllPickableNames.AddRange(aRPNames);
-                return;
             }
-            this.roomNameTextBox.Text = "";
-            this.roomStoryTextBox.Text = "";
+            else
+            {
+                this.roomNameTextBox.Text = "";
+                this.roomStoryTextBox.Text = "";
+            }
             SetListBoxListAndSelection(this.roomCollectorsList, aAllCollectorNames, aRCNames);
             SetListBoxListAndSelection(this.roomEnemiesList, aAllEnemyNames, aRENames);
             SetListBoxListAndSelection(this.roomKillZonesList, aAllKillZoneNames, aRKZNames);
