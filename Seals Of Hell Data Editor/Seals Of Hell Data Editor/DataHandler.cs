@@ -697,7 +697,7 @@ namespace Seals_Of_Hell_Data_Editor
                         {
                             aJSONRoom.mTreasureCollector = new TreasureCollector();
                             aJSONRoom.mTreasureCollector.mKey = aRoomKey + "_" + aCurrentRoom.mTreasureCollector.mName;
-                            aJSONRoom.mTreasureCollector.mName = aCurrentRoom.mTreasureCollector.mName;
+                            aJSONRoom.mTreasureCollector.mName = aCurrentRoom.mTreasureCollector.mName.ToUpper();
                             aJSONRoom.mTreasureCollector.mStory = aCurrentRoom.mTreasureCollector.mStory;
                             aJSONRoom.mTreasureCollector.mIsVisible = aCurrentRoom.mTreasureCollector.mIsVisible;
                             aJSONRoom.mTreasureCollector.mIsInteractable = aCurrentRoom.mTreasureCollector.mIsInteractable;
@@ -727,7 +727,7 @@ namespace Seals_Of_Hell_Data_Editor
                             {
                                 string aPortalKey = aCurrentPortal.mName;
                                 aJSONRoom.mPortals.Add(aPortalKey, new Portal(aCurrentPortal.mCurrentRegionName));
-                                aJSONRoom.mPortals[aPortalKey].mName = aCurrentPortal.mName;
+                                aJSONRoom.mPortals[aPortalKey].mName = aCurrentPortal.mName.ToUpper();
                                 aJSONRoom.mPortals[aPortalKey].mStory = aCurrentPortal.mStory;
                                 aJSONRoom.mPortals[aPortalKey].mCurrentRegionName = null;
                                 aJSONRoom.mPortals[aPortalKey].mActiveRegion = mGameDetails.mFirstRegion;
@@ -758,7 +758,7 @@ namespace Seals_Of_Hell_Data_Editor
                                 if(!aGateway.ContainsKey(aGatewayKey))
                                 {
                                     aGateway.Add(aGatewayKey, new Gateway());
-                                    aGateway[aGatewayKey].mName = aCurrentGateway.mName;
+                                    aGateway[aGatewayKey].mName = aCurrentGateway.mName.ToUpper();
                                     aGateway[aGatewayKey].mStory = aCurrentGateway.mStory;
                                     aGateway[aGatewayKey].mIsInteractable = aCurrentGateway.mIsInteractable;
                                     aGateway[aGatewayKey].mIsVisible = aCurrentGateway.mIsVisible;
@@ -787,7 +787,7 @@ namespace Seals_Of_Hell_Data_Editor
                                     {
                                         string aCollectorKey = aRoomKey + "_" + aCurrentCollector.mName;
                                         aJSONRoom.mCollectors.Add(aCollectorKey, new Collector());
-                                        aJSONRoom.mCollectors[aCollectorKey].mName = aCurrentCollector.mName;
+                                        aJSONRoom.mCollectors[aCollectorKey].mName = aCurrentCollector.mName.ToUpper();
                                         aJSONRoom.mCollectors[aCollectorKey].mStory = aCurrentCollector.mStory;
                                         aJSONRoom.mCollectors[aCollectorKey].mUpdateStory = aCurrentCollector.mUpdateStory;
                                         aJSONRoom.mCollectors[aCollectorKey].mEndStory = aCurrentCollector.mEndStory;
@@ -812,7 +812,7 @@ namespace Seals_Of_Hell_Data_Editor
                                     {
                                         string aEnemyKey = aRoomKey + "_" + aCurentEnemy.mName;
                                         aJSONRoom.mEnemies.Add(aEnemyKey, new Enemy());
-                                        aJSONRoom.mEnemies[aEnemyKey].mName = aCurentEnemy.mName;
+                                        aJSONRoom.mEnemies[aEnemyKey].mName = aCurentEnemy.mName.ToUpper();
                                         aJSONRoom.mEnemies[aEnemyKey].mStory = aCurentEnemy.mStory;
                                         aJSONRoom.mEnemies[aEnemyKey].mBlockStory = aCurentEnemy.mBlockStory;
                                         aJSONRoom.mEnemies[aEnemyKey].mLife = aCurentEnemy.mLife;
@@ -833,7 +833,7 @@ namespace Seals_Of_Hell_Data_Editor
                             {
                                 string aKillZoneKey = aRoomKey + "_" + aCurrentKillZone.mName;
                                 aJSONRoom.mKillZones.Add(aKillZoneKey, new KillZone());
-                                aJSONRoom.mKillZones[aKillZoneKey].mName = aCurrentKillZone.mName;
+                                aJSONRoom.mKillZones[aKillZoneKey].mName = aCurrentKillZone.mName.ToUpper();
                                 aJSONRoom.mKillZones[aKillZoneKey].mStory = aCurrentKillZone.mStory;
                                 aJSONRoom.mKillZones[aKillZoneKey].mUpdateStory = aCurrentKillZone.mUpdateStory;
                                 aJSONRoom.mKillZones[aKillZoneKey].mEndStory = aCurrentKillZone.mEndStory;
@@ -865,7 +865,7 @@ namespace Seals_Of_Hell_Data_Editor
                             {
                                 string aOIIKey = aRoomKey + "_" + aCurrentOII.mName;
                                 aJSONRoom.mOneInteractionItems.Add(aOIIKey, new OneInteractionItem());
-                                aJSONRoom.mOneInteractionItems[aOIIKey].mName = aCurrentOII.mName;
+                                aJSONRoom.mOneInteractionItems[aOIIKey].mName = aCurrentOII.mName.ToUpper();
                                 aJSONRoom.mOneInteractionItems[aOIIKey].mStory = aCurrentOII.mStory;
                                 aJSONRoom.mOneInteractionItems[aOIIKey].mType = aCurrentOII.mType;
                                 aJSONRoom.mOneInteractionItems[aOIIKey].mUpdateStory = aCurrentOII.mUpdateStory;
@@ -890,6 +890,7 @@ namespace Seals_Of_Hell_Data_Editor
                             {
                                 string aItemKey = aRoomKey + "_" + aItem.mName;
                                 aJSONRoom.mPickableItems.Add(aItemKey, aItem);
+                                aJSONRoom.mPickableItems[aItemKey].mName = aJSONRoom.mPickableItems[aItemKey].mName.ToUpper();
                             }
                         }
                         aJSONRegion.mRooms[aRoomKey] = aJSONRoom;
