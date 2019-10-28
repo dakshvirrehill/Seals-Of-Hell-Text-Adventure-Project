@@ -536,9 +536,9 @@ namespace Seals_Of_Hell_Data_Editor
         #region Region
         public void AddPortal(Portal pRegionPortal)
         {
-            if(!mPortals.ContainsKey(pRegionPortal.mName))
+            if(!mPortals.ContainsKey(pRegionPortal.mCurrentRegionName))
             {
-                mPortals.Add(pRegionPortal.mName, pRegionPortal);
+                mPortals.Add(pRegionPortal.mCurrentRegionName, pRegionPortal);
             }
         }
         public void DeletePortal(string pRegionName)

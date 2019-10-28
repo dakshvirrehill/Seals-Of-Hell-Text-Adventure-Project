@@ -629,6 +629,8 @@ namespace Seals_Of_Hell_Data_Editor
             if(this.edPorCurrentRegionsList.SelectedIndex == -1)
             {
                 mSelectedPortal = null;
+                this.portalNameTextBox.Text = "";
+                this.portalStoryTextBox.Text = "";
                 return;
             }
             mSelectedPortal = mGameDetails.GetRegionPortal((string)this.edPorCurrentRegionsList.SelectedItem);
@@ -668,6 +670,7 @@ namespace Seals_Of_Hell_Data_Editor
             if(this.adptrCurrentRegionsList.SelectedIndex == -1)
             {
                 mSelectedPortal = null;
+                this.currentPortalRoomsList.DataSource = null;
                 return;
             }
             mSelectedPortal = mGameDetails.GetRegionPortal((string)this.adptrCurrentRegionsList.SelectedItem);
