@@ -56,6 +56,21 @@ void GameLoader::initializeIUpdatable(json::JSON pData, IUpdatable* pObject, std
 	}
 }
 
+void GameLoader::initializeEmptyGateways(Room* pRoom)
+{
+	Gateway* aGWay = new Gateway();
+	aGWay->IInteractable::initialize(false, false);
+	aGWay->BasicObject::initialize("", "");
+	aGWay->initialize(nullptr, nullptr);
+	for (int aI = 0; aI < 3; aI ++)
+	{
+		for (int aJ = 0; aJ < 2; aJ++)
+		{
+			pRoom->addGateway(aGWay, aI, aJ);
+		}
+	}
+}
+
 IInteractable* GameLoader::CreateCollector() { return new Collector(); }
 IInteractable* GameLoader::CreateEnemy() { return new Enemy(); }
 IInteractable* GameLoader::CreateKillZone() { return new KillZone(); }
@@ -138,6 +153,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 				aRoomPtr = aRoomMap[aRoom.first];
 			}
 			initializeBasicObject(aRoom.second, aRoomPtr);
+			initializeEmptyGateways(aRoomPtr);
 			if (aRoomPtr == aEntryRoomPtr && aMakeTreasureCollector)
 			{
 				_ASSERT_EXPR(aRoom.second.hasKey("mTreasureCollector"), "Room has no treasure collector");
@@ -181,6 +197,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 			{
 				_ASSERT_EXPR(aRoom.second.hasKey("mGateways"), "Room has no Gateways");
 				//figure out gateway logic
+				int aCount = 0;
 				for (auto& aGateway : aRoom.second["mGateways"].ObjectRange())
 				{
 					_ASSERT_EXPR(aGateway.second.hasKey("mRoom1"), "Gateway has no current room");
@@ -222,6 +239,11 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					}
 					initializeIInteractable(aGateway.second, aNewGateway);
 					aRoomPtr->addGateway(aInteractableMap[aGateway.first],aGateway.second["mPath"].ToInt(),aRoomPtr == aCurRoom ? 0:1);
+					aCount ++;
+				}
+				if (aCount < 8)
+				{
+					
 				}
 			}
 			if (aRoom.second.hasKey("mCollectors"))

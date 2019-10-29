@@ -540,6 +540,10 @@ namespace Seals_Of_Hell_Data_Editor
             {
                 mPortals.Add(pRegionPortal.mCurrentRegionName, pRegionPortal);
             }
+            else
+            {
+                mPortals[pRegionPortal.mCurrentRegionName] = pRegionPortal;
+            }
         }
         public void DeletePortal(string pRegionName)
         {

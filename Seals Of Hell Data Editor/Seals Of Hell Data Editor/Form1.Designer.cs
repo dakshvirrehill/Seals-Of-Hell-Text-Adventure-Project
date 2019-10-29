@@ -407,7 +407,7 @@
             this.gameDetailsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gameDetailsTab.Location = new System.Drawing.Point(4, 29);
             this.gameDetailsTab.Name = "gameDetailsTab";
-            this.gameDetailsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.gameDetailsTab.Padding = new System.Windows.Forms.Padding(3);
             this.gameDetailsTab.Size = new System.Drawing.Size(1000, 670);
             this.gameDetailsTab.TabIndex = 0;
             this.gameDetailsTab.Text = "Game Details";
@@ -468,7 +468,7 @@
             this.firstRegionTab.Controls.Add(this.regionNameLabel);
             this.firstRegionTab.Location = new System.Drawing.Point(4, 29);
             this.firstRegionTab.Name = "firstRegionTab";
-            this.firstRegionTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.firstRegionTab.Padding = new System.Windows.Forms.Padding(3);
             this.firstRegionTab.Size = new System.Drawing.Size(1000, 670);
             this.firstRegionTab.TabIndex = 1;
             this.firstRegionTab.Text = "First Region Details";
@@ -539,7 +539,7 @@
             this.firstRoomTab.Controls.Add(this.firstRoomNameLabel);
             this.firstRoomTab.Location = new System.Drawing.Point(4, 29);
             this.firstRoomTab.Name = "firstRoomTab";
-            this.firstRoomTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.firstRoomTab.Padding = new System.Windows.Forms.Padding(3);
             this.firstRoomTab.Size = new System.Drawing.Size(1000, 670);
             this.firstRoomTab.TabIndex = 2;
             this.firstRoomTab.Text = "First Room Details";
@@ -715,7 +715,7 @@
             this.treasureCollectorTab.Controls.Add(this.treasureCollectorNameLabel);
             this.treasureCollectorTab.Location = new System.Drawing.Point(4, 29);
             this.treasureCollectorTab.Name = "treasureCollectorTab";
-            this.treasureCollectorTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.treasureCollectorTab.Padding = new System.Windows.Forms.Padding(3);
             this.treasureCollectorTab.Size = new System.Drawing.Size(1000, 670);
             this.treasureCollectorTab.TabIndex = 3;
             this.treasureCollectorTab.Text = "Treasure Collector Details";
@@ -896,7 +896,7 @@
             this.addEditRegionTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addEditRegionTab.Location = new System.Drawing.Point(4, 29);
             this.addEditRegionTab.Name = "addEditRegionTab";
-            this.addEditRegionTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.addEditRegionTab.Padding = new System.Windows.Forms.Padding(3);
             this.addEditRegionTab.Size = new System.Drawing.Size(1000, 670);
             this.addEditRegionTab.TabIndex = 0;
             this.addEditRegionTab.Text = "Add/Edit Region";
@@ -1049,7 +1049,7 @@
             this.regionGateWaysTab.Controls.Add(this.regionGatewayNameLabel);
             this.regionGateWaysTab.Location = new System.Drawing.Point(4, 29);
             this.regionGateWaysTab.Name = "regionGateWaysTab";
-            this.regionGateWaysTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.regionGateWaysTab.Padding = new System.Windows.Forms.Padding(3);
             this.regionGateWaysTab.Size = new System.Drawing.Size(1000, 670);
             this.regionGateWaysTab.TabIndex = 1;
             this.regionGateWaysTab.Text = "Add/Edit Gateways";
@@ -1241,7 +1241,7 @@
             this.regionPortalTab.Controls.Add(this.insidePortalsTabControl);
             this.regionPortalTab.Location = new System.Drawing.Point(4, 29);
             this.regionPortalTab.Name = "regionPortalTab";
-            this.regionPortalTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.regionPortalTab.Padding = new System.Windows.Forms.Padding(3);
             this.regionPortalTab.Size = new System.Drawing.Size(1000, 670);
             this.regionPortalTab.TabIndex = 2;
             this.regionPortalTab.Text = "Place Portals";
@@ -1269,7 +1269,7 @@
             this.editPortalTab.Controls.Add(this.portalStoryTextBox);
             this.editPortalTab.Location = new System.Drawing.Point(4, 29);
             this.editPortalTab.Name = "editPortalTab";
-            this.editPortalTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.editPortalTab.Padding = new System.Windows.Forms.Padding(3);
             this.editPortalTab.Size = new System.Drawing.Size(983, 628);
             this.editPortalTab.TabIndex = 0;
             this.editPortalTab.Text = "Edit Portal Details";
@@ -1350,7 +1350,7 @@
             this.portalRoomsTab.Controls.Add(this.addPortalsToRooms);
             this.portalRoomsTab.Location = new System.Drawing.Point(4, 29);
             this.portalRoomsTab.Name = "portalRoomsTab";
-            this.portalRoomsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.portalRoomsTab.Padding = new System.Windows.Forms.Padding(3);
             this.portalRoomsTab.Size = new System.Drawing.Size(983, 628);
             this.portalRoomsTab.TabIndex = 1;
             this.portalRoomsTab.Text = "Add Portal To Rooms";
@@ -1444,7 +1444,7 @@
             this.addEditRoomTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addEditRoomTab.Location = new System.Drawing.Point(4, 29);
             this.addEditRoomTab.Name = "addEditRoomTab";
-            this.addEditRoomTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.addEditRoomTab.Padding = new System.Windows.Forms.Padding(3);
             this.addEditRoomTab.Size = new System.Drawing.Size(1000, 670);
             this.addEditRoomTab.TabIndex = 0;
             this.addEditRoomTab.Text = "Add/Edit Room";
@@ -1650,7 +1650,7 @@
             this.collectorUpdatablesTab.Controls.Add(this.colRoomSelListLabel);
             this.collectorUpdatablesTab.Location = new System.Drawing.Point(4, 29);
             this.collectorUpdatablesTab.Name = "collectorUpdatablesTab";
-            this.collectorUpdatablesTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.collectorUpdatablesTab.Padding = new System.Windows.Forms.Padding(3);
             this.collectorUpdatablesTab.Size = new System.Drawing.Size(1000, 670);
             this.collectorUpdatablesTab.TabIndex = 1;
             this.collectorUpdatablesTab.Text = "Collector Updatables";
@@ -1734,7 +1734,7 @@
             this.enemyUpdatablesTab.Controls.Add(this.enCurRoomListLabel);
             this.enemyUpdatablesTab.Location = new System.Drawing.Point(4, 29);
             this.enemyUpdatablesTab.Name = "enemyUpdatablesTab";
-            this.enemyUpdatablesTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.enemyUpdatablesTab.Padding = new System.Windows.Forms.Padding(3);
             this.enemyUpdatablesTab.Size = new System.Drawing.Size(1000, 670);
             this.enemyUpdatablesTab.TabIndex = 2;
             this.enemyUpdatablesTab.Text = "Enemy Updatables";
@@ -1818,7 +1818,7 @@
             this.killZoneUpdatablesTab.Controls.Add(this.kzCurRoomListLabel);
             this.killZoneUpdatablesTab.Location = new System.Drawing.Point(4, 29);
             this.killZoneUpdatablesTab.Name = "killZoneUpdatablesTab";
-            this.killZoneUpdatablesTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.killZoneUpdatablesTab.Padding = new System.Windows.Forms.Padding(3);
             this.killZoneUpdatablesTab.Size = new System.Drawing.Size(1000, 670);
             this.killZoneUpdatablesTab.TabIndex = 3;
             this.killZoneUpdatablesTab.Text = "Kill Zone Updatables";
@@ -1902,7 +1902,7 @@
             this.oIIUpdatablesTab.Controls.Add(this.oIICurRoomListLabel);
             this.oIIUpdatablesTab.Location = new System.Drawing.Point(4, 29);
             this.oIIUpdatablesTab.Name = "oIIUpdatablesTab";
-            this.oIIUpdatablesTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.oIIUpdatablesTab.Padding = new System.Windows.Forms.Padding(3);
             this.oIIUpdatablesTab.Size = new System.Drawing.Size(1000, 670);
             this.oIIUpdatablesTab.TabIndex = 4;
             this.oIIUpdatablesTab.Text = "One Interaction Item Updatables";
@@ -2013,7 +2013,7 @@
             this.collectorDetailsTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.collectorDetailsTab.Location = new System.Drawing.Point(4, 29);
             this.collectorDetailsTab.Name = "collectorDetailsTab";
-            this.collectorDetailsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.collectorDetailsTab.Padding = new System.Windows.Forms.Padding(3);
             this.collectorDetailsTab.Size = new System.Drawing.Size(1000, 670);
             this.collectorDetailsTab.TabIndex = 0;
             this.collectorDetailsTab.Text = "Add/Edit Collectors";
@@ -2203,7 +2203,7 @@
             this.enemyDetailsTab.Controls.Add(this.enemyNameLabel);
             this.enemyDetailsTab.Location = new System.Drawing.Point(4, 29);
             this.enemyDetailsTab.Name = "enemyDetailsTab";
-            this.enemyDetailsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.enemyDetailsTab.Padding = new System.Windows.Forms.Padding(3);
             this.enemyDetailsTab.Size = new System.Drawing.Size(1000, 670);
             this.enemyDetailsTab.TabIndex = 1;
             this.enemyDetailsTab.Text = "Add/Edit Enemies";
@@ -2439,7 +2439,7 @@
             this.killZoneDetailsTab.Controls.Add(this.killZoneNameLabel);
             this.killZoneDetailsTab.Location = new System.Drawing.Point(4, 29);
             this.killZoneDetailsTab.Name = "killZoneDetailsTab";
-            this.killZoneDetailsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.killZoneDetailsTab.Padding = new System.Windows.Forms.Padding(3);
             this.killZoneDetailsTab.Size = new System.Drawing.Size(1000, 670);
             this.killZoneDetailsTab.TabIndex = 2;
             this.killZoneDetailsTab.Text = "Add/Edit Kill Zones";
@@ -2625,7 +2625,7 @@
             this.oneInteractionItemDetailsTab.Controls.Add(this.oIINameLabel);
             this.oneInteractionItemDetailsTab.Location = new System.Drawing.Point(4, 29);
             this.oneInteractionItemDetailsTab.Name = "oneInteractionItemDetailsTab";
-            this.oneInteractionItemDetailsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.oneInteractionItemDetailsTab.Padding = new System.Windows.Forms.Padding(3);
             this.oneInteractionItemDetailsTab.Size = new System.Drawing.Size(1000, 670);
             this.oneInteractionItemDetailsTab.TabIndex = 3;
             this.oneInteractionItemDetailsTab.Text = "Add/Edit One Interaction Items";
@@ -2807,7 +2807,7 @@
             this.pickableItemDetailsTab.Controls.Add(this.pickableItemNameLabel);
             this.pickableItemDetailsTab.Location = new System.Drawing.Point(4, 29);
             this.pickableItemDetailsTab.Name = "pickableItemDetailsTab";
-            this.pickableItemDetailsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.pickableItemDetailsTab.Padding = new System.Windows.Forms.Padding(3);
             this.pickableItemDetailsTab.Size = new System.Drawing.Size(1000, 670);
             this.pickableItemDetailsTab.TabIndex = 4;
             this.pickableItemDetailsTab.Text = "Add/Edit Pickable Items";
@@ -2957,12 +2957,12 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.mainMenuStrip);
+            this.Controls.Add(this.regionTabControl);
             this.Controls.Add(this.interactableDetailsTabControl);
             this.Controls.Add(this.gameStartTabControl);
             this.Controls.Add(this.roomTabControl);
-            this.Controls.Add(this.regionTabControl);
             this.MainMenuStrip = this.mainMenuStrip;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1440, 1077);
             this.MinimumSize = new System.Drawing.Size(1023, 766);
             this.Name = "SealsOfHellMain";

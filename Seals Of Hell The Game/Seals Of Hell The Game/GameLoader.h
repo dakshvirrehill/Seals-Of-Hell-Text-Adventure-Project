@@ -8,6 +8,7 @@
 class IInteractable;
 class BasicObject;
 class IUpdatable;
+class Room;
 class GameLoader
 {
 	std::map<std::string, std::function<IInteractable* (GameLoader&)>> mObjectCreator;
@@ -22,6 +23,7 @@ class GameLoader
 	void initializeBasicObject(json::JSON, BasicObject*);
 	void initializeIInteractable(json::JSON, IInteractable*);
 	void initializeIUpdatable(json::JSON, IUpdatable*, std::map<std::string,IInteractable*>&);
+	void initializeEmptyGateways(Room* pRoom);
 	IInteractable* CreateCollector();
 	IInteractable* CreateEnemy();
 	IInteractable* CreateKillZone();
@@ -50,6 +52,7 @@ protected:
 	}
 	void initializeGameFromSave(json::JSON& pGameData);
 	void initializeNewGame(json::JSON& pGameData);
+
 	//think about to json code
 	friend class GameManager;
 };

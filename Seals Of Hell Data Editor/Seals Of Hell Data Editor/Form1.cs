@@ -493,7 +493,7 @@ namespace Seals_Of_Hell_Data_Editor
                 mSelectedGateway = null;
             }
         }
-        void PopulateRoomComboBox(Gateway.Direction pDirection1, Gateway.Direction pDirection2)
+        void PopulateRoomComboBox(Gateway.Direction pDirection1, Gateway.Direction pDirection2, string pRoom1 = null, string pRoom2 = null)
         {
             List<string> aRoom1List = new List<string>(mSelectedRegion.mRooms.Keys);
             List<string> aRoom2List = new List<string>(mSelectedRegion.mRooms.Keys);
@@ -508,10 +508,23 @@ namespace Seals_Of_Hell_Data_Editor
                     aRoom2List.Remove(aRoom.mName);
                 }
             }
+            if(!(pRoom1 == null && pRoom2 == null))
+            {
+                aRoom1List.Add(pRoom1);
+                aRoom2List.Add(pRoom2);
+            }
             this.gatewayRoom1.DataSource = aRoom1List;
-            this.gatewayRoom1.SelectedIndex = -1;
             this.gatewayRoom2.DataSource = aRoom2List;
-            this.gatewayRoom2.SelectedIndex = -1;
+            if(pRoom1 == null && pRoom2 == null)
+            {
+                this.gatewayRoom1.SelectedIndex = -1;
+                this.gatewayRoom2.SelectedIndex = -1;
+            }
+            else
+            {
+                this.gatewayRoom1.SelectedItem = pRoom1;
+                this.gatewayRoom2.SelectedItem = pRoom2;
+            }
         }
 
         private void GwCurrentRegionsList_SelectedIndexChanged(object sender, EventArgs e)
@@ -527,7 +540,13 @@ namespace Seals_Of_Hell_Data_Editor
             List<string> aCurGws = new List<string>();
             foreach(Room aRoom in mSelectedRegion.mRooms.Values)
             {
-                aCurGws.AddRange(aRoom.mGateways.Keys);
+                foreach(string aKeys in aRoom.mGateways.Keys)
+                {
+                    if(!aCurGws.Contains(aKeys))
+                    {
+                        aCurGws.Add(aKeys);
+                    }
+                }
             }
             this.currentGatewaysList.DataSource = aCurGws;
             this.currentGatewaysList.SelectedIndex = -1;
@@ -581,10 +600,21 @@ namespace Seals_Of_Hell_Data_Editor
             this.gatewayNameTextBox.Text = mSelectedGateway.mName;
             this.gatewayStoryTextBox.Text = mSelectedGateway.mStory;
             this.gatewayDirection.SelectedItem = mSelectedGateway.mPath;
-            this.gatewayRoom1.Items.Add(mSelectedGateway.mRoom1);
-            this.gatewayRoom1.SelectedItem = mSelectedGateway.mRoom1;
-            this.gatewayRoom2.Items.Add(mSelectedGateway.mRoom2);
-            this.gatewayRoom2.SelectedItem = mSelectedGateway.mRoom2;
+            switch (mSelectedGateway.mPath)
+            {
+                case Gateway.Path.North_South:
+                    PopulateRoomComboBox(Gateway.Direction.North, Gateway.Direction.South,mSelectedGateway.mRoom1,mSelectedGateway.mRoom2);
+                    break;
+                case Gateway.Path.East_West:
+                    PopulateRoomComboBox(Gateway.Direction.East, Gateway.Direction.West, mSelectedGateway.mRoom1, mSelectedGateway.mRoom2);
+                    break;
+                case Gateway.Path.NorthWest_SouthEast:
+                    PopulateRoomComboBox(Gateway.Direction.NorthWest, Gateway.Direction.SouthEast, mSelectedGateway.mRoom1, mSelectedGateway.mRoom2);
+                    break;
+                case Gateway.Path.NorthEast_SouthWest:
+                    PopulateRoomComboBox(Gateway.Direction.NorthEast, Gateway.Direction.SouthWest, mSelectedGateway.mRoom1, mSelectedGateway.mRoom2);
+                    break;
+            }
             this.isGatewayVisible.Checked = mSelectedGateway.mIsVisible;
             this.isGatewayInteractable.Checked = mSelectedGateway.mIsInteractable;
         }
@@ -595,13 +625,14 @@ namespace Seals_Of_Hell_Data_Editor
                 return;
             }
             if (!(string.IsNullOrEmpty(this.gatewayNameTextBox.Text) || string.IsNullOrEmpty(this.gatewayStoryTextBox.Text) ||
-                this.gatewayDirection.SelectedIndex == -1 || this.gatewayRoom1.SelectedIndex == -1 || this.gatewayRoom2.SelectedIndex == -1))
+                this.gatewayDirection.SelectedIndex == -1 || this.gatewayRoom1.SelectedIndex == -1 || this.gatewayRoom2.SelectedIndex == -1 || (string)this.gatewayRoom1.SelectedItem == (string)this.gatewayRoom2.SelectedItem))
             {
                 if(mSelectedGateway == null && mGameDetails.IsGatewayPresent(this.gameNameTextBox.Text))
                 {
                     return;
                 }
                 DeleteGateway();
+                
                 mSelectedGateway = new Gateway
                 {
                     mName = this.gatewayNameTextBox.Text,
@@ -669,11 +700,9 @@ namespace Seals_Of_Hell_Data_Editor
             {
                 if (mSelectedPortal != null)
                 {
-                    Portal aNewPortal = new Portal(mSelectedPortal.mCurrentRegionName)
-                    {
-                        mName = this.portalNameTextBox.Text,
-                        mStory = this.portalStoryTextBox.Text
-                    };
+                    Portal aNewPortal = new Portal(mSelectedPortal.mCurrentRegionName);
+                    aNewPortal.mName = this.portalNameTextBox.Text;
+                    aNewPortal.mStory = this.portalStoryTextBox.Text;
                     foreach (Room aRoom in mGameDetails.mRegionDetails[mSelectedPortal.mCurrentRegionName].mRooms.Values)
                     {
                         if(aRoom.mPortals.ContainsKey(mSelectedPortal.mName))
@@ -687,6 +716,7 @@ namespace Seals_Of_Hell_Data_Editor
                     aFRoom.mPortals.Remove(mSelectedPortal.mName);
                     aFRoom.mPortals.Add(aNewPortal.mName, aNewPortal);
                     aFRoom.EditUpdatableNames(mSelectedPortal.mName, aNewPortal.mName);
+                    mGameDetails.AddPortal(aNewPortal);
                 }
             }
             ResetPortalEditor();
