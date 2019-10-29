@@ -676,7 +676,7 @@ namespace Seals_Of_Hell_Data_Editor
         List<string> GetUpdatableObjectsFromType(Dictionary<string,string> pUpObjsWType)
         {
             List<string> aUpdateObjects = new List<string>();
-            foreach (string aObjName in pUpObjsWType.Values)
+            foreach (string aObjName in pUpObjsWType.Keys)
             {
                 aUpdateObjects.Add(aObjName.Substring(aObjName.LastIndexOf('_') + 1).ToUpper());
             }
@@ -771,7 +771,7 @@ namespace Seals_Of_Hell_Data_Editor
                             foreach(Gateway aCurrentGateway in aCurrentRoom.mGateways.Values)
                             {
                                 string aGatewayKey = aJSONRegion.mName + "_" + aCurrentGateway.mName;
-                                if(!aGateway.ContainsKey(aGatewayKey))
+                                if (!aGateway.ContainsKey(aGatewayKey))
                                 {
                                     aGateway.Add(aGatewayKey, new Gateway());
                                     aGateway[aGatewayKey].mName = aCurrentGateway.mName.ToUpper();
@@ -779,10 +779,10 @@ namespace Seals_Of_Hell_Data_Editor
                                     aGateway[aGatewayKey].mIsInteractable = aCurrentGateway.mIsInteractable;
                                     aGateway[aGatewayKey].mIsVisible = aCurrentGateway.mIsVisible;
                                     aGateway[aGatewayKey].mPath = aCurrentGateway.mPath;
-                                    aGateway[aGatewayKey].mRoom1 = aCurrentGateway.mRoom1;
-                                    aGateway[aGatewayKey].mRoom2 = aCurrentGateway.mRoom2;
+                                    aGateway[aGatewayKey].mRoom1 = GetRoomObject(aCurrentGateway.mRoom1).GetInRegion() + "_" + aCurrentGateway.mRoom1;
+                                    aGateway[aGatewayKey].mRoom2 = GetRoomObject(aCurrentGateway.mRoom2).GetInRegion() + "_" + aCurrentGateway.mRoom2;
+                                    aJSONRoom.mGateways.Add(aGatewayKey, aGateway[aGatewayKey]);
                                 }
-                                aJSONRoom.mGateways.Add(aGatewayKey, aGateway[aGatewayKey]);
                             }
                         }
                         aJSONRoom.mCollectors = null;
@@ -1032,8 +1032,8 @@ namespace Seals_Of_Hell_Data_Editor
                                 mGateways[aGateway.mName].mName = aGateway.mName;
                                 mGateways[aGateway.mName].mStory = aGateway.mStory;
                                 mGateways[aGateway.mName].mPath = aGateway.mPath;
-                                mGateways[aGateway.mName].mRoom1 = aGateway.mRoom1;
-                                mGateways[aGateway.mName].mRoom2 = aGateway.mRoom2;
+                                mGateways[aGateway.mName].mRoom1 = aGateway.mRoom1.Substring(aGateway.mRoom1.LastIndexOf('_') + 1);
+                                mGateways[aGateway.mName].mRoom2 = aGateway.mRoom2.Substring(aGateway.mRoom2.LastIndexOf('_') + 1);
                                 mGateways[aGateway.mName].mIsVisible = aGateway.mIsVisible;
                                 mGateways[aGateway.mName].mIsInteractable = aGateway.mIsInteractable;
                             }
@@ -1186,6 +1186,17 @@ namespace Seals_Of_Hell_Data_Editor
                     }
                     mRegionDetails[aCurRegion.mName].mRooms.Add(aCurRoom.mName, mRooms[aCurRoom.mName]);
                 }
+                if(aCurRegion.mName == mFirstRegion)
+                {
+                    mRooms.Remove(mRegionDetails[aCurRegion.mName].mEntryRoom);
+                }
+            }
+            foreach(Gateway aGway in mGateways.Values)
+            {
+                Room aRoom = mRooms[aGway.mRoom1];
+                aRoom.ToggleDirectionBlock(aGway.GetRoom1Direction(), true);
+                aRoom = mRooms[aGway.mRoom2];
+                aRoom.ToggleDirectionBlock(aGway.GetRoom2Direction(), true);
             }
         }
         public static bool IsConditionalPresent(string pConditional)
