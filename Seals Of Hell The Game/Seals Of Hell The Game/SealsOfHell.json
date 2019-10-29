@@ -1,0 +1,2368 @@
+{
+  "mName": "Seals of Hell",
+  "mStory": "The Apocalypse is upon us. The Seven Seals of Hell have been opened and the Gates of Hell have unleashed all kinds of demons into the world. Save us, Oh! Mighty Hero by going into the depths of hell and fighting the worst of the worst to seal the gates again and stop the apocalypse.",
+  "mFirstRegion": "Underworld",
+  "mRegionDetails": {
+    "Underworld": {
+      "mName": "Underworld",
+      "mStory": "The beginning and the end of the labyrinth of hell",
+      "mEntryRoom": "Underworld_Hell's Gates",
+      "mRooms": {
+        "Underworld_Hell's Gates": {
+          "mName": "Hell's Gates",
+          "mStory": "The start and the stop of the apocalypse",
+          "mTreasureCollector": {
+            "mKey": "Underworld_Hell's Gates_THE GATES OF HELL",
+            "mTreasures": [
+              "Atrium of Death_Aura of Death_Pale Ring",
+              "Brothel of Lust_The Brothel_PURPLE RING",
+              "Manacles of Pestilence_Pestilence's White Room_WHITE RING",
+              "Realm of Famine_Tar Room_BLACK RING",
+              "Belly of Gluttony_Belly of Leviathan_PINK RING",
+              "Matrix of Greed_Room of Midas The Greedy_GOLD RING",
+              "Abyss Of War_Red Horseman Room_RED RING"
+            ],
+            "mName": "THE GATES OF HELL",
+            "mStory": "Apocalypse is upon us as the seals are broken and the gate is open",
+            "mIsVisible": true,
+            "mIsInteractable": false,
+            "mUpdateStory": "The devil is angry and is going to stop you from stopping the apocalypse",
+            "mEndStory": "You have successfully sealed the gates of hell and stopped the apocalypse",
+            "mUpdatableObjectsWithType": {
+              "Underworld_Hell's Gates_LUCIFER MORNINGSTAR": "Enemy"
+            }
+          },
+          "mEnemies": {
+            "Underworld_Hell's Gates_LUCIFER MORNINGSTAR": {
+              "mLife": 3,
+              "mBlockStory": "The shield protects you from the devil's stare",
+              "mName": "LUCIFER MORNINGSTAR",
+              "mStory": "The devil himself, guarding the gates of hell",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Abyss Of War_War Memorial_DAMNED SWORD",
+              "mUpdateStory": "Stares deep into your soul, killing your strength from within",
+              "mEndStory": "The devil frowns and returns to the depths of hell planning and plotting his next return",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {}
+            }
+          },
+          "mPortals": {
+            "ABYSS OF WAR PORTAL": {
+              "mName": "ABYSS OF WAR PORTAL",
+              "mStory": "Portal between Abyss Of War and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Abyss Of War"
+            },
+            "MATRIX OF GREED PORTAL": {
+              "mName": "MATRIX OF GREED PORTAL",
+              "mStory": "Portal between Matrix of Greed and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Matrix of Greed"
+            },
+            "BELLY OF GLUTTONY PORTAL": {
+              "mName": "BELLY OF GLUTTONY PORTAL",
+              "mStory": "Portal between Belly of Gluttony and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Belly of Gluttony"
+            },
+            "REALM OF FAMINE PORTAL": {
+              "mName": "REALM OF FAMINE PORTAL",
+              "mStory": "Portal between Realm of Famine and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Realm of Famine"
+            },
+            "MANACLES OF PESTILENCE PORTAL": {
+              "mName": "MANACLES OF PESTILENCE PORTAL",
+              "mStory": "Portal between Manacles of Pestilence and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Manacles of Pestilence"
+            },
+            "BROTHEL OF LUST PORTAL": {
+              "mName": "BROTHEL OF LUST PORTAL",
+              "mStory": "Portal between Brothel of Lust and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Brothel of Lust"
+            },
+            "Atrium of Death Portal": {
+              "mName": "ATRIUM OF DEATH PORTAL",
+              "mStory": "Portal between Atrium of Death and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Atrium of Death"
+            }
+          }
+        }
+      }
+    },
+    "Abyss Of War": {
+      "mName": "Abyss Of War",
+      "mStory": "War has ruled and will rule forever",
+      "mEntryRoom": "Abyss Of War_War Memorial",
+      "mRooms": {
+        "Abyss Of War_War Memorial": {
+          "mName": "War Memorial",
+          "mStory": "All the trinkets that war has collected over the years",
+          "mPickableItems": {
+            "Abyss Of War_War Memorial_SHIELD OF INVINCIBILITY": {
+              "mName": "SHIELD OF INVINCIBILITY",
+              "mStory": "An unbreakable protection from almost all hellish attacks",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mType": 1
+            },
+            "Abyss Of War_War Memorial_DAMNED SWORD": {
+              "mName": "DAMNED SWORD",
+              "mStory": "The sword of Ares, a demon killing machine",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mType": 0
+            }
+          },
+          "mPortals": {
+            "ABYSS OF WAR PORTAL": {
+              "mName": "ABYSS OF WAR PORTAL",
+              "mStory": "Portal between Abyss Of War and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Abyss Of War"
+            }
+          },
+          "mGateways": {
+            "Abyss Of War_PATH OF FIRE": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "PATH OF FIRE",
+              "mStory": "Feels Hot and Fiery",
+              "mPath": 0,
+              "mRoom1": "Abyss Of War_Lair of Fire",
+              "mRoom2": "Abyss Of War_War Memorial"
+            }
+          }
+        },
+        "Abyss Of War_Lair of Fire": {
+          "mName": "Lair of Fire",
+          "mStory": "Here lives the demon of hell fire",
+          "mEnemies": {
+            "Abyss Of War_Lair of Fire_HELLFIRE DEMON": {
+              "mLife": 1,
+              "mBlockStory": "The shield protects you from the effects of hell fire",
+              "mName": "HELLFIRE DEMON",
+              "mStory": "Came from the deepest underworld to burn souls",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Abyss Of War_War Memorial_DAMNED SWORD",
+              "mUpdateStory": "Tries to burn your soul with hell fire",
+              "mEndStory": "Its head comes off and it sheds its skin",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Abyss Of War_Lair of Fire_FIRE DEMON SKIN": "PickableItem",
+                "Abyss Of War_PATH OF FIRE": "Gateway",
+                "Abyss Of War_DEPTHS OF TARTARUS": "Gateway"
+              }
+            }
+          },
+          "mPickableItems": {
+            "Abyss Of War_Lair of Fire_FIRE DEMON SKIN": {
+              "mName": "FIRE DEMON SKIN",
+              "mStory": "Seems like a good disguise",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mType": 3
+            }
+          },
+          "mGateways": {
+            "Abyss Of War_PATH OF FIRE": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "PATH OF FIRE",
+              "mStory": "Feels Hot and Fiery",
+              "mPath": 0,
+              "mRoom1": "Abyss Of War_Lair of Fire",
+              "mRoom2": "Abyss Of War_War Memorial"
+            },
+            "Abyss Of War_DEPTHS OF TARTARUS": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "DEPTHS OF TARTARUS",
+              "mStory": "Feels like going deeper into hell",
+              "mPath": 2,
+              "mRoom1": "Abyss Of War_Tartarus",
+              "mRoom2": "Abyss Of War_Lair of Fire"
+            }
+          }
+        },
+        "Abyss Of War_Tartarus": {
+          "mName": "Tartarus",
+          "mStory": "Demons of hell have risen to party",
+          "mKillZones": {
+            "Abyss Of War_Tartarus_SWARM OF DEMONS": {
+              "mName": "SWARM OF DEMONS",
+              "mStory": "Looks like all the demons are partying into the Apocalypse",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Abyss Of War_Lair of Fire_FIRE DEMON SKIN",
+              "mUpdateStory": "You are not a demon, they surround you from all directions and try to kill you",
+              "mEndStory": "Your fire demon disguise fools these dumb demons and they get back to partying unaware of their impending doom",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Abyss Of War_DEPTHS OF TARTARUS": "Gateway",
+                "Abyss Of War_WORLD DEATH PASSAGE": "Gateway",
+                "Abyss Of War_NUCLEAR DEATH PASSAGE": "Gateway",
+                "Abyss Of War_PATH TO WAR": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Abyss Of War_DEPTHS OF TARTARUS": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "DEPTHS OF TARTARUS",
+              "mStory": "Feels like going deeper into hell",
+              "mPath": 2,
+              "mRoom1": "Abyss Of War_Tartarus",
+              "mRoom2": "Abyss Of War_Lair of Fire"
+            },
+            "Abyss Of War_WORLD DEATH PASSAGE": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "WORLD DEATH PASSAGE",
+              "mStory": "Those who dare may walk this path",
+              "mPath": 1,
+              "mRoom1": "Abyss Of War_Tartarus",
+              "mRoom2": "Abyss Of War_World War Room"
+            },
+            "Abyss Of War_NUCLEAR DEATH PASSAGE": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "NUCLEAR DEATH PASSAGE",
+              "mStory": "Those who wish to see radioactivity may go this way",
+              "mPath": 3,
+              "mRoom1": "Abyss Of War_Nuclear War Room",
+              "mRoom2": "Abyss Of War_Tartarus"
+            },
+            "Abyss Of War_PATH TO WAR": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "PATH TO WAR",
+              "mStory": "Only the daring can challenge war",
+              "mPath": 0,
+              "mRoom1": "Abyss Of War_Red Horseman Room",
+              "mRoom2": "Abyss Of War_Tartarus"
+            }
+          }
+        },
+        "Abyss Of War_Nuclear War Room": {
+          "mName": "Nuclear War Room",
+          "mStory": "War has taken over",
+          "mKillZones": {
+            "Abyss Of War_Nuclear War Room_NUCLEAR WAR": {
+              "mName": "NUCLEAR WAR",
+              "mStory": "Radioactivity everywhere, not a single live soul",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mUpdateStory": "The radioactivity poisons you continuously",
+              "mEndStory": "...",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Abyss Of War_NUCLEAR DEATH PASSAGE": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Abyss Of War_NUCLEAR DEATH PASSAGE": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "NUCLEAR DEATH PASSAGE",
+              "mStory": "Those who wish to see radioactivity may go this way",
+              "mPath": 3,
+              "mRoom1": "Abyss Of War_Nuclear War Room",
+              "mRoom2": "Abyss Of War_Tartarus"
+            }
+          }
+        },
+        "Abyss Of War_World War Room": {
+          "mName": "World War Room",
+          "mStory": "War has taken over",
+          "mKillZones": {
+            "Abyss Of War_World War Room_WORLD WAR III": {
+              "mName": "WORLD WAR III",
+              "mStory": "The Nazis are back and the Allies can't defeat them all",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mUpdateStory": "More than a 1000 zombie nazis attack you from all directions",
+              "mEndStory": "...",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Abyss Of War_WORLD DEATH PASSAGE": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Abyss Of War_WORLD DEATH PASSAGE": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "WORLD DEATH PASSAGE",
+              "mStory": "Those who dare may walk this path",
+              "mPath": 1,
+              "mRoom1": "Abyss Of War_Tartarus",
+              "mRoom2": "Abyss Of War_World War Room"
+            }
+          }
+        },
+        "Abyss Of War_Red Horseman Room": {
+          "mName": "Red Horseman Room",
+          "mStory": "The Lair of War",
+          "mEnemies": {
+            "Abyss Of War_Red Horseman Room_RED HORSEMAN": {
+              "mLife": 2,
+              "mBlockStory": "The shield teleports you back to war's realm",
+              "mName": "RED HORSEMAN",
+              "mStory": "War, Loves to battle for supremacy",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Abyss Of War_War Memorial_DAMNED SWORD",
+              "mUpdateStory": "Tries to blast you into oblivion",
+              "mEndStory": "Climbs the red horse and gallops back to where it came from, leaving behind something extremely valuable",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Abyss Of War_Red Horseman Room_RED RING": "PickableItem",
+                "ABYSS OF WAR PORTAL": "Portal",
+                "Abyss Of War_PATH TO WAR": "Gateway"
+              }
+            }
+          },
+          "mPickableItems": {
+            "Abyss Of War_Red Horseman Room_RED RING": {
+              "mName": "RED RING",
+              "mStory": "The All Powerful Ring of War",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mType": 2
+            }
+          },
+          "mPortals": {
+            "ABYSS OF WAR PORTAL": {
+              "mName": "ABYSS OF WAR PORTAL",
+              "mStory": "Portal between Abyss Of War and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Abyss Of War"
+            }
+          },
+          "mGateways": {
+            "Abyss Of War_PATH TO WAR": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "PATH TO WAR",
+              "mStory": "Only the daring can challenge war",
+              "mPath": 0,
+              "mRoom1": "Abyss Of War_Red Horseman Room",
+              "mRoom2": "Abyss Of War_Tartarus"
+            }
+          }
+        }
+      }
+    },
+    "Matrix of Greed": {
+      "mName": "Matrix of Greed",
+      "mStory": "If you are tempted by greed, you are not fit to be in this region",
+      "mEntryRoom": "Matrix of Greed_The Ultimate Casino",
+      "mRooms": {
+        "Matrix of Greed_The Ultimate Casino": {
+          "mName": "The Ultimate Casino",
+          "mStory": "Play slots win lots",
+          "mCollectors": {
+            "Matrix of Greed_The Ultimate Casino_OPERATOR": {
+              "mName": "OPERATOR",
+              "mStory": "Provides entry into the Matrix of Greed",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Matrix of Greed_The Ultimate Casino_GOLD COIN",
+              "mUpdateStory": "Needs something in order to give you passage",
+              "mEndStory": "The operator accepts the gold coin as a valid offering and opens doorways",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Matrix of Greed_INTO THE TRICKERY": "Gateway"
+              }
+            }
+          },
+          "mOneInteractionItems": {
+            "Matrix of Greed_The Ultimate Casino_MONEY SLOT MACHINE": {
+              "mType": 1,
+              "mName": "MONEY SLOT MACHINE",
+              "mStory": "Lots of winnings would make you rich",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mUpdateStory": "Play me to get more money than god",
+              "mEndStory": "You are a greedy human being and you get nothing",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {}
+            },
+            "Matrix of Greed_The Ultimate Casino_POWER SLOT MACHINE": {
+              "mType": 1,
+              "mName": "POWER SLOT MACHINE",
+              "mStory": "Lots of winnings would make you a tyrant",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mUpdateStory": "Play me to rule the world",
+              "mEndStory": "You are a greedy human being and you get nothing",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {}
+            },
+            "Matrix of Greed_The Ultimate Casino_POOR SLOT MACHINE": {
+              "mType": 1,
+              "mName": "POOR SLOT MACHINE",
+              "mStory": "You may win a lot you may lose a lot",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mUpdateStory": "Play me to test your luck",
+              "mEndStory": "The slot machine throws out a gold coin",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Matrix of Greed_The Ultimate Casino_GOLD COIN": "PickableItem"
+              }
+            },
+            "Matrix of Greed_The Ultimate Casino_GOLD SLOT MACHINE": {
+              "mType": 1,
+              "mName": "GOLD SLOT MACHINE",
+              "mStory": "Lots of winnings would give you gold",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mUpdateStory": "Play me to be a gold master",
+              "mEndStory": "You are a greedy human being and you get nothing",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {}
+            }
+          },
+          "mPickableItems": {
+            "Matrix of Greed_The Ultimate Casino_GOLD COIN": {
+              "mName": "GOLD COIN",
+              "mStory": "Shiny object that can get you places",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mType": 2
+            },
+            "Matrix of Greed_The Ultimate Casino_MIDAS HAMMER": {
+              "mName": "MIDAS HAMMER",
+              "mStory": "Made of gold, only thing powerful to break the temptation of greed",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mType": 0
+            }
+          },
+          "mPortals": {
+            "MATRIX OF GREED PORTAL": {
+              "mName": "MATRIX OF GREED PORTAL",
+              "mStory": "Portal between Matrix of Greed and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Matrix of Greed"
+            }
+          },
+          "mGateways": {
+            "Matrix of Greed_INTO THE TRICKERY": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "INTO THE TRICKERY",
+              "mStory": "Go with a clear head",
+              "mPath": 2,
+              "mRoom1": "Matrix of Greed_The Mirror Room",
+              "mRoom2": "Matrix of Greed_The Ultimate Casino"
+            }
+          }
+        },
+        "Matrix of Greed_The Mirror Room": {
+          "mName": "The Mirror Room",
+          "mStory": "Get lost in the visions",
+          "mEnemies": {
+            "Matrix of Greed_The Mirror Room_MIRROR OF ERISED": {
+              "mLife": 1,
+              "mBlockStory": "The shield protects you from the mirror's voodoo",
+              "mName": "MIRROR OF ERISED",
+              "mStory": "The most powerful demon of greed and desire",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Matrix of Greed_The Ultimate Casino_MIDAS HAMMER",
+              "mUpdateStory": "Tries to ensnare you with visions of great achievements and desires",
+              "mEndStory": "The mirror breaks into millions of pieces unlocking doorways",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Matrix of Greed_INTO THE TRICKERY": "Gateway",
+                "Matrix of Greed_THE GOLDEN PATH": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Matrix of Greed_INTO THE TRICKERY": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "INTO THE TRICKERY",
+              "mStory": "Go with a clear head",
+              "mPath": 2,
+              "mRoom1": "Matrix of Greed_The Mirror Room",
+              "mRoom2": "Matrix of Greed_The Ultimate Casino"
+            },
+            "Matrix of Greed_THE GOLDEN PATH": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "THE GOLDEN PATH",
+              "mStory": "Adorned with nothing but gold",
+              "mPath": 0,
+              "mRoom1": "Matrix of Greed_Room of Midas The Greedy",
+              "mRoom2": "Matrix of Greed_The Mirror Room"
+            }
+          }
+        },
+        "Matrix of Greed_Room of Midas The Greedy": {
+          "mName": "Room of Midas The Greedy",
+          "mStory": "Protect yourself from his greed",
+          "mEnemies": {
+            "Matrix of Greed_Room of Midas The Greedy_THE GREEDY MIDAS": {
+              "mLife": 2,
+              "mBlockStory": "The shield blocks his attempted entrapment",
+              "mName": "THE GREEDY MIDAS",
+              "mStory": "The ruler of the matrix of greed and all powerful gold master",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Abyss Of War_War Memorial_DAMNED SWORD",
+              "mUpdateStory": "Tries to turn you into one of his prized gold trophies",
+              "mEndStory": "Pretty disappointed, Midas runs away like the coward he is, leaving behind his prized possession",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Matrix of Greed_Room of Midas The Greedy_GOLD RING": "PickableItem",
+                "MATRIX OF GREED PORTAL": "Portal",
+                "Matrix of Greed_THE GOLDEN PATH": "Gateway"
+              }
+            }
+          },
+          "mPickableItems": {
+            "Matrix of Greed_Room of Midas The Greedy_GOLD RING": {
+              "mName": "GOLD RING",
+              "mStory": "The All Powerful Ring of Greed",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mType": 2
+            }
+          },
+          "mPortals": {
+            "MATRIX OF GREED PORTAL": {
+              "mName": "MATRIX OF GREED PORTAL",
+              "mStory": "Portal between Matrix of Greed and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Matrix of Greed"
+            }
+          },
+          "mGateways": {
+            "Matrix of Greed_THE GOLDEN PATH": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "THE GOLDEN PATH",
+              "mStory": "Adorned with nothing but gold",
+              "mPath": 0,
+              "mRoom1": "Matrix of Greed_Room of Midas The Greedy",
+              "mRoom2": "Matrix of Greed_The Mirror Room"
+            }
+          }
+        }
+      }
+    },
+    "Belly of Gluttony": {
+      "mName": "Belly of Gluttony",
+      "mStory": "The hunger of doing nothing but eating drags the soul of the damned here",
+      "mEntryRoom": "Belly of Gluttony_Feast Room",
+      "mRooms": {
+        "Belly of Gluttony_Feast Room": {
+          "mName": "Feast Room",
+          "mStory": "The demons of hell feast of the flesh of all the souls in hell here",
+          "mOneInteractionItems": {
+            "Belly of Gluttony_Feast Room_FEAST TABLE": {
+              "mType": 0,
+              "mName": "FEAST TABLE",
+              "mStory": "The demons have their glutonous feast of human flesh on this table",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mUpdateStory": "Feels as if something is pushing to get out from beneath the table",
+              "mEndStory": "Moving the table revealed a special artifact that might be useful",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Belly of Gluttony_Feast Room_BLOB MELTOR": "PickableItem"
+              }
+            },
+            "Belly of Gluttony_Feast Room_DELICIOUS MOUTH WATERING FOOD": {
+              "mType": 2,
+              "mName": "DELICIOUS MOUTH WATERING FOOD",
+              "mStory": "Eating this would never fullfill your desire, or will it?",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mUpdateStory": "Eat this delicious cannibalistic feast",
+              "mEndStory": "You feel full and bloated but you now have a desire to eat everything",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {}
+            }
+          },
+          "mPickableItems": {
+            "Belly of Gluttony_Feast Room_BLOB MELTOR": {
+              "mName": "BLOB MELTOR",
+              "mStory": "The only weapon capable of melting the pig blob demon.",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mType": 0
+            }
+          },
+          "mPortals": {
+            "BELLY OF GLUTTONY PORTAL": {
+              "mName": "BELLY OF GLUTTONY PORTAL",
+              "mStory": "Portal between Belly of Gluttony and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Belly of Gluttony"
+            }
+          },
+          "mGateways": {
+            "Belly of Gluttony_TO THE BLOB": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "TO THE BLOB",
+              "mStory": "The path seems to be covered with nothing but vomit and slime",
+              "mPath": 3,
+              "mRoom1": "Belly of Gluttony_Pig Lair",
+              "mRoom2": "Belly of Gluttony_Feast Room"
+            }
+          }
+        },
+        "Belly of Gluttony_Pig Lair": {
+          "mName": "Pig Lair",
+          "mStory": "The Blob Demon lives here",
+          "mEnemies": {
+            "Belly of Gluttony_Pig Lair_PIG BLOB": {
+              "mLife": 1,
+              "mBlockStory": "The shield pushes the demon aside",
+              "mName": "PIG BLOB",
+              "mStory": "Demon that embodies gluttony",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Belly of Gluttony_Feast Room_BLOB MELTOR",
+              "mUpdateStory": "Tries to swallow you as a whole",
+              "mEndStory": "The demon melts until there is nothing but slime left",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Belly of Gluttony_TO THE BLOB": "Gateway",
+                "Belly of Gluttony_PATHWAY TO PURGATORY": "Gateway"
+              }
+            }
+          },
+          "mPickableItems": {
+            "Belly of Gluttony_Pig Lair_ELIXIR OF THIRST": {
+              "mName": "ELIXIR OF THIRST",
+              "mStory": "Quenches any kind of thirst or bloodlust",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mType": 2
+            }
+          },
+          "mGateways": {
+            "Belly of Gluttony_TO THE BLOB": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "TO THE BLOB",
+              "mStory": "The path seems to be covered with nothing but vomit and slime",
+              "mPath": 3,
+              "mRoom1": "Belly of Gluttony_Pig Lair",
+              "mRoom2": "Belly of Gluttony_Feast Room"
+            },
+            "Belly of Gluttony_PATHWAY TO PURGATORY": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "PATHWAY TO PURGATORY",
+              "mStory": "Try to beat the monster from the deepest depths of hell",
+              "mPath": 2,
+              "mRoom1": "Belly of Gluttony_Belly of Leviathan",
+              "mRoom2": "Belly of Gluttony_Pig Lair"
+            }
+          }
+        },
+        "Belly of Gluttony_Belly of Leviathan": {
+          "mName": "Belly of Leviathan",
+          "mStory": "Whoever comes here, never returns",
+          "mEnemies": {
+            "Belly of Gluttony_Belly of Leviathan_LEVIATHAN": {
+              "mLife": 2,
+              "mBlockStory": "The shield blocks the Leviathan's venomous teeth",
+              "mName": "LEVIATHAN",
+              "mStory": "The infamous demon banished to the depths of Purgatory",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Abyss Of War_War Memorial_DAMNED SWORD",
+              "mUpdateStory": "Tries to bite into your skin with its razor sharp teeth",
+              "mEndStory": "It Crawl backs into Purgatory, dissapointed and sad, leaving behind something very valuable",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Belly of Gluttony_Belly of Leviathan_PINK RING": "PickableItem",
+                "BELLY OF GLUTTONY PORTAL": "Portal",
+                "Belly of Gluttony_PATHWAY TO PURGATORY": "Gateway"
+              }
+            }
+          },
+          "mPickableItems": {
+            "Belly of Gluttony_Belly of Leviathan_PINK RING": {
+              "mName": "PINK RING",
+              "mStory": "The All Powerful Ring of Gluttony",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mType": 2
+            }
+          },
+          "mPortals": {
+            "BELLY OF GLUTTONY PORTAL": {
+              "mName": "BELLY OF GLUTTONY PORTAL",
+              "mStory": "Portal between Belly of Gluttony and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Belly of Gluttony"
+            }
+          },
+          "mGateways": {
+            "Belly of Gluttony_PATHWAY TO PURGATORY": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "PATHWAY TO PURGATORY",
+              "mStory": "Try to beat the monster from the deepest depths of hell",
+              "mPath": 2,
+              "mRoom1": "Belly of Gluttony_Belly of Leviathan",
+              "mRoom2": "Belly of Gluttony_Pig Lair"
+            }
+          }
+        }
+      }
+    },
+    "Realm of Famine": {
+      "mName": "Realm of Famine",
+      "mStory": "The kingdom of starvation has begun",
+      "mEntryRoom": "Realm of Famine_Gates of Starvation",
+      "mRooms": {
+        "Realm of Famine_Tar Room": {
+          "mName": "Tar Room",
+          "mStory": "The room of famine",
+          "mEnemies": {
+            "Realm of Famine_Tar Room_BLACK HORSEMAN": {
+              "mLife": 2,
+              "mBlockStory": "The shield replenishes the sucked nutrition and electrolytes",
+              "mName": "BLACK HORSEMAN",
+              "mStory": "The embodiment of famine, ruling earth through draught and famine",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Abyss Of War_War Memorial_DAMNED SWORD",
+              "mUpdateStory": "Tries to suck all nutrition and electrolytes out of your body",
+              "mEndStory": "She rides away on her horse, cursing you to a lifetime of disappointment but leaving an important piece behind",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Realm of Famine_Tar Room_BLACK RING": "PickableItem",
+                "REALM OF FAMINE PORTAL": "Portal",
+                "Realm of Famine_GATEWAY TO TAR": "Gateway"
+              }
+            }
+          },
+          "mPickableItems": {
+            "Realm of Famine_Tar Room_BLACK RING": {
+              "mName": "BLACK RING",
+              "mStory": "All Powerful Ring of Famine",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mType": 2
+            }
+          },
+          "mPortals": {
+            "REALM OF FAMINE PORTAL": {
+              "mName": "REALM OF FAMINE PORTAL",
+              "mStory": "Portal between Realm of Famine and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Realm of Famine"
+            }
+          },
+          "mGateways": {
+            "Realm of Famine_GATEWAY TO TAR": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "GATEWAY TO TAR",
+              "mStory": "Starvation and thirst awaits you",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought Exit",
+              "mRoom2": "Realm of Famine_Tar Room"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought 4": {
+          "mName": "Maze of Drought 4",
+          "mStory": "Pathway through Drought",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 7": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 7",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought 4",
+              "mRoom2": "Realm of Famine_Maze of Drought 3"
+            },
+            "Realm of Famine_DROUGHT MAZE 8": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 8",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought Dead End 4",
+              "mRoom2": "Realm of Famine_Maze of Drought 4"
+            },
+            "Realm of Famine_DROUGHT MAZE 9": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 9",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought 4",
+              "mRoom2": "Realm of Famine_Maze of Drought 5"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought Dead End 4": {
+          "mName": "Maze of Drought Dead End 4",
+          "mStory": "Nothing here",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 8": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 8",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought Dead End 4",
+              "mRoom2": "Realm of Famine_Maze of Drought 4"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought 5": {
+          "mName": "Maze of Drought 5",
+          "mStory": "Pathway through Drought",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 9": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 9",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought 4",
+              "mRoom2": "Realm of Famine_Maze of Drought 5"
+            },
+            "Realm of Famine_DROUGHT MAZE 10": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 10",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought Dead End 5",
+              "mRoom2": "Realm of Famine_Maze of Drought 5"
+            },
+            "Realm of Famine_DROUGHT MAZE 11": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 11",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought 5",
+              "mRoom2": "Realm of Famine_Maze of Drought 6"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought Dead End 5": {
+          "mName": "Maze of Drought Dead End 5",
+          "mStory": "Nothing here",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 10": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 10",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought Dead End 5",
+              "mRoom2": "Realm of Famine_Maze of Drought 5"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought 6": {
+          "mName": "Maze of Drought 6",
+          "mStory": "Pathway through Drought",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 11": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 11",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought 5",
+              "mRoom2": "Realm of Famine_Maze of Drought 6"
+            },
+            "Realm of Famine_DROUGHT MAZE 12": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 12",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought 6",
+              "mRoom2": "Realm of Famine_Maze of Drought Dead End 6"
+            },
+            "Realm of Famine_DROUGHT MAZE 13": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 13",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought 6",
+              "mRoom2": "Realm of Famine_Maze of Drought Exit"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought Dead End 6": {
+          "mName": "Maze of Drought Dead End 6",
+          "mStory": "Nothing here",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 12": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 12",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought 6",
+              "mRoom2": "Realm of Famine_Maze of Drought Dead End 6"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought Exit": {
+          "mName": "Maze of Drought Exit",
+          "mStory": "You have reached the end of draught by famine",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 13": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 13",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought 6",
+              "mRoom2": "Realm of Famine_Maze of Drought Exit"
+            },
+            "Realm of Famine_GATEWAY TO TAR": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "GATEWAY TO TAR",
+              "mStory": "Starvation and thirst awaits you",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought Exit",
+              "mRoom2": "Realm of Famine_Tar Room"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought Dead End 3": {
+          "mName": "Maze of Drought Dead End 3",
+          "mStory": "Nothing here",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 6": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 6",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought 3",
+              "mRoom2": "Realm of Famine_Maze of Drought Dead End 3"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought 3": {
+          "mName": "Maze of Drought 3",
+          "mStory": "Pathway through Drought",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 5": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 5",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought 3",
+              "mRoom2": "Realm of Famine_Maze of Drought 2"
+            },
+            "Realm of Famine_DROUGHT MAZE 6": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 6",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought 3",
+              "mRoom2": "Realm of Famine_Maze of Drought Dead End 3"
+            },
+            "Realm of Famine_DROUGHT MAZE 7": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 7",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought 4",
+              "mRoom2": "Realm of Famine_Maze of Drought 3"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought Entry": {
+          "mName": "Maze of Drought Entry",
+          "mStory": "The destruction of famine has begun",
+          "mGateways": {
+            "Realm of Famine_ENTRY TO DROUGHT": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "ENTRY TO DROUGHT",
+              "mStory": "The only way to get to famine",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Gates of Starvation",
+              "mRoom2": "Realm of Famine_Maze of Drought Entry"
+            },
+            "Realm of Famine_DROUGHT MAZE 1": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 1",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought Dead End 1",
+              "mRoom2": "Realm of Famine_Maze of Drought Entry"
+            },
+            "Realm of Famine_DROUGHT MAZE 2": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 2",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought Entry",
+              "mRoom2": "Realm of Famine_Maze of Drought 1"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought Dead End 1": {
+          "mName": "Maze of Drought Dead End 1",
+          "mStory": "Nothing here",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 1": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 1",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought Dead End 1",
+              "mRoom2": "Realm of Famine_Maze of Drought Entry"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought 1": {
+          "mName": "Maze of Drought 1",
+          "mStory": "Pathway through Drought",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 2": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 2",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought Entry",
+              "mRoom2": "Realm of Famine_Maze of Drought 1"
+            },
+            "Realm of Famine_DROUGHT MAZE 3": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 3",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought 1",
+              "mRoom2": "Realm of Famine_Maze of Drought 2"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought 2": {
+          "mName": "Maze of Drought 2",
+          "mStory": "Pathway through Drought",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 3": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 3",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought 1",
+              "mRoom2": "Realm of Famine_Maze of Drought 2"
+            },
+            "Realm of Famine_DROUGHT MAZE 4": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 4",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought 2",
+              "mRoom2": "Realm of Famine_Maze of Drought Dead End 2"
+            },
+            "Realm of Famine_DROUGHT MAZE 5": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 5",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Realm of Famine_Maze of Drought 3",
+              "mRoom2": "Realm of Famine_Maze of Drought 2"
+            }
+          }
+        },
+        "Realm of Famine_Maze of Drought Dead End 2": {
+          "mName": "Maze of Drought Dead End 2",
+          "mStory": "Nothing here",
+          "mGateways": {
+            "Realm of Famine_DROUGHT MAZE 4": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DROUGHT MAZE 4",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Maze of Drought 2",
+              "mRoom2": "Realm of Famine_Maze of Drought Dead End 2"
+            }
+          }
+        },
+        "Realm of Famine_Gates of Starvation": {
+          "mName": "Gates of Starvation",
+          "mStory": "The only way out is by feeding the needy",
+          "mCollectors": {
+            "Realm of Famine_Gates of Starvation_STARVING AND THIRSTY PEOPLE": {
+              "mName": "STARVING AND THIRSTY PEOPLE",
+              "mStory": "We are dying of thirst",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Belly of Gluttony_Pig Lair_ELIXIR OF THIRST",
+              "mUpdateStory": "Can't open the gateway without quenching our thirst",
+              "mEndStory": "Elixir quenched their thirst and they opened the gateway",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Realm of Famine_ENTRY TO DROUGHT": "Gateway"
+              }
+            }
+          },
+          "mPortals": {
+            "REALM OF FAMINE PORTAL": {
+              "mName": "REALM OF FAMINE PORTAL",
+              "mStory": "Portal between Realm of Famine and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Realm of Famine"
+            }
+          },
+          "mGateways": {
+            "Realm of Famine_ENTRY TO DROUGHT": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "ENTRY TO DROUGHT",
+              "mStory": "The only way to get to famine",
+              "mPath": 1,
+              "mRoom1": "Realm of Famine_Gates of Starvation",
+              "mRoom2": "Realm of Famine_Maze of Drought Entry"
+            }
+          }
+        }
+      }
+    },
+    "Manacles of Pestilence": {
+      "mName": "Manacles of Pestilence",
+      "mStory": "The only way out is in a hospital stretcher",
+      "mEntryRoom": "Manacles of Pestilence_Room of Protection",
+      "mRooms": {
+        "Manacles of Pestilence_Room of Protection": {
+          "mName": "Room of Protection",
+          "mStory": "A sheltor from the upcoming plague",
+          "mPickableItems": {
+            "Manacles of Pestilence_Room of Protection_PECULIAR MEDICINAL INJECTION": {
+              "mName": "PECULIAR MEDICINAL INJECTION",
+              "mStory": "Bring back from the dead or send back to death",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mType": 0
+            },
+            "Manacles of Pestilence_Room of Protection_BEAK MASK": {
+              "mName": "BEAK MASK",
+              "mStory": "The only proper protection from the cruelty of pestilence",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mType": 3
+            }
+          },
+          "mPortals": {
+            "MANACLES OF PESTILENCE PORTAL": {
+              "mName": "MANACLES OF PESTILENCE PORTAL",
+              "mStory": "Portal between Manacles of Pestilence and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Manacles of Pestilence"
+            }
+          },
+          "mGateways": {
+            "Manacles of Pestilence_FUMING PATH": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "FUMING PATH",
+              "mStory": "Fumes of pungent chemicals are creeping out",
+              "mPath": 1,
+              "mRoom1": "Manacles of Pestilence_Chemical Testing Room",
+              "mRoom2": "Manacles of Pestilence_Room of Protection"
+            }
+          }
+        },
+        "Manacles of Pestilence_Chemical Testing Room": {
+          "mName": "Chemical Testing Room",
+          "mStory": "The deadliest weapons of mass destructions are tested here",
+          "mKillZones": {
+            "Manacles of Pestilence_Chemical Testing Room_BIO-WEAPON FACTORY": {
+              "mName": "BIO-WEAPON FACTORY",
+              "mStory": "This chemical testing facility can kill almost anyone",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Manacles of Pestilence_Room of Protection_BEAK MASK",
+              "mUpdateStory": "The strong chemicals creep up on you",
+              "mEndStory": "The beak mask protects you from the effects of the chemicals",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Manacles of Pestilence_FUMING PATH": "Gateway",
+                "Manacles of Pestilence_DISEASE ROUTE": "Gateway",
+                "Manacles of Pestilence_ANSWER ROUTE": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Manacles of Pestilence_FUMING PATH": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "FUMING PATH",
+              "mStory": "Fumes of pungent chemicals are creeping out",
+              "mPath": 1,
+              "mRoom1": "Manacles of Pestilence_Chemical Testing Room",
+              "mRoom2": "Manacles of Pestilence_Room of Protection"
+            },
+            "Manacles of Pestilence_DISEASE ROUTE": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "DISEASE ROUTE",
+              "mStory": "Only take this route if you have a good immune system",
+              "mPath": 0,
+              "mRoom1": "Manacles of Pestilence_Chemical Testing Room",
+              "mRoom2": "Manacles of Pestilence_Disease Room"
+            },
+            "Manacles of Pestilence_ANSWER ROUTE": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "ANSWER ROUTE",
+              "mStory": "If you have a good IQ you may pass",
+              "mPath": 0,
+              "mRoom1": "Manacles of Pestilence_Riddle Room",
+              "mRoom2": "Manacles of Pestilence_Chemical Testing Room"
+            }
+          }
+        },
+        "Manacles of Pestilence_Riddle Room": {
+          "mName": "Riddle Room",
+          "mStory": "Are you a know it all? Try to get out of this riddle",
+          "mOneInteractionItems": {
+            "Manacles of Pestilence_Riddle Room_THE BLACK DEATH": {
+              "mType": 3,
+              "mName": "THE BLACK DEATH",
+              "mStory": "Sit down gather round and listen to my tale. Of A Time when humanity would fail. To conquer death like it always had. We have died before but this time was bad. In threes they came spreading like plague. We know many died but the numbers are vague",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mUpdateStory": "Answer me to pass through",
+              "mEndStory": "The black death was pestilence's masterpiece",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Manacles of Pestilence_IQ TO PESTILENCE": "Gateway",
+                "Manacles of Pestilence_ANSWER ROUTE": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Manacles of Pestilence_IQ TO PESTILENCE": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "IQ TO PESTILENCE",
+              "mStory": "You have defeated pestilence in theory now time to defeat her in reality",
+              "mPath": 3,
+              "mRoom1": "Manacles of Pestilence_Riddle Room",
+              "mRoom2": "Manacles of Pestilence_Pestilence's White Room"
+            },
+            "Manacles of Pestilence_ANSWER ROUTE": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "ANSWER ROUTE",
+              "mStory": "If you have a good IQ you may pass",
+              "mPath": 0,
+              "mRoom1": "Manacles of Pestilence_Riddle Room",
+              "mRoom2": "Manacles of Pestilence_Chemical Testing Room"
+            }
+          }
+        },
+        "Manacles of Pestilence_Disease Room": {
+          "mName": "Disease Room",
+          "mStory": "The house of the plague",
+          "mEnemies": {
+            "Manacles of Pestilence_Disease Room_PLAGUE DEMON": {
+              "mLife": 1,
+              "mBlockStory": "The shield redirects the acid somewhere else",
+              "mName": "PLAGUE DEMON",
+              "mStory": "Pestilence's prized pupil, responsible for the bubonic plague",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Manacles of Pestilence_Room of Protection_PECULIAR MEDICINAL INJECTION",
+              "mUpdateStory": "Throws disease carrying acid towards you",
+              "mEndStory": "The injection reacts with the demon making him burst into tiny pieces",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Manacles of Pestilence_DISEASE ROUTE": "Gateway",
+                "Manacles of Pestilence_DISEASE TO PESTILENCE": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Manacles of Pestilence_DISEASE ROUTE": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "DISEASE ROUTE",
+              "mStory": "Only take this route if you have a good immune system",
+              "mPath": 0,
+              "mRoom1": "Manacles of Pestilence_Chemical Testing Room",
+              "mRoom2": "Manacles of Pestilence_Disease Room"
+            },
+            "Manacles of Pestilence_DISEASE TO PESTILENCE": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "DISEASE TO PESTILENCE",
+              "mStory": "Your immune system is good",
+              "mPath": 2,
+              "mRoom1": "Manacles of Pestilence_Pestilence's White Room",
+              "mRoom2": "Manacles of Pestilence_Disease Room"
+            }
+          }
+        },
+        "Manacles of Pestilence_Pestilence's White Room": {
+          "mName": "Pestilence's White Room",
+          "mStory": "The house of horrors of pestilence",
+          "mEnemies": {
+            "Manacles of Pestilence_Pestilence's White Room_WHITE HORSEMAN": {
+              "mLife": 2,
+              "mBlockStory": "The shield renders her attacks useless",
+              "mName": "WHITE HORSEMAN",
+              "mStory": "Pestilence herself, shocked that you passed her henchmen",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Abyss Of War_War Memorial_DAMNED SWORD",
+              "mUpdateStory": "Sends all her powers of pollution and disease to crumble you",
+              "mEndStory": "She mumbles some curse words as she rides off on her horse, leaving behind her prized possession",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Manacles of Pestilence_Pestilence's White Room_WHITE RING": "PickableItem",
+                "MANACLES OF PESTILENCE PORTAL": "Portal",
+                "Manacles of Pestilence_IQ TO PESTILENCE": "Gateway",
+                "Manacles of Pestilence_DISEASE TO PESTILENCE": "Gateway"
+              }
+            }
+          },
+          "mPickableItems": {
+            "Manacles of Pestilence_Pestilence's White Room_WHITE RING": {
+              "mName": "WHITE RING",
+              "mStory": "The All Powerful Ring of Pestilence",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mType": 2
+            }
+          },
+          "mPortals": {
+            "MANACLES OF PESTILENCE PORTAL": {
+              "mName": "MANACLES OF PESTILENCE PORTAL",
+              "mStory": "Portal between Manacles of Pestilence and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Manacles of Pestilence"
+            }
+          },
+          "mGateways": {
+            "Manacles of Pestilence_IQ TO PESTILENCE": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "IQ TO PESTILENCE",
+              "mStory": "You have defeated pestilence in theory now time to defeat her in reality",
+              "mPath": 3,
+              "mRoom1": "Manacles of Pestilence_Riddle Room",
+              "mRoom2": "Manacles of Pestilence_Pestilence's White Room"
+            },
+            "Manacles of Pestilence_DISEASE TO PESTILENCE": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "DISEASE TO PESTILENCE",
+              "mStory": "Your immune system is good",
+              "mPath": 2,
+              "mRoom1": "Manacles of Pestilence_Pestilence's White Room",
+              "mRoom2": "Manacles of Pestilence_Disease Room"
+            }
+          }
+        }
+      }
+    },
+    "Brothel of Lust": {
+      "mName": "Brothel of Lust",
+      "mStory": "Whether it is lust of the flesh or of power, you would give in to your temptations here",
+      "mEntryRoom": "Brothel of Lust_Desire Room",
+      "mRooms": {
+        "Brothel of Lust_Desire Room": {
+          "mName": "Desire Room",
+          "mStory": "Fullfill your every desire by picking your lust",
+          "mOneInteractionItems": {
+            "Brothel of Lust_Desire Room_WHAT DO YOU DESIRE?": {
+              "mType": 1,
+              "mName": "WHAT DO YOU DESIRE?",
+              "mStory": "Play to unlock doors to your lust and temptation",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mUpdateStory": "Give in to your lust",
+              "mEndStory": "Chose your door carefully as your path depends on your lust",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Brothel of Lust_POWERFUL WAY": "Gateway",
+                "Brothel of Lust_WEALTHY WAY": "Gateway",
+                "Brothel of Lust_LUSTY WAY": "Gateway",
+                "Brothel of Lust_DREAMY WAY": "Gateway"
+              }
+            }
+          },
+          "mPickableItems": {
+            "Brothel of Lust_Desire Room_WAND OF POWER": {
+              "mName": "WAND OF POWER",
+              "mStory": "The ultimate weapon of power",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mType": 0
+            },
+            "Brothel of Lust_Desire Room_KEY TO BANK": {
+              "mName": "KEY TO BANK",
+              "mStory": "The ultimate weapon of money",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mType": 0
+            },
+            "Brothel of Lust_Desire Room_CLOAK OF LOVE": {
+              "mName": "CLOAK OF LOVE",
+              "mStory": "Thie ultimate weapon of love",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mType": 0
+            },
+            "Brothel of Lust_Desire Room_CAP OF DREAMS": {
+              "mName": "CAP OF DREAMS",
+              "mStory": "The ultimate weapon of dreams",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mType": 0
+            }
+          },
+          "mPortals": {
+            "BROTHEL OF LUST PORTAL": {
+              "mName": "BROTHEL OF LUST PORTAL",
+              "mStory": "Portal between Brothel of Lust and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Brothel of Lust"
+            }
+          },
+          "mGateways": {
+            "Brothel of Lust_POWERFUL WAY": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "POWERFUL WAY",
+              "mStory": "Give in to your temptation",
+              "mPath": 1,
+              "mRoom1": "Brothel of Lust_Room of Power",
+              "mRoom2": "Brothel of Lust_Desire Room"
+            },
+            "Brothel of Lust_WEALTHY WAY": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "WEALTHY WAY",
+              "mStory": "Give in to your temptation",
+              "mPath": 3,
+              "mRoom1": "Brothel of Lust_Desire Room",
+              "mRoom2": "Brothel of Lust_Room of Money"
+            },
+            "Brothel of Lust_LUSTY WAY": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "LUSTY WAY",
+              "mStory": "Give in to your temptation",
+              "mPath": 0,
+              "mRoom1": "Brothel of Lust_Desire Room",
+              "mRoom2": "Brothel of Lust_Room of Love"
+            },
+            "Brothel of Lust_DREAMY WAY": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "DREAMY WAY",
+              "mStory": "Give in to your temptation",
+              "mPath": 2,
+              "mRoom1": "Brothel of Lust_Desire Room",
+              "mRoom2": "Brothel of Lust_Room of Dreams"
+            }
+          }
+        },
+        "Brothel of Lust_Room of Power": {
+          "mName": "Room of Power",
+          "mStory": "The all powerful survive",
+          "mKillZones": {
+            "Brothel of Lust_Room of Power_DEMON OF POWER": {
+              "mName": "DEMON OF POWER",
+              "mStory": "Threatened by you, will attack you",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Brothel of Lust_Desire Room_WAND OF POWER",
+              "mUpdateStory": "Sees your wand and attacks you with all its power",
+              "mEndStory": "You didn't give in to your lust. Demon lets you pass",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Brothel of Lust_POWERFUL WAY": "Gateway",
+                "Brothel of Lust_POWER TO TEMPTATION": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Brothel of Lust_POWERFUL WAY": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "POWERFUL WAY",
+              "mStory": "Give in to your temptation",
+              "mPath": 1,
+              "mRoom1": "Brothel of Lust_Room of Power",
+              "mRoom2": "Brothel of Lust_Desire Room"
+            },
+            "Brothel of Lust_POWER TO TEMPTATION": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "POWER TO TEMPTATION",
+              "mStory": "Fight the temptress",
+              "mPath": 0,
+              "mRoom1": "Brothel of Lust_Room of Power",
+              "mRoom2": "Brothel of Lust_The Brothel"
+            }
+          }
+        },
+        "Brothel of Lust_Room of Money": {
+          "mName": "Room of Money",
+          "mStory": "The wealthy survive",
+          "mKillZones": {
+            "Brothel of Lust_Room of Money_DEMON OF MONEY": {
+              "mName": "DEMON OF MONEY",
+              "mStory": "Can't stand the sight of you, will attack you",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Brothel of Lust_Desire Room_KEY TO BANK",
+              "mUpdateStory": "Tries to eat you",
+              "mEndStory": "You didn't give in to your lust. Demon lets you pass",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Brothel of Lust_WEALTHY WAY": "Gateway",
+                "Brothel of Lust_MONEY TO TEMPTATION": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Brothel of Lust_WEALTHY WAY": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "WEALTHY WAY",
+              "mStory": "Give in to your temptation",
+              "mPath": 3,
+              "mRoom1": "Brothel of Lust_Desire Room",
+              "mRoom2": "Brothel of Lust_Room of Money"
+            },
+            "Brothel of Lust_MONEY TO TEMPTATION": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "MONEY TO TEMPTATION",
+              "mStory": "Fight the temptress",
+              "mPath": 3,
+              "mRoom1": "Brothel of Lust_Room of Money",
+              "mRoom2": "Brothel of Lust_The Brothel"
+            }
+          }
+        },
+        "Brothel of Lust_Room of Love": {
+          "mName": "Room of Love",
+          "mStory": "The lovable survive",
+          "mKillZones": {
+            "Brothel of Lust_Room of Love_DEMON OF LOVE": {
+              "mName": "DEMON OF LOVE",
+              "mStory": "Hates your guts, will attack you",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Brothel of Lust_Desire Room_CLOAK OF LOVE",
+              "mUpdateStory": "Tries to seduce you into submission",
+              "mEndStory": "You didn't give in to your lust. Demon lets you pass",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Brothel of Lust_LUSTY WAY": "Gateway",
+                "Brothel of Lust_LOVE TO TEMPTATION": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Brothel of Lust_LUSTY WAY": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "LUSTY WAY",
+              "mStory": "Give in to your temptation",
+              "mPath": 0,
+              "mRoom1": "Brothel of Lust_Desire Room",
+              "mRoom2": "Brothel of Lust_Room of Love"
+            },
+            "Brothel of Lust_LOVE TO TEMPTATION": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "LOVE TO TEMPTATION",
+              "mStory": "Fight the temptress",
+              "mPath": 2,
+              "mRoom1": "Brothel of Lust_Room of Love",
+              "mRoom2": "Brothel of Lust_The Brothel"
+            }
+          }
+        },
+        "Brothel of Lust_Room of Dreams": {
+          "mName": "Room of Dreams",
+          "mStory": "The sleepy survive",
+          "mKillZones": {
+            "Brothel of Lust_Room of Dreams_DEMON OF DREAMS": {
+              "mName": "DEMON OF DREAMS",
+              "mStory": "You feel a sudden drowsy feeling",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Brothel of Lust_Desire Room_CAP OF DREAMS",
+              "mUpdateStory": "You fall into a hypnotism of continuous never ending nightmares",
+              "mEndStory": "You didn't give in to your lust. Demon lets you pass",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Brothel of Lust_DREAMY WAY": "Gateway",
+                "Brothel of Lust_DREAM TO TEMPTATION": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Brothel of Lust_DREAMY WAY": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "DREAMY WAY",
+              "mStory": "Give in to your temptation",
+              "mPath": 2,
+              "mRoom1": "Brothel of Lust_Desire Room",
+              "mRoom2": "Brothel of Lust_Room of Dreams"
+            },
+            "Brothel of Lust_DREAM TO TEMPTATION": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "DREAM TO TEMPTATION",
+              "mStory": "Fight the temptress",
+              "mPath": 1,
+              "mRoom1": "Brothel of Lust_The Brothel",
+              "mRoom2": "Brothel of Lust_Room of Dreams"
+            }
+          }
+        },
+        "Brothel of Lust_The Brothel": {
+          "mName": "The Brothel",
+          "mStory": "The home of the temptress",
+          "mEnemies": {
+            "Brothel of Lust_The Brothel_SUCCUBUS": {
+              "mLife": 2,
+              "mBlockStory": "The shield makes you immune to her charms",
+              "mName": "SUCCUBUS",
+              "mStory": "The infamous temptress and seductress",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Abyss Of War_War Memorial_DAMNED SWORD",
+              "mUpdateStory": "Tries to control you with her lusty flesh and mesmerizing eyes",
+              "mEndStory": "She grows tentacles and creeps into the depths of where she came from leaving behind a valuable item",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Brothel of Lust_The Brothel_PURPLE RING": "PickableItem",
+                "BROTHEL OF LUST PORTAL": "Portal",
+                "Brothel of Lust_POWER TO TEMPTATION": "Gateway",
+                "Brothel of Lust_MONEY TO TEMPTATION": "Gateway",
+                "Brothel of Lust_LOVE TO TEMPTATION": "Gateway",
+                "Brothel of Lust_DREAM TO TEMPTATION": "Gateway"
+              }
+            }
+          },
+          "mPickableItems": {
+            "Brothel of Lust_The Brothel_PURPLE RING": {
+              "mName": "PURPLE RING",
+              "mStory": "The All Powerful Ring of Lust",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mType": 2
+            }
+          },
+          "mPortals": {
+            "BROTHEL OF LUST PORTAL": {
+              "mName": "BROTHEL OF LUST PORTAL",
+              "mStory": "Portal between Brothel of Lust and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Brothel of Lust"
+            }
+          },
+          "mGateways": {
+            "Brothel of Lust_POWER TO TEMPTATION": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "POWER TO TEMPTATION",
+              "mStory": "Fight the temptress",
+              "mPath": 0,
+              "mRoom1": "Brothel of Lust_Room of Power",
+              "mRoom2": "Brothel of Lust_The Brothel"
+            },
+            "Brothel of Lust_MONEY TO TEMPTATION": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "MONEY TO TEMPTATION",
+              "mStory": "Fight the temptress",
+              "mPath": 3,
+              "mRoom1": "Brothel of Lust_Room of Money",
+              "mRoom2": "Brothel of Lust_The Brothel"
+            },
+            "Brothel of Lust_LOVE TO TEMPTATION": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "LOVE TO TEMPTATION",
+              "mStory": "Fight the temptress",
+              "mPath": 2,
+              "mRoom1": "Brothel of Lust_Room of Love",
+              "mRoom2": "Brothel of Lust_The Brothel"
+            },
+            "Brothel of Lust_DREAM TO TEMPTATION": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "DREAM TO TEMPTATION",
+              "mStory": "Fight the temptress",
+              "mPath": 1,
+              "mRoom1": "Brothel of Lust_The Brothel",
+              "mRoom2": "Brothel of Lust_Room of Dreams"
+            }
+          }
+        }
+      }
+    },
+    "Atrium of Death": {
+      "mName": "Atrium of Death",
+      "mStory": "The Only Zone of Hell the devil also fears",
+      "mEntryRoom": "Atrium of Death_Land of the Living",
+      "mRooms": {
+        "Atrium of Death_Land of the Living": {
+          "mName": "Land of the Living",
+          "mStory": "Only the living shall reside here",
+          "mOneInteractionItems": {
+            "Atrium of Death_Land of the Living_The Carpet of Dead Souls": {
+              "mType": 0,
+              "mName": "THE CARPET OF DEAD SOULS",
+              "mStory": "Made with the flesh of all the reaped souls",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mUpdateStory": "Something below is disshaping the carpet",
+              "mEndStory": "Moving the carpet revealed something",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Atrium of Death_Land of the Living_Proton Pack": "PickableItem"
+              }
+            }
+          },
+          "mPickableItems": {
+            "Atrium of Death_Land of the Living_Proton Pack": {
+              "mName": "PROTON PACK",
+              "mStory": "Only weapon strong enough to take down ghosts",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mType": 0
+            },
+            "Atrium of Death_Land of the Living_Cloak of Light": {
+              "mName": "CLOAK OF LIGHT",
+              "mStory": "Brings light to the darkest of places",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mType": 3
+            }
+          },
+          "mPortals": {
+            "Atrium of Death Portal": {
+              "mName": "ATRIUM OF DEATH PORTAL",
+              "mStory": "Portal between Atrium of Death and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Atrium of Death"
+            }
+          },
+          "mGateways": {
+            "Atrium of Death_Darkness falls": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DARKNESS FALLS",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Land of the Living",
+              "mRoom2": "Atrium of Death_Maze of Undead Entry"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead Entry": {
+          "mName": "Maze of Undead Entry",
+          "mStory": "Darkness and eerieness creeps in",
+          "mKillZones": {
+            "Atrium of Death_Maze of Undead Entry_Pit of Darkness": {
+              "mName": "PIT OF DARKNESS",
+              "mStory": "You see nothing but darkness and hear the burning souls of the damned",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Atrium of Death_Land of the Living_Cloak of Light",
+              "mUpdateStory": "The darkness takes you deeper into the pit of oblivion",
+              "mEndStory": "The light from your cloak brings you back and lights up the place",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Atrium of Death_Darkness falls": "Gateway",
+                "Atrium of Death_Undead Maze 1": "Gateway",
+                "Atrium of Death_Undead Maze 2": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Atrium of Death_Darkness falls": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "DARKNESS FALLS",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Land of the Living",
+              "mRoom2": "Atrium of Death_Maze of Undead Entry"
+            },
+            "Atrium of Death_Undead Maze 1": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "UNDEAD MAZE 1",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead Entry",
+              "mRoom2": "Atrium of Death_Maze of Undead 1"
+            },
+            "Atrium of Death_Undead Maze 2": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "UNDEAD MAZE 2",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead Entry",
+              "mRoom2": "Atrium of Death_Maze of Undead 2"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead 1": {
+          "mName": "Maze of Undead 1",
+          "mStory": "There is a sudden increase in darkness",
+          "mGateways": {
+            "Atrium of Death_Undead Maze 1": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "UNDEAD MAZE 1",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead Entry",
+              "mRoom2": "Atrium of Death_Maze of Undead 1"
+            },
+            "Atrium of Death_Undead Maze 6": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 6",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead 1",
+              "mRoom2": "Atrium of Death_Maze of Undead 4"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead 2": {
+          "mName": "Maze of Undead 2",
+          "mStory": "There is a sudden increase in eerieness",
+          "mGateways": {
+            "Atrium of Death_Undead Maze 2": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "UNDEAD MAZE 2",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead Entry",
+              "mRoom2": "Atrium of Death_Maze of Undead 2"
+            },
+            "Atrium of Death_Undead Maze 3": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 3",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead 3",
+              "mRoom2": "Atrium of Death_Maze of Undead 2"
+            },
+            "Atrium of Death_Undead Maze 5": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 5",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead 2",
+              "mRoom2": "Atrium of Death_Maze of Undead Dead End 1"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead Dead End 1": {
+          "mName": "Maze of Undead Dead End 1",
+          "mStory": "Nothing here",
+          "mGateways": {
+            "Atrium of Death_Undead Maze 5": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 5",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead 2",
+              "mRoom2": "Atrium of Death_Maze of Undead Dead End 1"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead 3": {
+          "mName": "Maze of Undead 3",
+          "mStory": "Something creepy awaits",
+          "mEnemies": {
+            "Atrium of Death_Maze of Undead 3_Ghost of Night Crawler": {
+              "mLife": 1,
+              "mBlockStory": "The shield creates an impenetrable force field around you",
+              "mName": "GHOST OF NIGHT CRAWLER",
+              "mStory": "Notorious Killer and a worse ghost",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Atrium of Death_Land of the Living_Proton Pack",
+              "mUpdateStory": "Tries to take your living body",
+              "mEndStory": "The ghost vanishes into thin air",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Atrium of Death_Undead Maze 3": "Gateway",
+                "Atrium of Death_Undead Maze 4": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Atrium of Death_Undead Maze 3": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 3",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead 3",
+              "mRoom2": "Atrium of Death_Maze of Undead 2"
+            },
+            "Atrium of Death_Undead Maze 4": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "UNDEAD MAZE 4",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead Dead End 2",
+              "mRoom2": "Atrium of Death_Maze of Undead 3"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead Dead End 2": {
+          "mName": "Maze of Undead Dead End 2",
+          "mStory": "Something valuable is kept here",
+          "mPickableItems": {
+            "Atrium of Death_Maze of Undead Dead End 2_Death Coin": {
+              "mName": "DEATH COIN",
+              "mStory": "Bribe for the ferryman",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mType": 2
+            }
+          },
+          "mGateways": {
+            "Atrium of Death_Undead Maze 4": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "UNDEAD MAZE 4",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead Dead End 2",
+              "mRoom2": "Atrium of Death_Maze of Undead 3"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead 4": {
+          "mName": "Maze of Undead 4",
+          "mStory": "Increasing darkness and feeling of impending doom",
+          "mGateways": {
+            "Atrium of Death_Undead Maze 6": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 6",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead 1",
+              "mRoom2": "Atrium of Death_Maze of Undead 4"
+            },
+            "Atrium of Death_Undead Maze 7": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 7",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead 5",
+              "mRoom2": "Atrium of Death_Maze of Undead 4"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead 5": {
+          "mName": "Maze of Undead 5",
+          "mStory": "You can hear the burning souls of the damned",
+          "mGateways": {
+            "Atrium of Death_Undead Maze 7": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 7",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead 5",
+              "mRoom2": "Atrium of Death_Maze of Undead 4"
+            },
+            "Atrium of Death_Undead Maze 8": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 8",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead 5",
+              "mRoom2": "Atrium of Death_Maze of Undead 6"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead 6": {
+          "mName": "Maze of Undead 6",
+          "mStory": "The eerieness is back",
+          "mGateways": {
+            "Atrium of Death_Undead Maze 8": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 8",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead 5",
+              "mRoom2": "Atrium of Death_Maze of Undead 6"
+            },
+            "Atrium of Death_Undead Maze 9": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 9",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead 8",
+              "mRoom2": "Atrium of Death_Maze of Undead 6"
+            },
+            "Atrium of Death_Undead Maze 10": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 10",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead 6",
+              "mRoom2": "Atrium of Death_Maze of Undead 7"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead 7": {
+          "mName": "Maze of Undead 7",
+          "mStory": "The eerieness increases",
+          "mGateways": {
+            "Atrium of Death_Undead Maze 10": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 10",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead 6",
+              "mRoom2": "Atrium of Death_Maze of Undead 7"
+            },
+            "Atrium of Death_Undead Maze 11": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 11",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead Dead End 3",
+              "mRoom2": "Atrium of Death_Maze of Undead 7"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead Dead End 3": {
+          "mName": "Maze of Undead Dead End 3",
+          "mStory": "Something creepy awaits",
+          "mEnemies": {
+            "Atrium of Death_Maze of Undead Dead End 3_Ghost of Ted Bundy": {
+              "mLife": 1,
+              "mBlockStory": "The shield creates an impenetrable force field around you",
+              "mName": "GHOST OF TED BUNDY",
+              "mStory": "Killed over 30 women just for fun. Wants to have fun after death too.",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Atrium of Death_Land of the Living_Proton Pack",
+              "mUpdateStory": "Tries to take your living body",
+              "mEndStory": "The ghost vanishes into thin air",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Atrium of Death_Undead Maze 11": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Atrium of Death_Undead Maze 11": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 11",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead Dead End 3",
+              "mRoom2": "Atrium of Death_Maze of Undead 7"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead 8": {
+          "mName": "Maze of Undead 8",
+          "mStory": "The eerieness decreases",
+          "mGateways": {
+            "Atrium of Death_Undead Maze 9": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 9",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead 8",
+              "mRoom2": "Atrium of Death_Maze of Undead 6"
+            },
+            "Atrium of Death_Undead Maze 12": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 12",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead 8",
+              "mRoom2": "Atrium of Death_Maze of Undead 9"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead 9": {
+          "mName": "Maze of Undead 9",
+          "mStory": "Both eerieness and impending doom creep up on you",
+          "mGateways": {
+            "Atrium of Death_Undead Maze 12": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 12",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead 8",
+              "mRoom2": "Atrium of Death_Maze of Undead 9"
+            },
+            "Atrium of Death_Undead Maze 13": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 13",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead 9",
+              "mRoom2": "Atrium of Death_Maze of Undead 10"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead 10": {
+          "mName": "Maze of Undead 10",
+          "mStory": "Something creepy awaits you",
+          "mEnemies": {
+            "Atrium of Death_Maze of Undead 10_Ghost of Jack The Ripper": {
+              "mLife": 1,
+              "mBlockStory": "The shield creates an impenetrable force field around you",
+              "mName": "GHOST OF JACK THE RIPPER",
+              "mStory": "One of the most gruesome killers of all time, now after you",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Atrium of Death_Land of the Living_Proton Pack",
+              "mUpdateStory": "Tries to take your living body",
+              "mEndStory": "The ghost vanishes into thin air",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Atrium of Death_Undead Maze 13": "Gateway",
+                "Atrium of Death_Undead Maze 14": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Atrium of Death_Undead Maze 13": {
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mName": "UNDEAD MAZE 13",
+              "mStory": "...",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead 9",
+              "mRoom2": "Atrium of Death_Maze of Undead 10"
+            },
+            "Atrium of Death_Undead Maze 14": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "UNDEAD MAZE 14",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead Exit",
+              "mRoom2": "Atrium of Death_Maze of Undead 10"
+            }
+          }
+        },
+        "Atrium of Death_Maze of Undead Exit": {
+          "mName": "Maze of Undead Exit",
+          "mStory": "Only the dead can go ahead of this",
+          "mCollectors": {
+            "Atrium of Death_Maze of Undead Exit_Ferryman": {
+              "mName": "FERRYMAN",
+              "mStory": "Ferry's the dead souls... Could be bribed to take the living",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Atrium of Death_Maze of Undead Dead End 2_Death Coin",
+              "mUpdateStory": "Can't let you pass unless you die",
+              "mEndStory": "Accepts your bribe and ferry's you to death",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Atrium of Death_Undead Maze 14": "Gateway",
+                "Atrium of Death_Ferry To Death": "Gateway"
+              }
+            }
+          },
+          "mGateways": {
+            "Atrium of Death_Undead Maze 14": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "UNDEAD MAZE 14",
+              "mStory": "...",
+              "mPath": 0,
+              "mRoom1": "Atrium of Death_Maze of Undead Exit",
+              "mRoom2": "Atrium of Death_Maze of Undead 10"
+            },
+            "Atrium of Death_Ferry To Death": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "FERRY TO DEATH",
+              "mStory": "Get ready to meet the Grim Reaper",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead Exit",
+              "mRoom2": "Atrium of Death_Aura of Death"
+            }
+          }
+        },
+        "Atrium of Death_Aura of Death": {
+          "mName": "Aura of Death",
+          "mStory": "No living being can survive in this realm",
+          "mEnemies": {
+            "Atrium of Death_Aura of Death_Pale Horseman": {
+              "mLife": 2,
+              "mBlockStory": "The shield blocks the scythe with tremendous effort",
+              "mName": "PALE HORSEMAN",
+              "mStory": "Embodiment of Death, the grim reaper, feared by the devil as well",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mConditionalObject": "Abyss Of War_War Memorial_DAMNED SWORD",
+              "mUpdateStory": "Tries to slice you with the death scythe",
+              "mEndStory": "Rides on the horse, laughing and knowing that this wasn't the end of the apocalypse. Left behind something powerful",
+              "mUpdatableObjects": [],
+              "mUpdatableObjectsWithType": {
+                "Atrium of Death_Aura of Death_Pale Ring": "PickableItem",
+                "Atrium of Death_Aura of Death_Death Scythe": "PickableItem",
+                "Atrium of Death Portal": "Portal",
+                "Atrium of Death_Ferry To Death": "Gateway"
+              }
+            }
+          },
+          "mPickableItems": {
+            "Atrium of Death_Aura of Death_Pale Ring": {
+              "mName": "PALE RING",
+              "mStory": "The All Powerful Ring of Death",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mType": 2
+            },
+            "Atrium of Death_Aura of Death_Death Scythe": {
+              "mName": "DEATH SCYTHE",
+              "mStory": "The Ultimate Weapon of Destruction",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mType": 0
+            }
+          },
+          "mPortals": {
+            "Atrium of Death Portal": {
+              "mName": "ATRIUM OF DEATH PORTAL",
+              "mStory": "Portal between Atrium of Death and Underworld",
+              "mIsVisible": true,
+              "mIsInteractable": true,
+              "mActiveRegion": "Underworld",
+              "mConnectedRegion": "Atrium of Death"
+            }
+          },
+          "mGateways": {
+            "Atrium of Death_Ferry To Death": {
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mName": "FERRY TO DEATH",
+              "mStory": "Get ready to meet the Grim Reaper",
+              "mPath": 1,
+              "mRoom1": "Atrium of Death_Maze of Undead Exit",
+              "mRoom2": "Atrium of Death_Aura of Death"
+            }
+          }
+        }
+      }
+    }
+  }
+}

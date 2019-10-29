@@ -1,4 +1,4 @@
-#include "PlayerManager.h"
+#include "GameManager.h"
 #include "KillZone.h"
 #include <iostream>
 KillZone::~KillZone()
@@ -26,8 +26,8 @@ void KillZone::update()
 				iter->makeVisible(aVal);
 			}
 		}
-		PlayerManager::instance().attackPlayer(this);
-		PlayerManager::instance().attackPlayer(this);
+		GameManager::instance().attackPlayer(this);
+		GameManager::instance().attackPlayer(this);
 	}
 	else if (!getConditionalObject()->isWorn())
 	{
@@ -45,7 +45,7 @@ void KillZone::update()
 				iter->makeVisible(aVal);
 			}
 		}
-		PlayerManager::instance().attackPlayer(this);
+		GameManager::instance().attackPlayer(this);
 	}
 	else
 	{

@@ -1,4 +1,4 @@
-#include "PlayerManager.h"
+#include "GameManager.h"
 #include "PickableItem.h"
 #include <iostream>
 
@@ -17,7 +17,7 @@ void PickableItem::initialize(bool pIsWeapon, bool pIsShield, bool pIsGiveable, 
 void PickableItem::objectGiven()
 {
 	mIsGiven = true;
-	PlayerManager::instance().removeFromInventory(this);
+	GameManager::instance().removeFromInventory(this);
 	std::cout << getName() << " given." << std::endl;
 }
 
@@ -26,7 +26,7 @@ void PickableItem::pickObject()
 	if (isInteractable() && !mIsPicked)
 	{
 		mIsPicked = true;
-		PlayerManager::instance().addInInventory(this);
+		GameManager::instance().addInInventory(this);
 		std::cout << getName() << " picked." << std::endl;
 	}
 }
@@ -38,7 +38,7 @@ void PickableItem::wearObject()
 		if (!mIsPicked)
 		{
 			mIsPicked = true;
-			PlayerManager::instance().addInInventory(this);
+			GameManager::instance().addInInventory(this);
 		}
 		mIsWorn = true;
 		std::cout << getName() << " worn." << std::endl;
@@ -53,7 +53,7 @@ void PickableItem::dropObject()
 		mIsGiven = false;
 		mIsPicked = false;
 		mIsDropped = true;
-		PlayerManager::instance().removeFromInventory(this);
+		GameManager::instance().removeFromInventory(this);
 		std::cout << getName() << " dropped." << std::endl;
 	}
 }

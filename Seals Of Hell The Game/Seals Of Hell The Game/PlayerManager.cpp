@@ -10,7 +10,7 @@ void PlayerManager::inventory()
 {
 	std::cout << "==============================" << std::endl;
 	std::cout << "Inventory" << std::endl;
-	for (auto& iter : instance().mInventory)
+	for (auto& iter : mInventory)
 	{
 		std::cout << iter.second->getName() << std::endl;
 	}

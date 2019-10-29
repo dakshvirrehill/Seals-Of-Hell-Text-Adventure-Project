@@ -1,5 +1,5 @@
 #include "TreasureCollector.h"
-#include "PlayerManager.h"
+#include "GameManager.h"
 #include "PickableItem.h"
 #include <iostream>
 #include <map>
@@ -16,7 +16,7 @@ void TreasureCollector::update()
 		bool aAllThr = true;
 		for (auto& iter : mTreasures)
 		{
-			if (!PlayerManager::instance().hasInInventory(iter.second))
+			if (!GameManager::instance().hasInInventory(iter.second))
 			{
 				aAllThr = false;
 				break;
@@ -57,7 +57,7 @@ void TreasureCollector::giveObject(IInteractable* pGiveable)
 			PickableItem* aGiveable = (PickableItem*)pGiveable;
 			aGiveable->objectGiven();
 			mTreasures.erase(pGiveable->getName());
-			PlayerManager::instance().removeFromInventory(pGiveable);
+			GameManager::instance().removeFromInventory(pGiveable);
 		}
 		else
 		{

@@ -8,23 +8,12 @@ class Room;
 class PlayerManager
 {
 private:
-	inline explicit PlayerManager() : mInventory(),mInAttack(false) {}
-	inline ~PlayerManager() {}
-	inline explicit PlayerManager(PlayerManager const&) : mInventory(),mInAttack(false) {}
-	inline PlayerManager& operator=(PlayerManager const&)
-	{
-		return *this;
-	}
 	std::map <std::string, IInteractable*> mInventory;
 	bool mInAttack;
 protected:
-	static void inventory();
-public:
-	inline static PlayerManager& instance()
-	{
-		static PlayerManager mInstance;
-		return mInstance;
-	}
+	PlayerManager() : mInventory(), mInAttack(false) {}
+	~PlayerManager() {}
+	void inventory();
 	IInteractable* getInventoryObject(std::string&);
 	void addInInventory(IInteractable*);
 	void removeFromInventory(IInteractable*);

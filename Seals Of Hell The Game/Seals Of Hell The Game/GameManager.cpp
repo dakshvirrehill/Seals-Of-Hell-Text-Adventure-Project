@@ -25,6 +25,7 @@ void GameManager::initialize(Region* pCurrentRegion, Room* pCurrentRoom)
 {
 	mCurrentRegion = pCurrentRegion;
 	mCurrentRoom = pCurrentRoom;
+	mCurrentPlayer = new PlayerManager();
 }
 
 void GameManager::StartGame(std::string& pFileName)
@@ -71,6 +72,11 @@ void GameManager::setCurrentRoom(Room* pRoom)
 	mCurrentRoom->look();
 }
 
+void GameManager::inventory()
+{
+	GameManager::instance().mCurrentPlayer->inventory();
+}
+
 void GameManager::playerWon()
 {
 	endGame();
@@ -91,7 +97,7 @@ void GameManager::saveGame()
 
 IInteractable* GameManager::getInteractable(std::string& pObjName)
 {
-	IInteractable* aInteractableObj = PlayerManager::instance().getInventoryObject(pObjName);
+	IInteractable* aInteractableObj = mCurrentPlayer->getInventoryObject(pObjName);
 	if (aInteractableObj == nullptr)
 	{
 		if (mCurrentRoom != nullptr)
@@ -110,4 +116,44 @@ void GameManager::removeFromRoom(IInteractable* pInteractable)
 void GameManager::addInRoom(IInteractable* pInteractable)
 {
 	mCurrentRoom->addInteractable(pInteractable);
+}
+
+IInteractable* GameManager::getInventoryObject(std::string& pInvObj)
+{
+	return mCurrentPlayer->getInventoryObject(pInvObj);
+}
+
+void GameManager::addInInventory(IInteractable* pInvObj)
+{
+	mCurrentPlayer->addInInventory(pInvObj);
+}
+
+void GameManager::removeFromInventory(IInteractable* pInvObj)
+{
+	mCurrentPlayer->removeFromInventory(pInvObj);
+}
+
+void GameManager::attackPlayer(IInteractable* pEnemy)
+{
+	mCurrentPlayer->attackPlayer(pEnemy);
+}
+
+void GameManager::dropInventory(Room* pInRoom)
+{
+	mCurrentPlayer->dropInventory(pInRoom);
+}
+
+void GameManager::blockAttack()
+{
+	mCurrentPlayer->blockAttack();
+}
+
+bool GameManager::hasShield()
+{
+	return mCurrentPlayer->hasShield();
+}
+
+bool GameManager::hasInInventory(IInteractable* pInvObj)
+{
+	return mCurrentPlayer->hasInInventory(pInvObj);
 }

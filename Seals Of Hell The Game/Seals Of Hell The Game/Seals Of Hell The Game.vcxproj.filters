@@ -168,4 +168,7 @@
       <Filter>Header Files\Interactables</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SealsOfHell.json" />
+  </ItemGroup>
 </Project>

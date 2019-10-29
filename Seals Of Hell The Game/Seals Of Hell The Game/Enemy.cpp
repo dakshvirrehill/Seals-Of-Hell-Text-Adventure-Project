@@ -1,5 +1,5 @@
 #include "Enemy.h"
-#include "PlayerManager.h"
+#include "GameManager.h"
 #include <iostream>
 
 Enemy::~Enemy()
@@ -41,7 +41,7 @@ void Enemy::update()
 					iter->makeVisible(aVal);
 				}
 			}
-			PlayerManager::instance().attackPlayer(this);
+			GameManager::instance().attackPlayer(this);
 			mCanAttack = false;
 		}
 	}
@@ -49,7 +49,7 @@ void Enemy::update()
 
 void Enemy::attackEnemy(IInteractable* pWeapon)
 {
-	if (pWeapon != getConditionalObject() && !PlayerManager::instance().hasInInventory(pWeapon))
+	if (pWeapon != getConditionalObject() && !GameManager::instance().hasInInventory(pWeapon))
 	{
 		IInteractable::attackEnemy(pWeapon);
 	}
@@ -65,11 +65,11 @@ void Enemy::attackEnemy(IInteractable* pWeapon)
 
 void Enemy::blockAttack()
 {
-	if(PlayerManager::instance().hasShield() && mLife > 0)
+	if(GameManager::instance().hasShield() && mLife > 0)
 	{
 		std::cout << getName() << std::endl;
 		std::cout << mBlockStory << std::endl;
-		PlayerManager::instance().blockAttack();
+		GameManager::instance().blockAttack();
 	}
 	else
 	{

@@ -11,7 +11,7 @@ void CommandManager::initialize()
 	mSingleCommands.emplace("HELP", &CommandManager::help);
 	mSingleCommands.emplace("SAVE", &GameManager::saveGame);
 	mSingleCommands.emplace("EXIT", &GameManager::endGame);
-	mSingleCommands.emplace("INVENTORY", &PlayerManager::inventory);
+	mSingleCommands.emplace("INVENTORY", &GameManager::inventory);
 	mSingleCommands.emplace("LOOK", &GameManager::look);
 
 	mInteractableCommands.emplace("LOOK", &IInteractable::lookObject);
