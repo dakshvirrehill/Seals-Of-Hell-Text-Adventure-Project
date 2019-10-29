@@ -2939,14 +2939,14 @@
             // saveGameJSONData
             // 
             this.saveGameJSONData.DefaultExt = "json";
-            this.saveGameJSONData.Filter = "JSON Files|.json";
+            this.saveGameJSONData.Filter = "JSON Files | *.json";
             this.saveGameJSONData.Title = "Save Game Data To JSON File";
             this.saveGameJSONData.FileOk += new System.ComponentModel.CancelEventHandler(this.SaveGameJSONData_Click);
             // 
             // openGameJSONData
             // 
             this.openGameJSONData.DefaultExt = "json";
-            this.openGameJSONData.Filter = "JSON Files | .json";
+            this.openGameJSONData.Filter = "JSON Files | *.json";
             this.openGameJSONData.Title = "Open Game JSON Data to Edit";
             this.openGameJSONData.FileOk += new System.ComponentModel.CancelEventHandler(this.OpenGameJSONData_Click);
             // 
