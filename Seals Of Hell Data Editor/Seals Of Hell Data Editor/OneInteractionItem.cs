@@ -57,7 +57,7 @@ namespace Seals_Of_Hell_Data_Editor
                 DataHandler.SetErrorMessage("One Interaction Item has no end story");
                 return aValidity;
             }
-            if(mType == Type.Moveable || mType == Type.Playable)
+            if(mType == Type.Moveable || mType == Type.Riddle)
             {
                 aValidity = aValidity && mUpdatableObjects.Count >= 1;
                 if (!aValidity)
@@ -70,6 +70,18 @@ namespace Seals_Of_Hell_Data_Editor
                 {
                     DataHandler.SetErrorMessage("Updatable objects are not in movable or playable room");
                     return aValidity;
+                }
+            }
+            else if(mType == Type.Playable)
+            {
+                if(mUpdatableObjects.Count > 0)
+                {
+                    aValidity = aValidity && DataHandler.AreUpdatablesInSameRoom(GetInRoom(), mUpdatableObjects);
+                    if (!aValidity)
+                    {
+                        DataHandler.SetErrorMessage("Updatable objects are not in movable or playable room");
+                        return aValidity;
+                    }
                 }
             }
             else

@@ -45,6 +45,7 @@ void TreasureCollector::endUpdate()
 		iter->makeInteractable(aItr);
 		iter->makeInteractable(aItr);
 	}
+	std::cout << getAttackStory() << std::endl << std::endl;
 }
 
 void TreasureCollector::giveObject(IInteractable* pGiveable)

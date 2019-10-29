@@ -434,7 +434,14 @@ namespace Seals_Of_Hell_Data_Editor
                 aRegionPortal.mCurrentRegionName = mSelectedRegion.mName;
                 mGameDetails.AddPortal(aRegionPortal);
                 mGameDetails.mRegionDetails.Add(mSelectedRegion.mName, mSelectedRegion);
-                aFRoom.mPortals.Add(mSelectedRegion.mName, aRegionPortal);
+                if(!aFRoom.mPortals.ContainsKey(aRegionPortal.mName))
+                {
+                    aFRoom.mPortals.Add(aRegionPortal.mName, aRegionPortal);
+                }
+                else
+                {
+                    aFRoom.mPortals[aRegionPortal.mName] = aRegionPortal;
+                }
                 mSelectedRegion = null;
             }
             ResetRegionEditor();

@@ -913,7 +913,8 @@ namespace Seals_Of_Hell_Data_Editor
 
         public void ConvertFromJSON(string pJSON)
         {
-            
+            DataHandler aDataHandler = JsonConvert.DeserializeObject<DataHandler>(pJSON);
+            //do json load
         }
 
         public static bool IsConditionalPresent(string pConditional)
@@ -941,8 +942,16 @@ namespace Seals_Of_Hell_Data_Editor
             if(mInstance.mGateways.ContainsKey(pGateway))
             {
                 Gateway aG = mInstance.mGateways[pGateway];
+                if(!mInstance.mRooms.ContainsKey(aG.mRoom1))
+                {
+                    return false;
+                }
                 Room aR = mInstance.mRooms[aG.mRoom1];
                 if(!aR.IsBlocked(aG.GetRoom1Direction()) && !aR.mGateways.ContainsKey(pGateway))
+                {
+                    return false;
+                }
+                if(!mInstance.mRooms.ContainsKey(aG.mRoom2))
                 {
                     return false;
                 }
