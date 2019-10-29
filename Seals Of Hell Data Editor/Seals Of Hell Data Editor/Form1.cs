@@ -1776,6 +1776,10 @@ namespace Seals_Of_Hell_Data_Editor
                 using(System.IO.StreamReader aReader = new System.IO.StreamReader(openGameJSONData.FileName))
                 {
                     mGameDetails.ConvertFromJSON(aReader.ReadToEnd());
+                    if(!string.IsNullOrEmpty(mGameDetails.GetErrorMessage()))
+                    {
+                        MessageBox.Show(mGameDetails.GetErrorMessage(), "Data Not Valid", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch(Exception aE)

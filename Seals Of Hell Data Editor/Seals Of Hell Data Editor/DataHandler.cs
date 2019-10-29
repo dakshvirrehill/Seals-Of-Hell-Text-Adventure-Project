@@ -670,6 +670,15 @@ namespace Seals_Of_Hell_Data_Editor
             }
             return aUpdtObjWType;
         }
+        List<string> GetUpdatableObjectsFromType(Dictionary<string,string> pUpObjsWType)
+        {
+            List<string> aUpdateObjects = new List<string>();
+            foreach (string aObjName in pUpObjsWType.Values)
+            {
+                aUpdateObjects.Add(aObjName.Substring(aObjName.LastIndexOf('_') + 1));
+            }
+            return aUpdateObjects;
+        }
         public string ConvertDataToJSON()
         {
             try
@@ -913,8 +922,170 @@ namespace Seals_Of_Hell_Data_Editor
 
         public void ConvertFromJSON(string pJSON)
         {
-            DataHandler aDataHandler = JsonConvert.DeserializeObject<DataHandler>(pJSON);
-            //do json load
+            DataHandler aDataHandler = JsonConvert.DeserializeObject<DataHandler>(pJSON, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            if(aDataHandler == null)
+            {
+                mErrorMessage = "JSON Not in proper formatting";
+                return;
+            }
+            mErrorMessage = "";
+            mName = aDataHandler.mName;
+            mStory = aDataHandler.mStory;
+            mFirstRegion = aDataHandler.mFirstRegion;
+            mRegionDetails = new Dictionary<string, Region>();
+            mRooms = new Dictionary<string, Room>();
+            mAssignedRooms = new List<string>();
+            mPortals = new Dictionary<string, Portal>();
+            mGateways = new Dictionary<string, Gateway>();
+            mCollectors = new Dictionary<string, Collector>();
+            mAssignedCollectors = new List<string>();
+            mEnemies = new Dictionary<string, Enemy>();
+            mAssignedEnemies = new List<string>();
+            mKillZones = new Dictionary<string, KillZone>();
+            mAssignedKillZones = new List<string>();
+
+            foreach (Region aCurRegion in aDataHandler.mRegionDetails.Values)
+            {
+                mRegionDetails.Add(aCurRegion.mName, new Region());
+                mRegionDetails[aCurRegion.mName].mName = aCurRegion.mName;
+                mRegionDetails[aCurRegion.mName].mStory = aCurRegion.mStory;
+                mRegionDetails[aCurRegion.mName].mEntryRoom = aCurRegion.mRooms[aCurRegion.mEntryRoom].mName;
+                mRegionDetails[aCurRegion.mName].mRooms = new Dictionary<string, Room>();
+                foreach(Room aCurRoom in aDataHandler.mRegionDetails[aCurRegion.mName].mRooms.Values)
+                {
+                    mRooms.Add(aCurRoom.mName, new Room());
+                    mAssignedRooms.Add(aCurRoom.mName);
+                    mRooms[aCurRoom.mName].SetInRegion(aCurRegion.mName);
+                    mRooms[aCurRoom.mName].mName = aCurRoom.mName;
+                    mRooms[aCurRoom.mName].mStory = aCurRoom.mStory;
+                    if(aCurRoom.mTreasureCollector != null)
+                    {
+                        mRooms[aCurRoom.mName].mTreasureCollector = new TreasureCollector();
+                        mRooms[aCurRoom.mName].mTreasureCollector.mName = aCurRoom.mTreasureCollector.mName;
+                        mRooms[aCurRoom.mName].mTreasureCollector.mStory = aCurRoom.mTreasureCollector.mStory;
+                        mRooms[aCurRoom.mName].mTreasureCollector.mUpdateStory = aCurRoom.mTreasureCollector.mUpdateStory;
+                        mRooms[aCurRoom.mName].mTreasureCollector.mEndStory = aCurRoom.mTreasureCollector.mEndStory;
+                        mRooms[aCurRoom.mName].mTreasureCollector.mIsVisible = aCurRoom.mTreasureCollector.mIsVisible;
+                        mRooms[aCurRoom.mName].mTreasureCollector.mIsInteractable = aCurRoom.mTreasureCollector.mIsInteractable;
+                        mRooms[aCurRoom.mName].mTreasureCollector.mUpdatableObjectsWithType = null;
+                        mRooms[aCurRoom.mName].mTreasureCollector.mUpdatableObjects = GetUpdatableObjectsFromType(aCurRoom.mTreasureCollector.mUpdatableObjectsWithType);
+                    }
+                    mRooms[aCurRoom.mName].mPortals = new Dictionary<string, Portal>();
+                    if(aCurRoom.mPortals != null)
+                    {
+                        foreach(Portal aPortal in aCurRoom.mPortals.Values)
+                        {
+                            if(!mPortals.ContainsKey(aPortal.mConnectedRegion))
+                            {
+                                mPortals.Add(aPortal.mConnectedRegion, new Portal(aPortal.mConnectedRegion));
+                                mPortals[aPortal.mConnectedRegion].mCurrentRegionName = aPortal.mConnectedRegion;
+                                mPortals[aPortal.mConnectedRegion].mConnectedRegion = null;
+                                mPortals[aPortal.mConnectedRegion].mActiveRegion = null;
+                                mPortals[aPortal.mConnectedRegion].mIsInteractable = aPortal.mIsInteractable;
+                                mPortals[aPortal.mConnectedRegion].mIsVisible = aPortal.mIsVisible;
+                                mPortals[aPortal.mConnectedRegion].mName = aPortal.mName;
+                                mPortals[aPortal.mConnectedRegion].mStory = aPortal.mStory;
+                            }
+                            mRooms[aCurRoom.mName].mPortals.Add(mPortals[aPortal.mConnectedRegion].mName, mPortals[aPortal.mConnectedRegion]);
+                        }
+                    }
+                    mRooms[aCurRoom.mName].mGateways = new Dictionary<string, Gateway>();
+                    if(aCurRoom.mGateways != null)
+                    {
+                        foreach(Gateway aGateway in aCurRoom.mGateways.Values)
+                        {
+                            if(!mGateways.ContainsKey(aGateway.mName))
+                            {
+                                mGateways.Add(aGateway.mName, new Gateway());
+                                mGateways[aGateway.mName].mName = aGateway.mName;
+                                mGateways[aGateway.mName].mStory = aGateway.mStory;
+                                mGateways[aGateway.mName].mPath = aGateway.mPath;
+                                mGateways[aGateway.mName].mRoom1 = aGateway.mRoom1;
+                                mGateways[aGateway.mName].mRoom2 = aGateway.mRoom2;
+                                mGateways[aGateway.mName].mIsVisible = aGateway.mIsVisible;
+                                mGateways[aGateway.mName].mIsInteractable = aGateway.mIsInteractable;
+                            }
+                            mRooms[aCurRoom.mName].mGateways.Add(aGateway.mName, mGateways[aGateway.mName]);
+                        }
+                    }
+                    mRooms[aCurRoom.mName].mCollectors = new Dictionary<string, Collector>();
+                    if(aCurRoom.mCollectors != null)
+                    {
+                        foreach(Collector aCollector in aCurRoom.mCollectors.Values)
+                        {
+                            if(!mCollectors.ContainsKey(aCollector.mName))
+                            {
+                                mCollectors.Add(aCollector.mName, new Collector());
+                                mCollectors[aCollector.mName].mName = aCollector.mName;
+                                mCollectors[aCollector.mName].mStory = aCollector.mStory;
+                                mCollectors[aCollector.mName].mUpdateStory = aCollector.mUpdateStory;
+                                mCollectors[aCollector.mName].mEndStory = aCollector.mEndStory;
+                                mCollectors[aCollector.mName].mIsInteractable = aCollector.mIsInteractable;
+                                mCollectors[aCollector.mName].mIsVisible = aCollector.mIsVisible;
+                                mCollectors[aCollector.mName].mUpdatableObjectsWithType = null;
+                                mCollectors[aCollector.mName].mUpdatableObjects = GetUpdatableObjectsFromType(aCollector.mUpdatableObjectsWithType);
+                                mCollectors[aCollector.mName].mConditionalObject = aCollector.mConditionalObject.Substring(aCollector.mConditionalObject.LastIndexOf('_') + 1);
+                                mCollectors[aCollector.mName].SetInRoom(aCurRoom.mName);
+                                mRooms[aCurRoom.mName].mCollectors.Add(aCollector.mName, mCollectors[aCollector.mName]);
+                                mAssignedCollectors.Add(aCollector.mName);
+                            }
+                        }
+                    }
+                    mRooms[aCurRoom.mName].mEnemies = new Dictionary<string, Enemy>();
+                    if(aCurRoom.mEnemies != null)
+                    {
+                        foreach(Enemy aEnemy in aCurRoom.mEnemies.Values)
+                        {
+                            if(!mEnemies.ContainsKey(aEnemy.mName))
+                            {
+                                mEnemies.Add(aEnemy.mName, new Enemy());
+                                mEnemies[aEnemy.mName].mName = aEnemy.mName;
+                                mEnemies[aEnemy.mName].mStory = aEnemy.mStory;
+                                mEnemies[aEnemy.mName].mLife = aEnemy.mLife;
+                                mEnemies[aEnemy.mName].mUpdateStory = aEnemy.mUpdateStory;
+                                mEnemies[aEnemy.mName].mBlockStory = aEnemy.mBlockStory;
+                                mEnemies[aEnemy.mName].mEndStory = aEnemy.mEndStory;
+                                mEnemies[aEnemy.mName].mIsInteractable = aEnemy.mIsInteractable;
+                                mEnemies[aEnemy.mName].mIsVisible = aEnemy.mIsVisible;
+                                mEnemies[aEnemy.mName].mUpdatableObjectsWithType = null;
+                                mEnemies[aEnemy.mName].mUpdatableObjects = GetUpdatableObjectsFromType(aEnemy.mUpdatableObjectsWithType);
+                                mEnemies[aEnemy.mName].mConditionalObject = aEnemy.mConditionalObject.Substring(aEnemy.mConditionalObject.LastIndexOf('_') + 1);
+                                mEnemies[aEnemy.mName].SetInRoom(aCurRoom.mName);
+                                mRooms[aCurRoom.mName].mEnemies.Add(aEnemy.mName, mEnemies[aEnemy.mName]);
+                                mAssignedEnemies.Add(aEnemy.mName);
+                            }
+                        }
+                    }
+                    mRooms[aCurRoom.mName].mKillZones = new Dictionary<string, KillZone>();
+                    if(aCurRoom.mKillZones != null)
+                    {
+                        foreach (KillZone aKillZone in aCurRoom.mKillZones.Values)
+                        {
+                            if (!mKillZones.ContainsKey(aKillZone.mName))
+                            {
+                                mKillZones.Add(aKillZone.mName, new KillZone());
+                                mKillZones[aKillZone.mName].mName = aKillZone.mName;
+                                mKillZones[aKillZone.mName].mStory = aKillZone.mStory;
+                                mKillZones[aKillZone.mName].mUpdateStory = aKillZone.mUpdateStory;
+                                mKillZones[aKillZone.mName].mEndStory = aKillZone.mEndStory;
+                                mKillZones[aKillZone.mName].mIsInteractable = aKillZone.mIsInteractable;
+                                mKillZones[aKillZone.mName].mIsVisible = aKillZone.mIsVisible;
+                                mKillZones[aKillZone.mName].mUpdatableObjectsWithType = null;
+                                mKillZones[aKillZone.mName].mUpdatableObjects = GetUpdatableObjectsFromType(aKillZone.mUpdatableObjectsWithType);
+                                mKillZones[aKillZone.mName].mConditionalObject = "";
+                                if (aKillZone.mConditionalObject != null)
+                                {
+                                    mKillZones[aKillZone.mName].mConditionalObject = aKillZone.mConditionalObject.Substring(aKillZone.mConditionalObject.LastIndexOf('_') + 1);
+                                }
+                                mKillZones[aKillZone.mName].SetInRoom(aCurRoom.mName);
+                                mRooms[aCurRoom.mName].mKillZones.Add(aKillZone.mName, mKillZones[aKillZone.mName]);
+                                mAssignedKillZones.Add(aKillZone.mName);
+                            }
+                        }
+                    }
+
+                }
+            }
         }
 
         public static bool IsConditionalPresent(string pConditional)
