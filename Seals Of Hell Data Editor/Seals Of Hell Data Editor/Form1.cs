@@ -886,18 +886,20 @@ namespace Seals_Of_Hell_Data_Editor
                 }
                 Region aRoomRegion = null;
                 string aRoomOldName = "";
+                Dictionary<string, Gateway> aOldGWays = null;
+                Dictionary<string, Portal> aOldPortal = null;
                 if (mSelectedRoom != null && mSelectedRoom.IsInRegion())
                 {
                     aRoomRegion = mGameDetails.mRegionDetails[mSelectedRoom.GetInRegion()];
                     aRoomOldName = mSelectedRoom.mName;
+                    aOldGWays = mSelectedRoom.mGateways;
+                    aOldPortal = mSelectedRoom.mPortals;
                 }
                 DeleteSelectedRoom();
-                mSelectedRoom = new Room
-                {
-                    mName = this.roomNameTextBox.Text,
-                    mStory = this.roomStoryTextBox.Text
-                };
-                if(this.roomCollectorsList.SelectedItems.Count > 0)
+                mSelectedRoom = new Room();
+                mSelectedRoom.mName = this.roomNameTextBox.Text;
+                mSelectedRoom.mStory = this.roomStoryTextBox.Text;
+                if (this.roomCollectorsList.SelectedItems.Count > 0)
                 {
                     foreach(var aSelection in this.roomCollectorsList.SelectedItems)
                     {
@@ -947,6 +949,22 @@ namespace Seals_Of_Hell_Data_Editor
                     aRoomRegion.mRooms.Remove(aRoomOldName);
                     aRoomRegion.mRooms.Add(mSelectedRoom.mName, mSelectedRoom);
                     mSelectedRoom.SetInRegion(aRoomRegion.mName);
+                    foreach(Gateway aGway in aOldGWays.Values)
+                    {
+                        mSelectedRoom.mGateways.Add(aGway.mName, aGway);
+                        if (aGway.mRoom1.Equals(aRoomOldName))
+                        {
+                            aGway.mRoom1 = mSelectedRoom.mName;
+                        }
+                        else
+                        {
+                            aGway.mRoom2 = mSelectedRoom.mName;
+                        }
+                    }
+                    foreach(Portal aPortal in aOldPortal.Values)
+                    {
+                        mSelectedRoom.mPortals.Add(aPortal.mName, aPortal);
+                    }
                 }
                 mGameDetails.AddRoom(mSelectedRoom);
                 mSelectedRoom = null;
