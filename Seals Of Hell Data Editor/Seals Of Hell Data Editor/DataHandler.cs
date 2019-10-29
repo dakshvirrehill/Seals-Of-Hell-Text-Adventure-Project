@@ -76,19 +76,22 @@ namespace Seals_Of_Hell_Data_Editor
 
         #endregion
 
-        public DataHandler()
+        public DataHandler(bool pCreateDefault = false)
         {
-            mName = "Default Game";
-            mStory = "Default Story";
-            mFirstRegion = "Default First Region";
-            mRegionDetails = new Dictionary<string, Region>
+            if(pCreateDefault)
             {
-                { mFirstRegion, new Region() }
+                mName = "Default Game";
+                mStory = "Default Story";
+                mFirstRegion = "Default First Region";
+                mRegionDetails = new Dictionary<string, Region>
+            {
+                { mFirstRegion, new Region(true) }
             };
-            mRegionDetails[mFirstRegion].mName = mFirstRegion;
-            mRegionDetails[mFirstRegion].mRooms[mRegionDetails[mFirstRegion].mEntryRoom].mTreasureCollector = new TreasureCollector();
-            mRegionDetails[mFirstRegion].mRooms[mRegionDetails[mFirstRegion].mEntryRoom].mTreasureCollector.SetInRoom(mRegionDetails[mFirstRegion].mEntryRoom);
-            InitializeImpPrivMembers();
+                mRegionDetails[mFirstRegion].mName = mFirstRegion;
+                mRegionDetails[mFirstRegion].mRooms[mRegionDetails[mFirstRegion].mEntryRoom].mTreasureCollector = new TreasureCollector();
+                mRegionDetails[mFirstRegion].mRooms[mRegionDetails[mFirstRegion].mEntryRoom].mTreasureCollector.SetInRoom(mRegionDetails[mFirstRegion].mEntryRoom);
+                InitializeImpPrivMembers();
+            }
         }
         #region Room
         public List<string> GetRoomNames()
@@ -675,7 +678,7 @@ namespace Seals_Of_Hell_Data_Editor
             List<string> aUpdateObjects = new List<string>();
             foreach (string aObjName in pUpObjsWType.Values)
             {
-                aUpdateObjects.Add(aObjName.Substring(aObjName.LastIndexOf('_') + 1));
+                aUpdateObjects.Add(aObjName.Substring(aObjName.LastIndexOf('_') + 1).ToUpper());
             }
             return aUpdateObjects;
         }
@@ -922,7 +925,8 @@ namespace Seals_Of_Hell_Data_Editor
 
         public void ConvertFromJSON(string pJSON)
         {
-            DataHandler aDataHandler = JsonConvert.DeserializeObject<DataHandler>(pJSON, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            DataHandler aDataHandler = new DataHandler();
+            aDataHandler = JsonConvert.DeserializeObject<DataHandler>(pJSON, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             if(aDataHandler == null)
             {
                 mErrorMessage = "JSON Not in proper formatting";
@@ -964,6 +968,11 @@ namespace Seals_Of_Hell_Data_Editor
                 mRegionDetails[aCurRegion.mName].mRooms = new Dictionary<string, Room>();
                 foreach(Room aCurRoom in aDataHandler.mRegionDetails[aCurRegion.mName].mRooms.Values)
                 {
+                    if(mRooms.ContainsKey(aCurRoom.mName))
+                    {
+                        SetErrorMessage("Room already created " + aCurRoom.mName + " Region = " + aCurRegion.mName);
+                        return;
+                    }
                     mRooms.Add(aCurRoom.mName, new Room());
                     mAssignedRooms.Add(aCurRoom.mName);
                     mRooms[aCurRoom.mName].SetInRegion(aCurRegion.mName);
@@ -983,7 +992,7 @@ namespace Seals_Of_Hell_Data_Editor
                         mRooms[aCurRoom.mName].mTreasureCollector.mTreasures = new List<string>();
                         foreach(string aT in aCurRoom.mTreasureCollector.mTreasures)
                         {
-                            string aTName = aT.Substring(aT.LastIndexOf('_') + 1);
+                            string aTName = aT.Substring(aT.LastIndexOf('_') + 1).ToUpper();
                             mRooms[aCurRoom.mName].mTreasureCollector.mTreasures.Add(aTName);
                             mAssignedGiveables.Add(aTName);
                             if(!aTempPickableVsCond.ContainsKey(aTName))
@@ -1047,7 +1056,7 @@ namespace Seals_Of_Hell_Data_Editor
                                 mCollectors[aCollector.mName].mIsVisible = aCollector.mIsVisible;
                                 mCollectors[aCollector.mName].mUpdatableObjectsWithType = null;
                                 mCollectors[aCollector.mName].mUpdatableObjects = GetUpdatableObjectsFromType(aCollector.mUpdatableObjectsWithType);
-                                mCollectors[aCollector.mName].mConditionalObject = aCollector.mConditionalObject.Substring(aCollector.mConditionalObject.LastIndexOf('_') + 1);
+                                mCollectors[aCollector.mName].mConditionalObject = aCollector.mConditionalObject.Substring(aCollector.mConditionalObject.LastIndexOf('_') + 1).ToUpper();
                                 mAssignedGiveables.Add(mCollectors[aCollector.mName].mConditionalObject);
                                 if (!aTempPickableVsCond.ContainsKey(mCollectors[aCollector.mName].mConditionalObject))
                                 {
@@ -1078,7 +1087,7 @@ namespace Seals_Of_Hell_Data_Editor
                                 mEnemies[aEnemy.mName].mIsVisible = aEnemy.mIsVisible;
                                 mEnemies[aEnemy.mName].mUpdatableObjectsWithType = null;
                                 mEnemies[aEnemy.mName].mUpdatableObjects = GetUpdatableObjectsFromType(aEnemy.mUpdatableObjectsWithType);
-                                mEnemies[aEnemy.mName].mConditionalObject = aEnemy.mConditionalObject.Substring(aEnemy.mConditionalObject.LastIndexOf('_') + 1);
+                                mEnemies[aEnemy.mName].mConditionalObject = aEnemy.mConditionalObject.Substring(aEnemy.mConditionalObject.LastIndexOf('_') + 1).ToUpper();
                                 if (!aTempPickableVsCond.ContainsKey(mEnemies[aEnemy.mName].mConditionalObject))
                                 {
                                     aTempPickableVsCond.Add(mEnemies[aEnemy.mName].mConditionalObject, new List<string>());
@@ -1109,7 +1118,7 @@ namespace Seals_Of_Hell_Data_Editor
                                 mKillZones[aKillZone.mName].mConditionalObject = "";
                                 if (aKillZone.mConditionalObject != null)
                                 {
-                                    mKillZones[aKillZone.mName].mConditionalObject = aKillZone.mConditionalObject.Substring(aKillZone.mConditionalObject.LastIndexOf('_') + 1);
+                                    mKillZones[aKillZone.mName].mConditionalObject = aKillZone.mConditionalObject.Substring(aKillZone.mConditionalObject.LastIndexOf('_') + 1).ToUpper();
                                     if (!aTempPickableVsCond.ContainsKey(mKillZones[aKillZone.mName].mConditionalObject))
                                     {
                                         aTempPickableVsCond.Add(mKillZones[aKillZone.mName].mConditionalObject, new List<string>());
@@ -1164,7 +1173,7 @@ namespace Seals_Of_Hell_Data_Editor
                                 mPickableItems[aPickable.mType][aPickable.mName].mIsVisible = aPickable.mIsVisible;
                                 if(aPickable.mType != PickableItem.Type.Shield)
                                 {
-                                    foreach(string aConditionalOf in aTempPickableVsCond[aPickable.mName])
+                                    foreach (string aConditionalOf in aTempPickableVsCond[aPickable.mName])
                                     {
                                         mPickableItems[aPickable.mType][aPickable.mName].AddConditionalOf(aConditionalOf);
                                     }

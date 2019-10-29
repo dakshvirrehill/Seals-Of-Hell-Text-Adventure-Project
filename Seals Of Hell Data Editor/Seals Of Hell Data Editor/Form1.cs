@@ -24,7 +24,7 @@ namespace Seals_Of_Hell_Data_Editor
         Gateway mSelectedGateway;
         public SealsOfHellMain()
         {
-            mGameDetails = new DataHandler();
+            mGameDetails = new DataHandler(true);
             InitializeComponent();
             this.Text = mGameDetails.mName;
             CleanUpAtEditorChange();
@@ -1780,10 +1780,16 @@ namespace Seals_Of_Hell_Data_Editor
                     {
                         MessageBox.Show(mGameDetails.GetErrorMessage(), "Data Not Valid", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    else
+                    {
+                        CleanUpAtEditorChange();
+                    }
                 }
             }
             catch(Exception aE)
             {
+                DataHandler.SetErrorMessage(aE.Message);
+                MessageBox.Show(mGameDetails.GetErrorMessage(), "Data Not Valid", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Console.WriteLine(aE.StackTrace);
             }
         }
@@ -1798,6 +1804,8 @@ namespace Seals_Of_Hell_Data_Editor
             }
             catch(Exception aE)
             {
+                DataHandler.SetErrorMessage(aE.Message);
+                MessageBox.Show(mGameDetails.GetErrorMessage(), "Data Not Valid", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Console.WriteLine(aE.StackTrace);
             }
         }
