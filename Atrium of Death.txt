@@ -10,6 +10,10 @@ Bribe for the ferryman
 Pale Ring
 The All Powerful Ring of Death
 
+Death Scythe
+The Ultimate Weapon of Destruction
+
+
 The Carpet of Dead Souls
 Made with the flesh of all the reaped souls
 Something below is disshaping the carpet
@@ -18,6 +22,7 @@ Moving the carpet revealed something
 Pit of Darkness
 You see nothing but darkness and hear the burning souls of the damned
 The darkness takes you deeper into the pit of oblivion
+The light from your cloak brings you back and lights up the place
 
 Ghost of Night Crawler
 Notorious Killer and a worse ghost

@@ -1,7 +1,7 @@
 Wand of Power
 The ultimate weapon of power
 
-Key tO bANK
+Key to Bank
 The ultimate weapon of money
 
 Cloak of Love
@@ -33,6 +33,12 @@ Hates your guts, will attack you
 Tries to seduce you into submission
 You didn't give in to your lust. Demon lets you pass
 
+Demon of Dreams
+You feel a sudden drowsy feeling
+You fall into a hypnotism of continuous never ending nightmares
+You didn't give in to your lust. Demon lets you pass
+
+
 Succubus
 The infamous temptress and seductress
 Tries to control you with her lusty flesh and mesmerizing eyes
@@ -42,6 +48,22 @@ She grows tentacles and creeps into the depths of where she came from leaving be
 Desire Room
 Fullfill your every desire by picking your lust
 
+Room of Power
+The all powerful survive
+
+Room of Money
+The wealthy survive
+
+Room of Love
+The lovable survive
+
+Room of Dreams
+The sleepy survive
+
+The Brothel
+The home of the temptress
+
 Brothel of Lust
 Whether it is lust of the flesh or of power, you would give in to your temptations here
 
+Portal between Brothel of Lust and Underworld

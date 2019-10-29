@@ -18,21 +18,28 @@ The kingdom of starvation has begun
 Gates of Starvation
 The only way out is by feeding the needy
 
-Maze of Draught Entry
+Maze of Drought Entry
 The destruction of famine has begun
 
-Maze of Draught Dead End 
+Maze of Drought Dead End 
 Nothing here
 
-Endless Draught Entrance
+Endless Drought Entrance
 The only way to reach famine is go through famine
 
-Maze of Draught 
-Pathway through Draught
+Maze of Drought 
+Pathway through Drought
 
-Maze of Draught Exit
+Maze of Drought Exit
 You have reached the end of draught by famine
 
 Tar Room
 The room of famine
 
+Entry To Drought
+The only way to get to famine
+
+Gateway to Tar
+Starvation and thirst awaits you
+
+Portal between Realm of Famine and Underworld

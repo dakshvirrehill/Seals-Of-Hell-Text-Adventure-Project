@@ -781,8 +781,8 @@ namespace Seals_Of_Hell_Data_Editor
                                     aGateway[aGatewayKey].mPath = aCurrentGateway.mPath;
                                     aGateway[aGatewayKey].mRoom1 = GetRoomObject(aCurrentGateway.mRoom1).GetInRegion() + "_" + aCurrentGateway.mRoom1;
                                     aGateway[aGatewayKey].mRoom2 = GetRoomObject(aCurrentGateway.mRoom2).GetInRegion() + "_" + aCurrentGateway.mRoom2;
-                                    aJSONRoom.mGateways.Add(aGatewayKey, aGateway[aGatewayKey]);
                                 }
+                                aJSONRoom.mGateways.Add(aGatewayKey, aGateway[aGatewayKey]);
                             }
                         }
                         aJSONRoom.mCollectors = null;
@@ -889,7 +889,7 @@ namespace Seals_Of_Hell_Data_Editor
                                 aJSONRoom.mOneInteractionItems[aOIIKey].mIsInteractable = aCurrentOII.mIsInteractable;
                                 aJSONRoom.mOneInteractionItems[aOIIKey].mIsVisible = aCurrentOII.mIsVisible;
                                 aJSONRoom.mOneInteractionItems[aOIIKey].mConditionalObject = null;
-                                if(aCurrentOII.mType == OneInteractionItem.Type.Moveable || aCurrentOII.mType == OneInteractionItem.Type.Playable)
+                                if(aCurrentOII.mType != OneInteractionItem.Type.Eatable && aCurrentOII.mUpdatableObjects.Count > 0)
                                 {
                                     aJSONRoom.mOneInteractionItems[aOIIKey].mUpdatableObjectsWithType = GetUpdatableObjectsWithType(aCurrentOII.mUpdatableObjects, aRoomKey, aJSONRegion.mName);
                                 }
@@ -1001,6 +1001,7 @@ namespace Seals_Of_Hell_Data_Editor
                             }
                             aTempPickableVsCond[aTName].Add(aCurRoom.mTreasureCollector.mName);
                         }
+                        mRooms[aCurRoom.mName].mTreasureCollector.SetInRoom(aCurRoom.mName);
                     }
                     mRooms[aCurRoom.mName].mPortals = new Dictionary<string, Portal>();
                     if(aCurRoom.mPortals != null)
@@ -1063,6 +1064,10 @@ namespace Seals_Of_Hell_Data_Editor
                                     aTempPickableVsCond.Add(mCollectors[aCollector.mName].mConditionalObject, new List<string>());
                                 }
                                 aTempPickableVsCond[mCollectors[aCollector.mName].mConditionalObject].Add(aCollector.mName);
+                                if (IsPickableItemPresent(mCollectors[aCollector.mName].mConditionalObject))
+                                {
+                                    GetPickableItem(mCollectors[aCollector.mName].mConditionalObject).AddConditionalOf(aCollector.mName);
+                                }
                                 mCollectors[aCollector.mName].SetInRoom(aCurRoom.mName);
                                 mRooms[aCurRoom.mName].mCollectors.Add(aCollector.mName, mCollectors[aCollector.mName]);
                                 mAssignedCollectors.Add(aCollector.mName);
@@ -1093,6 +1098,10 @@ namespace Seals_Of_Hell_Data_Editor
                                     aTempPickableVsCond.Add(mEnemies[aEnemy.mName].mConditionalObject, new List<string>());
                                 }
                                 aTempPickableVsCond[mEnemies[aEnemy.mName].mConditionalObject].Add(aEnemy.mName);
+                                if (IsPickableItemPresent(mEnemies[aEnemy.mName].mConditionalObject))
+                                {
+                                    GetPickableItem(mEnemies[aEnemy.mName].mConditionalObject).AddConditionalOf(aEnemy.mName);
+                                }
                                 mEnemies[aEnemy.mName].SetInRoom(aCurRoom.mName);
                                 mRooms[aCurRoom.mName].mEnemies.Add(aEnemy.mName, mEnemies[aEnemy.mName]);
                                 mAssignedEnemies.Add(aEnemy.mName);
@@ -1124,6 +1133,10 @@ namespace Seals_Of_Hell_Data_Editor
                                         aTempPickableVsCond.Add(mKillZones[aKillZone.mName].mConditionalObject, new List<string>());
                                     }
                                     aTempPickableVsCond[mKillZones[aKillZone.mName].mConditionalObject].Add(aKillZone.mName);
+                                    if(IsPickableItemPresent(mKillZones[aKillZone.mName].mConditionalObject))
+                                    {
+                                        GetPickableItem(mKillZones[aKillZone.mName].mConditionalObject).AddConditionalOf(aKillZone.mName);
+                                    }
                                 }
                                 mKillZones[aKillZone.mName].SetInRoom(aCurRoom.mName);
                                 mRooms[aCurRoom.mName].mKillZones.Add(aKillZone.mName, mKillZones[aKillZone.mName]);
@@ -1173,10 +1186,14 @@ namespace Seals_Of_Hell_Data_Editor
                                 mPickableItems[aPickable.mType][aPickable.mName].mIsVisible = aPickable.mIsVisible;
                                 if(aPickable.mType != PickableItem.Type.Shield)
                                 {
-                                    foreach (string aConditionalOf in aTempPickableVsCond[aPickable.mName])
+                                    if(aTempPickableVsCond.ContainsKey(aPickable.mName))
                                     {
-                                        mPickableItems[aPickable.mType][aPickable.mName].AddConditionalOf(aConditionalOf);
+                                        foreach (string aConditionalOf in aTempPickableVsCond[aPickable.mName])
+                                        {
+                                            mPickableItems[aPickable.mType][aPickable.mName].AddConditionalOf(aConditionalOf);
+                                        }
                                     }
+                                    
                                 }
                                 mPickableItems[aPickable.mType][aPickable.mName].SetInRoom(aCurRoom.mName);
                                 mRooms[aCurRoom.mName].mPickableItems.Add(aPickable.mName, mPickableItems[aPickable.mType][aPickable.mName]);
