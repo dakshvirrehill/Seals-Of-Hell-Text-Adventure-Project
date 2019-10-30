@@ -15,6 +15,7 @@ public:
 	IUpdatable() : mAttackStory(""), mDeathStory(""),mConditionalObject(nullptr),mCondUpdtObjs() {}
 	~IUpdatable() {}
 	void initialize(std::string, std::string);
+	virtual void onEnable() = 0;
 	virtual void update() = 0;
 	virtual void endUpdate() = 0;
 	std::string& getAttackStory() { return mAttackStory; }
@@ -23,5 +24,6 @@ public:
 	std::list<IInteractable*>& getConditionUpdateObjects() { return mCondUpdtObjs; }
 	void setConditionalObject(IInteractable* pConditionalObject) { mConditionalObject = pConditionalObject; }
 	void addConditionUpdateObjects(IInteractable* pCondUpdObjs) { mCondUpdtObjs.push_back(pCondUpdObjs); }
+	void resetConditionals();
 };
 #endif

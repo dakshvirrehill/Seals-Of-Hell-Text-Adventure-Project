@@ -1,8 +1,16 @@
 #include "Collector.h"
 #include "PickableItem.h"
+#include "GameManager.h"
 #include<iostream>
 Collector::~Collector()
 {
+}
+void Collector::onEnable()
+{
+	if (isInteractable())
+	{
+		resetConditionals();
+	}
 }
 void Collector::update()
 {
@@ -16,18 +24,7 @@ void Collector::update()
 		{
 			std::cout << getName() << std::endl;
 			std::cout << getAttackStory() << std::endl;
-			bool aVal = false;
-			for (auto& iter : getConditionUpdateObjects())
-			{
-				if (iter->isInteractable())
-				{
-					iter->makeInteractable(aVal);
-				}
-				if (iter->isVisible())
-				{
-					iter->makeVisible(aVal);
-				}
-			}
+			resetConditionals();
 		}
 	}
 }
@@ -45,6 +42,7 @@ void Collector::endUpdate()
 		iter->makeInteractable(aVal);
 		iter->makeVisible(aVal);
 	}
+	GameManager::look();
 }
 
 void Collector::giveObject(IInteractable* pGiveable)

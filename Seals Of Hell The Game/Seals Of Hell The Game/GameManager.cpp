@@ -25,7 +25,10 @@ void GameManager::initialize(Region* pCurrentRegion, Room* pCurrentRoom)
 {
 	mCurrentRegion = pCurrentRegion;
 	mCurrentRoom = pCurrentRoom;
-	mCurrentPlayer = new PlayerManager();
+	if (mCurrentPlayer == nullptr)
+	{
+		mCurrentPlayer = new PlayerManager();
+	}
 }
 
 void GameManager::StartGame(std::string& pFileName)
@@ -33,23 +36,24 @@ void GameManager::StartGame(std::string& pFileName)
 	mFileName = pFileName;
 	json::JSON aJSONObj = SaveGameManager::instance().loadGame(mFileName);
 	GameLoader::instance().initializeNewGame(aJSONObj);
-	//intialize CommandManager
 	CommandManager::instance().initialize();
+	mGamePlay = true;
 }
 
 void GameManager::GameLoop()
 {
 	std::cout << "Welcome to " << getName() << std::endl << std::endl;
-	std::cout << getStory() << std::endl << std::endl << std::endl;
+	std::cout << getStory() << std::endl << std::endl;
 	std::cout << "To interact with the game, type commands..." << std::endl;
 	std::cout << "Type HELP to see all the commands..." << std::endl;
 	std::cout << "Type SAVE to save the game..." << std::endl;
 	std::cout << "Type EXIT to exit the game... (The game autosaves on exit and gameover)" << std::endl << std::endl;
 	look();
-	std::cout << std::endl << "What do you do?" << std::endl << std::endl;
+	mCurrentRoom->enterRoom();
 	std::string aCommandStr = "";
 	do
 	{
+		std::cout << std::endl << "What do you do?" << std::endl << std::endl;
 		std::getline(std::cin, aCommandStr);
 		if (!CommandManager::instance().runCommand(aCommandStr))
 		{
@@ -63,12 +67,14 @@ void GameManager::setCurrentRegion(Region* pCurrentRegion)
 {
 	mCurrentRegion = pCurrentRegion;
 	mCurrentRoom = mCurrentRegion->getStartingRoom();
+	mCurrentRoom->enterRoom();
 	look();
 }
 
 void GameManager::setCurrentRoom(Room* pRoom)
 {
 	mCurrentRoom = pRoom;
+	mCurrentRoom->enterRoom();
 	mCurrentRoom->look();
 }
 
@@ -156,4 +162,13 @@ bool GameManager::hasShield()
 bool GameManager::hasInInventory(IInteractable* pInvObj)
 {
 	return mCurrentPlayer->hasInInventory(pInvObj);
+}
+
+void GameManager::addNewShield(std::string pShieldName)
+{
+	if (mCurrentPlayer == nullptr)
+	{
+		mCurrentPlayer = new PlayerManager();
+	}
+	mCurrentPlayer->addNewShield(pShieldName);
 }

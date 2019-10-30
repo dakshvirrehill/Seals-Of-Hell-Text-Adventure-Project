@@ -8,6 +8,7 @@ class KillZone : public IUpdatable,public IInteractable
 public:
 	KillZone() : IUpdatable(), IInteractable() {}
 	~KillZone();
+	void onEnable() override;
 	void update() override;
 	void endUpdate() override;
 };

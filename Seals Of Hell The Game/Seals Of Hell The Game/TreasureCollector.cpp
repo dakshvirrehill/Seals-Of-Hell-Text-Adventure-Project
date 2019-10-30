@@ -9,6 +9,14 @@ TreasureCollector::~TreasureCollector()
 {
 }
 
+void TreasureCollector::onEnable()
+{
+	if (!isInteractable())
+	{
+		resetConditionals();
+	}
+}
+
 void TreasureCollector::update()
 {
 	if (!isInteractable())
@@ -26,6 +34,10 @@ void TreasureCollector::update()
 		{
 			endUpdate();
 		}
+		else
+		{
+			resetConditionals();
+		}
 	}
 	else
 	{
@@ -40,19 +52,20 @@ void TreasureCollector::endUpdate()
 {
 	bool aItr = true;
 	makeInteractable(aItr);
+	std::cout << getAttackStory() << std::endl << std::endl;
 	for (auto& iter : getConditionUpdateObjects())
 	{
-		iter->makeInteractable(aItr);
+		iter->makeVisible(aItr);
 		iter->makeInteractable(aItr);
 	}
-	std::cout << getAttackStory() << std::endl << std::endl;
+	GameManager::look();
 }
 
 void TreasureCollector::giveObject(IInteractable* pGiveable)
 {
 	if (isInteractable())
 	{
-		if (mTreasures.find(pGiveable->getName()) != mTreasures.end())
+		if (mTreasures.count(pGiveable->getName()) != 0)
 		{
 			PickableItem* aGiveable = (PickableItem*)pGiveable;
 			aGiveable->objectGiven();

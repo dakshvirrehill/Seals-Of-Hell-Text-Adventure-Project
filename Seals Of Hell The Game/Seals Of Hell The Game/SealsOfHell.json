@@ -14,7 +14,7 @@
           "mTreasureCollector": {
             "mKey": "Underworld_Hell's Gates_THE GATES OF HELL",
             "mTreasures": [
-              "Atrium of Death_Aura of Death_Pale Ring",
+              "Atrium of Death_Aura of Death_PALE RING",
               "Brothel of Lust_The Brothel_PURPLE RING",
               "Manacles of Pestilence_Pestilence's White Room_WHITE RING",
               "Realm of Famine_Tar Room_BLACK RING",
@@ -38,9 +38,9 @@
               "mBlockStory": "The shield protects you from the devil's stare",
               "mName": "LUCIFER MORNINGSTAR",
               "mStory": "The devil himself, guarding the gates of hell",
-              "mIsVisible": true,
-              "mIsInteractable": true,
-              "mConditionalObject": "Abyss Of War_War Memorial_DAMNED SWORD",
+              "mIsVisible": false,
+              "mIsInteractable": false,
+              "mConditionalObject": "Atrium of Death_Aura of Death_DEATH SCYTHE",
               "mUpdateStory": "Stares deep into your soul, killing your strength from within",
               "mEndStory": "The devil frowns and returns to the depths of hell planning and plotting his next return",
               "mUpdatableObjects": [],
@@ -96,7 +96,7 @@
               "mActiveRegion": "Underworld",
               "mConnectedRegion": "Brothel of Lust"
             },
-            "Atrium of Death Portal": {
+            "ATRIUM OF DEATH PORTAL": {
               "mName": "ATRIUM OF DEATH PORTAL",
               "mStory": "Portal between Atrium of Death and Underworld",
               "mIsVisible": true,
@@ -1794,7 +1794,7 @@
           "mName": "Land of the Living",
           "mStory": "Only the living shall reside here",
           "mOneInteractionItems": {
-            "Atrium of Death_Land of the Living_The Carpet of Dead Souls": {
+            "Atrium of Death_Land of the Living_THE CARPET OF DEAD SOULS": {
               "mType": 0,
               "mName": "THE CARPET OF DEAD SOULS",
               "mStory": "Made with the flesh of all the reaped souls",
@@ -1804,19 +1804,19 @@
               "mEndStory": "Moving the carpet revealed something",
               "mUpdatableObjects": [],
               "mUpdatableObjectsWithType": {
-                "Atrium of Death_Land of the Living_Proton Pack": "PickableItem"
+                "Atrium of Death_Land of the Living_PROTON PACK": "PickableItem"
               }
             }
           },
           "mPickableItems": {
-            "Atrium of Death_Land of the Living_Proton Pack": {
+            "Atrium of Death_Land of the Living_PROTON PACK": {
               "mName": "PROTON PACK",
               "mStory": "Only weapon strong enough to take down ghosts",
               "mIsVisible": false,
               "mIsInteractable": false,
               "mType": 0
             },
-            "Atrium of Death_Land of the Living_Cloak of Light": {
+            "Atrium of Death_Land of the Living_CLOAK OF LIGHT": {
               "mName": "CLOAK OF LIGHT",
               "mStory": "Brings light to the darkest of places",
               "mIsVisible": true,
@@ -1825,7 +1825,7 @@
             }
           },
           "mPortals": {
-            "Atrium of Death Portal": {
+            "ATRIUM OF DEATH PORTAL": {
               "mName": "ATRIUM OF DEATH PORTAL",
               "mStory": "Portal between Atrium of Death and Underworld",
               "mIsVisible": true,
@@ -1835,7 +1835,7 @@
             }
           },
           "mGateways": {
-            "Atrium of Death_Darkness falls": {
+            "Atrium of Death_DARKNESS FALLS": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "DARKNESS FALLS",
@@ -1850,24 +1850,24 @@
           "mName": "Maze of Undead Entry",
           "mStory": "Darkness and eerieness creeps in",
           "mKillZones": {
-            "Atrium of Death_Maze of Undead Entry_Pit of Darkness": {
+            "Atrium of Death_Maze of Undead Entry_PIT OF DARKNESS": {
               "mName": "PIT OF DARKNESS",
               "mStory": "You see nothing but darkness and hear the burning souls of the damned",
               "mIsVisible": true,
               "mIsInteractable": true,
-              "mConditionalObject": "Atrium of Death_Land of the Living_Cloak of Light",
+              "mConditionalObject": "Atrium of Death_Land of the Living_CLOAK OF LIGHT",
               "mUpdateStory": "The darkness takes you deeper into the pit of oblivion",
               "mEndStory": "The light from your cloak brings you back and lights up the place",
               "mUpdatableObjects": [],
               "mUpdatableObjectsWithType": {
-                "Atrium of Death_Darkness falls": "Gateway",
-                "Atrium of Death_Undead Maze 1": "Gateway",
-                "Atrium of Death_Undead Maze 2": "Gateway"
+                "Atrium of Death_DARKNESS FALLS": "Gateway",
+                "Atrium of Death_UNDEAD MAZE 1": "Gateway",
+                "Atrium of Death_UNDEAD MAZE 2": "Gateway"
               }
             }
           },
           "mGateways": {
-            "Atrium of Death_Darkness falls": {
+            "Atrium of Death_DARKNESS FALLS": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "DARKNESS FALLS",
@@ -1876,7 +1876,7 @@
               "mRoom1": "Atrium of Death_Land of the Living",
               "mRoom2": "Atrium of Death_Maze of Undead Entry"
             },
-            "Atrium of Death_Undead Maze 1": {
+            "Atrium of Death_UNDEAD MAZE 1": {
               "mIsVisible": false,
               "mIsInteractable": false,
               "mName": "UNDEAD MAZE 1",
@@ -1885,7 +1885,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead Entry",
               "mRoom2": "Atrium of Death_Maze of Undead 1"
             },
-            "Atrium of Death_Undead Maze 2": {
+            "Atrium of Death_UNDEAD MAZE 2": {
               "mIsVisible": false,
               "mIsInteractable": false,
               "mName": "UNDEAD MAZE 2",
@@ -1900,7 +1900,7 @@
           "mName": "Maze of Undead 1",
           "mStory": "There is a sudden increase in darkness",
           "mGateways": {
-            "Atrium of Death_Undead Maze 1": {
+            "Atrium of Death_UNDEAD MAZE 1": {
               "mIsVisible": false,
               "mIsInteractable": false,
               "mName": "UNDEAD MAZE 1",
@@ -1909,7 +1909,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead Entry",
               "mRoom2": "Atrium of Death_Maze of Undead 1"
             },
-            "Atrium of Death_Undead Maze 6": {
+            "Atrium of Death_UNDEAD MAZE 6": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 6",
@@ -1924,7 +1924,7 @@
           "mName": "Maze of Undead 2",
           "mStory": "There is a sudden increase in eerieness",
           "mGateways": {
-            "Atrium of Death_Undead Maze 2": {
+            "Atrium of Death_UNDEAD MAZE 2": {
               "mIsVisible": false,
               "mIsInteractable": false,
               "mName": "UNDEAD MAZE 2",
@@ -1933,7 +1933,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead Entry",
               "mRoom2": "Atrium of Death_Maze of Undead 2"
             },
-            "Atrium of Death_Undead Maze 3": {
+            "Atrium of Death_UNDEAD MAZE 3": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 3",
@@ -1942,7 +1942,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead 3",
               "mRoom2": "Atrium of Death_Maze of Undead 2"
             },
-            "Atrium of Death_Undead Maze 5": {
+            "Atrium of Death_UNDEAD MAZE 5": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 5",
@@ -1957,7 +1957,7 @@
           "mName": "Maze of Undead Dead End 1",
           "mStory": "Nothing here",
           "mGateways": {
-            "Atrium of Death_Undead Maze 5": {
+            "Atrium of Death_UNDEAD MAZE 5": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 5",
@@ -1972,25 +1972,25 @@
           "mName": "Maze of Undead 3",
           "mStory": "Something creepy awaits",
           "mEnemies": {
-            "Atrium of Death_Maze of Undead 3_Ghost of Night Crawler": {
+            "Atrium of Death_Maze of Undead 3_GHOST OF NIGHT CRAWLER": {
               "mLife": 1,
               "mBlockStory": "The shield creates an impenetrable force field around you",
               "mName": "GHOST OF NIGHT CRAWLER",
               "mStory": "Notorious Killer and a worse ghost",
               "mIsVisible": true,
               "mIsInteractable": true,
-              "mConditionalObject": "Atrium of Death_Land of the Living_Proton Pack",
+              "mConditionalObject": "Atrium of Death_Land of the Living_PROTON PACK",
               "mUpdateStory": "Tries to take your living body",
               "mEndStory": "The ghost vanishes into thin air",
               "mUpdatableObjects": [],
               "mUpdatableObjectsWithType": {
-                "Atrium of Death_Undead Maze 3": "Gateway",
-                "Atrium of Death_Undead Maze 4": "Gateway"
+                "Atrium of Death_UNDEAD MAZE 3": "Gateway",
+                "Atrium of Death_UNDEAD MAZE 4": "Gateway"
               }
             }
           },
           "mGateways": {
-            "Atrium of Death_Undead Maze 3": {
+            "Atrium of Death_UNDEAD MAZE 3": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 3",
@@ -1999,7 +1999,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead 3",
               "mRoom2": "Atrium of Death_Maze of Undead 2"
             },
-            "Atrium of Death_Undead Maze 4": {
+            "Atrium of Death_UNDEAD MAZE 4": {
               "mIsVisible": false,
               "mIsInteractable": false,
               "mName": "UNDEAD MAZE 4",
@@ -2014,7 +2014,7 @@
           "mName": "Maze of Undead Dead End 2",
           "mStory": "Something valuable is kept here",
           "mPickableItems": {
-            "Atrium of Death_Maze of Undead Dead End 2_Death Coin": {
+            "Atrium of Death_Maze of Undead Dead End 2_DEATH COIN": {
               "mName": "DEATH COIN",
               "mStory": "Bribe for the ferryman",
               "mIsVisible": true,
@@ -2023,7 +2023,7 @@
             }
           },
           "mGateways": {
-            "Atrium of Death_Undead Maze 4": {
+            "Atrium of Death_UNDEAD MAZE 4": {
               "mIsVisible": false,
               "mIsInteractable": false,
               "mName": "UNDEAD MAZE 4",
@@ -2038,7 +2038,7 @@
           "mName": "Maze of Undead 4",
           "mStory": "Increasing darkness and feeling of impending doom",
           "mGateways": {
-            "Atrium of Death_Undead Maze 6": {
+            "Atrium of Death_UNDEAD MAZE 6": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 6",
@@ -2047,7 +2047,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead 1",
               "mRoom2": "Atrium of Death_Maze of Undead 4"
             },
-            "Atrium of Death_Undead Maze 7": {
+            "Atrium of Death_UNDEAD MAZE 7": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 7",
@@ -2062,7 +2062,7 @@
           "mName": "Maze of Undead 5",
           "mStory": "You can hear the burning souls of the damned",
           "mGateways": {
-            "Atrium of Death_Undead Maze 7": {
+            "Atrium of Death_UNDEAD MAZE 7": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 7",
@@ -2071,7 +2071,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead 5",
               "mRoom2": "Atrium of Death_Maze of Undead 4"
             },
-            "Atrium of Death_Undead Maze 8": {
+            "Atrium of Death_UNDEAD MAZE 8": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 8",
@@ -2086,7 +2086,7 @@
           "mName": "Maze of Undead 6",
           "mStory": "The eerieness is back",
           "mGateways": {
-            "Atrium of Death_Undead Maze 8": {
+            "Atrium of Death_UNDEAD MAZE 8": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 8",
@@ -2095,7 +2095,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead 5",
               "mRoom2": "Atrium of Death_Maze of Undead 6"
             },
-            "Atrium of Death_Undead Maze 9": {
+            "Atrium of Death_UNDEAD MAZE 9": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 9",
@@ -2104,7 +2104,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead 8",
               "mRoom2": "Atrium of Death_Maze of Undead 6"
             },
-            "Atrium of Death_Undead Maze 10": {
+            "Atrium of Death_UNDEAD MAZE 10": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 10",
@@ -2119,7 +2119,7 @@
           "mName": "Maze of Undead 7",
           "mStory": "The eerieness increases",
           "mGateways": {
-            "Atrium of Death_Undead Maze 10": {
+            "Atrium of Death_UNDEAD MAZE 10": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 10",
@@ -2128,7 +2128,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead 6",
               "mRoom2": "Atrium of Death_Maze of Undead 7"
             },
-            "Atrium of Death_Undead Maze 11": {
+            "Atrium of Death_UNDEAD MAZE 11": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 11",
@@ -2143,24 +2143,24 @@
           "mName": "Maze of Undead Dead End 3",
           "mStory": "Something creepy awaits",
           "mEnemies": {
-            "Atrium of Death_Maze of Undead Dead End 3_Ghost of Ted Bundy": {
+            "Atrium of Death_Maze of Undead Dead End 3_GHOST OF TED BUNDY": {
               "mLife": 1,
               "mBlockStory": "The shield creates an impenetrable force field around you",
               "mName": "GHOST OF TED BUNDY",
               "mStory": "Killed over 30 women just for fun. Wants to have fun after death too.",
               "mIsVisible": true,
               "mIsInteractable": true,
-              "mConditionalObject": "Atrium of Death_Land of the Living_Proton Pack",
+              "mConditionalObject": "Atrium of Death_Land of the Living_PROTON PACK",
               "mUpdateStory": "Tries to take your living body",
               "mEndStory": "The ghost vanishes into thin air",
               "mUpdatableObjects": [],
               "mUpdatableObjectsWithType": {
-                "Atrium of Death_Undead Maze 11": "Gateway"
+                "Atrium of Death_UNDEAD MAZE 11": "Gateway"
               }
             }
           },
           "mGateways": {
-            "Atrium of Death_Undead Maze 11": {
+            "Atrium of Death_UNDEAD MAZE 11": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 11",
@@ -2175,7 +2175,7 @@
           "mName": "Maze of Undead 8",
           "mStory": "The eerieness decreases",
           "mGateways": {
-            "Atrium of Death_Undead Maze 9": {
+            "Atrium of Death_UNDEAD MAZE 9": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 9",
@@ -2184,7 +2184,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead 8",
               "mRoom2": "Atrium of Death_Maze of Undead 6"
             },
-            "Atrium of Death_Undead Maze 12": {
+            "Atrium of Death_UNDEAD MAZE 12": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 12",
@@ -2199,7 +2199,7 @@
           "mName": "Maze of Undead 9",
           "mStory": "Both eerieness and impending doom creep up on you",
           "mGateways": {
-            "Atrium of Death_Undead Maze 12": {
+            "Atrium of Death_UNDEAD MAZE 12": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 12",
@@ -2208,7 +2208,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead 8",
               "mRoom2": "Atrium of Death_Maze of Undead 9"
             },
-            "Atrium of Death_Undead Maze 13": {
+            "Atrium of Death_UNDEAD MAZE 13": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 13",
@@ -2223,25 +2223,25 @@
           "mName": "Maze of Undead 10",
           "mStory": "Something creepy awaits you",
           "mEnemies": {
-            "Atrium of Death_Maze of Undead 10_Ghost of Jack The Ripper": {
+            "Atrium of Death_Maze of Undead 10_GHOST OF JACK THE RIPPER": {
               "mLife": 1,
               "mBlockStory": "The shield creates an impenetrable force field around you",
               "mName": "GHOST OF JACK THE RIPPER",
               "mStory": "One of the most gruesome killers of all time, now after you",
               "mIsVisible": true,
               "mIsInteractable": true,
-              "mConditionalObject": "Atrium of Death_Land of the Living_Proton Pack",
+              "mConditionalObject": "Atrium of Death_Land of the Living_PROTON PACK",
               "mUpdateStory": "Tries to take your living body",
               "mEndStory": "The ghost vanishes into thin air",
               "mUpdatableObjects": [],
               "mUpdatableObjectsWithType": {
-                "Atrium of Death_Undead Maze 13": "Gateway",
-                "Atrium of Death_Undead Maze 14": "Gateway"
+                "Atrium of Death_UNDEAD MAZE 13": "Gateway",
+                "Atrium of Death_UNDEAD MAZE 14": "Gateway"
               }
             }
           },
           "mGateways": {
-            "Atrium of Death_Undead Maze 13": {
+            "Atrium of Death_UNDEAD MAZE 13": {
               "mIsVisible": true,
               "mIsInteractable": true,
               "mName": "UNDEAD MAZE 13",
@@ -2250,7 +2250,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead 9",
               "mRoom2": "Atrium of Death_Maze of Undead 10"
             },
-            "Atrium of Death_Undead Maze 14": {
+            "Atrium of Death_UNDEAD MAZE 14": {
               "mIsVisible": false,
               "mIsInteractable": false,
               "mName": "UNDEAD MAZE 14",
@@ -2265,23 +2265,23 @@
           "mName": "Maze of Undead Exit",
           "mStory": "Only the dead can go ahead of this",
           "mCollectors": {
-            "Atrium of Death_Maze of Undead Exit_Ferryman": {
+            "Atrium of Death_Maze of Undead Exit_FERRYMAN": {
               "mName": "FERRYMAN",
               "mStory": "Ferry's the dead souls... Could be bribed to take the living",
               "mIsVisible": true,
               "mIsInteractable": true,
-              "mConditionalObject": "Atrium of Death_Maze of Undead Dead End 2_Death Coin",
+              "mConditionalObject": "Atrium of Death_Maze of Undead Dead End 2_DEATH COIN",
               "mUpdateStory": "Can't let you pass unless you die",
               "mEndStory": "Accepts your bribe and ferry's you to death",
               "mUpdatableObjects": [],
               "mUpdatableObjectsWithType": {
-                "Atrium of Death_Undead Maze 14": "Gateway",
-                "Atrium of Death_Ferry To Death": "Gateway"
+                "Atrium of Death_UNDEAD MAZE 14": "Gateway",
+                "Atrium of Death_FERRY TO DEATH": "Gateway"
               }
             }
           },
           "mGateways": {
-            "Atrium of Death_Undead Maze 14": {
+            "Atrium of Death_UNDEAD MAZE 14": {
               "mIsVisible": false,
               "mIsInteractable": false,
               "mName": "UNDEAD MAZE 14",
@@ -2290,7 +2290,7 @@
               "mRoom1": "Atrium of Death_Maze of Undead Exit",
               "mRoom2": "Atrium of Death_Maze of Undead 10"
             },
-            "Atrium of Death_Ferry To Death": {
+            "Atrium of Death_FERRY TO DEATH": {
               "mIsVisible": false,
               "mIsInteractable": false,
               "mName": "FERRY TO DEATH",
@@ -2305,7 +2305,7 @@
           "mName": "Aura of Death",
           "mStory": "No living being can survive in this realm",
           "mEnemies": {
-            "Atrium of Death_Aura of Death_Pale Horseman": {
+            "Atrium of Death_Aura of Death_PALE HORSEMAN": {
               "mLife": 2,
               "mBlockStory": "The shield blocks the scythe with tremendous effort",
               "mName": "PALE HORSEMAN",
@@ -2317,22 +2317,22 @@
               "mEndStory": "Rides on the horse, laughing and knowing that this wasn't the end of the apocalypse. Left behind something powerful",
               "mUpdatableObjects": [],
               "mUpdatableObjectsWithType": {
-                "Atrium of Death_Aura of Death_Pale Ring": "PickableItem",
-                "Atrium of Death_Aura of Death_Death Scythe": "PickableItem",
-                "Atrium of Death Portal": "Portal",
-                "Atrium of Death_Ferry To Death": "Gateway"
+                "Atrium of Death_Aura of Death_PALE RING": "PickableItem",
+                "Atrium of Death_Aura of Death_DEATH SCYTHE": "PickableItem",
+                "ATRIUM OF DEATH PORTAL": "Portal",
+                "Atrium of Death_FERRY TO DEATH": "Gateway"
               }
             }
           },
           "mPickableItems": {
-            "Atrium of Death_Aura of Death_Pale Ring": {
+            "Atrium of Death_Aura of Death_PALE RING": {
               "mName": "PALE RING",
               "mStory": "The All Powerful Ring of Death",
               "mIsVisible": false,
               "mIsInteractable": false,
               "mType": 2
             },
-            "Atrium of Death_Aura of Death_Death Scythe": {
+            "Atrium of Death_Aura of Death_DEATH SCYTHE": {
               "mName": "DEATH SCYTHE",
               "mStory": "The Ultimate Weapon of Destruction",
               "mIsVisible": false,
@@ -2341,7 +2341,7 @@
             }
           },
           "mPortals": {
-            "Atrium of Death Portal": {
+            "ATRIUM OF DEATH PORTAL": {
               "mName": "ATRIUM OF DEATH PORTAL",
               "mStory": "Portal between Atrium of Death and Underworld",
               "mIsVisible": true,
@@ -2351,7 +2351,7 @@
             }
           },
           "mGateways": {
-            "Atrium of Death_Ferry To Death": {
+            "Atrium of Death_FERRY TO DEATH": {
               "mIsVisible": false,
               "mIsInteractable": false,
               "mName": "FERRY TO DEATH",

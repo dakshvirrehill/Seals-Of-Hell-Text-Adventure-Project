@@ -11,6 +11,7 @@ class TreasureCollector : public IInteractable , public IUpdatable
 public:
 	TreasureCollector() : IInteractable(),IUpdatable(),mTreasures() {}
 	~TreasureCollector();
+	void onEnable() override;
 	void update() override;
 	void endUpdate() override;
 	void giveObject(IInteractable*) override;

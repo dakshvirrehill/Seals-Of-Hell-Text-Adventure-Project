@@ -7,18 +7,28 @@ Gateway::~Gateway()
 {
 }
 
-void Gateway::initialize(Room* pCurrentRoom, Room* pConnectedRoom)
+void Gateway::initialize(Room* pCurrentRoom, Room* pConnectedRoom, bool pNotDefault)
 {
 	mCurrentRoom = pCurrentRoom;
 	mConnectedRoom = pConnectedRoom;
-	mInitialized = true;
+	mInitialized = pNotDefault;
+}
+
+void Gateway::setCurrentRoom(Room* pCurrentRoom)
+{
+	if (mCurrentRoom != pCurrentRoom)
+	{
+		Room* aTemp = mCurrentRoom;
+		mCurrentRoom = mConnectedRoom;
+		mConnectedRoom = aTemp;
+	}
 }
 
 void Gateway::lookObject()
 {
-	if (isVisible())
+	if (isVisible() && mCurrentRoom != nullptr)
 	{
-		std::cout << getStory() << " in the " << getName() << " direction." << std::endl;
+		IInteractable::lookObject();
 	}
 }
 

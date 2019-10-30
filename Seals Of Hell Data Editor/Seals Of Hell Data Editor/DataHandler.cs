@@ -104,6 +104,10 @@ namespace Seals_Of_Hell_Data_Editor
             {
                 return mRooms[pRoomName];
             }
+            else if(pRoomName == mRegionDetails[mFirstRegion].mEntryRoom)
+            {
+                return mRegionDetails[mFirstRegion].mRooms[mRegionDetails[mFirstRegion].mEntryRoom];
+            }
             return null;
         }
         public bool IsRoomAssigned(string pRoomName)

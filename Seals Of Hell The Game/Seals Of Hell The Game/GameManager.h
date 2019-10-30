@@ -24,7 +24,6 @@ private:
 		return *this;
 	}
 protected:
-	static void look();
 	static void endGame();
 	static void saveGame();
 	static void inventory();
@@ -34,6 +33,7 @@ public:
 		static GameManager mInstance;
 		return mInstance;
 	}
+	static void look();
 	void initialize(Region*, Room*);
 	void StartGame(std::string&);
 	void GameLoop();
@@ -52,6 +52,9 @@ public:
 	void blockAttack();
 	bool hasShield();
 	bool hasInInventory(IInteractable*);
+	void addNewShield(std::string);
+
+
 	friend class CommandManager;
 };
 #endif

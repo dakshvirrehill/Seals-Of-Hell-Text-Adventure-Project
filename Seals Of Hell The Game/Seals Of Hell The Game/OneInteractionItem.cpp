@@ -1,4 +1,5 @@
 #include "OneInteractionItem.h"
+#include "GameManager.h"
 #include <iostream>
 void OneInteractionItem::initialize(bool pIsMovable, bool pIsPlayable, bool pIsEatable, bool pIsRiddle)
 {
@@ -10,7 +11,7 @@ void OneInteractionItem::initialize(bool pIsMovable, bool pIsPlayable, bool pIsE
 
 void OneInteractionItem::lookObject()
 {
-	if (mIsRiddle)
+	if (mIsRiddle && isVisible())
 	{
 		std::cout << getStory() << std::endl;
 	}
@@ -68,6 +69,14 @@ void OneInteractionItem::answerRiddle()
 	}
 }
 
+void OneInteractionItem::onEnable()
+{
+	if (isInteractable())
+	{
+		resetConditionals();
+	}
+}
+
 void OneInteractionItem::update()
 {
 	if (isInteractable())
@@ -77,18 +86,7 @@ void OneInteractionItem::update()
 			std::cout << getName() << std::endl;
 		}
 		std::cout << getAttackStory() << std::endl;
-		bool aVal = false;
-		for (auto& iter : getConditionUpdateObjects())
-		{
-			if (iter->isInteractable())
-			{
-				iter->makeInteractable(aVal);
-			}
-			if (iter->isVisible())
-			{
-				iter->makeVisible(aVal);
-			}
-		}
+		resetConditionals();
 	}
 }
 
@@ -98,12 +96,14 @@ void OneInteractionItem::endUpdate()
 	std::cout << getDeathStory() << std::endl;
 	bool aInt = false;
 	makeInteractable(aInt);
+	makeVisible(aInt);
 	bool aVal = true;
 	for (auto& iter : getConditionUpdateObjects())
 	{
 		iter->makeInteractable(aVal);
 		iter->makeVisible(aVal);
 	}
+	GameManager::look();
 }
 
 

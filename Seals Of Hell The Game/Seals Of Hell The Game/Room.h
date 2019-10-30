@@ -22,5 +22,6 @@ public:
 	void addGateway(IInteractable*, int, int);
 	void addUpdatable(IUpdatable*);
 	void updateRoom();
+	void enterRoom();
 };
 #endif

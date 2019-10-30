@@ -11,10 +11,11 @@ class Gateway : public IInteractable
 public:
 	Gateway() : IInteractable(), mCurrentRoom(nullptr), mConnectedRoom(nullptr),mInitialized(false) {}
 	~Gateway();
-	void initialize(Room*,Room*);
+	void initialize(Room*,Room*,bool);
+	void setCurrentRoom(Room*);
 	void lookObject() override;
 	void goDirection() override;
 	bool& isInitialized() { return mInitialized; }
-
+	bool isGateway() override{ return mCurrentRoom != nullptr; }
 };
 #endif

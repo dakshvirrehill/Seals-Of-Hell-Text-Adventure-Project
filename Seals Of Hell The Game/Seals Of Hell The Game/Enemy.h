@@ -15,6 +15,7 @@ public:
 	Enemy() : IUpdatable(), IInteractable(), mCanAttack(false), mLife(0), mBlockStory("") {}
 	~Enemy();
 	void initialize(int,std::string);
+	void onEnable() override;
 	void update() override;
 	void attackEnemy(IInteractable*) override;
 	void blockAttack() override;

@@ -18,6 +18,7 @@ public:
 	void playObject() override;
 	void eatObject() override;
 	void answerRiddle() override;
+	void onEnable() override;
 	void update() override;
 	void endUpdate() override;
 };

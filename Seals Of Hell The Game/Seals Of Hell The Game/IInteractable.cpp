@@ -7,12 +7,11 @@ void IInteractable::initialize(bool pIsVisible, bool pIsInteractable)
 }
 void IInteractable::lookObject()
 {
-	if (!mVisible)
+	if (mVisible)
 	{
-		return;
+		std::cout << getName() << std::endl;
+		std::cout << getStory() << std::endl << std::endl;
 	}
-	std::cout << getName() << std::endl;
-	std::cout << getStory() << std::endl << std::endl;
 }
 void IInteractable::teleportRegion()
 {

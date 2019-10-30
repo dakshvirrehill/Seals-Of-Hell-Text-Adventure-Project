@@ -13,6 +13,14 @@ void Enemy::initialize(int pLife, std::string pBlockStory)
 	mCanAttack = true;
 }
 
+void Enemy::onEnable()
+{
+	if (isInteractable() && mLife > 0)
+	{
+		resetConditionals();
+	}
+}
+
 void Enemy::update()
 {
 	if (!isInteractable())
@@ -29,18 +37,7 @@ void Enemy::update()
 		{
 			std::cout << getName() << std::endl;
 			std::cout << getAttackStory() << std::endl;
-			bool aVal = false;
-			for (auto& iter : getConditionUpdateObjects())
-			{
-				if (iter->isInteractable())
-				{
-					iter->makeInteractable(aVal);
-				}
-				if (iter->isVisible())
-				{
-					iter->makeVisible(aVal);
-				}
-			}
+			resetConditionals();
 			GameManager::instance().attackPlayer(this);
 			mCanAttack = false;
 		}
@@ -90,4 +87,5 @@ void Enemy::endUpdate()
 	mCanAttack = false;
 	makeInteractable(mCanAttack);
 	makeVisible(mCanAttack);
+	GameManager::look();
 }

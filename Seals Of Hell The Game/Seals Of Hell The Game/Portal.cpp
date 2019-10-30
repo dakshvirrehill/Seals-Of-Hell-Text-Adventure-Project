@@ -17,7 +17,7 @@ void Portal::teleportRegion()
 {
 	if (isInteractable() && isVisible())
 	{
-		std::cout << "Teleporting..." << std::endl;
+		std::cout << "Teleporting..." << std::endl << std::endl;
 		Region* aTemp = mActiveRegion;
 		mActiveRegion = mConnectedRegion;
 		mConnectedRegion = aTemp;

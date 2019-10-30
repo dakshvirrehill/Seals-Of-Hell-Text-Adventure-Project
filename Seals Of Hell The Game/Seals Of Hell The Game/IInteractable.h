@@ -26,6 +26,7 @@ public:
 	virtual void dropObject();
 	virtual bool isWorn() { return false; }
 	virtual bool isGiven() { return false; }
+	virtual bool isGateway() { return false; }
 	bool& isVisible() { return mVisible; }
 	bool& isInteractable() { return mInteractable; }
 	//TODO : maybe remove these functions to keep reference functions to manipulate only

@@ -59,7 +59,7 @@ void CommandManager::help()
 	std::cout << "==============================" << std::endl;
 }
 
-std::vector<std::string>& CommandManager::getCommandWords(std::string& pCommandStr)
+std::vector<std::string> CommandManager::getCommandWords(std::string& pCommandStr)
 {
 	std::vector<std::string> aCommandVector;
 	std::istringstream aCommandStream(pCommandStr);
@@ -90,13 +90,14 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 	{
 		return false;
 	}
-	if (mSingleCommands.find(pCommandStr) != mSingleCommands.end())
+	if (mSingleCommands.count(pCommandStr) == 1)
 	{
 		mSingleCommands[pCommandStr]();
 		return true;
 	}
-	if (mInteractableCommands.find(aCommandWords.at(0)) == mInteractableCommands.end() 
-		|| mTwoInteractionCommands.find(aCommandWords.at(0)) == mTwoInteractionCommands.end())
+	bool aTwoInteraction = mTwoInteractionCommands.count(aCommandWords.at(0)) == 1;
+	if (mInteractableCommands.count(aCommandWords.at(0)) == 0 
+		&& !aTwoInteraction)
 	{
 		return false;
 	}
@@ -121,11 +122,19 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 
 		if (aSInObj2)
 		{
-			aObj2 += " " + aCommandWords.at(aI);
+			if (aObj2 != "")
+			{
+				aObj2 += " ";
+			}
+			aObj2 += aCommandWords.at(aI);
 		}
 		else
 		{
-			aObj1 += " " + aCommandWords.at(aI);
+			if (aObj1 != "")
+			{
+				aObj1 += " ";
+			}
+			aObj1 += aCommandWords.at(aI);
 		}
 	}
 	if (aSwapObj1n2) //for implementation sake
@@ -147,6 +156,10 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 			return false;
 		}
 		mTwoInteractionCommands[aCommandWords.at(0)](aIObj1, aIObj2);
+	}
+	else if (aTwoInteraction)
+	{
+		return false;
 	}
 	else
 	{

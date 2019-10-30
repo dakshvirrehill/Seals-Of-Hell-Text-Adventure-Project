@@ -16,7 +16,7 @@ private:
 	{
 		return *this;
 	}
-	std::vector<std::string>& getCommandWords(std::string&);
+	std::vector<std::string> getCommandWords(std::string&);
 	void convertToUpper(std::string&);
 	std::map<std::string, std::function<void(IInteractable*)>> mInteractableCommands;
 	std::map < std::string, std::function<void(IInteractable*, IInteractable*)>> mTwoInteractionCommands;

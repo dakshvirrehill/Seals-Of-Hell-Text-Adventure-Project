@@ -4,9 +4,16 @@
 KillZone::~KillZone()
 {
 }
+void KillZone::onEnable()
+{
+	if (isInteractable())
+	{
+		resetConditionals();
+	}
+}
 void KillZone::update()
 {
-	if (!isInteractable())
+	if (!isInteractable() && !isVisible())
 	{
 		return;
 	}
@@ -14,18 +21,7 @@ void KillZone::update()
 	{
 		std::cout << getName() << std::endl;
 		std::cout << getAttackStory() << std::endl;
-		bool aVal = false;
-		for (auto& iter : getConditionUpdateObjects())
-		{
-			if (iter->isInteractable())
-			{
-				iter->makeInteractable(aVal);
-			}
-			if (iter->isVisible())
-			{
-				iter->makeVisible(aVal);
-			}
-		}
+		resetConditionals();
 		GameManager::instance().attackPlayer(this);
 		GameManager::instance().attackPlayer(this);
 	}
@@ -66,4 +62,5 @@ void KillZone::endUpdate()
 		iter->makeInteractable(aVal);
 		iter->makeVisible(aVal);
 	}
+	GameManager::look();
 }

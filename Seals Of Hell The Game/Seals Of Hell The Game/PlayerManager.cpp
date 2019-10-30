@@ -17,10 +17,15 @@ void PlayerManager::inventory()
 	std::cout << "==============================" << std::endl;
 }
 
+void PlayerManager::addNewShield(std::string pShieldName)
+{
+	mShieldNames.push_back(pShieldName);
+}
+
 
 IInteractable* PlayerManager::getInventoryObject(std::string& pObjectName)
 {
-	if (mInventory.find(pObjectName) != mInventory.end())
+	if (mInventory.count(pObjectName) != 0)
 	{
 		return mInventory[pObjectName];
 	}
@@ -70,10 +75,17 @@ void PlayerManager::blockAttack()
 
 bool PlayerManager::hasShield()
 {
-	return mInventory.find("SHIELD") != mInventory.end();
+	for (auto& iter : mShieldNames)
+	{
+		if (mInventory.count(iter) == 1)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 bool PlayerManager::hasInInventory(IInteractable* pObject)
 {
-	return mInventory.find(pObject->getName()) != mInventory.end();
+	return mInventory.count(pObject->getName()) != 0;
 }

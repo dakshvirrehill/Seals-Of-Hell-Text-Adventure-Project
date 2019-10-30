@@ -27,10 +27,10 @@ void GameLoader::initializeBasicObject(json::JSON pData, BasicObject* pObject)
 
 void GameLoader::initializeIInteractable(json::JSON pData, IInteractable* pObject)
 {
-	_ASSERT_EXPR(pData.hasKey("mVisible"), "Data has no visible bool");
-	_ASSERT_EXPR(pData.hasKey("mInteractable"), "Data has no interactable bool");
+	_ASSERT_EXPR(pData.hasKey("mIsVisible"), "Data has no visible bool");
+	_ASSERT_EXPR(pData.hasKey("mIsInteractable"), "Data has no interactable bool");
 	initializeBasicObject(pData,pObject);
-	pObject->initialize(pData["mVisible"].ToBool(), pData["mInteractable"].ToBool());
+	pObject->initialize(pData["mIsVisible"].ToBool(), pData["mIsInteractable"].ToBool());
 
 }
 
@@ -43,7 +43,7 @@ void GameLoader::initializeIUpdatable(json::JSON pData, IUpdatable* pObject, std
 	for (auto& aUpdatableObj : pData["mUpdatableObjectsWithType"].ObjectRange())
 	{
 		IInteractable* aUpdatable = nullptr;
-		if (pInteractableMap.find(aUpdatableObj.first) == pInteractableMap.end())
+		if (pInteractableMap.count(aUpdatableObj.first) == 0)
 		{
 			aUpdatable = mObjectCreator[aUpdatableObj.second.ToString()](instance());
 			pInteractableMap.emplace(aUpdatableObj.first, aUpdatable);
@@ -61,8 +61,8 @@ void GameLoader::initializeEmptyGateways(Room* pRoom)
 	Gateway* aGWay = new Gateway();
 	aGWay->IInteractable::initialize(false, false);
 	aGWay->BasicObject::initialize("", "");
-	aGWay->initialize(nullptr, nullptr);
-	for (int aI = 0; aI < 3; aI ++)
+	aGWay->initialize(nullptr, nullptr, false);
+	for (int aI = 0; aI <= 3; aI ++)
 	{
 		for (int aJ = 0; aJ < 2; aJ++)
 		{
@@ -88,20 +88,19 @@ void GameLoader::initializeGameFromSave(json::JSON& pGameData)
 
 void GameLoader::initializeNewGame(json::JSON& pGameData)
 {
-	_ASSERT_EXPR(pGameData.hasKey("mGameDetails"), "JSON Doesn't have game details");
-	_ASSERT_EXPR(pGameData["mGameDetails"].hasKey("mName"), "Game Details has no name");
-	_ASSERT_EXPR(pGameData["mGameDetails"].hasKey("mStory"), "Game Details has no story");
-	_ASSERT_EXPR(pGameData["mGameDetails"].hasKey("mFirstRegion"), "GameDetails has no first region");
-	_ASSERT_EXPR(pGameData["mGameDetails"].hasKey("mRegionDetails"), "JSON Doesn't have region details");
-	GameManager::instance().BasicObject::initialize(pGameData["mGameDetails"]["mName"].ToString(), pGameData["mGameDetails"]["mStory"].ToString());
-	json::JSON aRegions = pGameData["mGameDetails"]["mRegionDetails"];
+	_ASSERT_EXPR(pGameData.hasKey("mName"), "Game Details has no name");
+	_ASSERT_EXPR(pGameData.hasKey("mStory"), "Game Details has no story");
+	_ASSERT_EXPR(pGameData.hasKey("mFirstRegion"), "GameDetails has no first region");
+	_ASSERT_EXPR(pGameData.hasKey("mRegionDetails"), "JSON Doesn't have region details");
+	GameManager::instance().BasicObject::initialize(pGameData["mName"].ToString(), pGameData["mStory"].ToString());
+	json::JSON aRegions = pGameData["mRegionDetails"];
 	//temporary maps for assignment
 	std::map<std::string, Region*> aRegionMap;
 	std::map<std::string, Room*> aRoomMap;
 	std::map<std::string, IInteractable*> aInteractableMap;
 
 	Region* aRegionPtr = new Region();
-	aRegionMap.emplace(pGameData["mGameDetails"]["mFirstRegion"].ToString(), aRegionPtr);
+	aRegionMap.emplace(pGameData["mFirstRegion"].ToString(), aRegionPtr);
 	bool aGMInit = false;
 	bool aMakeTreasureCollector = false;
 	for (auto& aRegion : aRegions.ObjectRange())
@@ -131,7 +130,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 		}
 		if (!aGMInit)
 		{
-			if (pGameData["mGameDetails"]["mFirstRegion"].ToString() == aRegion.first)
+			if (pGameData["mFirstRegion"].ToString() == aRegion.first)
 			{
 				GameManager::instance().initialize(aRegionPtr, aEntryRoomPtr);
 				aGMInit = true;
@@ -160,7 +159,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 				json::JSON aTCol = aRoom.second["mTreasureCollector"];
 				_ASSERT_EXPR(aTCol.hasKey("mKey"), "Treasure Collector has no key");
 				TreasureCollector* aTCollector = nullptr;
-				if (aInteractableMap.find(aTCol["mKey"].ToString()) == aInteractableMap.end())
+				if (aInteractableMap.count(aTCol["mKey"].ToString()) == 0)
 				{
 					aTCollector = new TreasureCollector();
 					aInteractableMap.emplace(aTCol["mKey"].ToString(), aTCollector);
@@ -175,7 +174,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 				for (auto& aTreasure : aTCol["mTreasures"].ObjectRange())
 				{
 					PickableItem* aNTreasure = nullptr;
-					if (aInteractableMap.find(aTreasure.first) == aInteractableMap.end())
+					if (aInteractableMap.count(aTreasure.first) == 0)
 					{
 						aNTreasure = new PickableItem();
 						aInteractableMap.emplace(aTreasure.first, aNTreasure);
@@ -197,7 +196,6 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 			{
 				_ASSERT_EXPR(aRoom.second.hasKey("mGateways"), "Room has no Gateways");
 				//figure out gateway logic
-				int aCount = 0;
 				for (auto& aGateway : aRoom.second["mGateways"].ObjectRange())
 				{
 					_ASSERT_EXPR(aGateway.second.hasKey("mRoom1"), "Gateway has no current room");
@@ -235,15 +233,10 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 						{
 							aConRoom = aRoomMap[aGateway.second["mRoom2"].ToString()];
 						}
-						aNewGateway->initialize(aCurRoom, aConRoom);
+						aNewGateway->initialize(aCurRoom, aConRoom, true);
 					}
 					initializeIInteractable(aGateway.second, aNewGateway);
 					aRoomPtr->addGateway(aInteractableMap[aGateway.first],aGateway.second["mPath"].ToInt(),aRoomPtr == aCurRoom ? 0:1);
-					aCount ++;
-				}
-				if (aCount < 8)
-				{
-					
 				}
 			}
 			if (aRoom.second.hasKey("mCollectors"))
@@ -339,7 +332,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 						}
 						else
 						{
-							aConditionalObject = aInteractableMap[aKillZone.second["mDisabler"].ToString()];
+							aConditionalObject = aInteractableMap[aKillZone.second["mConditionalObject"].ToString()];
 						}
 						aNewKillZone->setConditionalObject(aConditionalObject);
 					}
@@ -380,7 +373,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 				{
 					_ASSERT_EXPR(aPickableItem.second.hasKey("mType"), "Pickable Item has no type");
 					PickableItem* aNewPItem = nullptr;
-					if (aInteractableMap.find(aPickableItem.first) == aInteractableMap.end())
+					if (aInteractableMap.count(aPickableItem.first) == 0)
 					{
 						aNewPItem = new PickableItem();
 						aInteractableMap.emplace(aPickableItem.first, aNewPItem);
@@ -398,6 +391,10 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					else
 					{
 						aNewPItem->initialize(aType == 0, aType == 1, aType == 2, aType == 3);
+					}
+					if (aType == 1)
+					{
+						GameManager::instance().addNewShield(aNewPItem->getName());
 					}
 					aRoomPtr->addInteractable(aInteractableMap[aPickableItem.first]);
 				}
@@ -422,7 +419,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					{
 						initializeIInteractable(aPortal.second, aNewPortal);
 						Region* aActiveRegion = nullptr;
-						if (aRegionMap.find(aPortal.second["mActiveRegion"].ToString()) == aRegionMap.end())
+						if (aRegionMap.count(aPortal.second["mActiveRegion"].ToString()) == 0)
 						{
 							aActiveRegion = new Region();
 							aRegionMap.emplace(aPortal.second["mActiveRegion"].ToString(), aActiveRegion);
@@ -432,7 +429,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 							aActiveRegion = aRegionMap[aPortal.second["mActiveRegion"].ToString()];
 						}
 						Region* aConnectedRegion = nullptr;
-						if (aRegionMap.find(aPortal.second["mConnectedRegion"].ToString()) == aRegionMap.end())
+						if (aRegionMap.count(aPortal.second["mConnectedRegion"].ToString()) == 0)
 						{
 							aConnectedRegion = new Region();
 							aRegionMap.emplace(aPortal.second["mConnectedRegion"].ToString(), aConnectedRegion);
