@@ -14,5 +14,7 @@ public:
 	void initialize(Region*,Region*);
 	void teleportRegion() override;
 	bool& isInitialized() { return mInitialized; }
+	bool isPortal() override { return true; }
+	Region* getOtherRegion(Region* pFirstRegion);
 };
 #endif

@@ -13,13 +13,14 @@ class GameManager : public BasicObject
 private:
 	std::string mFileName;
 	std::string mSaveFileName;
+	Region* mFirstRegion;
 	Region* mCurrentRegion;
 	Room* mCurrentRoom;
 	PlayerManager* mCurrentPlayer;
 	bool mGamePlay;
-	inline explicit GameManager() :BasicObject(), mFileName(""),mSaveFileName(""), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false) {}
+	inline explicit GameManager() :BasicObject(), mFileName(""),mSaveFileName(""), mFirstRegion(nullptr), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false) {}
 	inline ~GameManager() {}
-	inline explicit GameManager(GameManager const&) :BasicObject(), mFileName(""), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false) {}
+	inline explicit GameManager(GameManager const&) :BasicObject(), mFileName(""), mFirstRegion(nullptr), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false) {}
 	inline GameManager& operator=(GameManager const&) 
 	{
 		return *this;
@@ -37,7 +38,7 @@ public:
 	}
 	void lookInsideRoom();
 	void initialize(Region*, Room*);
-	void StartGame(std::string&);
+	void StartGame(std::string&,bool&);
 	void GameLoop();
 	void playerWon();
 	void playerLost();
@@ -51,7 +52,6 @@ public:
 	void addInInventory(IInteractable*);
 	void removeFromInventory(IInteractable*);
 	void attackPlayer(IInteractable*);
-	void dropInventory(Room*);
 	void blockAttack();
 	bool hasShield();
 	bool hasInInventory(IInteractable*);

@@ -5,6 +5,9 @@
 
 Gateway::~Gateway()
 {
+	mCurrentRoom = nullptr;
+	mConnectedRoom = nullptr;
+	mInitialized = false;
 }
 
 void Gateway::initialize(Room* pCurrentRoom, Room* pConnectedRoom, bool pNotDefault)
@@ -44,5 +47,6 @@ void Gateway::goDirection()
 		mCurrentRoom = mConnectedRoom;
 		mConnectedRoom = aTemp;
 		GameManager::instance().setCurrentRoom(mCurrentRoom);
+		mCurrentRoom->setIntoRoomGateway(this);
 	}
 }

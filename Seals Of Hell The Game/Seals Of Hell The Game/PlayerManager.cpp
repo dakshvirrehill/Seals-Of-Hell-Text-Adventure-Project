@@ -6,6 +6,19 @@
 #include <iostream>
 #include <map>
 
+PlayerManager::~PlayerManager()
+{
+	auto aInventoryIter = mInventory.begin();
+	while (aInventoryIter != mInventory.end())
+	{
+		if ((*aInventoryIter).second != nullptr)
+		{
+			delete (*aInventoryIter).second;
+		}
+		aInventoryIter = mInventory.erase(aInventoryIter);
+	}
+}
+
 void PlayerManager::inventory()
 {
 	std::cout << "==============================" << std::endl;

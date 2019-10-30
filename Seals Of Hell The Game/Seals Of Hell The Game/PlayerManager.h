@@ -14,7 +14,7 @@ private:
 	bool mInAttack;
 protected:
 	PlayerManager() : mInventory(),mShieldNames(), mInAttack(false) {}
-	~PlayerManager() {}
+	~PlayerManager();
 	void inventory();
 	void addNewShield(std::string);
 	IInteractable* getInventoryObject(std::string&);

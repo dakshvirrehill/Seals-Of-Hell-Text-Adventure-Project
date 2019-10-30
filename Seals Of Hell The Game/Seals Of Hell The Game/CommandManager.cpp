@@ -8,28 +8,31 @@
 #include <cctype>
 void CommandManager::initialize()
 {
-	mSingleCommands.emplace("HELP", &CommandManager::help);
-	mSingleCommands.emplace("SAVE", &GameManager::saveGame);
-	mSingleCommands.emplace("EXIT", &GameManager::endGame);
-	mSingleCommands.emplace("INVENTORY", &GameManager::inventory);
-	mSingleCommands.emplace("LOOK", &GameManager::look);
+	if (!mInitialzed)
+	{
+		mSingleCommands.emplace("HELP", &CommandManager::help);
+		mSingleCommands.emplace("SAVE", &GameManager::saveGame);
+		mSingleCommands.emplace("EXIT", &GameManager::endGame);
+		mSingleCommands.emplace("INVENTORY", &GameManager::inventory);
+		mSingleCommands.emplace("LOOK", &GameManager::look);
 
-	mInteractableCommands.emplace("LOOK", &IInteractable::lookObject);
-	mInteractableCommands.emplace("TELEPORT", &IInteractable::teleportRegion);
-	mInteractableCommands.emplace("PICK", &IInteractable::pickObject);
-	mInteractableCommands.emplace("GO", &IInteractable::goDirection);
-	mInteractableCommands.emplace("BLOCK", &IInteractable::blockAttack);
-	mInteractableCommands.emplace("WEAR", &IInteractable::wearObject);
-	mInteractableCommands.emplace("PLAY", &IInteractable::playObject);
-	mInteractableCommands.emplace("EAT", &IInteractable::eatObject);
-	mInteractableCommands.emplace("MOVE", &IInteractable::moveObject);
-	mInteractableCommands.emplace("ANSWER", &IInteractable::answerRiddle);
-	mInteractableCommands.emplace("DROP", &IInteractable::dropObject);
+		mInteractableCommands.emplace("LOOK", &IInteractable::lookObject);
+		mInteractableCommands.emplace("TELEPORT", &IInteractable::teleportRegion);
+		mInteractableCommands.emplace("PICK", &IInteractable::pickObject);
+		mInteractableCommands.emplace("GO", &IInteractable::goDirection);
+		mInteractableCommands.emplace("BLOCK", &IInteractable::blockAttack);
+		mInteractableCommands.emplace("WEAR", &IInteractable::wearObject);
+		mInteractableCommands.emplace("PLAY", &IInteractable::playObject);
+		mInteractableCommands.emplace("EAT", &IInteractable::eatObject);
+		mInteractableCommands.emplace("MOVE", &IInteractable::moveObject);
+		mInteractableCommands.emplace("ANSWER", &IInteractable::answerRiddle);
+		mInteractableCommands.emplace("DROP", &IInteractable::dropObject);
 
-	mTwoInteractionCommands.emplace("GIVE", &IInteractable::giveObject);
-	mTwoInteractionCommands.emplace("ATTACK", &IInteractable::attackEnemy);
+		mTwoInteractionCommands.emplace("GIVE", &IInteractable::giveObject);
+		mTwoInteractionCommands.emplace("ATTACK", &IInteractable::attackEnemy);
 
-	mInitialzed = true;
+		mInitialzed = true;
+	}
 }
 
 void CommandManager::help()

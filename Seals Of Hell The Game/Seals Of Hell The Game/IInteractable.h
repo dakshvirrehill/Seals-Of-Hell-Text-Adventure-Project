@@ -8,8 +8,8 @@ class IInteractable : public BasicObject
 	bool mInteractable;
 protected:
 	IInteractable():BasicObject(), mVisible(false),mInteractable(false) {};
-	virtual ~IInteractable() {};
 public:
+	virtual ~IInteractable() {};
 	void initialize(bool, bool);
 	virtual void lookObject();
 	virtual void teleportRegion();
@@ -27,6 +27,7 @@ public:
 	virtual bool isWorn() { return false; }
 	virtual bool isGiven() { return false; }
 	virtual bool isGateway() { return false; }
+	virtual bool isPortal() { return false; }
 	bool& isVisible() { return mVisible; }
 	bool& isInteractable() { return mInteractable; }
 	//TODO : maybe remove these functions to keep reference functions to manipulate only

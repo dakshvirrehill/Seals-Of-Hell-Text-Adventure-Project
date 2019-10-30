@@ -4,6 +4,8 @@
 
 Portal::~Portal()
 {
+	mActiveRegion = nullptr;
+	mConnectedRegion = nullptr;
 }
 
 void Portal::initialize(Region* pActiveRegion, Region* pConnectedRegion)
@@ -22,5 +24,17 @@ void Portal::teleportRegion()
 		mActiveRegion = mConnectedRegion;
 		mConnectedRegion = aTemp;
 		GameManager::instance().setCurrentRegion(mActiveRegion);
+	}
+}
+
+Region* Portal::getOtherRegion(Region* pFirstRegion)
+{
+	if (pFirstRegion == mActiveRegion)
+	{
+		return mConnectedRegion;
+	}
+	else
+	{
+		return mActiveRegion;
 	}
 }

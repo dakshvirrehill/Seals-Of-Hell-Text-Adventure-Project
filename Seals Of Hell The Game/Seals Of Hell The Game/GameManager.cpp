@@ -28,21 +28,30 @@ void GameManager::lookInsideRoom()
 
 void GameManager::initialize(Region* pCurrentRegion, Room* pCurrentRoom)
 {
+	if (mFirstRegion == nullptr)
+	{
+		mFirstRegion = pCurrentRegion;
+	}
 	mCurrentRegion = pCurrentRegion;
 	mCurrentRoom = pCurrentRoom;
+}
+
+void GameManager::StartGame(std::string& pFileName, bool& pLoadSave)
+{
+	mFileName = pFileName + ".json";
+	mSaveFileName = pFileName + "_Save.json";
+	json::JSON aJSONObj = SaveGameManager::instance().loadGame(mFileName);
 	if (mCurrentPlayer == nullptr)
 	{
 		mCurrentPlayer = new PlayerManager();
 	}
-}
-
-void GameManager::StartGame(std::string& pFileName)
-{
-	mFileName = pFileName;
-	mSaveFileName = pFileName + "_Save.json";
-	json::JSON aJSONObj = SaveGameManager::instance().loadGame(mFileName);
 	GameLoader::instance().initializeNewGame(aJSONObj);
 	CommandManager::instance().initialize();
+	if (pLoadSave)
+	{
+		json::JSON aJSONSave = SaveGameManager::instance().loadGame(mSaveFileName);
+		GameLoader::instance().initializeGameFromSave(aJSONSave);
+	}
 	mGamePlay = true;
 }
 
@@ -65,7 +74,10 @@ void GameManager::GameLoop()
 		{
 			std::cout << std::endl << "The game world did not understand your gibberish... Try again..." << std::endl << std::endl;
 		}
-		mCurrentRoom->updateRoom();
+		if (mGamePlay && mCurrentRoom != nullptr)
+		{
+			mCurrentRoom->updateRoom();
+		}
 	} while (mGamePlay);
 }
 
@@ -92,13 +104,23 @@ void GameManager::inventory()
 void GameManager::playerWon()
 {
 	endGame();
-	//anything else
+	//if anything else is needed to be done add here or before end game
 }
 
 void GameManager::playerLost()
 {
+	Room* aPreviousRoom = mCurrentRoom->getPreviousRoom();
+	if (aPreviousRoom != nullptr)
+	{
+		mCurrentPlayer->dropInventory(aPreviousRoom);
+	}
+	else
+	{
+		mCurrentPlayer->dropInventory(mFirstRegion->getStartingRoom());
+	}
+	mCurrentRegion = mFirstRegion;
+	mCurrentRoom = mFirstRegion->getStartingRoom();
 	endGame();
-	//anything else
 }
 
 
@@ -106,12 +128,20 @@ void GameManager::endGame()
 {
 	instance().mGamePlay = false;
 	saveGame();
+	if (instance().mCurrentPlayer != nullptr)
+	{
+		delete instance().mCurrentPlayer;
+	}
+	GameLoader::instance().cleanUpGame(instance().mFirstRegion);
+	instance().mCurrentRegion = nullptr;
+	instance().mCurrentRoom = nullptr;
+	instance().mFirstRegion = nullptr;
 }
 
 void GameManager::saveGame()
 {
-	json::JSON aJSON = GameLoader::instance().createJSONData();
-	SaveGameManager::instance().saveGame(aJSON,GameManager::instance().mSaveFileName):
+	json::JSON aJSON = GameLoader::instance().createJSONData(instance().mFirstRegion,instance().mCurrentRoom);
+	SaveGameManager::instance().saveGame(aJSON, instance().mSaveFileName);
 }
 
 IInteractable* GameManager::getInteractable(std::string& pObjName)
@@ -157,11 +187,6 @@ void GameManager::attackPlayer(IInteractable* pEnemy)
 	mCurrentPlayer->attackPlayer(pEnemy);
 }
 
-void GameManager::dropInventory(Room* pInRoom)
-{
-	mCurrentPlayer->dropInventory(pInRoom);
-}
-
 void GameManager::blockAttack()
 {
 	mCurrentPlayer->blockAttack();
@@ -179,9 +204,5 @@ bool GameManager::hasInInventory(IInteractable* pInvObj)
 
 void GameManager::addNewShield(std::string pShieldName)
 {
-	if (mCurrentPlayer == nullptr)
-	{
-		mCurrentPlayer = new PlayerManager();
-	}
 	mCurrentPlayer->addNewShield(pShieldName);
 }

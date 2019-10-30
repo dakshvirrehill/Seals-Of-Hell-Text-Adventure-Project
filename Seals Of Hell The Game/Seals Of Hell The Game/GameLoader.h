@@ -9,6 +9,7 @@ class IInteractable;
 class BasicObject;
 class IUpdatable;
 class Room;
+class Region;
 class GameLoader
 {
 	std::map<std::string, std::function<IInteractable* (GameLoader&)>> mObjectCreator;
@@ -52,7 +53,8 @@ protected:
 	}
 	void initializeGameFromSave(json::JSON& pGameData);
 	void initializeNewGame(json::JSON& pGameData);
-	json::JSON createJSONData();
+	json::JSON createJSONData(Region*,Room*);
+	void cleanUpGame(Region*);
 	friend class GameManager;
 };
 #endif

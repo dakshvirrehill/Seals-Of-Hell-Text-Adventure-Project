@@ -17,5 +17,7 @@ public:
 	void goDirection() override;
 	bool& isInitialized() { return mInitialized; }
 	bool isGateway() override{ return mCurrentRoom != nullptr; }
+	Room* getCurrentRoom() { return mCurrentRoom; }
+	Room* getConnectedRoom() { return mConnectedRoom; }
 };
 #endif

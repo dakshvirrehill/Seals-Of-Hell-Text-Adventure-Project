@@ -8,7 +8,13 @@
 
 Room::~Room()
 {
-	
+	for (auto& iter : mRoomObjects)
+	{
+		if (!(iter.second->isPortal() || iter.second->isGateway()))
+		{
+			delete iter.second;
+		}
+	}
 }
 
 void Room::look()
@@ -33,6 +39,38 @@ IInteractable* Room::getRoomObject(std::string& pObjectName)
 	}
 	return nullptr;
 }
+
+Room* Room::getPreviousRoom()
+{
+	return mIntoRoomGateway->getConnectedRoom();
+}
+
+std::list<IInteractable*> Room::getAllPortals()
+{
+	std::list<IInteractable*> aPortalList;
+	for (auto& iter : mRoomObjects)
+	{
+		if (iter.second->isPortal())
+		{
+			aPortalList.push_back(iter.second);
+		}
+	}
+	return aPortalList;
+}
+
+std::list<Gateway*> Room::getAllGateways()
+{
+	std::list<Gateway*> aGateways;
+	for (auto& iter : mRoomObjects)
+	{
+		if (iter.second->isGateway())
+		{
+			aGateways.push_back((Gateway*)iter.second);
+		}
+	}
+	return aGateways;
+}
+
 
 void Room::removeInteractable(IInteractable* pInteractable)
 {
@@ -156,6 +194,11 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 void Room::addUpdatable(IUpdatable* pUpdatable)
 {
 	mUpdatableObjects.push_back(pUpdatable);
+}
+
+void Room::setIntoRoomGateway(Gateway* pGateway)
+{
+	mIntoRoomGateway = pGateway;
 }
 
 void Room::updateRoom()

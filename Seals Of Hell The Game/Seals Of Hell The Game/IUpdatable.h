@@ -11,9 +11,10 @@ class IUpdatable
 	std::string mDeathStory;
 	IInteractable* mConditionalObject;
 	std::list<IInteractable*> mCondUpdtObjs;
+protected:
+	IUpdatable() : mAttackStory(""), mDeathStory(""), mConditionalObject(nullptr), mCondUpdtObjs() {}
 public:
-	IUpdatable() : mAttackStory(""), mDeathStory(""),mConditionalObject(nullptr),mCondUpdtObjs() {}
-	~IUpdatable() {}
+	virtual ~IUpdatable() {}
 	void initialize(std::string, std::string);
 	virtual void onEnable() = 0;
 	virtual void update() = 0;

@@ -7,7 +7,7 @@ Region::Region()
 
 Region::~Region()
 {
-	
+	mEntryRoom = nullptr;
 }
 
 void Region::initialize(Room* pEntryRoom)

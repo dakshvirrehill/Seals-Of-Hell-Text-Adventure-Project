@@ -447,9 +447,59 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 	}
 }
 
-json::JSON GameLoader::createJSONData()
+json::JSON GameLoader::createJSONData(Region* pFirstRegion, Room* pCurrentRoom)
 {
 	//think about saving
-	json::JSON aJSOn;
-	return aJSOn;
+	json::JSON aJSON;
+	return aJSON;
+}
+
+void GameLoader::cleanUpGame(Region* pFirstRegion)
+{
+	Room* aFirstRoom = pFirstRegion->getStartingRoom();
+	std::list<IInteractable*> aPortals = aFirstRoom->getAllPortals();
+	std::map<std::string,Gateway*> aAllGateways;
+	for (auto& aPortal : aPortals)
+	{
+		Portal* aPort = (Portal*)aPortal;
+		Region* aCurRegion = aPort->getOtherRegion(pFirstRegion);
+		std::map <std::string, Room* > aRegionRooms;
+		Room* aRoom = aCurRegion->getStartingRoom();
+		aRegionRooms.emplace(aRoom->getName(),aRoom);
+		auto aRoomIterator = aRegionRooms.begin();
+		while (aRoomIterator != aRegionRooms.end())
+		{
+			if ((*aRoomIterator).second != nullptr)
+			{
+				std::list<Gateway*> aGateways = (*aRoomIterator).second->getAllGateways();
+				delete (*aRoomIterator).second;
+				(*aRoomIterator).second = nullptr;
+				for (auto& aGateway : aGateways)
+				{
+					std::string aGKey = aCurRegion->getName() + aGateway->getName();
+					if (aAllGateways.count(aGKey) == 0)
+					{
+						aAllGateways.emplace(aGKey, aGateway);
+					}
+					aRoom = aGateway->getCurrentRoom();
+					if (aRegionRooms.count(aRoom->getName()) == 0)
+					{
+						aRegionRooms.emplace(aRoom->getName(), aRoom);
+					}
+				}
+			}
+		}
+		delete aPort;
+		delete aCurRegion;
+	}
+	for (auto& aGateway : aAllGateways)
+	{
+		if (aGateway.second != nullptr)
+		{
+			delete aGateway.second;
+		}
+	}
+	delete(aFirstRoom);
+	delete(pFirstRegion);
+	pFirstRegion = nullptr;
 }
