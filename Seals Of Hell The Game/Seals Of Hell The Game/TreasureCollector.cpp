@@ -44,6 +44,7 @@ void TreasureCollector::update()
 		if (mTreasures.size() <= 0)
 		{
 			std::cout << getDeathStory() << std::endl << std::endl;
+			GameManager::instance().playerWon();
 		}
 	}
 }

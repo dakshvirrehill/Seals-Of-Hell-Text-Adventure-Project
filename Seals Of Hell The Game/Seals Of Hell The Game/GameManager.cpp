@@ -94,6 +94,12 @@ void GameManager::playerWon()
 	//anything else
 }
 
+void GameManager::playerLost()
+{
+	endGame();
+	//anything else
+}
+
 
 void GameManager::endGame()
 {

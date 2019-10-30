@@ -39,6 +39,7 @@ public:
 	void StartGame(std::string&);
 	void GameLoop();
 	void playerWon();
+	void playerLost();
 	void setCurrentRegion(Region*);
 	void setCurrentRoom(Room*);
 	IInteractable* getInteractable(std::string&);

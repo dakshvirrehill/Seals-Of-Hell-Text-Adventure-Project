@@ -49,6 +49,7 @@ void PlayerManager::attackPlayer(IInteractable* pAttacker)
 	if (mInAttack)
 	{
 		std::cout << " You Died at the hands of " << pAttacker->getName() << std::endl;
+		GameManager::instance().playerLost();
 	}
 	else
 	{
