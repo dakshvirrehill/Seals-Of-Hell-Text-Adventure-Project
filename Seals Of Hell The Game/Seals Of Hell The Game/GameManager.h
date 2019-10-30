@@ -12,11 +12,12 @@ class GameManager : public BasicObject
 
 private:
 	std::string mFileName;
+	std::string mSaveFileName;
 	Region* mCurrentRegion;
 	Room* mCurrentRoom;
 	PlayerManager* mCurrentPlayer;
 	bool mGamePlay;
-	inline explicit GameManager() :BasicObject(), mFileName(""), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false) {}
+	inline explicit GameManager() :BasicObject(), mFileName(""),mSaveFileName(""), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false) {}
 	inline ~GameManager() {}
 	inline explicit GameManager(GameManager const&) :BasicObject(), mFileName(""), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false) {}
 	inline GameManager& operator=(GameManager const&) 

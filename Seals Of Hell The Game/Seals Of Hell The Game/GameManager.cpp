@@ -39,6 +39,7 @@ void GameManager::initialize(Region* pCurrentRegion, Room* pCurrentRoom)
 void GameManager::StartGame(std::string& pFileName)
 {
 	mFileName = pFileName;
+	mSaveFileName = pFileName + "_Save.json";
 	json::JSON aJSONObj = SaveGameManager::instance().loadGame(mFileName);
 	GameLoader::instance().initializeNewGame(aJSONObj);
 	CommandManager::instance().initialize();
@@ -109,7 +110,8 @@ void GameManager::endGame()
 
 void GameManager::saveGame()
 {
-	//save game logic
+	json::JSON aJSON = GameLoader::instance().createJSONData();
+	SaveGameManager::instance().saveGame(aJSON,GameManager::instance().mSaveFileName):
 }
 
 IInteractable* GameManager::getInteractable(std::string& pObjName)

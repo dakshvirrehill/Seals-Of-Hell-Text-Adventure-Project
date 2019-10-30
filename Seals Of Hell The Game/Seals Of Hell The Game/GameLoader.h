@@ -52,8 +52,7 @@ protected:
 	}
 	void initializeGameFromSave(json::JSON& pGameData);
 	void initializeNewGame(json::JSON& pGameData);
-
-	//think about to json code
+	json::JSON createJSONData();
 	friend class GameManager;
 };
 #endif

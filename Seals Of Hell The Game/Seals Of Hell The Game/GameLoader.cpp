@@ -446,3 +446,10 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 		}
 	}
 }
+
+json::JSON GameLoader::createJSONData()
+{
+	//think about saving
+	json::JSON aJSOn;
+	return aJSOn;
+}
