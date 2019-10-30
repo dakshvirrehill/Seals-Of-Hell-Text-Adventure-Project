@@ -42,7 +42,7 @@ void Collector::endUpdate()
 		iter->makeInteractable(aVal);
 		iter->makeVisible(aVal);
 	}
-	GameManager::look();
+	GameManager::instance().lookInsideRoom();
 }
 
 void Collector::giveObject(IInteractable* pGiveable)

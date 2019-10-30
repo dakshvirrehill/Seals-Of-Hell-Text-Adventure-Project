@@ -62,5 +62,5 @@ void KillZone::endUpdate()
 		iter->makeInteractable(aVal);
 		iter->makeVisible(aVal);
 	}
-	GameManager::look();
+	GameManager::instance().lookInsideRoom();
 }

@@ -21,6 +21,11 @@ void GameManager::look()
 	}
 }
 
+void GameManager::lookInsideRoom()
+{
+	mCurrentRoom->look();
+}
+
 void GameManager::initialize(Region* pCurrentRegion, Room* pCurrentRoom)
 {
 	mCurrentRegion = pCurrentRegion;

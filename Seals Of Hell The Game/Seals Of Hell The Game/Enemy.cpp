@@ -87,5 +87,5 @@ void Enemy::endUpdate()
 	mCanAttack = false;
 	makeInteractable(mCanAttack);
 	makeVisible(mCanAttack);
-	GameManager::look();
+	GameManager::instance().lookInsideRoom();
 }

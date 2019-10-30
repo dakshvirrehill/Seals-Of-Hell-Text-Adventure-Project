@@ -58,7 +58,7 @@ void TreasureCollector::endUpdate()
 		iter->makeVisible(aItr);
 		iter->makeInteractable(aItr);
 	}
-	GameManager::look();
+	GameManager::instance().lookInsideRoom();
 }
 
 void TreasureCollector::giveObject(IInteractable* pGiveable)

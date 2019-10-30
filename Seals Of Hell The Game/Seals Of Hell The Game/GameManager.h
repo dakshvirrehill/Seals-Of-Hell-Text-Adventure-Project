@@ -27,13 +27,14 @@ protected:
 	static void endGame();
 	static void saveGame();
 	static void inventory();
+	static void look();
 public:
 	inline static GameManager& instance() 
 	{
 		static GameManager mInstance;
 		return mInstance;
 	}
-	static void look();
+	void lookInsideRoom();
 	void initialize(Region*, Room*);
 	void StartGame(std::string&);
 	void GameLoop();
