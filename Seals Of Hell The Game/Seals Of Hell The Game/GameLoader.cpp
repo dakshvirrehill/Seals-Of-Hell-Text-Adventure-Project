@@ -150,6 +150,7 @@ void GameLoader::initializeSaveGame(json::JSON& pSaveData)
 			GameManager::instance().initialize(aRegion, aFRegion, aEntryPtr);
 			isgminit = true;
 		}
+		aRegion->initialize(aEntryPtr);
 	}
 	for (auto& aJSRoom : pSaveData["mRooms"].ObjectRange())
 	{
@@ -743,6 +744,7 @@ void GameLoader::cleanUpGame(Region* pFirstRegion)
 					if (aRegionRooms.count(aRoom->getName()) == 0)
 					{
 						aRegionRooms.emplace(aRoom->getName(), aRoom);
+						aRoomIterator = aRegionRooms.begin();
 					}
 				}
 			}
