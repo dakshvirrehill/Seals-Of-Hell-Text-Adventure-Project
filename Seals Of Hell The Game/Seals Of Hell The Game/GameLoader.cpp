@@ -689,6 +689,7 @@ void GameLoader::cleanUpGame(Region* pFirstRegion)
 	Room* aFirstRoom = pFirstRegion->getStartingRoom();
 	std::list<IInteractable*> aPortals = aFirstRoom->getAllPortals();
 	std::map<std::string,Gateway*> aAllGateways;
+	delete(aFirstRoom);
 	for (auto& aPortal : aPortals)
 	{
 		Portal* aPort = (Portal*)aPortal;
@@ -752,7 +753,6 @@ void GameLoader::cleanUpGame(Region* pFirstRegion)
 			delete aGateway.second;
 		}
 	}
-	delete(aFirstRoom);
 	delete(pFirstRegion);
 	pFirstRegion = nullptr;
 }

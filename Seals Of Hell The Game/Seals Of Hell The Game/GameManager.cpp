@@ -126,10 +126,22 @@ void GameManager::playerLost()
 }
 
 
+void GameManager::internalSaveGame()
+{
+	json::JSON aJSON = json::JSON::Object();
+	aJSON["mStateData"] = json::JSON::Object();
+	aJSON["mStateData"]["mCurrentRoom"] = mCurrentRoom->getName();
+	aJSON["mStateData"]["mPlayerInAttack"] = mCurrentPlayer->mInAttack;
+	aJSON["mName"] = getName();
+	aJSON["mStory"] = getStory();
+	GameLoader::instance().createJSONData(instance().mFirstRegion, aJSON, mCurrentPlayer->getPlayerInventory());
+	SaveGameManager::instance().saveGame(aJSON, mSaveFileName);
+}
+
 void GameManager::endGame()
 {
 	instance().mGamePlay = false;
-	saveGame();
+	instance().internalSaveGame();
 	if (instance().mCurrentPlayer != nullptr)
 	{
 		delete instance().mCurrentPlayer;
@@ -138,18 +150,12 @@ void GameManager::endGame()
 	instance().mCurrentRegion = nullptr;
 	instance().mCurrentRoom = nullptr;
 	instance().mFirstRegion = nullptr;
+	instance().mCurrentPlayer = nullptr;
 }
 
 void GameManager::saveGame()
 {
-	json::JSON aJSON = json::JSON::Object();
-	aJSON["mStateData"] = json::JSON::Object();
-	aJSON["mStateData"]["mCurrentRoom"] = instance().mCurrentRoom->getName();
-	aJSON["mStateData"]["mPlayerInAttack"] = instance().mCurrentPlayer->mInAttack;
-	aJSON["mName"] = instance().getName();
-	aJSON["mStory"] = instance().getStory();
-	GameLoader::instance().createJSONData(instance().mFirstRegion, aJSON, instance().mCurrentPlayer->getPlayerInventory());
-	SaveGameManager::instance().saveGame(aJSON, instance().mSaveFileName);
+	instance().internalSaveGame();
 }
 
 IInteractable* GameManager::getInteractable(std::string& pObjName)

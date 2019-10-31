@@ -61,6 +61,9 @@
         "LEVIATHAN" : {
           "mBlockStory" : "The shield blocks the Leviathan's venomous teeth",
           "mCanAttack" : true,
+          "mConditonalObject" : {
+            "DAMNED SWORD" : "PickableItem"
+          },
           "mEndStory" : "It Crawl backs into Purgatory, dissapointed and sad, leaving behind something very valuable",
           "mIntType" : 1,
           "mIsInteractable" : true,
@@ -123,6 +126,9 @@
           "mType" : "Gateway"
         },
         "BIO-WEAPON FACTORY" : {
+          "mConditonalObject" : {
+            "BEAK MASK" : "PickableItem"
+          },
           "mEndStory" : "The beak mask protects you from the effects of the chemicals",
           "mIntType" : 3,
           "mIsInteractable" : true,
@@ -211,7 +217,7 @@
         },
         "DREAMY WAY" : {
           "Direction" : "NORTH-EAST",
-          "mConnectedRoom" : "",
+          "mConnectedRoom" : "Room of Dreams",
           "mCurrentRoom" : "Desire Room",
           "mIntType" : 2,
           "mIsInteractable" : false,
@@ -338,6 +344,9 @@
         "PLAGUE DEMON" : {
           "mBlockStory" : "The shield redirects the acid somewhere else",
           "mCanAttack" : true,
+          "mConditonalObject" : {
+            "PECULIAR MEDICINAL INJECTION" : "PickableItem"
+          },
           "mEndStory" : "The injection reacts with the demon making him burst into tiny pieces",
           "mIntType" : 1,
           "mIsInteractable" : true,
@@ -461,6 +470,9 @@
           "mType" : "Portal"
         },
         "STARVING AND THIRSTY PEOPLE" : {
+          "mConditonalObject" : {
+            "ELIXIR OF THIRST" : "PickableItem"
+          },
           "mEndStory" : "Elixir quenched their thirst and they opened the gateway",
           "mIntType" : 0,
           "mIsInteractable" : true,
@@ -523,6 +535,9 @@
         "LUCIFER MORNINGSTAR" : {
           "mBlockStory" : "The shield protects you from the devil's stare",
           "mCanAttack" : true,
+          "mConditonalObject" : {
+            "DEATH SCYTHE" : "PickableItem"
+          },
           "mEndStory" : "The devil frowns and returns to the depths of hell planning and plotting his next return",
           "mIntType" : 1,
           "mIsInteractable" : false,
@@ -618,6 +633,9 @@
         "HELLFIRE DEMON" : {
           "mBlockStory" : "The shield protects you from the effects of hell fire",
           "mCanAttack" : true,
+          "mConditonalObject" : {
+            "DAMNED SWORD" : "PickableItem"
+          },
           "mEndStory" : "Its head comes off and it sheds its skin",
           "mIntType" : 1,
           "mIsInteractable" : true,
@@ -743,7 +761,7 @@
         },
         "DROUGHT MAZE 3" : {
           "Direction" : "EAST",
-          "mConnectedRoom" : "",
+          "mConnectedRoom" : "Maze of Drought 2",
           "mCurrentRoom" : "Maze of Drought 1",
           "mIntType" : 2,
           "mIsInteractable" : true,
@@ -833,7 +851,7 @@
         },
         "UNDEAD MAZE 6" : {
           "Direction" : "NORTH",
-          "mConnectedRoom" : "",
+          "mConnectedRoom" : "Maze of Undead 4",
           "mCurrentRoom" : "Maze of Undead 1",
           "mIntType" : 2,
           "mIsInteractable" : true,
@@ -862,6 +880,9 @@
           "mType" : "Gateway"
         },
         "PIT OF DARKNESS" : {
+          "mConditonalObject" : {
+            "CLOAK OF LIGHT" : "PickableItem"
+          },
           "mEndStory" : "The light from your cloak brings you back and lights up the place",
           "mIntType" : 3,
           "mIsInteractable" : true,
@@ -889,7 +910,7 @@
         },
         "UNDEAD MAZE 2" : {
           "Direction" : "NORTH",
-          "mConnectedRoom" : "",
+          "mConnectedRoom" : "Maze of Undead 2",
           "mCurrentRoom" : "Maze of Undead Entry",
           "mIntType" : 2,
           "mIsInteractable" : false,
@@ -973,6 +994,9 @@
         "WHITE HORSEMAN" : {
           "mBlockStory" : "The shield renders her attacks useless",
           "mCanAttack" : true,
+          "mConditonalObject" : {
+            "DAMNED SWORD" : "PickableItem"
+          },
           "mEndStory" : "She mumbles some curse words as she rides off on her horse, leaving behind her prized possession",
           "mIntType" : 1,
           "mIsInteractable" : true,
@@ -1043,6 +1067,9 @@
         "PIG BLOB" : {
           "mBlockStory" : "The shield pushes the demon aside",
           "mCanAttack" : true,
+          "mConditonalObject" : {
+            "BLOB MELTOR" : "PickableItem"
+          },
           "mEndStory" : "The demon melts until there is nothing but slime left",
           "mIntType" : 1,
           "mIsInteractable" : true,
@@ -1100,6 +1127,9 @@
         "RED HORSEMAN" : {
           "mBlockStory" : "The shield teleports you back to war's realm",
           "mCanAttack" : true,
+          "mConditonalObject" : {
+            "DAMNED SWORD" : "PickableItem"
+          },
           "mEndStory" : "Climbs the red horse and gallops back to where it came from, leaving behind something extremely valuable",
           "mIntType" : 1,
           "mIsInteractable" : true,
@@ -1188,6 +1218,9 @@
       "mName" : "Room of Love",
       "mRoomObjects" : {
         "DEMON OF LOVE" : {
+          "mConditonalObject" : {
+            "CLOAK OF LOVE" : "PickableItem"
+          },
           "mEndStory" : "You didn't give in to your lust. Demon lets you pass",
           "mIntType" : 3,
           "mIsInteractable" : true,
@@ -1203,7 +1236,7 @@
         },
         "LOVE TO TEMPTATION" : {
           "Direction" : "NORTH-EAST",
-          "mConnectedRoom" : "",
+          "mConnectedRoom" : "The Brothel",
           "mCurrentRoom" : "Room of Love",
           "mIntType" : 2,
           "mIsInteractable" : false,
@@ -1271,6 +1304,9 @@
         "THE GREEDY MIDAS" : {
           "mBlockStory" : "The shield blocks his attempted entrapment",
           "mCanAttack" : true,
+          "mConditonalObject" : {
+            "DAMNED SWORD" : "PickableItem"
+          },
           "mEndStory" : "Pretty disappointed, Midas runs away like the coward he is, leaving behind his prized possession",
           "mIntType" : 1,
           "mIsInteractable" : true,
@@ -1295,6 +1331,9 @@
       "mName" : "Room of Money",
       "mRoomObjects" : {
         "DEMON OF MONEY" : {
+          "mConditonalObject" : {
+            "KEY TO BANK" : "PickableItem"
+          },
           "mEndStory" : "You didn't give in to your lust. Demon lets you pass",
           "mIntType" : 3,
           "mIsInteractable" : true,
@@ -1310,7 +1349,7 @@
         },
         "MONEY TO TEMPTATION" : {
           "Direction" : "NORTH-WEST",
-          "mConnectedRoom" : "",
+          "mConnectedRoom" : "The Brothel",
           "mCurrentRoom" : "Room of Money",
           "mIntType" : 2,
           "mIsInteractable" : false,
@@ -1339,6 +1378,9 @@
       "mName" : "Room of Power",
       "mRoomObjects" : {
         "DEMON OF POWER" : {
+          "mConditonalObject" : {
+            "WAND OF POWER" : "PickableItem"
+          },
           "mEndStory" : "You didn't give in to your lust. Demon lets you pass",
           "mIntType" : 3,
           "mIsInteractable" : true,
@@ -1354,7 +1396,7 @@
         },
         "POWER TO TEMPTATION" : {
           "Direction" : "NORTH",
-          "mConnectedRoom" : "",
+          "mConnectedRoom" : "The Brothel",
           "mCurrentRoom" : "Room of Power",
           "mIntType" : 2,
           "mIsInteractable" : false,
@@ -1477,6 +1519,9 @@
           "mType" : "Gateway"
         },
         "SWARM OF DEMONS" : {
+          "mConditonalObject" : {
+            "FIRE DEMON SKIN" : "PickableItem"
+          },
           "mEndStory" : "Your fire demon disguise fools these dumb demons and they get back to partying unaware of their impending doom",
           "mIntType" : 3,
           "mIsInteractable" : true,
@@ -1525,6 +1570,9 @@
         "MIRROR OF ERISED" : {
           "mBlockStory" : "The shield protects you from the mirror's voodoo",
           "mCanAttack" : true,
+          "mConditonalObject" : {
+            "MIDAS HAMMER" : "PickableItem"
+          },
           "mEndStory" : "The mirror breaks into millions of pieces unlocking doorways",
           "mIntType" : 1,
           "mIsInteractable" : true,
@@ -1646,6 +1694,9 @@
           "mUpdateStory" : "Play me to get more money than god"
         },
         "OPERATOR" : {
+          "mConditonalObject" : {
+            "GOLD COIN" : "PickableItem"
+          },
           "mEndStory" : "The operator accepts the gold coin as a valid offering and opens doorways",
           "mIntType" : 0,
           "mIsInteractable" : true,

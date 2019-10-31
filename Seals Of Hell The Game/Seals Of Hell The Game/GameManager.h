@@ -25,6 +25,7 @@ private:
 	{
 		return *this;
 	}
+	void internalSaveGame();
 protected:
 	static void endGame();
 	static void saveGame();
