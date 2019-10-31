@@ -9,6 +9,7 @@
 class IUpdatable;
 class IInteractable;
 class Gateway;
+class Region;
 class Room : public BasicObject
 {
 	std::map<std::string, IInteractable*> mRoomObjects;
@@ -32,6 +33,8 @@ public:
 	void setIntoRoomGateway(Gateway*);
 	void updateRoom();
 	void enterRoom();
+	void resetIntoRoom();
+	void resetPortals(Region*);
 	json::JSON getItemJSON();
 };
 #endif

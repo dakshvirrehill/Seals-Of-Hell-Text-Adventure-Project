@@ -18,5 +18,6 @@ public:
 	Region* getOtherRegion(Region* pFirstRegion);
 	json::JSON getItemJSON() override;
 	std::string getType() override { return "Portal"; }
+	void resetPortal(Region* pFirstRegion);
 };
 #endif

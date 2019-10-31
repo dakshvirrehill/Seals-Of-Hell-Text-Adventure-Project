@@ -54,6 +54,7 @@ void GameManager::StartGame(std::string& pFileName, bool& pLoadSave)
 	}
 	CommandManager::instance().initialize();
 	mGamePlay = true;
+	mEndGame = false;
 }
 
 void GameManager::GameLoop()
@@ -75,9 +76,13 @@ void GameManager::GameLoop()
 		{
 			std::cout << std::endl << "The game world did not understand your gibberish... Try again..." << std::endl << std::endl;
 		}
-		if (mGamePlay && mCurrentRoom != nullptr)
+		if (!mEndGame && mGamePlay && mCurrentRoom != nullptr)
 		{
 			mCurrentRoom->updateRoom();
+		}
+		if (mEndGame)
+		{
+			endGame();
 		}
 	} while (mGamePlay);
 }
@@ -104,8 +109,8 @@ void GameManager::inventory()
 
 void GameManager::playerWon()
 {
-	endGame();
-	//if anything else is needed to be done add here or before end game
+	mEndGame = true;
+	//Couldn't figure out how to load a completed game
 }
 
 void GameManager::playerLost()
@@ -114,6 +119,7 @@ void GameManager::playerLost()
 	if (aPreviousRoom != nullptr)
 	{
 		mCurrentPlayer->dropInventory(aPreviousRoom);
+		mCurrentRoom->resetIntoRoom();
 	}
 	else
 	{
@@ -122,7 +128,8 @@ void GameManager::playerLost()
 	mCurrentPlayer->blockAttack();
 	mCurrentRegion = mFirstRegion;
 	mCurrentRoom = mFirstRegion->getStartingRoom();
-	endGame();
+	mCurrentRoom->resetPortals(mFirstRegion);
+	mEndGame = true;
 }
 
 

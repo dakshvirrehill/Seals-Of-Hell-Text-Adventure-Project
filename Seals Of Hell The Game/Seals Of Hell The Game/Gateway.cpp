@@ -61,3 +61,12 @@ json::JSON Gateway::getItemJSON()
 	aJSON["mIntType"] = 2;
 	return aJSON;
 }
+
+void Gateway::resetGateway()
+{
+	makeInteractable(true);
+	makeVisible(true);
+	Room* aTemp = mCurrentRoom;
+	mCurrentRoom = mConnectedRoom;
+	mConnectedRoom = aTemp;
+}

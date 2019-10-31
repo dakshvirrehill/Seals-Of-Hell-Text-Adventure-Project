@@ -38,8 +38,8 @@ void Enemy::update()
 			std::cout << getName() << std::endl;
 			std::cout << getAttackStory() << std::endl;
 			resetConditionals();
-			GameManager::instance().attackPlayer(this);
 			mCanAttack = false;
+			GameManager::instance().attackPlayer(this);
 		}
 	}
 }
@@ -88,6 +88,7 @@ void Enemy::endUpdate()
 	makeInteractable(mCanAttack);
 	makeVisible(mCanAttack);
 	GameManager::instance().lookInsideRoom();
+	GameManager::instance().blockAttack();
 }
 
 json::JSON Enemy::getItemJSON()

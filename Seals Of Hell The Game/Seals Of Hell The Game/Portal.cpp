@@ -49,3 +49,13 @@ json::JSON Portal::getItemJSON()
 	aJSON["mIntType"] = 6;
 	return aJSON;
 }
+
+void Portal::resetPortal(Region* pFirstRegion)
+{
+	if (mActiveRegion != pFirstRegion)
+	{
+		Region* aTemp = mActiveRegion;
+		mActiveRegion = pFirstRegion;
+		mConnectedRegion = aTemp;
+	}
+}

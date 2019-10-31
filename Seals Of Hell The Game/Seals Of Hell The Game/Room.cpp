@@ -2,6 +2,7 @@
 #include "IInteractable.h"
 #include "IUpdatable.h"
 #include "Gateway.h"
+#include "Portal.h"
 #include <map>
 #include <string>
 #include <iostream>
@@ -91,7 +92,7 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 {
 	if (pPath == 0)
 	{
-		if (pRoomId == 0)
+		if (pRoomId == 1)
 		{
 			if (mRoomObjects.count("NORTH") == 1)
 			{
@@ -118,7 +119,7 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 	}
 	else if (pPath == 1)
 	{
-		if (pRoomId == 0)
+		if (pRoomId == 1)
 		{
 			if (mRoomObjects.count("EAST") == 1)
 			{
@@ -145,7 +146,7 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 	}
 	else if (pPath == 2)
 	{
-		if (pRoomId == 0)
+		if (pRoomId == 1)
 		{
 			if (mRoomObjects.count("NORTH-EAST") == 1)
 			{
@@ -172,7 +173,7 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 	}
 	else if (pPath == 3)
 	{
-		if (pRoomId == 0)
+		if (pRoomId == 1)
 		{
 			if (mRoomObjects.count("NORTH-WEST") == 1)
 			{
@@ -242,6 +243,22 @@ void Room::enterRoom()
 		{
 			Gateway* aGateway = (Gateway*)iter.second;
 			aGateway->setCurrentRoom(this);
+		}
+	}
+}
+
+void Room::resetIntoRoom()
+{
+	mIntoRoomGateway->resetGateway();
+}
+
+void Room::resetPortals(Region* pBObj)
+{
+	for (auto& iter : mRoomObjects)
+	{
+		if (iter.second->isPortal())
+		{
+			((Portal*)iter.second)->resetPortal(pBObj);
 		}
 	}
 }

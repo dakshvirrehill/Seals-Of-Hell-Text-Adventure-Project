@@ -21,5 +21,6 @@ public:
 	Room* getConnectedRoom() { return mConnectedRoom; }
 	json::JSON getItemJSON() override;
 	std::string getType() override { return "Gateway"; }
+	void resetGateway();
 };
 #endif

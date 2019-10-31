@@ -63,6 +63,7 @@ void KillZone::endUpdate()
 		iter->makeVisible(aVal);
 	}
 	GameManager::instance().lookInsideRoom();
+	GameManager::instance().blockAttack();
 }
 
 json::JSON KillZone::getItemJSON()

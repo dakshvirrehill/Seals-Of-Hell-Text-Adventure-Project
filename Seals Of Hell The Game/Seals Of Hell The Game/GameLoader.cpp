@@ -291,6 +291,10 @@ void GameLoader::initializeSaveGame(json::JSON& pSaveData)
 					{
 						aNTreasure = (PickableItem*)aIInteractables[aTreasure.ToString()];
 					}
+					if (aNTreasure->getName() == "")
+					{
+						aNTreasure->getName() = aTreasure.ToString();
+					}
 					aTCol->addTreasures(aNTreasure);
 				}
 				aRoom->addInteractable(aTCol);
@@ -390,26 +394,27 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 				initializeIInteractable(aTCol, aTCollector);
 				initializeIUpdatable(aTCol, aTCollector, aInteractableMap);
 				_ASSERT_EXPR(aTCol.hasKey("mTreasures"), "Treasure Collector has no treasures");
-				for (auto& aTreasure : aTCol["mTreasures"].ObjectRange())
+				for (auto& aTreasure : aTCol["mTreasures"].ArrayRange())
 				{
 					PickableItem* aNTreasure = nullptr;
-					if (aInteractableMap.count(aTreasure.first) == 0)
+					if (aInteractableMap.count(aTreasure.ToString()) == 0)
 					{
 						aNTreasure = new PickableItem();
-						aInteractableMap.emplace(aTreasure.first, aNTreasure);
+						aInteractableMap.emplace(aTreasure.ToString(), aNTreasure);
 					}
 					else
 					{
-						aNTreasure = (PickableItem*)aInteractableMap[aTreasure.first];
+						aNTreasure = (PickableItem*)aInteractableMap[aTreasure.ToString()];
 					}
-					if (aNTreasure->getName() != aTreasure.second.ToString())
+					if (aNTreasure->getName() == "")
 					{
-						aNTreasure->getName() = aTreasure.second.ToString();
+						aNTreasure->getName() = aTreasure.ToString().substr(aTreasure.ToString().find_last_of("_") + 1);
 					}
 					aTCollector->addTreasures(aNTreasure);
 				}
 				aMakeTreasureCollector = false;
 				aRoomPtr->addInteractable(aTCollector);
+				aRoomPtr->addUpdatable(aTCollector);
 			}
 			else
 			{
@@ -630,7 +635,6 @@ void GameLoader::createJSONData(Region* pFirstRegion, json::JSON& pJSONObj, std:
 	pJSONObj["mRooms"] = json::JSON::Object();
 	Room* aFirstRoom = pFirstRegion->getStartingRoom();
 	pJSONObj["mRegions"][pFirstRegion->getName()] = pFirstRegion->getItemJSON();
-	pJSONObj["mRooms"][aFirstRoom->getName()] = aFirstRoom->getItemJSON();
 	std::list<IInteractable*> aPortals = aFirstRoom->getAllPortals();
 	for (auto& aPortal : aPortals)
 	{
@@ -682,6 +686,7 @@ void GameLoader::createJSONData(Region* pFirstRegion, json::JSON& pJSONObj, std:
 			}
 		}
 	}
+	pJSONObj["mRooms"][aFirstRoom->getName()] = aFirstRoom->getItemJSON();
 }
 
 void GameLoader::cleanUpGame(Region* pFirstRegion)
