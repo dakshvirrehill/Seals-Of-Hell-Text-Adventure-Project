@@ -191,6 +191,18 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 	}
 }
 
+void Room::addGateway(IInteractable* pGateway, std::string pDirection)
+{
+	if (mRoomObjects.count(pDirection) != 0)
+	{
+		mRoomObjects[pDirection] = pGateway;
+	}
+	else
+	{
+		mRoomObjects.emplace(pDirection, pGateway);
+	}
+}
+
 void Room::addUpdatable(IUpdatable* pUpdatable)
 {
 	mUpdatableObjects.push_back(pUpdatable);
@@ -223,4 +235,30 @@ void Room::enterRoom()
 			aGateway->setCurrentRoom(this);
 		}
 	}
+}
+
+json::JSON Room::getItemJSON()
+{
+	json::JSON aJSON = json::JSON::Object();
+	aJSON["mName"] = getName();
+	aJSON["mType"] = "Room";
+	aJSON["mStory"] = getStory();
+	if (mIntoRoomGateway != nullptr && mIntoRoomGateway->getName() != "")
+	{
+		aJSON["mIntoRoomGateway"] = mIntoRoomGateway->getName();
+	}
+	aJSON["mRoomObjects"] = json::JSON::Object();
+	for (auto& iter : mRoomObjects)
+	{
+		if (iter.second->isGateway() && iter.second->getName() != "")
+		{
+			aJSON["mRoomObjects"][iter.second->getName()] = iter.second->getItemJSON();
+			aJSON["mRoomObjects"][iter.second->getName()]["Direction"] = iter.first;
+		}
+		else if(iter.second->getName() != "")
+		{
+			aJSON["mRoomObjects"][iter.first] = iter.second->getItemJSON();
+		}
+	}
+	return aJSON;
 }

@@ -12,5 +12,7 @@ public:
 	void update() override;
 	void endUpdate() override;
 	void giveObject(IInteractable*) override;
+	json::JSON getItemJSON() override;
+	std::string getType() override { return "Collector"; }
 };
 #endif

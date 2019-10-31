@@ -50,3 +50,14 @@ void Gateway::goDirection()
 		mCurrentRoom->setIntoRoomGateway(this);
 	}
 }
+
+json::JSON Gateway::getItemJSON()
+{
+	json::JSON aJSON = json::JSON::Object();
+	addCommons(aJSON);
+	aJSON["mType"] = "Gateway";
+	aJSON["mCurrentRoom"] = mCurrentRoom->getName();
+	aJSON["mConnectedRoom"] = mConnectedRoom->getName();
+	aJSON["mIntType"] = 2;
+	return aJSON;
+}

@@ -88,3 +88,18 @@ void TreasureCollector::addTreasures(IInteractable* pTreasure)
 {
 	mTreasures.emplace(pTreasure->getName(), pTreasure);
 }
+
+json::JSON TreasureCollector::getItemJSON()
+{
+	json::JSON aJSON = json::JSON::Object();
+	IInteractable::addCommons(aJSON);
+	IUpdatable::addCommons(aJSON);
+	aJSON["mType"] = "TreasureCollector";
+	aJSON["mTreasures"] = json::JSON::Array();
+	for(auto& iter: mTreasures)
+	{
+		aJSON["mTreasures"].append(iter.first);
+	}
+	aJSON["mIntType"] = 7;
+	return aJSON;
+}

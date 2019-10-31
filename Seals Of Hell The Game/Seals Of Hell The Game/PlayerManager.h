@@ -25,6 +25,7 @@ protected:
 	void blockAttack();
 	bool hasShield();
 	bool hasInInventory(IInteractable*);
+	std::map <std::string, IInteractable*>& getPlayerInventory() { return mInventory; }
 	friend class GameManager;
 	friend class CommandManager;
 };

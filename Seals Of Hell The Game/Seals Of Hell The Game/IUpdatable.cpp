@@ -21,3 +21,18 @@ void IUpdatable::resetConditionals()
 		}
 	}
 }
+
+void IUpdatable::addCommons(json::JSON& pJSON)
+{
+	pJSON["mUpdateStory"] = mAttackStory;
+	pJSON["mEndStory"] = mDeathStory;
+	if (mConditionalObject != nullptr)
+	{
+		pJSON["mConditonalObject"][mConditionalObject->getName()] = mConditionalObject->getType();
+	}
+	pJSON["mUpdatableObjectsWithType"] = json::JSON::Object();
+	for (auto& iter : mCondUpdtObjs)
+	{
+		pJSON["mUpdatableObjectsWithType"][iter->getName()] = iter->getType();
+	}
+}

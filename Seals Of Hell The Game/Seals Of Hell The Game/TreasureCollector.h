@@ -16,5 +16,7 @@ public:
 	void endUpdate() override;
 	void giveObject(IInteractable*) override;
 	void addTreasures(IInteractable*);
+	json::JSON getItemJSON() override;
+	std::string getType() override { return "TreasureCollector"; }
 };
 #endif

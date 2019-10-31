@@ -1,7 +1,7 @@
 #include <iostream>
 #include "GameManager.h"
 #include "Portal.h"
-
+#include "Region.h"
 Portal::~Portal()
 {
 	mActiveRegion = nullptr;
@@ -37,4 +37,15 @@ Region* Portal::getOtherRegion(Region* pFirstRegion)
 	{
 		return mActiveRegion;
 	}
+}
+
+json::JSON Portal::getItemJSON()
+{
+	json::JSON aJSON = json::JSON::Object();
+	addCommons(aJSON);
+	aJSON["mType"] = "Portal";
+	aJSON["mActiveRegion"] = mActiveRegion->getName();
+	aJSON["mConnectedRegion"] = mConnectedRegion->getName();
+	aJSON["mIntType"] = 6;
+	return aJSON;
 }

@@ -51,9 +51,9 @@ protected:
 		}
 		return mInstance;
 	}
-	void initializeGameFromSave(json::JSON& pGameData);
+	void initializeSaveGame(json::JSON& pSaveData);
 	void initializeNewGame(json::JSON& pGameData);
-	json::JSON createJSONData(Region*,Room*);
+	void createJSONData(Region*, json::JSON&, std::map<std::string,IInteractable*>&);
 	void cleanUpGame(Region*);
 	friend class GameManager;
 };

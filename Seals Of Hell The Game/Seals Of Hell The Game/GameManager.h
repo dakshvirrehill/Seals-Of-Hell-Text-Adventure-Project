@@ -37,7 +37,7 @@ public:
 		return mInstance;
 	}
 	void lookInsideRoom();
-	void initialize(Region*, Room*);
+	void initialize(Region*,Region*, Room*);
 	void StartGame(std::string&,bool&);
 	void GameLoop();
 	void playerWon();

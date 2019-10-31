@@ -89,3 +89,16 @@ void Enemy::endUpdate()
 	makeVisible(mCanAttack);
 	GameManager::instance().lookInsideRoom();
 }
+
+json::JSON Enemy::getItemJSON()
+{
+	json::JSON aJSON = json::JSON::Object();
+	IInteractable::addCommons(aJSON);
+	IUpdatable::addCommons(aJSON);
+	aJSON["mType"] = "Enemy";
+	aJSON["mCanAttack"] = mCanAttack;
+	aJSON["mLife"] = mLife;
+	aJSON["mBlockStory"] = mBlockStory;
+	aJSON["mIntType"] = 1;
+	return aJSON;
+}

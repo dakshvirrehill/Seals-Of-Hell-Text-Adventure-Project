@@ -106,4 +106,18 @@ void OneInteractionItem::endUpdate()
 	GameManager::instance().lookInsideRoom();
 }
 
+json::JSON OneInteractionItem::getItemJSON()
+{
+	json::JSON aJSON = json::JSON::Object();
+	aJSON["mType"] = "OneInteractionItem";
+	IInteractable::addCommons(aJSON);
+	IUpdatable::addCommons(aJSON);
+	aJSON["mIsMovable"] = mIsMovable;
+	aJSON["mIsPlayable"] = mIsPlayable;
+	aJSON["mIsEatable"] = mIsEatable;
+	aJSON["mIsRiddle"] = mIsRiddle;
+	aJSON["mIntType"] = 4;
+	return aJSON;
+}
+
 

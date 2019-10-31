@@ -22,5 +22,7 @@ public:
 	void onEnable() override;
 	void update() override;
 	void endUpdate() override;
+	json::JSON getItemJSON() override;
+	std::string getType() override { return "OneInteractionItem"; }
 };
 #endif

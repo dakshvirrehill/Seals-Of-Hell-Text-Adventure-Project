@@ -3,6 +3,7 @@
 #define I_UPDATABLE_H
 #include <string>
 #include <list>
+#include "json.hpp"
 class IInteractable;
 class IUpdatable
 {
@@ -26,5 +27,6 @@ public:
 	void setConditionalObject(IInteractable* pConditionalObject) { mConditionalObject = pConditionalObject; }
 	void addConditionUpdateObjects(IInteractable* pCondUpdObjs) { mCondUpdtObjs.push_back(pCondUpdObjs); }
 	void resetConditionals();
+	void addCommons(json::JSON&);
 };
 #endif

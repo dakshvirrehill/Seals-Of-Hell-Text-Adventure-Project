@@ -57,3 +57,13 @@ void Collector::giveObject(IInteractable* pGiveable)
 		IInteractable::giveObject(pGiveable);
 	}
 }
+
+json::JSON Collector::getItemJSON()
+{
+	json::JSON aJSON = json::JSON::Object();
+	IInteractable::addCommons(aJSON);
+	IUpdatable::addCommons(aJSON);
+	aJSON["mType"] = "Collector";
+	aJSON["mIntType"] = 0;
+	return aJSON;
+}

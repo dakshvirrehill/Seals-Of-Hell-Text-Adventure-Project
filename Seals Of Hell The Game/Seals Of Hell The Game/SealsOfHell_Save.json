@@ -1,0 +1,1850 @@
+{
+  "mFirstRegion" : "Underworld",
+  "mName" : "Seals of Hell",
+  "mRegions" : {
+    "Abyss Of War" : {
+      "mEntryRoom" : "War Memorial",
+      "mName" : "Abyss Of War",
+      "mStory" : "War has ruled and will rule forever"
+    },
+    "Atrium of Death" : {
+      "mEntryRoom" : "Land of the Living",
+      "mName" : "Atrium of Death",
+      "mStory" : "The Only Zone of Hell the devil also fears"
+    },
+    "Belly of Gluttony" : {
+      "mEntryRoom" : "Feast Room",
+      "mName" : "Belly of Gluttony",
+      "mStory" : "The hunger of doing nothing but eating drags the soul of the damned here"
+    },
+    "Brothel of Lust" : {
+      "mEntryRoom" : "Desire Room",
+      "mName" : "Brothel of Lust",
+      "mStory" : "Whether it is lust of the flesh or of power, you would give in to your temptations here"
+    },
+    "Manacles of Pestilence" : {
+      "mEntryRoom" : "Room of Protection",
+      "mName" : "Manacles of Pestilence",
+      "mStory" : "The only way out is in a hospital stretcher"
+    },
+    "Matrix of Greed" : {
+      "mEntryRoom" : "The Ultimate Casino",
+      "mName" : "Matrix of Greed",
+      "mStory" : "If you are tempted by greed, you are not fit to be in this region"
+    },
+    "Realm of Famine" : {
+      "mEntryRoom" : "Gates of Starvation",
+      "mName" : "Realm of Famine",
+      "mStory" : "The kingdom of starvation has begun"
+    },
+    "Underworld" : {
+      "mEntryRoom" : "Hell's Gates",
+      "mName" : "Underworld",
+      "mStory" : "The beginning and the end of the labyrinth of hell"
+    }
+  },
+  "mRooms" : {
+    "Belly of Leviathan" : {
+      "Region" : "Belly of Gluttony",
+      "mName" : "Belly of Leviathan",
+      "mRoomObjects" : {
+        "BELLY OF GLUTTONY PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Belly of Gluttony",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "BELLY OF GLUTTONY PORTAL",
+          "mStory" : "Portal between Belly of Gluttony and Underworld",
+          "mType" : "Portal"
+        },
+        "LEVIATHAN" : {
+          "mBlockStory" : "The shield blocks the Leviathan's venomous teeth",
+          "mCanAttack" : true,
+          "mConditonalObject" : {
+            "DAMNED SWORD" : "PickableItem"
+          },
+          "mEndStory" : "It Crawl backs into Purgatory, dissapointed and sad, leaving behind something very valuable",
+          "mIntType" : 1,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mLife" : 2,
+          "mName" : "LEVIATHAN",
+          "mStory" : "The infamous demon banished to the depths of Purgatory",
+          "mType" : "Enemy",
+          "mUpdatableObjectsWithType" : {
+            "BELLY OF GLUTTONY PORTAL" : "Portal",
+            "PATHWAY TO PURGATORY" : "Gateway",
+            "PINK RING" : "PickableItem"
+          },
+          "mUpdateStory" : "Tries to bite into your skin with its razor sharp teeth"
+        },
+        "PATHWAY TO PURGATORY" : {
+          "Direction" : "NORTH-EAST",
+          "mConnectedRoom" : "Pig Lair",
+          "mCurrentRoom" : "Belly of Leviathan",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "PATHWAY TO PURGATORY",
+          "mStory" : "Try to beat the monster from the deepest depths of hell",
+          "mType" : "Gateway"
+        },
+        "PINK RING" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : true,
+          "mIsGiven" : false,
+          "mIsInteractable" : false,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : false,
+          "mIsWeapon" : false,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "PINK RING",
+          "mStory" : "The All Powerful Ring of Gluttony",
+          "mType" : "PickableItem"
+        }
+      },
+      "mStory" : "Whoever comes here, never returns",
+      "mType" : "Room"
+    },
+    "Chemical Testing Room" : {
+      "Region" : "Manacles of Pestilence",
+      "mName" : "Chemical Testing Room",
+      "mRoomObjects" : {
+        "ANSWER ROUTE" : {
+          "Direction" : "SOUTH",
+          "mConnectedRoom" : "Chemical Testing Room",
+          "mCurrentRoom" : "Riddle Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "ANSWER ROUTE",
+          "mStory" : "If you have a good IQ you may pass",
+          "mType" : "Gateway"
+        },
+        "BIO-WEAPON FACTORY" : {
+          "mConditonalObject" : {
+            "BEAK MASK" : "PickableItem"
+          },
+          "mEndStory" : "The beak mask protects you from the effects of the chemicals",
+          "mIntType" : 3,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "BIO-WEAPON FACTORY",
+          "mStory" : "This chemical testing facility can kill almost anyone",
+          "mType" : "KillZone",
+          "mUpdatableObjectsWithType" : {
+            "ANSWER ROUTE" : "Gateway",
+            "DISEASE ROUTE" : "Gateway",
+            "FUMING PATH" : "Gateway"
+          },
+          "mUpdateStory" : "The strong chemicals creep up on you"
+        },
+        "DISEASE ROUTE" : {
+          "Direction" : "NORTH",
+          "mConnectedRoom" : "Disease Room",
+          "mCurrentRoom" : "Chemical Testing Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "DISEASE ROUTE",
+          "mStory" : "Only take this route if you have a good immune system",
+          "mType" : "Gateway"
+        },
+        "FUMING PATH" : {
+          "Direction" : "EAST",
+          "mConnectedRoom" : "Room of Protection",
+          "mCurrentRoom" : "Chemical Testing Room",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "FUMING PATH",
+          "mStory" : "Fumes of pungent chemicals are creeping out",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "The deadliest weapons of mass destructions are tested here",
+      "mType" : "Room"
+    },
+    "Desire Room" : {
+      "Region" : "Brothel of Lust",
+      "mName" : "Desire Room",
+      "mRoomObjects" : {
+        "BROTHEL OF LUST PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Brothel of Lust",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "BROTHEL OF LUST PORTAL",
+          "mStory" : "Portal between Brothel of Lust and Underworld",
+          "mType" : "Portal"
+        },
+        "CAP OF DREAMS" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : true,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : true,
+          "mIsWeapon" : true,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "CAP OF DREAMS",
+          "mStory" : "The ultimate weapon of dreams",
+          "mType" : "PickableItem"
+        },
+        "CLOAK OF LOVE" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : true,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : true,
+          "mIsWeapon" : true,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "CLOAK OF LOVE",
+          "mStory" : "Thie ultimate weapon of love",
+          "mType" : "PickableItem"
+        },
+        "DREAMY WAY" : {
+          "Direction" : "NORTH-EAST",
+          "mConnectedRoom" : "Room of Dreams",
+          "mCurrentRoom" : "Desire Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "DREAMY WAY",
+          "mStory" : "Give in to your temptation",
+          "mType" : "Gateway"
+        },
+        "KEY TO BANK" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : true,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : true,
+          "mIsWeapon" : true,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "KEY TO BANK",
+          "mStory" : "The ultimate weapon of money",
+          "mType" : "PickableItem"
+        },
+        "LUSTY WAY" : {
+          "Direction" : "NORTH",
+          "mConnectedRoom" : "Room of Love",
+          "mCurrentRoom" : "Desire Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "LUSTY WAY",
+          "mStory" : "Give in to your temptation",
+          "mType" : "Gateway"
+        },
+        "POWERFUL WAY" : {
+          "Direction" : "WEST",
+          "mConnectedRoom" : "Desire Room",
+          "mCurrentRoom" : "Room of Power",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "POWERFUL WAY",
+          "mStory" : "Give in to your temptation",
+          "mType" : "Gateway"
+        },
+        "WAND OF POWER" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : true,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : true,
+          "mIsWeapon" : true,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "WAND OF POWER",
+          "mStory" : "The ultimate weapon of power",
+          "mType" : "PickableItem"
+        },
+        "WEALTHY WAY" : {
+          "Direction" : "NORTH-WEST",
+          "mConnectedRoom" : "Room of Money",
+          "mCurrentRoom" : "Desire Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "WEALTHY WAY",
+          "mStory" : "Give in to your temptation",
+          "mType" : "Gateway"
+        },
+        "WHAT DO YOU DESIRE?" : {
+          "mEndStory" : "Chose your door carefully as your path depends on your lust",
+          "mIntType" : 4,
+          "mIsEatable" : false,
+          "mIsInteractable" : true,
+          "mIsMovable" : false,
+          "mIsPlayable" : true,
+          "mIsRiddle" : false,
+          "mIsVisible" : true,
+          "mName" : "WHAT DO YOU DESIRE?",
+          "mStory" : "Play to unlock doors to your lust and temptation",
+          "mType" : "OneInteractionItem",
+          "mUpdatableObjectsWithType" : {
+            "DREAMY WAY" : "Gateway",
+            "LUSTY WAY" : "Gateway",
+            "POWERFUL WAY" : "Gateway",
+            "WEALTHY WAY" : "Gateway"
+          },
+          "mUpdateStory" : "Give in to your lust"
+        }
+      },
+      "mStory" : "Fullfill your every desire by picking your lust",
+      "mType" : "Room"
+    },
+    "Disease Room" : {
+      "Region" : "Manacles of Pestilence",
+      "mName" : "Disease Room",
+      "mRoomObjects" : {
+        "DISEASE ROUTE" : {
+          "Direction" : "SOUTH",
+          "mConnectedRoom" : "Disease Room",
+          "mCurrentRoom" : "Chemical Testing Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "DISEASE ROUTE",
+          "mStory" : "Only take this route if you have a good immune system",
+          "mType" : "Gateway"
+        },
+        "DISEASE TO PESTILENCE" : {
+          "Direction" : "SOUTH-WEST",
+          "mConnectedRoom" : "Disease Room",
+          "mCurrentRoom" : "Pestilence's White Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "DISEASE TO PESTILENCE",
+          "mStory" : "Your immune system is good",
+          "mType" : "Gateway"
+        },
+        "PLAGUE DEMON" : {
+          "mBlockStory" : "The shield redirects the acid somewhere else",
+          "mCanAttack" : true,
+          "mConditonalObject" : {
+            "PECULIAR MEDICINAL INJECTION" : "PickableItem"
+          },
+          "mEndStory" : "The injection reacts with the demon making him burst into tiny pieces",
+          "mIntType" : 1,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mLife" : 1,
+          "mName" : "PLAGUE DEMON",
+          "mStory" : "Pestilence's prized pupil, responsible for the bubonic plague",
+          "mType" : "Enemy",
+          "mUpdatableObjectsWithType" : {
+            "DISEASE ROUTE" : "Gateway",
+            "DISEASE TO PESTILENCE" : "Gateway"
+          },
+          "mUpdateStory" : "Throws disease carrying acid towards you"
+        }
+      },
+      "mStory" : "The house of the plague",
+      "mType" : "Room"
+    },
+    "Feast Room" : {
+      "Region" : "Belly of Gluttony",
+      "mName" : "Feast Room",
+      "mRoomObjects" : {
+        "BELLY OF GLUTTONY PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Belly of Gluttony",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "BELLY OF GLUTTONY PORTAL",
+          "mStory" : "Portal between Belly of Gluttony and Underworld",
+          "mType" : "Portal"
+        },
+        "BLOB MELTOR" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : false,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : false,
+          "mIsWeapon" : true,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "BLOB MELTOR",
+          "mStory" : "The only weapon capable of melting the pig blob demon.",
+          "mType" : "PickableItem"
+        },
+        "DELICIOUS MOUTH WATERING FOOD" : {
+          "mEndStory" : "You feel full and bloated but you now have a desire to eat everything",
+          "mIntType" : 4,
+          "mIsEatable" : true,
+          "mIsInteractable" : true,
+          "mIsMovable" : false,
+          "mIsPlayable" : false,
+          "mIsRiddle" : false,
+          "mIsVisible" : true,
+          "mName" : "DELICIOUS MOUTH WATERING FOOD",
+          "mStory" : "Eating this would never fullfill your desire, or will it?",
+          "mType" : "OneInteractionItem",
+          "mUpdatableObjectsWithType" : {
+
+          },
+          "mUpdateStory" : "Eat this delicious cannibalistic feast"
+        },
+        "FEAST TABLE" : {
+          "mEndStory" : "Moving the table revealed a special artifact that might be useful",
+          "mIntType" : 4,
+          "mIsEatable" : false,
+          "mIsInteractable" : true,
+          "mIsMovable" : true,
+          "mIsPlayable" : false,
+          "mIsRiddle" : false,
+          "mIsVisible" : true,
+          "mName" : "FEAST TABLE",
+          "mStory" : "The demons have their glutonous feast of human flesh on this table",
+          "mType" : "OneInteractionItem",
+          "mUpdatableObjectsWithType" : {
+            "BLOB MELTOR" : "PickableItem"
+          },
+          "mUpdateStory" : "Feels as if something is pushing to get out from beneath the table"
+        },
+        "TO THE BLOB" : {
+          "Direction" : "SOUTH-EAST",
+          "mConnectedRoom" : "Feast Room",
+          "mCurrentRoom" : "Pig Lair",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "TO THE BLOB",
+          "mStory" : "The path seems to be covered with nothing but vomit and slime",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "The demons of hell feast of the flesh of all the souls in hell here",
+      "mType" : "Room"
+    },
+    "Gates of Starvation" : {
+      "Region" : "Realm of Famine",
+      "mName" : "Gates of Starvation",
+      "mRoomObjects" : {
+        "ENTRY TO DROUGHT" : {
+          "Direction" : "EAST",
+          "mConnectedRoom" : "Maze of Drought Entry",
+          "mCurrentRoom" : "Gates of Starvation",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "ENTRY TO DROUGHT",
+          "mStory" : "The only way to get to famine",
+          "mType" : "Gateway"
+        },
+        "REALM OF FAMINE PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Realm of Famine",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "REALM OF FAMINE PORTAL",
+          "mStory" : "Portal between Realm of Famine and Underworld",
+          "mType" : "Portal"
+        },
+        "STARVING AND THIRSTY PEOPLE" : {
+          "mConditonalObject" : {
+            "ELIXIR OF THIRST" : "PickableItem"
+          },
+          "mEndStory" : "Elixir quenched their thirst and they opened the gateway",
+          "mIntType" : 0,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "STARVING AND THIRSTY PEOPLE",
+          "mStory" : "We are dying of thirst",
+          "mType" : "Collector",
+          "mUpdatableObjectsWithType" : {
+            "ENTRY TO DROUGHT" : "Gateway"
+          },
+          "mUpdateStory" : "Can't open the gateway without quenching our thirst"
+        }
+      },
+      "mStory" : "The only way out is by feeding the needy",
+      "mType" : "Room"
+    },
+    "Hell's Gates" : {
+      "mName" : "Hell's Gates",
+      "mRoomObjects" : {
+        "ABYSS OF WAR PORTAL" : {
+          "mActiveRegion" : "Abyss Of War",
+          "mConnectedRegion" : "Underworld",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "ABYSS OF WAR PORTAL",
+          "mStory" : "Portal between Abyss Of War and Underworld",
+          "mType" : "Portal"
+        },
+        "ATRIUM OF DEATH PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Atrium of Death",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "ATRIUM OF DEATH PORTAL",
+          "mStory" : "Portal between Atrium of Death and Underworld",
+          "mType" : "Portal"
+        },
+        "BELLY OF GLUTTONY PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Belly of Gluttony",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "BELLY OF GLUTTONY PORTAL",
+          "mStory" : "Portal between Belly of Gluttony and Underworld",
+          "mType" : "Portal"
+        },
+        "BROTHEL OF LUST PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Brothel of Lust",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "BROTHEL OF LUST PORTAL",
+          "mStory" : "Portal between Brothel of Lust and Underworld",
+          "mType" : "Portal"
+        },
+        "LUCIFER MORNINGSTAR" : {
+          "mBlockStory" : "The shield protects you from the devil's stare",
+          "mCanAttack" : true,
+          "mConditonalObject" : {
+            "DEATH SCYTHE" : "PickableItem"
+          },
+          "mEndStory" : "The devil frowns and returns to the depths of hell planning and plotting his next return",
+          "mIntType" : 1,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mLife" : 3,
+          "mName" : "LUCIFER MORNINGSTAR",
+          "mStory" : "The devil himself, guarding the gates of hell",
+          "mType" : "Enemy",
+          "mUpdatableObjectsWithType" : {
+
+          },
+          "mUpdateStory" : "Stares deep into your soul, killing your strength from within"
+        },
+        "MANACLES OF PESTILENCE PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Manacles of Pestilence",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "MANACLES OF PESTILENCE PORTAL",
+          "mStory" : "Portal between Manacles of Pestilence and Underworld",
+          "mType" : "Portal"
+        },
+        "MATRIX OF GREED PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Matrix of Greed",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "MATRIX OF GREED PORTAL",
+          "mStory" : "Portal between Matrix of Greed and Underworld",
+          "mType" : "Portal"
+        },
+        "REALM OF FAMINE PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Realm of Famine",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "REALM OF FAMINE PORTAL",
+          "mStory" : "Portal between Realm of Famine and Underworld",
+          "mType" : "Portal"
+        },
+        "THE GATES OF HELL" : {
+          "mEndStory" : "You have successfully sealed the gates of hell and stopped the apocalypse",
+          "mIntType" : 7,
+          "mIsInteractable" : false,
+          "mIsVisible" : true,
+          "mName" : "THE GATES OF HELL",
+          "mStory" : "Apocalypse is upon us as the seals are broken and the gate is open",
+          "mTreasures" : [],
+          "mType" : "TreasureCollector",
+          "mUpdatableObjectsWithType" : {
+            "LUCIFER MORNINGSTAR" : "Enemy"
+          },
+          "mUpdateStory" : "The devil is angry and is going to stop you from stopping the apocalypse"
+        }
+      },
+      "mStory" : "The start and the stop of the apocalypse",
+      "mType" : "Room"
+    },
+    "Lair of Fire" : {
+      "Region" : "Abyss Of War",
+      "mName" : "Lair of Fire",
+      "mRoomObjects" : {
+        "DEPTHS OF TARTARUS" : {
+          "Direction" : "SOUTH-WEST",
+          "mConnectedRoom" : "Lair of Fire",
+          "mCurrentRoom" : "Tartarus",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "DEPTHS OF TARTARUS",
+          "mStory" : "Feels like going deeper into hell",
+          "mType" : "Gateway"
+        },
+        "FIRE DEMON SKIN" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : false,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : false,
+          "mIsWeapon" : false,
+          "mIsWearable" : true,
+          "mIsWorn" : false,
+          "mName" : "FIRE DEMON SKIN",
+          "mStory" : "Seems like a good disguise",
+          "mType" : "PickableItem"
+        },
+        "HELLFIRE DEMON" : {
+          "mBlockStory" : "The shield protects you from the effects of hell fire",
+          "mCanAttack" : true,
+          "mConditonalObject" : {
+            "DAMNED SWORD" : "PickableItem"
+          },
+          "mEndStory" : "Its head comes off and it sheds its skin",
+          "mIntType" : 1,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mLife" : 1,
+          "mName" : "HELLFIRE DEMON",
+          "mStory" : "Came from the deepest underworld to burn souls",
+          "mType" : "Enemy",
+          "mUpdatableObjectsWithType" : {
+            "DEPTHS OF TARTARUS" : "Gateway",
+            "FIRE DEMON SKIN" : "PickableItem",
+            "PATH OF FIRE" : "Gateway"
+          },
+          "mUpdateStory" : "Tries to burn your soul with hell fire"
+        },
+        "PATH OF FIRE" : {
+          "Direction" : "NORTH",
+          "mConnectedRoom" : "Lair of Fire",
+          "mCurrentRoom" : "War Memorial",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "PATH OF FIRE",
+          "mStory" : "Feels Hot and Fiery",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "Here lives the demon of hell fire",
+      "mType" : "Room"
+    },
+    "Land of the Living" : {
+      "Region" : "Atrium of Death",
+      "mName" : "Land of the Living",
+      "mRoomObjects" : {
+        "ATRIUM OF DEATH PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Atrium of Death",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "ATRIUM OF DEATH PORTAL",
+          "mStory" : "Portal between Atrium of Death and Underworld",
+          "mType" : "Portal"
+        },
+        "CLOAK OF LIGHT" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : true,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : true,
+          "mIsWeapon" : false,
+          "mIsWearable" : true,
+          "mIsWorn" : false,
+          "mName" : "CLOAK OF LIGHT",
+          "mStory" : "Brings light to the darkest of places",
+          "mType" : "PickableItem"
+        },
+        "DARKNESS FALLS" : {
+          "Direction" : "NORTH",
+          "mConnectedRoom" : "Maze of Undead Entry",
+          "mCurrentRoom" : "Land of the Living",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "DARKNESS FALLS",
+          "mStory" : "...",
+          "mType" : "Gateway"
+        },
+        "PROTON PACK" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : false,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : false,
+          "mIsWeapon" : true,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "PROTON PACK",
+          "mStory" : "Only weapon strong enough to take down ghosts",
+          "mType" : "PickableItem"
+        },
+        "THE CARPET OF DEAD SOULS" : {
+          "mEndStory" : "Moving the carpet revealed something",
+          "mIntType" : 4,
+          "mIsEatable" : false,
+          "mIsInteractable" : true,
+          "mIsMovable" : true,
+          "mIsPlayable" : false,
+          "mIsRiddle" : false,
+          "mIsVisible" : true,
+          "mName" : "THE CARPET OF DEAD SOULS",
+          "mStory" : "Made with the flesh of all the reaped souls",
+          "mType" : "OneInteractionItem",
+          "mUpdatableObjectsWithType" : {
+            "PROTON PACK" : "PickableItem"
+          },
+          "mUpdateStory" : "Something below is disshaping the carpet"
+        }
+      },
+      "mStory" : "Only the living shall reside here",
+      "mType" : "Room"
+    },
+    "Maze of Drought 1" : {
+      "Region" : "Realm of Famine",
+      "mName" : "Maze of Drought 1",
+      "mRoomObjects" : {
+        "DROUGHT MAZE 2" : {
+          "Direction" : "SOUTH",
+          "mConnectedRoom" : "Maze of Drought 1",
+          "mCurrentRoom" : "Maze of Drought Entry",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "DROUGHT MAZE 2",
+          "mStory" : "...",
+          "mType" : "Gateway"
+        },
+        "DROUGHT MAZE 3" : {
+          "Direction" : "EAST",
+          "mConnectedRoom" : "Maze of Drought 2",
+          "mCurrentRoom" : "Maze of Drought 1",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "DROUGHT MAZE 3",
+          "mStory" : "...",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "Pathway through Drought",
+      "mType" : "Room"
+    },
+    "Maze of Drought Dead End 1" : {
+      "Region" : "Realm of Famine",
+      "mName" : "Maze of Drought Dead End 1",
+      "mRoomObjects" : {
+        "DROUGHT MAZE 1" : {
+          "Direction" : "NORTH",
+          "mConnectedRoom" : "Maze of Drought Entry",
+          "mCurrentRoom" : "Maze of Drought Dead End 1",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "DROUGHT MAZE 1",
+          "mStory" : "...",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "Nothing here",
+      "mType" : "Room"
+    },
+    "Maze of Drought Entry" : {
+      "Region" : "Realm of Famine",
+      "mName" : "Maze of Drought Entry",
+      "mRoomObjects" : {
+        "DROUGHT MAZE 1" : {
+          "Direction" : "SOUTH",
+          "mConnectedRoom" : "Maze of Drought Entry",
+          "mCurrentRoom" : "Maze of Drought Dead End 1",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "DROUGHT MAZE 1",
+          "mStory" : "...",
+          "mType" : "Gateway"
+        },
+        "DROUGHT MAZE 2" : {
+          "Direction" : "NORTH",
+          "mConnectedRoom" : "Maze of Drought 1",
+          "mCurrentRoom" : "Maze of Drought Entry",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "DROUGHT MAZE 2",
+          "mStory" : "...",
+          "mType" : "Gateway"
+        },
+        "ENTRY TO DROUGHT" : {
+          "Direction" : "WEST",
+          "mConnectedRoom" : "Maze of Drought Entry",
+          "mCurrentRoom" : "Gates of Starvation",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "ENTRY TO DROUGHT",
+          "mStory" : "The only way to get to famine",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "The destruction of famine has begun",
+      "mType" : "Room"
+    },
+    "Maze of Undead 1" : {
+      "Region" : "Atrium of Death",
+      "mName" : "Maze of Undead 1",
+      "mRoomObjects" : {
+        "UNDEAD MAZE 1" : {
+          "Direction" : "WEST",
+          "mConnectedRoom" : "Maze of Undead 1",
+          "mCurrentRoom" : "Maze of Undead Entry",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "UNDEAD MAZE 1",
+          "mStory" : "...",
+          "mType" : "Gateway"
+        },
+        "UNDEAD MAZE 6" : {
+          "Direction" : "NORTH",
+          "mConnectedRoom" : "Maze of Undead 4",
+          "mCurrentRoom" : "Maze of Undead 1",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "UNDEAD MAZE 6",
+          "mStory" : "...",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "There is a sudden increase in darkness",
+      "mType" : "Room"
+    },
+    "Maze of Undead Entry" : {
+      "Region" : "Atrium of Death",
+      "mName" : "Maze of Undead Entry",
+      "mRoomObjects" : {
+        "DARKNESS FALLS" : {
+          "Direction" : "SOUTH",
+          "mConnectedRoom" : "Maze of Undead Entry",
+          "mCurrentRoom" : "Land of the Living",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "DARKNESS FALLS",
+          "mStory" : "...",
+          "mType" : "Gateway"
+        },
+        "PIT OF DARKNESS" : {
+          "mConditonalObject" : {
+            "CLOAK OF LIGHT" : "PickableItem"
+          },
+          "mEndStory" : "The light from your cloak brings you back and lights up the place",
+          "mIntType" : 3,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "PIT OF DARKNESS",
+          "mStory" : "You see nothing but darkness and hear the burning souls of the damned",
+          "mType" : "KillZone",
+          "mUpdatableObjectsWithType" : {
+            "DARKNESS FALLS" : "Gateway",
+            "UNDEAD MAZE 1" : "Gateway",
+            "UNDEAD MAZE 2" : "Gateway"
+          },
+          "mUpdateStory" : "The darkness takes you deeper into the pit of oblivion"
+        },
+        "UNDEAD MAZE 1" : {
+          "Direction" : "EAST",
+          "mConnectedRoom" : "Maze of Undead 1",
+          "mCurrentRoom" : "Maze of Undead Entry",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "UNDEAD MAZE 1",
+          "mStory" : "...",
+          "mType" : "Gateway"
+        },
+        "UNDEAD MAZE 2" : {
+          "Direction" : "NORTH",
+          "mConnectedRoom" : "Maze of Undead 2",
+          "mCurrentRoom" : "Maze of Undead Entry",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "UNDEAD MAZE 2",
+          "mStory" : "...",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "Darkness and eerieness creeps in",
+      "mType" : "Room"
+    },
+    "Nuclear War Room" : {
+      "Region" : "Abyss Of War",
+      "mName" : "Nuclear War Room",
+      "mRoomObjects" : {
+        "NUCLEAR DEATH PASSAGE" : {
+          "Direction" : "NORTH-WEST",
+          "mConnectedRoom" : "Tartarus",
+          "mCurrentRoom" : "Nuclear War Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "NUCLEAR DEATH PASSAGE",
+          "mStory" : "Those who wish to see radioactivity may go this way",
+          "mType" : "Gateway"
+        },
+        "NUCLEAR WAR" : {
+          "mEndStory" : "...",
+          "mIntType" : 3,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "NUCLEAR WAR",
+          "mStory" : "Radioactivity everywhere, not a single live soul",
+          "mType" : "KillZone",
+          "mUpdatableObjectsWithType" : {
+            "NUCLEAR DEATH PASSAGE" : "Gateway"
+          },
+          "mUpdateStory" : "The radioactivity poisons you continuously"
+        }
+      },
+      "mStory" : "War has taken over",
+      "mType" : "Room"
+    },
+    "Pestilence's White Room" : {
+      "Region" : "Manacles of Pestilence",
+      "mName" : "Pestilence's White Room",
+      "mRoomObjects" : {
+        "DISEASE TO PESTILENCE" : {
+          "Direction" : "NORTH-EAST",
+          "mConnectedRoom" : "Disease Room",
+          "mCurrentRoom" : "Pestilence's White Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "DISEASE TO PESTILENCE",
+          "mStory" : "Your immune system is good",
+          "mType" : "Gateway"
+        },
+        "IQ TO PESTILENCE" : {
+          "Direction" : "SOUTH-EAST",
+          "mConnectedRoom" : "Pestilence's White Room",
+          "mCurrentRoom" : "Riddle Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "IQ TO PESTILENCE",
+          "mStory" : "You have defeated pestilence in theory now time to defeat her in reality",
+          "mType" : "Gateway"
+        },
+        "MANACLES OF PESTILENCE PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Manacles of Pestilence",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "MANACLES OF PESTILENCE PORTAL",
+          "mStory" : "Portal between Manacles of Pestilence and Underworld",
+          "mType" : "Portal"
+        },
+        "WHITE HORSEMAN" : {
+          "mBlockStory" : "The shield renders her attacks useless",
+          "mCanAttack" : true,
+          "mConditonalObject" : {
+            "DAMNED SWORD" : "PickableItem"
+          },
+          "mEndStory" : "She mumbles some curse words as she rides off on her horse, leaving behind her prized possession",
+          "mIntType" : 1,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mLife" : 2,
+          "mName" : "WHITE HORSEMAN",
+          "mStory" : "Pestilence herself, shocked that you passed her henchmen",
+          "mType" : "Enemy",
+          "mUpdatableObjectsWithType" : {
+            "DISEASE TO PESTILENCE" : "Gateway",
+            "IQ TO PESTILENCE" : "Gateway",
+            "MANACLES OF PESTILENCE PORTAL" : "Portal",
+            "WHITE RING" : "PickableItem"
+          },
+          "mUpdateStory" : "Sends all her powers of pollution and disease to crumble you"
+        },
+        "WHITE RING" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : true,
+          "mIsGiven" : false,
+          "mIsInteractable" : false,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : false,
+          "mIsWeapon" : false,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "WHITE RING",
+          "mStory" : "The All Powerful Ring of Pestilence",
+          "mType" : "PickableItem"
+        }
+      },
+      "mStory" : "The house of horrors of pestilence",
+      "mType" : "Room"
+    },
+    "Pig Lair" : {
+      "Region" : "Belly of Gluttony",
+      "mName" : "Pig Lair",
+      "mRoomObjects" : {
+        "ELIXIR OF THIRST" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : true,
+          "mIsGiven" : false,
+          "mIsInteractable" : true,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : true,
+          "mIsWeapon" : false,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "ELIXIR OF THIRST",
+          "mStory" : "Quenches any kind of thirst or bloodlust",
+          "mType" : "PickableItem"
+        },
+        "PATHWAY TO PURGATORY" : {
+          "Direction" : "SOUTH-WEST",
+          "mConnectedRoom" : "Pig Lair",
+          "mCurrentRoom" : "Belly of Leviathan",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "PATHWAY TO PURGATORY",
+          "mStory" : "Try to beat the monster from the deepest depths of hell",
+          "mType" : "Gateway"
+        },
+        "PIG BLOB" : {
+          "mBlockStory" : "The shield pushes the demon aside",
+          "mCanAttack" : true,
+          "mConditonalObject" : {
+            "BLOB MELTOR" : "PickableItem"
+          },
+          "mEndStory" : "The demon melts until there is nothing but slime left",
+          "mIntType" : 1,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mLife" : 1,
+          "mName" : "PIG BLOB",
+          "mStory" : "Demon that embodies gluttony",
+          "mType" : "Enemy",
+          "mUpdatableObjectsWithType" : {
+            "PATHWAY TO PURGATORY" : "Gateway",
+            "TO THE BLOB" : "Gateway"
+          },
+          "mUpdateStory" : "Tries to swallow you as a whole"
+        },
+        "TO THE BLOB" : {
+          "Direction" : "NORTH-WEST",
+          "mConnectedRoom" : "Feast Room",
+          "mCurrentRoom" : "Pig Lair",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "TO THE BLOB",
+          "mStory" : "The path seems to be covered with nothing but vomit and slime",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "The Blob Demon lives here",
+      "mType" : "Room"
+    },
+    "Red Horseman Room" : {
+      "Region" : "Abyss Of War",
+      "mName" : "Red Horseman Room",
+      "mRoomObjects" : {
+        "ABYSS OF WAR PORTAL" : {
+          "mActiveRegion" : "Abyss Of War",
+          "mConnectedRegion" : "Underworld",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "ABYSS OF WAR PORTAL",
+          "mStory" : "Portal between Abyss Of War and Underworld",
+          "mType" : "Portal"
+        },
+        "PATH TO WAR" : {
+          "Direction" : "NORTH",
+          "mConnectedRoom" : "Tartarus",
+          "mCurrentRoom" : "Red Horseman Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "PATH TO WAR",
+          "mStory" : "Only the daring can challenge war",
+          "mType" : "Gateway"
+        },
+        "RED HORSEMAN" : {
+          "mBlockStory" : "The shield teleports you back to war's realm",
+          "mCanAttack" : true,
+          "mConditonalObject" : {
+            "DAMNED SWORD" : "PickableItem"
+          },
+          "mEndStory" : "Climbs the red horse and gallops back to where it came from, leaving behind something extremely valuable",
+          "mIntType" : 1,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mLife" : 2,
+          "mName" : "RED HORSEMAN",
+          "mStory" : "War, Loves to battle for supremacy",
+          "mType" : "Enemy",
+          "mUpdatableObjectsWithType" : {
+            "ABYSS OF WAR PORTAL" : "Portal",
+            "PATH TO WAR" : "Gateway",
+            "RED RING" : "PickableItem"
+          },
+          "mUpdateStory" : "Tries to blast you into oblivion"
+        },
+        "RED RING" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : true,
+          "mIsGiven" : false,
+          "mIsInteractable" : false,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : false,
+          "mIsWeapon" : false,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "RED RING",
+          "mStory" : "The All Powerful Ring of War",
+          "mType" : "PickableItem"
+        }
+      },
+      "mStory" : "The Lair of War",
+      "mType" : "Room"
+    },
+    "Riddle Room" : {
+      "Region" : "Manacles of Pestilence",
+      "mName" : "Riddle Room",
+      "mRoomObjects" : {
+        "ANSWER ROUTE" : {
+          "Direction" : "NORTH",
+          "mConnectedRoom" : "Chemical Testing Room",
+          "mCurrentRoom" : "Riddle Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "ANSWER ROUTE",
+          "mStory" : "If you have a good IQ you may pass",
+          "mType" : "Gateway"
+        },
+        "IQ TO PESTILENCE" : {
+          "Direction" : "NORTH-WEST",
+          "mConnectedRoom" : "Pestilence's White Room",
+          "mCurrentRoom" : "Riddle Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "IQ TO PESTILENCE",
+          "mStory" : "You have defeated pestilence in theory now time to defeat her in reality",
+          "mType" : "Gateway"
+        },
+        "THE BLACK DEATH" : {
+          "mEndStory" : "The black death was pestilence's masterpiece",
+          "mIntType" : 4,
+          "mIsEatable" : false,
+          "mIsInteractable" : true,
+          "mIsMovable" : false,
+          "mIsPlayable" : false,
+          "mIsRiddle" : true,
+          "mIsVisible" : true,
+          "mName" : "THE BLACK DEATH",
+          "mStory" : "Sit down gather round and listen to my tale. Of A Time when humanity would fail. To conquer death like it always had. We have died before but this time was bad. In threes they came spreading like plague. We know many died but the numbers are vague",
+          "mType" : "OneInteractionItem",
+          "mUpdatableObjectsWithType" : {
+            "ANSWER ROUTE" : "Gateway",
+            "IQ TO PESTILENCE" : "Gateway"
+          },
+          "mUpdateStory" : "Answer me to pass through"
+        }
+      },
+      "mStory" : "Are you a know it all? Try to get out of this riddle",
+      "mType" : "Room"
+    },
+    "Room of Love" : {
+      "Region" : "Brothel of Lust",
+      "mName" : "Room of Love",
+      "mRoomObjects" : {
+        "DEMON OF LOVE" : {
+          "mConditonalObject" : {
+            "CLOAK OF LOVE" : "PickableItem"
+          },
+          "mEndStory" : "You didn't give in to your lust. Demon lets you pass",
+          "mIntType" : 3,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "DEMON OF LOVE",
+          "mStory" : "Hates your guts, will attack you",
+          "mType" : "KillZone",
+          "mUpdatableObjectsWithType" : {
+            "LOVE TO TEMPTATION" : "Gateway",
+            "LUSTY WAY" : "Gateway"
+          },
+          "mUpdateStory" : "Tries to seduce you into submission"
+        },
+        "LOVE TO TEMPTATION" : {
+          "Direction" : "NORTH-EAST",
+          "mConnectedRoom" : "The Brothel",
+          "mCurrentRoom" : "Room of Love",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "LOVE TO TEMPTATION",
+          "mStory" : "Fight the temptress",
+          "mType" : "Gateway"
+        },
+        "LUSTY WAY" : {
+          "Direction" : "SOUTH",
+          "mConnectedRoom" : "Room of Love",
+          "mCurrentRoom" : "Desire Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "LUSTY WAY",
+          "mStory" : "Give in to your temptation",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "The lovable survive",
+      "mType" : "Room"
+    },
+    "Room of Midas The Greedy" : {
+      "Region" : "Matrix of Greed",
+      "mName" : "Room of Midas The Greedy",
+      "mRoomObjects" : {
+        "GOLD RING" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : true,
+          "mIsGiven" : false,
+          "mIsInteractable" : false,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : false,
+          "mIsWeapon" : false,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "GOLD RING",
+          "mStory" : "The All Powerful Ring of Greed",
+          "mType" : "PickableItem"
+        },
+        "MATRIX OF GREED PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Matrix of Greed",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "MATRIX OF GREED PORTAL",
+          "mStory" : "Portal between Matrix of Greed and Underworld",
+          "mType" : "Portal"
+        },
+        "THE GOLDEN PATH" : {
+          "Direction" : "NORTH",
+          "mConnectedRoom" : "The Mirror Room",
+          "mCurrentRoom" : "Room of Midas The Greedy",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "THE GOLDEN PATH",
+          "mStory" : "Adorned with nothing but gold",
+          "mType" : "Gateway"
+        },
+        "THE GREEDY MIDAS" : {
+          "mBlockStory" : "The shield blocks his attempted entrapment",
+          "mCanAttack" : true,
+          "mConditonalObject" : {
+            "DAMNED SWORD" : "PickableItem"
+          },
+          "mEndStory" : "Pretty disappointed, Midas runs away like the coward he is, leaving behind his prized possession",
+          "mIntType" : 1,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mLife" : 2,
+          "mName" : "THE GREEDY MIDAS",
+          "mStory" : "The ruler of the matrix of greed and all powerful gold master",
+          "mType" : "Enemy",
+          "mUpdatableObjectsWithType" : {
+            "GOLD RING" : "PickableItem",
+            "MATRIX OF GREED PORTAL" : "Portal",
+            "THE GOLDEN PATH" : "Gateway"
+          },
+          "mUpdateStory" : "Tries to turn you into one of his prized gold trophies"
+        }
+      },
+      "mStory" : "Protect yourself from his greed",
+      "mType" : "Room"
+    },
+    "Room of Money" : {
+      "Region" : "Brothel of Lust",
+      "mName" : "Room of Money",
+      "mRoomObjects" : {
+        "DEMON OF MONEY" : {
+          "mConditonalObject" : {
+            "KEY TO BANK" : "PickableItem"
+          },
+          "mEndStory" : "You didn't give in to your lust. Demon lets you pass",
+          "mIntType" : 3,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "DEMON OF MONEY",
+          "mStory" : "Can't stand the sight of you, will attack you",
+          "mType" : "KillZone",
+          "mUpdatableObjectsWithType" : {
+            "MONEY TO TEMPTATION" : "Gateway",
+            "WEALTHY WAY" : "Gateway"
+          },
+          "mUpdateStory" : "Tries to eat you"
+        },
+        "MONEY TO TEMPTATION" : {
+          "Direction" : "NORTH-WEST",
+          "mConnectedRoom" : "The Brothel",
+          "mCurrentRoom" : "Room of Money",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "MONEY TO TEMPTATION",
+          "mStory" : "Fight the temptress",
+          "mType" : "Gateway"
+        },
+        "WEALTHY WAY" : {
+          "Direction" : "SOUTH-EAST",
+          "mConnectedRoom" : "Room of Money",
+          "mCurrentRoom" : "Desire Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "WEALTHY WAY",
+          "mStory" : "Give in to your temptation",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "The wealthy survive",
+      "mType" : "Room"
+    },
+    "Room of Power" : {
+      "Region" : "Brothel of Lust",
+      "mName" : "Room of Power",
+      "mRoomObjects" : {
+        "DEMON OF POWER" : {
+          "mConditonalObject" : {
+            "WAND OF POWER" : "PickableItem"
+          },
+          "mEndStory" : "You didn't give in to your lust. Demon lets you pass",
+          "mIntType" : 3,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "DEMON OF POWER",
+          "mStory" : "Threatened by you, will attack you",
+          "mType" : "KillZone",
+          "mUpdatableObjectsWithType" : {
+            "POWER TO TEMPTATION" : "Gateway",
+            "POWERFUL WAY" : "Gateway"
+          },
+          "mUpdateStory" : "Sees your wand and attacks you with all its power"
+        },
+        "POWER TO TEMPTATION" : {
+          "Direction" : "NORTH",
+          "mConnectedRoom" : "The Brothel",
+          "mCurrentRoom" : "Room of Power",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "POWER TO TEMPTATION",
+          "mStory" : "Fight the temptress",
+          "mType" : "Gateway"
+        },
+        "POWERFUL WAY" : {
+          "Direction" : "EAST",
+          "mConnectedRoom" : "Desire Room",
+          "mCurrentRoom" : "Room of Power",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "POWERFUL WAY",
+          "mStory" : "Give in to your temptation",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "The all powerful survive",
+      "mType" : "Room"
+    },
+    "Room of Protection" : {
+      "Region" : "Manacles of Pestilence",
+      "mName" : "Room of Protection",
+      "mRoomObjects" : {
+        "BEAK MASK" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : true,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : true,
+          "mIsWeapon" : false,
+          "mIsWearable" : true,
+          "mIsWorn" : false,
+          "mName" : "BEAK MASK",
+          "mStory" : "The only proper protection from the cruelty of pestilence",
+          "mType" : "PickableItem"
+        },
+        "FUMING PATH" : {
+          "Direction" : "WEST",
+          "mConnectedRoom" : "Room of Protection",
+          "mCurrentRoom" : "Chemical Testing Room",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "FUMING PATH",
+          "mStory" : "Fumes of pungent chemicals are creeping out",
+          "mType" : "Gateway"
+        },
+        "MANACLES OF PESTILENCE PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Manacles of Pestilence",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "MANACLES OF PESTILENCE PORTAL",
+          "mStory" : "Portal between Manacles of Pestilence and Underworld",
+          "mType" : "Portal"
+        },
+        "PECULIAR MEDICINAL INJECTION" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : true,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : true,
+          "mIsWeapon" : true,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "PECULIAR MEDICINAL INJECTION",
+          "mStory" : "Bring back from the dead or send back to death",
+          "mType" : "PickableItem"
+        }
+      },
+      "mStory" : "A sheltor from the upcoming plague",
+      "mType" : "Room"
+    },
+    "Tartarus" : {
+      "Region" : "Abyss Of War",
+      "mName" : "Tartarus",
+      "mRoomObjects" : {
+        "DEPTHS OF TARTARUS" : {
+          "Direction" : "NORTH-EAST",
+          "mConnectedRoom" : "Lair of Fire",
+          "mCurrentRoom" : "Tartarus",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "DEPTHS OF TARTARUS",
+          "mStory" : "Feels like going deeper into hell",
+          "mType" : "Gateway"
+        },
+        "NUCLEAR DEATH PASSAGE" : {
+          "Direction" : "SOUTH-EAST",
+          "mConnectedRoom" : "Tartarus",
+          "mCurrentRoom" : "Nuclear War Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "NUCLEAR DEATH PASSAGE",
+          "mStory" : "Those who wish to see radioactivity may go this way",
+          "mType" : "Gateway"
+        },
+        "PATH TO WAR" : {
+          "Direction" : "SOUTH",
+          "mConnectedRoom" : "Tartarus",
+          "mCurrentRoom" : "Red Horseman Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "PATH TO WAR",
+          "mStory" : "Only the daring can challenge war",
+          "mType" : "Gateway"
+        },
+        "SWARM OF DEMONS" : {
+          "mConditonalObject" : {
+            "FIRE DEMON SKIN" : "PickableItem"
+          },
+          "mEndStory" : "Your fire demon disguise fools these dumb demons and they get back to partying unaware of their impending doom",
+          "mIntType" : 3,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "SWARM OF DEMONS",
+          "mStory" : "Looks like all the demons are partying into the Apocalypse",
+          "mType" : "KillZone",
+          "mUpdatableObjectsWithType" : {
+            "DEPTHS OF TARTARUS" : "Gateway",
+            "NUCLEAR DEATH PASSAGE" : "Gateway",
+            "PATH TO WAR" : "Gateway",
+            "WORLD DEATH PASSAGE" : "Gateway"
+          },
+          "mUpdateStory" : "You are not a demon, they surround you from all directions and try to kill you"
+        },
+        "WORLD DEATH PASSAGE" : {
+          "Direction" : "EAST",
+          "mConnectedRoom" : "World War Room",
+          "mCurrentRoom" : "Tartarus",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "WORLD DEATH PASSAGE",
+          "mStory" : "Those who dare may walk this path",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "Demons of hell have risen to party",
+      "mType" : "Room"
+    },
+    "The Mirror Room" : {
+      "Region" : "Matrix of Greed",
+      "mName" : "The Mirror Room",
+      "mRoomObjects" : {
+        "INTO THE TRICKERY" : {
+          "Direction" : "NORTH-EAST",
+          "mConnectedRoom" : "The Ultimate Casino",
+          "mCurrentRoom" : "The Mirror Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "INTO THE TRICKERY",
+          "mStory" : "Go with a clear head",
+          "mType" : "Gateway"
+        },
+        "MIRROR OF ERISED" : {
+          "mBlockStory" : "The shield protects you from the mirror's voodoo",
+          "mCanAttack" : true,
+          "mConditonalObject" : {
+            "MIDAS HAMMER" : "PickableItem"
+          },
+          "mEndStory" : "The mirror breaks into millions of pieces unlocking doorways",
+          "mIntType" : 1,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mLife" : 1,
+          "mName" : "MIRROR OF ERISED",
+          "mStory" : "The most powerful demon of greed and desire",
+          "mType" : "Enemy",
+          "mUpdatableObjectsWithType" : {
+            "INTO THE TRICKERY" : "Gateway",
+            "THE GOLDEN PATH" : "Gateway"
+          },
+          "mUpdateStory" : "Tries to ensnare you with visions of great achievements and desires"
+        },
+        "THE GOLDEN PATH" : {
+          "Direction" : "SOUTH",
+          "mConnectedRoom" : "The Mirror Room",
+          "mCurrentRoom" : "Room of Midas The Greedy",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "THE GOLDEN PATH",
+          "mStory" : "Adorned with nothing but gold",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "Get lost in the visions",
+      "mType" : "Room"
+    },
+    "The Ultimate Casino" : {
+      "Region" : "Matrix of Greed",
+      "mName" : "The Ultimate Casino",
+      "mRoomObjects" : {
+        "GOLD COIN" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : true,
+          "mIsGiven" : false,
+          "mIsInteractable" : false,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : false,
+          "mIsWeapon" : false,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "GOLD COIN",
+          "mStory" : "Shiny object that can get you places",
+          "mType" : "PickableItem"
+        },
+        "GOLD SLOT MACHINE" : {
+          "mEndStory" : "You are a greedy human being and you get nothing",
+          "mIntType" : 4,
+          "mIsEatable" : false,
+          "mIsInteractable" : true,
+          "mIsMovable" : false,
+          "mIsPlayable" : true,
+          "mIsRiddle" : false,
+          "mIsVisible" : true,
+          "mName" : "GOLD SLOT MACHINE",
+          "mStory" : "Lots of winnings would give you gold",
+          "mType" : "OneInteractionItem",
+          "mUpdatableObjectsWithType" : {
+
+          },
+          "mUpdateStory" : "Play me to be a gold master"
+        },
+        "INTO THE TRICKERY" : {
+          "Direction" : "SOUTH-WEST",
+          "mConnectedRoom" : "The Ultimate Casino",
+          "mCurrentRoom" : "The Mirror Room",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "INTO THE TRICKERY",
+          "mStory" : "Go with a clear head",
+          "mType" : "Gateway"
+        },
+        "MATRIX OF GREED PORTAL" : {
+          "mActiveRegion" : "Underworld",
+          "mConnectedRegion" : "Matrix of Greed",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "MATRIX OF GREED PORTAL",
+          "mStory" : "Portal between Matrix of Greed and Underworld",
+          "mType" : "Portal"
+        },
+        "MIDAS HAMMER" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : true,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : true,
+          "mIsWeapon" : true,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "MIDAS HAMMER",
+          "mStory" : "Made of gold, only thing powerful to break the temptation of greed",
+          "mType" : "PickableItem"
+        },
+        "MONEY SLOT MACHINE" : {
+          "mEndStory" : "You are a greedy human being and you get nothing",
+          "mIntType" : 4,
+          "mIsEatable" : false,
+          "mIsInteractable" : true,
+          "mIsMovable" : false,
+          "mIsPlayable" : true,
+          "mIsRiddle" : false,
+          "mIsVisible" : true,
+          "mName" : "MONEY SLOT MACHINE",
+          "mStory" : "Lots of winnings would make you rich",
+          "mType" : "OneInteractionItem",
+          "mUpdatableObjectsWithType" : {
+
+          },
+          "mUpdateStory" : "Play me to get more money than god"
+        },
+        "OPERATOR" : {
+          "mConditonalObject" : {
+            "GOLD COIN" : "PickableItem"
+          },
+          "mEndStory" : "The operator accepts the gold coin as a valid offering and opens doorways",
+          "mIntType" : 0,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "OPERATOR",
+          "mStory" : "Provides entry into the Matrix of Greed",
+          "mType" : "Collector",
+          "mUpdatableObjectsWithType" : {
+            "INTO THE TRICKERY" : "Gateway"
+          },
+          "mUpdateStory" : "Needs something in order to give you passage"
+        },
+        "POOR SLOT MACHINE" : {
+          "mEndStory" : "The slot machine throws out a gold coin",
+          "mIntType" : 4,
+          "mIsEatable" : false,
+          "mIsInteractable" : true,
+          "mIsMovable" : false,
+          "mIsPlayable" : true,
+          "mIsRiddle" : false,
+          "mIsVisible" : true,
+          "mName" : "POOR SLOT MACHINE",
+          "mStory" : "You may win a lot you may lose a lot",
+          "mType" : "OneInteractionItem",
+          "mUpdatableObjectsWithType" : {
+            "GOLD COIN" : "PickableItem"
+          },
+          "mUpdateStory" : "Play me to test your luck"
+        },
+        "POWER SLOT MACHINE" : {
+          "mEndStory" : "You are a greedy human being and you get nothing",
+          "mIntType" : 4,
+          "mIsEatable" : false,
+          "mIsInteractable" : true,
+          "mIsMovable" : false,
+          "mIsPlayable" : true,
+          "mIsRiddle" : false,
+          "mIsVisible" : true,
+          "mName" : "POWER SLOT MACHINE",
+          "mStory" : "Lots of winnings would make you a tyrant",
+          "mType" : "OneInteractionItem",
+          "mUpdatableObjectsWithType" : {
+
+          },
+          "mUpdateStory" : "Play me to rule the world"
+        }
+      },
+      "mStory" : "Play slots win lots",
+      "mType" : "Room"
+    },
+    "War Memorial" : {
+      "Region" : "Abyss Of War",
+      "mName" : "War Memorial",
+      "mRoomObjects" : {
+        "ABYSS OF WAR PORTAL" : {
+          "mActiveRegion" : "Abyss Of War",
+          "mConnectedRegion" : "Underworld",
+          "mIntType" : 6,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "ABYSS OF WAR PORTAL",
+          "mStory" : "Portal between Abyss Of War and Underworld",
+          "mType" : "Portal"
+        },
+        "PATH OF FIRE" : {
+          "Direction" : "SOUTH",
+          "mConnectedRoom" : "Lair of Fire",
+          "mCurrentRoom" : "War Memorial",
+          "mIntType" : 2,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "PATH OF FIRE",
+          "mStory" : "Feels Hot and Fiery",
+          "mType" : "Gateway"
+        }
+      },
+      "mStory" : "All the trinkets that war has collected over the years",
+      "mType" : "Room"
+    },
+    "World War Room" : {
+      "Region" : "Abyss Of War",
+      "mName" : "World War Room",
+      "mRoomObjects" : {
+        "WORLD DEATH PASSAGE" : {
+          "Direction" : "WEST",
+          "mConnectedRoom" : "World War Room",
+          "mCurrentRoom" : "Tartarus",
+          "mIntType" : 2,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
+          "mName" : "WORLD DEATH PASSAGE",
+          "mStory" : "Those who dare may walk this path",
+          "mType" : "Gateway"
+        },
+        "WORLD WAR III" : {
+          "mEndStory" : "...",
+          "mIntType" : 3,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mName" : "WORLD WAR III",
+          "mStory" : "The Nazis are back and the Allies can't defeat them all",
+          "mType" : "KillZone",
+          "mUpdatableObjectsWithType" : {
+            "WORLD DEATH PASSAGE" : "Gateway"
+          },
+          "mUpdateStory" : "More than a 1000 zombie nazis attack you from all directions"
+        }
+      },
+      "mStory" : "War has taken over",
+      "mType" : "Room"
+    }
+  },
+  "mStateData" : {
+    "mCurrentRoom" : "War Memorial",
+    "mInventory" : {
+      "DAMNED SWORD" : {
+        "mIntType" : 5,
+        "mIsDropped" : false,
+        "mIsGiveable" : false,
+        "mIsGiven" : false,
+        "mIsInteractable" : true,
+        "mIsPicked" : true,
+        "mIsShield" : false,
+        "mIsVisible" : true,
+        "mIsWeapon" : true,
+        "mIsWearable" : false,
+        "mIsWorn" : false,
+        "mName" : "DAMNED SWORD",
+        "mStory" : "The sword of Ares, a demon killing machine",
+        "mType" : "PickableItem"
+      },
+      "SHIELD OF INVINCIBILITY" : {
+        "mIntType" : 5,
+        "mIsDropped" : false,
+        "mIsGiveable" : false,
+        "mIsGiven" : false,
+        "mIsInteractable" : true,
+        "mIsPicked" : true,
+        "mIsShield" : true,
+        "mIsVisible" : true,
+        "mIsWeapon" : false,
+        "mIsWearable" : false,
+        "mIsWorn" : false,
+        "mName" : "SHIELD OF INVINCIBILITY",
+        "mStory" : "An unbreakable protection from almost all hellish attacks",
+        "mType" : "PickableItem"
+      }
+    }
+  },
+  "mStory" : "The Apocalypse is upon us. The Seven Seals of Hell have been opened and the Gates of Hell have unleashed all kinds of demons into the world. Save us, Oh! Mighty Hero by going into the depths of hell and fighting the worst of the worst to seal the gates again and stop the apocalypse."
+}

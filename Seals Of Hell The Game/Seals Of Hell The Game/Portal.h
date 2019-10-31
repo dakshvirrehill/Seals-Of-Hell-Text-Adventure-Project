@@ -16,5 +16,7 @@ public:
 	bool& isInitialized() { return mInitialized; }
 	bool isPortal() override { return true; }
 	Region* getOtherRegion(Region* pFirstRegion);
+	json::JSON getItemJSON() override;
+	std::string getType() override { return "Portal"; }
 };
 #endif

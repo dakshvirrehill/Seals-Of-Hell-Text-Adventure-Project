@@ -73,18 +73,10 @@ void IInteractable::dropObject()
 	std::cout << getName() << " cannot be dropped." << std::endl;
 }
 
-//void IInteractable::giveLove()
-//{
-//	std::cout << getName() << " cannot be given love." << std::endl;
-//}
-//
-//void IInteractable::giveHate()
-//{
-//	std::cout << getName() << " cannot be given hate." << std::endl;
-//}
-
-//void IInteractable::wakeUp()
-//{
-//	std::cout << getName() << " cannot be woken up." << std::endl;
-//	
-//}
+void IInteractable::addCommons(json::JSON& pJSON)
+{
+	pJSON["mName"] = getName();
+	pJSON["mStory"] = getStory();
+	pJSON["mIsInteractable"] = mInteractable;
+	pJSON["mIsVisible"] = mVisible;
+}

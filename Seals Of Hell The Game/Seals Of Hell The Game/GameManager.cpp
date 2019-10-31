@@ -26,12 +26,9 @@ void GameManager::lookInsideRoom()
 	mCurrentRoom->look();
 }
 
-void GameManager::initialize(Region* pCurrentRegion, Room* pCurrentRoom)
+void GameManager::initialize(Region* pCurrentRegion, Region* pFirstRegion, Room* pCurrentRoom)
 {
-	if (mFirstRegion == nullptr)
-	{
-		mFirstRegion = pCurrentRegion;
-	}
+	mFirstRegion = pFirstRegion;
 	mCurrentRegion = pCurrentRegion;
 	mCurrentRoom = pCurrentRoom;
 }
@@ -40,18 +37,22 @@ void GameManager::StartGame(std::string& pFileName, bool& pLoadSave)
 {
 	mFileName = pFileName + ".json";
 	mSaveFileName = pFileName + "_Save.json";
-	json::JSON aJSONObj = SaveGameManager::instance().loadGame(mFileName);
+	json::JSON aJSONObj;
 	if (mCurrentPlayer == nullptr)
 	{
 		mCurrentPlayer = new PlayerManager();
 	}
-	GameLoader::instance().initializeNewGame(aJSONObj);
-	CommandManager::instance().initialize();
-	if (pLoadSave)
+	if (!pLoadSave)
 	{
-		json::JSON aJSONSave = SaveGameManager::instance().loadGame(mSaveFileName);
-		GameLoader::instance().initializeGameFromSave(aJSONSave);
+		aJSONObj = SaveGameManager::instance().loadGame(mFileName);	
+		GameLoader::instance().initializeNewGame(aJSONObj);
 	}
+	else
+	{
+		aJSONObj = SaveGameManager::instance().loadGame(mSaveFileName);
+		GameLoader::instance().initializeSaveGame(aJSONObj);
+	}
+	CommandManager::instance().initialize();
 	mGamePlay = true;
 }
 
@@ -140,7 +141,12 @@ void GameManager::endGame()
 
 void GameManager::saveGame()
 {
-	json::JSON aJSON = GameLoader::instance().createJSONData(instance().mFirstRegion,instance().mCurrentRoom);
+	json::JSON aJSON = json::JSON::Object();
+	aJSON["mStateData"] = json::JSON::Object();
+	aJSON["mStateData"]["mCurrentRoom"] = instance().mCurrentRoom->getName();
+	aJSON["mName"] = instance().getName();
+	aJSON["mStory"] = instance().getStory();
+	GameLoader::instance().createJSONData(instance().mFirstRegion, aJSON, instance().mCurrentPlayer->getPlayerInventory());
 	SaveGameManager::instance().saveGame(aJSON, instance().mSaveFileName);
 }
 
@@ -159,7 +165,10 @@ IInteractable* GameManager::getInteractable(std::string& pObjName)
 
 void GameManager::removeFromRoom(IInteractable* pInteractable)
 {
-	mCurrentRoom->removeInteractable(pInteractable);
+	if (mCurrentRoom != nullptr)
+	{
+		mCurrentRoom->removeInteractable(pInteractable);
+	}
 }
 
 void GameManager::addInRoom(IInteractable* pInteractable)

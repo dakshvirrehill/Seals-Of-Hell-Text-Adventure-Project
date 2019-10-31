@@ -20,5 +20,7 @@ public:
 	void attackEnemy(IInteractable*) override;
 	void blockAttack() override;
 	void endUpdate() override;
+	json::JSON getItemJSON() override;
+	std::string getType() override { return "Enemy"; }
 };
 #endif

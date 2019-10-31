@@ -1,5 +1,6 @@
 #pragma once
 #include "IInteractable.h"
+#include "json.hpp"
 class PickableItem : public IInteractable
 {
 	bool mIsWeapon;
@@ -20,5 +21,8 @@ public:
 	void dropObject() override;
 	bool isWorn() override { return mIsWorn || mIsDropped; }
 	bool isGiven() override { return mIsGiven; }
+	bool isPickable() override { return true; }
+	json::JSON getItemJSON() override;
+	std::string getType() override { return "PickableItem"; }
 };
 

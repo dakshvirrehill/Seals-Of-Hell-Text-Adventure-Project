@@ -2,12 +2,14 @@
 #ifndef I_INTERACTABLE_H
 #define I_INTERACTABLE_H
 #include "BasicObject.h"
+#include "json.hpp"
 class IInteractable : public BasicObject
 {
 	bool mVisible;
 	bool mInteractable;
 protected:
 	IInteractable():BasicObject(), mVisible(false),mInteractable(false) {};
+	void addCommons(json::JSON&);
 public:
 	virtual ~IInteractable() {};
 	void initialize(bool, bool);
@@ -28,10 +30,12 @@ public:
 	virtual bool isGiven() { return false; }
 	virtual bool isGateway() { return false; }
 	virtual bool isPortal() { return false; }
+	virtual bool isPickable() { return false; }
 	bool& isVisible() { return mVisible; }
 	bool& isInteractable() { return mInteractable; }
-	//TODO : maybe remove these functions to keep reference functions to manipulate only
 	void makeVisible(bool pEnable) { mVisible = pEnable; }
 	void makeInteractable(bool pEnable) { mInteractable = pEnable; }
+	virtual json::JSON getItemJSON() = 0;
+	virtual std::string getType() = 0;
 };
 #endif

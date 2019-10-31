@@ -1,7 +1,6 @@
 #include "GameLoader.h"
 #include "BasicObject.h"
 #include "GameManager.h"
-#include "PlayerManager.h"
 #include "Region.h"
 #include "Room.h"
 #include "IInteractable.h"
@@ -31,7 +30,6 @@ void GameLoader::initializeIInteractable(json::JSON pData, IInteractable* pObjec
 	_ASSERT_EXPR(pData.hasKey("mIsInteractable"), "Data has no interactable bool");
 	initializeBasicObject(pData,pObject);
 	pObject->initialize(pData["mIsVisible"].ToBool(), pData["mIsInteractable"].ToBool());
-
 }
 
 void GameLoader::initializeIUpdatable(json::JSON pData, IUpdatable* pObject, std::map<std::string,IInteractable*>& pInteractableMap)
@@ -80,10 +78,211 @@ IInteractable* GameLoader::CreatePickableItem() { return new PickableItem(); }
 IInteractable* GameLoader::CreatePortal() { return new Portal(); }
 IInteractable* GameLoader::CreateTreasureCollector() { return new TreasureCollector(); }
 
-
-void GameLoader::initializeGameFromSave(json::JSON& pGameData)
+void GameLoader::initializeSaveGame(json::JSON& pSaveData)
 {
-	//from save game
+	_ASSERT_EXPR(pSaveData.hasKey("mStateData"), "Not A Save Game");
+	std::map<std::string, Room*> aRooms;
+	std::map<std::string, Region*> aRegions;
+	std::map<std::string, IInteractable*> aIInteractables;
+	std::string aKeyString = pSaveData["mStateData"]["mCurrentRoom"].ToString();
+	aRooms.emplace(aKeyString, new Room());
+	Room* aCurRoom = aRooms[aKeyString];
+	aKeyString = pSaveData["mFirstRegion"].ToString();
+	aRegions.emplace(aKeyString, new Region());
+	Region* aFRegion = aRegions[aKeyString];
+	GameManager::instance().BasicObject::initialize(pSaveData["mName"].ToString(), pSaveData["mStory"].ToString());
+	for (auto& aInventoryObjects : pSaveData["mStateData"]["mInventory"].ObjectRange())
+	{
+		PickableItem* aItem = nullptr;
+		if (aIInteractables.count(aInventoryObjects.first) == 0)
+		{
+			aItem = new PickableItem();
+			aIInteractables.emplace(aInventoryObjects.first, aItem);
+		}
+		else
+		{
+			aItem = (PickableItem*) aIInteractables[aInventoryObjects.first];
+		}
+		initializeBasicObject(aInventoryObjects.second, aItem);
+		initializeIInteractable(aInventoryObjects.second, aItem);
+		aItem->initialize(
+			aInventoryObjects.second["mIsWeapon"].ToBool(), 
+			aInventoryObjects.second["mIsShield"].ToBool(), 
+			aInventoryObjects.second["mIsGiveable"].ToBool(), 
+			aInventoryObjects.second["mIsWearable"].ToBool(), 
+			aInventoryObjects.second["mIsPicked"].ToBool(), 
+			aInventoryObjects.second["mIsWorn"].ToBool(), 
+			aInventoryObjects.second["mIsGiven"].ToBool(), 
+			aInventoryObjects.second["mIsDropped"].ToBool()
+		);
+		GameManager::instance().addInInventory(aItem);
+		if (aInventoryObjects.second["mIsShield"].ToBool())
+		{
+			GameManager::instance().addNewShield(aItem->getName());
+		}
+	}
+	bool isgminit = false;
+	for (auto& aJSRegion : pSaveData["mRegions"].ObjectRange())
+	{
+		Region* aRegion = nullptr;
+		if (aRegions.count(aJSRegion.first) == 0)
+		{
+			aRegion = new Region();
+			aRegions.emplace(aJSRegion.first, aRegion);
+		}
+		else
+		{
+			aRegion = aRegions[aJSRegion.first];
+		}
+		initializeBasicObject(aJSRegion.second, aRegion);
+		Room* aEntryPtr = nullptr;
+		if (aRooms.count(aJSRegion.second["mEntryRoom"].ToString()) == 0)
+		{
+			aEntryPtr = new Room();
+			aRooms.emplace(aJSRegion.second["mEntryRoom"].ToString(), aEntryPtr);
+		}
+		else
+		{
+			aEntryPtr = aRooms[aJSRegion.second["mEntryRoom"].ToString()];
+		}
+		if (aEntryPtr == aCurRoom && !isgminit)
+		{
+			GameManager::instance().initialize(aRegion, aFRegion, aEntryPtr);
+			isgminit = true;
+		}
+	}
+	for (auto& aJSRoom : pSaveData["mRooms"].ObjectRange())
+	{
+		Room* aRoom = nullptr;
+		if (aRooms.count(aJSRoom.first) == 0)
+		{
+			aRoom = new Room();
+			aRooms.emplace(aJSRoom.first, aRoom);
+		}
+		else
+		{
+			aRoom = aRooms[aJSRoom.first];
+		}
+		if (!isgminit && aRoom == aCurRoom)
+		{
+			GameManager::instance().initialize(aRegions[aJSRoom.second["Region"].ToString()], aFRegion, aRoom);
+			isgminit = true;
+		}
+		initializeBasicObject(aJSRoom.second, aRoom);
+		initializeEmptyGateways(aRoom);
+		for (auto& aJSRoomObj : aJSRoom.second["mRoomObjects"].ObjectRange())
+		{
+			IInteractable* aRoomObj = nullptr;
+			if (aIInteractables.count(aJSRoomObj.first) == 0)
+			{
+				aRoomObj = mObjectCreator[aJSRoomObj.second["mType"].ToString()](instance());
+				aIInteractables.emplace(aJSRoomObj.first, aRoomObj);
+			}
+			else
+			{
+				aRoomObj = aIInteractables[aJSRoomObj.first];
+			}
+			initializeBasicObject(aJSRoomObj.second, aRoomObj);
+			initializeIInteractable(aJSRoomObj.second, aRoomObj);
+			Collector* aCollector = nullptr;
+			Enemy* aEnemy = nullptr;
+			Gateway* aGateway = nullptr;
+			KillZone* aKillZone = nullptr;
+			OneInteractionItem* aItem = nullptr;
+			PickableItem* aPItem = nullptr;
+			Portal* aPortal = nullptr;
+			TreasureCollector* aTCol = nullptr;
+			switch (aJSRoomObj.second["mIntType"].ToInt())
+			{
+			case 0:aCollector = (Collector*)aRoomObj;
+				initializeIUpdatable(aJSRoomObj.second, aCollector, aIInteractables);
+				aRoom->addInteractable(aCollector);
+				aRoom->addUpdatable(aCollector);
+				break;
+			case 1:aEnemy = (Enemy*)aRoomObj;
+				initializeIUpdatable(aJSRoomObj.second, aEnemy, aIInteractables);
+				aEnemy->initialize(aJSRoomObj.second["mLife"].ToInt(), aJSRoomObj.second["mBlockStory"].ToString());
+				aRoom->addInteractable(aEnemy);
+				aRoom->addUpdatable(aEnemy);
+				break;
+			case 2: aGateway = (Gateway*)aRoomObj;
+				if (!aGateway->isInitialized())
+				{
+					if (aRooms.count(aJSRoomObj.second["mCurrentRoom"].ToString()) == 0)
+					{
+						aRooms.emplace(aJSRoomObj.second["mCurrentRoom"].ToString(), new Room());
+					}
+					if (aRooms.count(aJSRoomObj.second["mConnectedRoom"].ToString()) == 0)
+					{
+						aRooms.emplace(aJSRoomObj.second["mConnectedRoom"].ToString(), new Room());
+					}
+					aGateway->initialize(aRooms[aJSRoomObj.second["mCurrentRoom"].ToString()], aRooms[aJSRoomObj.second["mConnectedRoom"].ToString()], true);
+				}
+				aRoom->addGateway(aGateway, aJSRoomObj.second["Direction"].ToString());
+				break;
+			case 3:aKillZone = (KillZone*)aRoomObj;
+				initializeIUpdatable(aJSRoomObj.second, aKillZone, aIInteractables);
+				aRoom->addInteractable(aKillZone);
+				aRoom->addUpdatable(aKillZone);
+				break;
+			case 4: aItem = (OneInteractionItem*)aRoomObj;
+				initializeIUpdatable(aJSRoomObj.second, aItem, aIInteractables);
+				aItem->initialize(
+					aJSRoomObj.second["mIsMovable"].ToBool(),
+					aJSRoomObj.second["mIsPlayable"].ToBool(),
+					aJSRoomObj.second["mIsEatable"].ToBool(),
+					aJSRoomObj.second["mIsRiddle"].ToBool()
+				);
+				aRoom->addInteractable(aItem);
+				aRoom->addUpdatable(aItem);
+				break;
+			case 5: aPItem = (PickableItem*)aRoomObj;
+				aPItem->initialize(
+					aJSRoomObj.second["mIsWeapon"].ToBool(),
+					aJSRoomObj.second["mIsShield"].ToBool(),
+					aJSRoomObj.second["mIsGiveable"].ToBool(),
+					aJSRoomObj.second["mIsWearable"].ToBool(),
+					aJSRoomObj.second["mIsPicked"].ToBool(),
+					aJSRoomObj.second["mIsWorn"].ToBool(),
+					aJSRoomObj.second["mIsGiven"].ToBool(),
+					aJSRoomObj.second["mIsDropped"].ToBool()
+				);
+				aRoom->addInteractable(aPItem);
+				if (aJSRoomObj.second["mIsShield"].ToBool())
+				{
+					GameManager::instance().addNewShield(aPItem->getName());
+				}
+				break;
+			case 6: aPortal = (Portal*)aRoomObj;
+				aPortal->initialize(aRegions[aJSRoomObj.second["mActiveRegion"].ToString()], aRegions[aJSRoomObj.second["mConnectedRegion"].ToString()]);
+				aRoom->addInteractable(aPortal);
+				break;
+			case 7: aTCol = (TreasureCollector*)aRoomObj;
+				initializeIUpdatable(aJSRoomObj.second, aTCol, aIInteractables);
+				for (auto& aTreasure : aJSRoomObj.second["mTreasures"].ArrayRange())
+				{
+					PickableItem* aNTreasure = nullptr;
+					if (aIInteractables.count(aTreasure.ToString()) == 0)
+					{
+						aNTreasure = new PickableItem();
+						aIInteractables.emplace(aTreasure.ToString(), aNTreasure);
+					}
+					else
+					{
+						aNTreasure = (PickableItem*)aIInteractables[aTreasure.ToString()];
+					}
+					aTCol->addTreasures(aNTreasure);
+				}
+				aRoom->addInteractable(aTCol);
+				aRoom->addUpdatable(aTCol);
+				break;
+			}
+		}
+		if (aJSRoom.second.hasKey("mIntoRoomGateway"))
+		{
+			aRoom->setIntoRoomGateway((Gateway*)aIInteractables[aJSRoom.second["mIntoRoomGateway"].ToString()]);
+		}
+	}
 }
 
 void GameLoader::initializeNewGame(json::JSON& pGameData)
@@ -132,7 +331,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 		{
 			if (pGameData["mFirstRegion"].ToString() == aRegion.first)
 			{
-				GameManager::instance().initialize(aRegionPtr, aEntryRoomPtr);
+				GameManager::instance().initialize(aRegionPtr,aRegionPtr, aEntryRoomPtr);
 				aGMInit = true;
 				aMakeTreasureCollector = true;
 			}
@@ -384,14 +583,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					}
 					initializeIInteractable(aPickableItem.second, aNewPItem);
 					int aType = aPickableItem.second["mType"].ToInt();
-					if (aPickableItem.second.hasKey("mIsPicked"))
-					{
-						aNewPItem->initialize(aType == 0, aType == 1, aType == 2, aType == 3, aPickableItem.second["mIsPicked"].ToBool(), aPickableItem.second["mIsWorn"].ToBool(), aPickableItem.second["mIsGiven"].ToBool(), aPickableItem.second["mIsDropped"].ToBool());
-					}
-					else
-					{
-						aNewPItem->initialize(aType == 0, aType == 1, aType == 2, aType == 3);
-					}
+					aNewPItem->initialize(aType == 0, aType == 1, aType == 2, aType == 3);
 					if (aType == 1)
 					{
 						GameManager::instance().addNewShield(aNewPItem->getName());
@@ -447,11 +639,70 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 	}
 }
 
-json::JSON GameLoader::createJSONData(Region* pFirstRegion, Room* pCurrentRoom)
+void GameLoader::createJSONData(Region* pFirstRegion, json::JSON& pJSONObj, std::map<std::string,IInteractable*>& pPlayerInteractables)
 {
-	//think about saving
-	json::JSON aJSON;
-	return aJSON;
+	pJSONObj["mStateData"]["mInventory"] = json::JSON::Object();
+	for (auto& iter : pPlayerInteractables)
+	{
+		pJSONObj["mStateData"]["mInventory"][iter.second->getName()] = iter.second->getItemJSON();
+	}
+	pJSONObj["mFirstRegion"] = pFirstRegion->getName();
+	pJSONObj["mRegions"] = json::JSON::Object();
+	pJSONObj["mRooms"] = json::JSON::Object();
+	Room* aFirstRoom = pFirstRegion->getStartingRoom();
+	pJSONObj["mRegions"][pFirstRegion->getName()] = pFirstRegion->getItemJSON();
+	pJSONObj["mRooms"][aFirstRoom->getName()] = aFirstRoom->getItemJSON();
+	std::list<IInteractable*> aPortals = aFirstRoom->getAllPortals();
+	for (auto& aPortal : aPortals)
+	{
+		Portal* aPort = (Portal*)aPortal;
+		Region* aCurRegion = aPort->getOtherRegion(pFirstRegion);
+		pJSONObj["mRegions"][aCurRegion->getName()] = aCurRegion->getItemJSON();
+		std::map <std::string, Room* > aRegionRooms;
+		std::map<std::string,int> aTraversedRooms;
+		std::map<std::string, int> aTraversedGateway;
+		Room* aRoom = aCurRegion->getStartingRoom();
+		aRegionRooms.emplace(aRoom->getName(), aRoom);
+		auto aRoomIterator = aRegionRooms.begin();
+		while (aRoomIterator != aRegionRooms.end())
+		{
+			if (aTraversedRooms.count((*aRoomIterator).second->getName()) == 0)
+			{
+				std::list<Gateway*> aGateways = (*aRoomIterator).second->getAllGateways();
+				pJSONObj["mRooms"][(*aRoomIterator).second->getName()] = (*aRoomIterator).second->getItemJSON();
+				pJSONObj["mRooms"][(*aRoomIterator).second->getName()]["Region"] = aCurRegion->getName();
+				aTraversedRooms.emplace((*aRoomIterator).second->getName(),0);
+				for (auto& aGateway : aGateways)
+				{
+					if (aTraversedGateway.count(aGateway->getName()) == 0)
+					{
+						aTraversedGateway.emplace(aGateway->getName(), 0);
+					}
+					else
+					{
+						continue;
+					}
+					if (aRoom == aGateway->getCurrentRoom())
+					{
+						aRoom = aGateway->getConnectedRoom();
+					}
+					else
+					{
+						aRoom = aGateway->getCurrentRoom();
+					}
+					if (aRegionRooms.count(aRoom->getName()) == 0)
+					{
+						aRegionRooms.emplace(aRoom->getName(), aRoom);
+						aRoomIterator = aRegionRooms.begin();
+					}
+				}
+			}
+			else
+			{
+				aRoomIterator++;
+			}
+		}
+	}
 }
 
 void GameLoader::cleanUpGame(Region* pFirstRegion)
@@ -481,12 +732,23 @@ void GameLoader::cleanUpGame(Region* pFirstRegion)
 					{
 						aAllGateways.emplace(aGKey, aGateway);
 					}
-					aRoom = aGateway->getCurrentRoom();
+					if (aRoom == aGateway->getCurrentRoom())
+					{
+						aRoom = aGateway->getConnectedRoom();
+					}
+					else
+					{
+						aRoom = aGateway->getCurrentRoom();
+					}
 					if (aRegionRooms.count(aRoom->getName()) == 0)
 					{
 						aRegionRooms.emplace(aRoom->getName(), aRoom);
 					}
 				}
+			}
+			else
+			{
+				aRoomIterator++;
 			}
 		}
 		delete aPort;

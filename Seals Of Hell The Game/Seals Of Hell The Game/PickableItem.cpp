@@ -1,5 +1,5 @@
-#include "GameManager.h"
 #include "PickableItem.h"
+#include "GameManager.h"
 #include <iostream>
 
 void PickableItem::initialize(bool pIsWeapon, bool pIsShield, bool pIsGiveable, bool pIsWearable, bool pIsPicked, bool pIsWorn, bool pIsGiven, bool pIsDropped)
@@ -56,4 +56,21 @@ void PickableItem::dropObject()
 		GameManager::instance().removeFromInventory(this);
 		std::cout << getName() << " dropped." << std::endl;
 	}
+}
+
+json::JSON PickableItem::getItemJSON()
+{
+	json::JSON myObj = json::JSON::Object();
+	addCommons(myObj);
+	myObj["mIsWeapon"] = mIsWeapon;
+	myObj["mIsShield"] = mIsShield;
+	myObj["mIsGiveable"] = mIsGiveable;
+	myObj["mIsWearable"] = mIsWearable;
+	myObj["mIsPicked"] = mIsPicked;
+	myObj["mIsWorn"] = mIsWorn;
+	myObj["mIsGiven"] = mIsGiven;
+	myObj["mIsDropped"] = mIsDropped;
+	myObj["mType"] = "PickableItem";
+	myObj["mIntType"] = 5;
+	return myObj;
 }

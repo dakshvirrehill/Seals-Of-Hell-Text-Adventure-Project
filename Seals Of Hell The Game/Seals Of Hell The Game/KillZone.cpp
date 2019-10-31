@@ -64,3 +64,13 @@ void KillZone::endUpdate()
 	}
 	GameManager::instance().lookInsideRoom();
 }
+
+json::JSON KillZone::getItemJSON()
+{
+	json::JSON aJSON = json::JSON::Object();
+	aJSON["mType"] = "KillZone";
+	aJSON["mIntType"] = 3;
+	IInteractable::addCommons(aJSON);
+	IUpdatable::addCommons(aJSON);
+	return aJSON;
+}

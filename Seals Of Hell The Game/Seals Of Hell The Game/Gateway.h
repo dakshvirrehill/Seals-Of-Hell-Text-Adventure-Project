@@ -19,5 +19,7 @@ public:
 	bool isGateway() override{ return mCurrentRoom != nullptr; }
 	Room* getCurrentRoom() { return mCurrentRoom; }
 	Room* getConnectedRoom() { return mConnectedRoom; }
+	json::JSON getItemJSON() override;
+	std::string getType() override { return "Gateway"; }
 };
 #endif

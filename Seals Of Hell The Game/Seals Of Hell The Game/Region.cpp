@@ -1,5 +1,6 @@
 #include "Region.h"
 #include <iostream>
+#include "Room.h"
 Region::Region()
 	:BasicObject(),mEntryRoom(nullptr)
 {
@@ -24,4 +25,13 @@ void Region::look()
 Room* Region::getStartingRoom()
 {
 	return mEntryRoom;
+}
+
+json::JSON Region::getItemJSON()
+{
+	json::JSON aJSON = json::JSON::Object();
+	aJSON["mName"] = getName();
+	aJSON["mStory"] = getStory();
+	aJSON["mEntryRoom"] = mEntryRoom->getName();
+	return aJSON;
 }
