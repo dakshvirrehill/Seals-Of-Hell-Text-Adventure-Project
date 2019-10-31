@@ -17,7 +17,6 @@ void PickableItem::initialize(bool pIsWeapon, bool pIsShield, bool pIsGiveable, 
 void PickableItem::objectGiven()
 {
 	mIsGiven = true;
-	GameManager::instance().removeFromInventory(this);
 	std::cout << getName() << " given." << std::endl;
 }
 
@@ -55,6 +54,16 @@ void PickableItem::dropObject()
 		mIsDropped = true;
 		GameManager::instance().removeFromInventory(this);
 		std::cout << getName() << " dropped." << std::endl;
+	}
+}
+
+void PickableItem::resetPickable()
+{
+	if (!mIsGiveable)
+	{
+		mIsPicked = false;
+		mIsWorn = false;
+		mIsDropped = false;
 	}
 }
 

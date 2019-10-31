@@ -119,6 +119,7 @@ void GameManager::playerLost()
 	{
 		mCurrentPlayer->dropInventory(mFirstRegion->getStartingRoom());
 	}
+	mCurrentPlayer->blockAttack();
 	mCurrentRegion = mFirstRegion;
 	mCurrentRoom = mFirstRegion->getStartingRoom();
 	endGame();
@@ -144,6 +145,7 @@ void GameManager::saveGame()
 	json::JSON aJSON = json::JSON::Object();
 	aJSON["mStateData"] = json::JSON::Object();
 	aJSON["mStateData"]["mCurrentRoom"] = instance().mCurrentRoom->getName();
+	aJSON["mStateData"]["mPlayerInAttack"] = instance().mCurrentPlayer->mInAttack;
 	aJSON["mName"] = instance().getName();
 	aJSON["mStory"] = instance().getStory();
 	GameLoader::instance().createJSONData(instance().mFirstRegion, aJSON, instance().mCurrentPlayer->getPlayerInventory());
@@ -214,4 +216,9 @@ bool GameManager::hasInInventory(IInteractable* pInvObj)
 void GameManager::addNewShield(std::string pShieldName)
 {
 	mCurrentPlayer->addNewShield(pShieldName);
+}
+
+void GameManager::setPlayerInAttack(bool pInAttack)
+{
+	mCurrentPlayer->mInAttack = pInAttack;
 }

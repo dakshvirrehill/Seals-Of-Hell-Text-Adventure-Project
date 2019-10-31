@@ -1,6 +1,7 @@
 #include "IInteractable.h"
 #include "PlayerManager.h"
 #include "GameManager.h"
+#include "PickableItem.h"
 #include "Room.h"
 #include <string>
 #include <iostream>
@@ -25,7 +26,10 @@ void PlayerManager::inventory()
 	std::cout << "Inventory" << std::endl;
 	for (auto& iter : mInventory)
 	{
-		std::cout << iter.second->getName() << std::endl;
+		if (!iter.second->isGiven())
+		{
+			std::cout << iter.second->getName() << std::endl;
+		}
 	}
 	std::cout << "==============================" << std::endl;
 }
@@ -75,8 +79,17 @@ void PlayerManager::dropInventory(Room* pDroppingRoom)
 	std::map<std::string, IInteractable*>::iterator aIterator = mInventory.begin();
 	while (aIterator != mInventory.end())
 	{
-		pDroppingRoom->addInteractable((*aIterator).second);
-		aIterator = mInventory.erase(aIterator);
+		if (!(*aIterator).second->isGiven())
+		{
+			PickableItem* aItem = (PickableItem*)(*aIterator).second;
+			aItem->resetPickable();
+			pDroppingRoom->addInteractable(aItem);
+			aIterator = mInventory.erase(aIterator);
+		}
+		else
+		{
+			aIterator++;
+		}
 	}
 }
 

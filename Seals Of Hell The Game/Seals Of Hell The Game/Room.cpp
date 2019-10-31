@@ -95,6 +95,7 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 		{
 			if (mRoomObjects.count("NORTH") == 1)
 			{
+				delete mRoomObjects["NORTH"];
 				mRoomObjects["NORTH"] = pGateway;
 			}
 			else
@@ -106,6 +107,7 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 		{
 			if (mRoomObjects.count("SOUTH") == 1)
 			{
+				delete mRoomObjects["SOUTH"];
 				mRoomObjects["SOUTH"] = pGateway;
 			}
 			else
@@ -120,6 +122,7 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 		{
 			if (mRoomObjects.count("EAST") == 1)
 			{
+				delete mRoomObjects["EAST"];
 				mRoomObjects["EAST"] = pGateway;
 			}
 			else
@@ -131,6 +134,7 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 		{
 			if (mRoomObjects.count("WEST") == 1)
 			{
+				delete mRoomObjects["WEST"];
 				mRoomObjects["WEST"] = pGateway;
 			}
 			else
@@ -145,6 +149,7 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 		{
 			if (mRoomObjects.count("NORTH-EAST") == 1)
 			{
+				delete mRoomObjects["NORTH-EAST"];
 				mRoomObjects["NORTH-EAST"] = pGateway;
 			}
 			else
@@ -156,6 +161,7 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 		{
 			if (mRoomObjects.count("SOUTH-WEST") == 1)
 			{
+				delete mRoomObjects["SOUTH-WEST"];
 				mRoomObjects["SOUTH-WEST"] = pGateway;
 			}
 			else
@@ -170,6 +176,7 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 		{
 			if (mRoomObjects.count("NORTH-WEST") == 1)
 			{
+				delete mRoomObjects["NORTH-WEST"];
 				mRoomObjects["NORTH-WEST"] = pGateway;
 			}
 			else
@@ -181,6 +188,7 @@ void Room::addGateway(IInteractable* pGateway, int pPath, int pRoomId)
 		{
 			if (mRoomObjects.count("SOUTH-EAST") == 1)
 			{
+				delete mRoomObjects["SOUTH-EAST"];
 				mRoomObjects["SOUTH-EAST"] = pGateway;
 			}
 			else
@@ -195,6 +203,7 @@ void Room::addGateway(IInteractable* pGateway, std::string pDirection)
 {
 	if (mRoomObjects.count(pDirection) != 0)
 	{
+		delete mRoomObjects[pDirection];
 		mRoomObjects[pDirection] = pGateway;
 	}
 	else

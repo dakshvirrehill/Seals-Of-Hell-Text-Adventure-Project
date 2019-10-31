@@ -586,28 +586,43 @@
     },
     "Lair of Fire" : {
       "Region" : "Abyss Of War",
-      "mIntoRoomGateway" : "PATH OF FIRE",
       "mName" : "Lair of Fire",
       "mRoomObjects" : {
         "DEPTHS OF TARTARUS" : {
           "Direction" : "SOUTH-WEST",
-          "mConnectedRoom" : "Tartarus",
-          "mCurrentRoom" : "Lair of Fire",
+          "mConnectedRoom" : "Lair of Fire",
+          "mCurrentRoom" : "Tartarus",
           "mIntType" : 2,
-          "mIsInteractable" : true,
-          "mIsVisible" : true,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
           "mName" : "DEPTHS OF TARTARUS",
           "mStory" : "Feels like going deeper into hell",
           "mType" : "Gateway"
+        },
+        "FIRE DEMON SKIN" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : false,
+          "mIsPicked" : false,
+          "mIsShield" : false,
+          "mIsVisible" : false,
+          "mIsWeapon" : false,
+          "mIsWearable" : true,
+          "mIsWorn" : false,
+          "mName" : "FIRE DEMON SKIN",
+          "mStory" : "Seems like a good disguise",
+          "mType" : "PickableItem"
         },
         "HELLFIRE DEMON" : {
           "mBlockStory" : "The shield protects you from the effects of hell fire",
           "mCanAttack" : true,
           "mEndStory" : "Its head comes off and it sheds its skin",
           "mIntType" : 1,
-          "mIsInteractable" : false,
-          "mIsVisible" : false,
-          "mLife" : 0,
+          "mIsInteractable" : true,
+          "mIsVisible" : true,
+          "mLife" : 1,
           "mName" : "HELLFIRE DEMON",
           "mStory" : "Came from the deepest underworld to burn souls",
           "mType" : "Enemy",
@@ -620,8 +635,8 @@
         },
         "PATH OF FIRE" : {
           "Direction" : "NORTH",
-          "mConnectedRoom" : "War Memorial",
-          "mCurrentRoom" : "Lair of Fire",
+          "mConnectedRoom" : "Lair of Fire",
+          "mCurrentRoom" : "War Memorial",
           "mIntType" : 2,
           "mIsInteractable" : true,
           "mIsVisible" : true,
@@ -1430,11 +1445,11 @@
       "mRoomObjects" : {
         "DEPTHS OF TARTARUS" : {
           "Direction" : "NORTH-EAST",
-          "mConnectedRoom" : "Tartarus",
-          "mCurrentRoom" : "Lair of Fire",
+          "mConnectedRoom" : "Lair of Fire",
+          "mCurrentRoom" : "Tartarus",
           "mIntType" : 2,
-          "mIsInteractable" : true,
-          "mIsVisible" : true,
+          "mIsInteractable" : false,
+          "mIsVisible" : false,
           "mName" : "DEPTHS OF TARTARUS",
           "mStory" : "Feels like going deeper into hell",
           "mType" : "Gateway"
@@ -1697,14 +1712,30 @@
         },
         "PATH OF FIRE" : {
           "Direction" : "SOUTH",
-          "mConnectedRoom" : "War Memorial",
-          "mCurrentRoom" : "Lair of Fire",
+          "mConnectedRoom" : "Lair of Fire",
+          "mCurrentRoom" : "War Memorial",
           "mIntType" : 2,
           "mIsInteractable" : true,
           "mIsVisible" : true,
           "mName" : "PATH OF FIRE",
           "mStory" : "Feels Hot and Fiery",
           "mType" : "Gateway"
+        },
+        "SHIELD OF INVINCIBILITY" : {
+          "mIntType" : 5,
+          "mIsDropped" : false,
+          "mIsGiveable" : false,
+          "mIsGiven" : false,
+          "mIsInteractable" : true,
+          "mIsPicked" : false,
+          "mIsShield" : true,
+          "mIsVisible" : true,
+          "mIsWeapon" : false,
+          "mIsWearable" : false,
+          "mIsWorn" : false,
+          "mName" : "SHIELD OF INVINCIBILITY",
+          "mStory" : "An unbreakable protection from almost all hellish attacks",
+          "mType" : "PickableItem"
         }
       },
       "mStory" : "All the trinkets that war has collected over the years",
@@ -1744,7 +1775,7 @@
     }
   },
   "mStateData" : {
-    "mCurrentRoom" : "Lair of Fire",
+    "mCurrentRoom" : "War Memorial",
     "mInventory" : {
       "DAMNED SWORD" : {
         "mIntType" : 5,
@@ -1761,40 +1792,9 @@
         "mName" : "DAMNED SWORD",
         "mStory" : "The sword of Ares, a demon killing machine",
         "mType" : "PickableItem"
-      },
-      "FIRE DEMON SKIN" : {
-        "mIntType" : 5,
-        "mIsDropped" : false,
-        "mIsGiveable" : false,
-        "mIsGiven" : false,
-        "mIsInteractable" : true,
-        "mIsPicked" : true,
-        "mIsShield" : false,
-        "mIsVisible" : true,
-        "mIsWeapon" : false,
-        "mIsWearable" : true,
-        "mIsWorn" : true,
-        "mName" : "FIRE DEMON SKIN",
-        "mStory" : "Seems like a good disguise",
-        "mType" : "PickableItem"
-      },
-      "SHIELD OF INVINCIBILITY" : {
-        "mIntType" : 5,
-        "mIsDropped" : false,
-        "mIsGiveable" : false,
-        "mIsGiven" : false,
-        "mIsInteractable" : true,
-        "mIsPicked" : true,
-        "mIsShield" : true,
-        "mIsVisible" : true,
-        "mIsWeapon" : false,
-        "mIsWearable" : false,
-        "mIsWorn" : false,
-        "mName" : "SHIELD OF INVINCIBILITY",
-        "mStory" : "An unbreakable protection from almost all hellish attacks",
-        "mType" : "PickableItem"
       }
-    }
+    },
+    "mPlayerInAttack" : false
   },
   "mStory" : "The Apocalypse is upon us. The Seven Seals of Hell have been opened and the Gates of Hell have unleashed all kinds of demons into the world. Save us, Oh! Mighty Hero by going into the depths of hell and fighting the worst of the worst to seal the gates again and stop the apocalypse."
 }

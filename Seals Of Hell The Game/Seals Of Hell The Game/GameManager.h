@@ -56,7 +56,7 @@ public:
 	bool hasShield();
 	bool hasInInventory(IInteractable*);
 	void addNewShield(std::string);
-
+	void setPlayerInAttack(bool);
 
 	friend class CommandManager;
 };

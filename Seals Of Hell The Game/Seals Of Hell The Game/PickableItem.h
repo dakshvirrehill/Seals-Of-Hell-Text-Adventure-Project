@@ -22,6 +22,7 @@ public:
 	bool isWorn() override { return mIsWorn || mIsDropped; }
 	bool isGiven() override { return mIsGiven; }
 	bool isPickable() override { return true; }
+	void resetPickable();
 	json::JSON getItemJSON() override;
 	std::string getType() override { return "PickableItem"; }
 };

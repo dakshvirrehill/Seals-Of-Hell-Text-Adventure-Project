@@ -52,18 +52,36 @@ void GameLoader::initializeIUpdatable(json::JSON pData, IUpdatable* pObject, std
 		}
 		pObject->addConditionUpdateObjects(aUpdatable);
 	}
+	if (pData.hasKey("mConditionalObject"))
+	{
+		IInteractable* aCondObj = nullptr;
+		if (pInteractableMap.count(pData["mConditionalObject"].ToString()) == 0)
+		{
+			aCondObj = new PickableItem();
+			pInteractableMap.emplace(pData["mConditionalObject"].ToString(), aCondObj);
+		}
+		else
+		{
+			aCondObj = pInteractableMap[pData["mConditionalObject"].ToString()];
+		}
+		pObject->setConditionalObject(aCondObj);
+	}
+	else
+	{
+		pObject->setConditionalObject(nullptr);
+	}
 }
 
 void GameLoader::initializeEmptyGateways(Room* pRoom)
 {
-	Gateway* aGWay = new Gateway();
-	aGWay->IInteractable::initialize(false, false);
-	aGWay->BasicObject::initialize("", "");
-	aGWay->initialize(nullptr, nullptr, false);
 	for (int aI = 0; aI <= 3; aI ++)
 	{
 		for (int aJ = 0; aJ < 2; aJ++)
 		{
+			Gateway* aGWay = new Gateway();
+			aGWay->IInteractable::initialize(false, false);
+			aGWay->BasicObject::initialize("", "");
+			aGWay->initialize(nullptr, nullptr, false);
 			pRoom->addGateway(aGWay, aI, aJ);
 		}
 	}
@@ -91,6 +109,7 @@ void GameLoader::initializeSaveGame(json::JSON& pSaveData)
 	aRegions.emplace(aKeyString, new Region());
 	Region* aFRegion = aRegions[aKeyString];
 	GameManager::instance().BasicObject::initialize(pSaveData["mName"].ToString(), pSaveData["mStory"].ToString());
+	GameManager::instance().setPlayerInAttack(pSaveData["mStateData"]["mPlayerInAttack"].ToBool());
 	for (auto& aInventoryObjects : pSaveData["mStateData"]["mInventory"].ObjectRange())
 	{
 		PickableItem* aItem = nullptr;
@@ -443,7 +462,6 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 			{
 				for (auto& aCollector : aRoom.second["mCollectors"].ObjectRange())
 				{
-					_ASSERT_EXPR(aCollector.second.hasKey("mConditionalObject"), "Collector has no giveable object");
 					Collector* aNewCollector = nullptr;
 					if (aInteractableMap.count(aCollector.first) == 0)
 					{
@@ -456,17 +474,7 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					}
 					initializeIInteractable(aCollector.second, aNewCollector);
 					initializeIUpdatable(aCollector.second, aNewCollector, aInteractableMap);
-					IInteractable* aGiveableObject = nullptr;
-					if (aInteractableMap.count(aCollector.second["mConditionalObject"].ToString()) == 0)
-					{
-						aGiveableObject = new PickableItem();
-						aInteractableMap.emplace(aCollector.second["mConditionalObject"].ToString(), aGiveableObject);
-					}
-					else
-					{
-						aGiveableObject = aInteractableMap[aCollector.second["mConditionalObject"].ToString()];
-					}
-					aNewCollector->setConditionalObject(aGiveableObject);
+
 					aRoomPtr->addInteractable(aInteractableMap[aCollector.first]);
 					aRoomPtr->addUpdatable(aNewCollector);
 				}
@@ -477,7 +485,6 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 				{
 					_ASSERT_EXPR(aEnemy.second.hasKey("mLife"), "Enemy has no life");
 					_ASSERT_EXPR(aEnemy.second.hasKey("mBlockStory"), "Enemy has no block story");
-					_ASSERT_EXPR(aEnemy.second.hasKey("mConditionalObject"), "Enemy has no killing weapon");
 					Enemy* aNewEnemy = nullptr;
 					if (aInteractableMap.count(aEnemy.first) == 0)
 					{
@@ -491,17 +498,6 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					initializeIInteractable(aEnemy.second, aNewEnemy);
 					initializeIUpdatable(aEnemy.second, aNewEnemy, aInteractableMap);
 					aNewEnemy->initialize(aEnemy.second["mLife"].ToInt(), aEnemy.second["mBlockStory"].ToString());
-					IInteractable* aKillingWeapon = nullptr;
-					if (aInteractableMap.count(aEnemy.second["mConditionalObject"].ToString()) == 0)
-					{
-						aKillingWeapon = new PickableItem();
-						aInteractableMap.emplace(aEnemy.second["mConditionalObject"].ToString(), aKillingWeapon);
-					}
-					else
-					{
-						aKillingWeapon = aInteractableMap[aEnemy.second["mConditionalObject"].ToString()];
-					}
-					aNewEnemy->setConditionalObject(aKillingWeapon);
 					aRoomPtr->addInteractable(aInteractableMap[aEnemy.first]);
 					aRoomPtr->addUpdatable(aNewEnemy);
 				}
@@ -522,24 +518,6 @@ void GameLoader::initializeNewGame(json::JSON& pGameData)
 					}
 					initializeIInteractable(aKillZone.second, aNewKillZone);
 					initializeIUpdatable(aKillZone.second, aNewKillZone, aInteractableMap);
-					if (aKillZone.second.hasKey("mConditionalObject"))
-					{
-						IInteractable* aConditionalObject = nullptr;
-						if (aInteractableMap.count(aKillZone.second["mConditionalObject"].ToString()) == 0)
-						{
-							aConditionalObject = new PickableItem();
-							aInteractableMap.emplace(aKillZone.second["mConditionalObject"].ToString(), aConditionalObject);
-						}
-						else
-						{
-							aConditionalObject = aInteractableMap[aKillZone.second["mConditionalObject"].ToString()];
-						}
-						aNewKillZone->setConditionalObject(aConditionalObject);
-					}
-					else
-					{
-						aNewKillZone->setConditionalObject(nullptr);
-					}
 					aRoomPtr->addInteractable(aInteractableMap[aKillZone.first]);
 					aRoomPtr->addUpdatable(aNewKillZone);
 				}
@@ -721,17 +699,22 @@ void GameLoader::cleanUpGame(Region* pFirstRegion)
 		auto aRoomIterator = aRegionRooms.begin();
 		while (aRoomIterator != aRegionRooms.end())
 		{
+			bool aResetItr = false;
 			if ((*aRoomIterator).second != nullptr)
 			{
-				std::list<Gateway*> aGateways = (*aRoomIterator).second->getAllGateways();
-				delete (*aRoomIterator).second;
-				(*aRoomIterator).second = nullptr;
+				aRoom = (*aRoomIterator).second;
+				std::list<Gateway*> aGateways = aRoom->getAllGateways();
+				delete aRoom;
 				for (auto& aGateway : aGateways)
 				{
 					std::string aGKey = aCurRegion->getName() + aGateway->getName();
 					if (aAllGateways.count(aGKey) == 0)
 					{
 						aAllGateways.emplace(aGKey, aGateway);
+					}
+					else
+					{
+						continue;
 					}
 					if (aRoom == aGateway->getCurrentRoom())
 					{
@@ -744,8 +727,14 @@ void GameLoader::cleanUpGame(Region* pFirstRegion)
 					if (aRegionRooms.count(aRoom->getName()) == 0)
 					{
 						aRegionRooms.emplace(aRoom->getName(), aRoom);
-						aRoomIterator = aRegionRooms.begin();
+						aRoom = (*aRoomIterator).second;
+						aResetItr = true;
 					}
+				}
+				(*aRoomIterator).second = nullptr;
+				if (aResetItr)
+				{
+					aRoomIterator = aRegionRooms.begin();
 				}
 			}
 			else
