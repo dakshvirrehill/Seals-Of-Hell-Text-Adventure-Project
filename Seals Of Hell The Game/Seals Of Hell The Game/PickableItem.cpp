@@ -52,7 +52,7 @@ void PickableItem::wearObject()
 
 void PickableItem::dropObject()
 {
-	if (mIsPicked && isInteractable())
+	if (mIsPicked && isInteractable() && !mIsGiven)
 	{
 		AnalyticsManager::instance().UpdateActionData("Drop");
 		AnalyticsManager::instance().UpdatePickableData(getName(), false);

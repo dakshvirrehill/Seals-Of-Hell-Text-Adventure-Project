@@ -6,6 +6,7 @@ void AnalyticsManager::CleanUp()
 	if (mGameData != nullptr)
 	{
 		delete mGameData;
+		mGameData = nullptr;
 	}
 	if (mActionData.begin() != mActionData.end())
 	{

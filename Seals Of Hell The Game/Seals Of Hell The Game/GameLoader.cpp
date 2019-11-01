@@ -649,12 +649,14 @@ void GameLoader::createJSONData(Region* pFirstRegion, json::JSON& pJSONObj, std:
 		auto aRoomIterator = aRegionRooms.begin();
 		while (aRoomIterator != aRegionRooms.end())
 		{
+			bool aResetIterator = false;
 			if (aTraversedRooms.count((*aRoomIterator).second->getName()) == 0)
 			{
-				std::list<Gateway*> aGateways = (*aRoomIterator).second->getAllGateways();
-				pJSONObj["mRooms"][(*aRoomIterator).second->getName()] = (*aRoomIterator).second->getItemJSON();
-				pJSONObj["mRooms"][(*aRoomIterator).second->getName()]["Region"] = aCurRegion->getName();
-				aTraversedRooms.emplace((*aRoomIterator).second->getName(),0);
+				aRoom = (*aRoomIterator).second;
+				std::list<Gateway*> aGateways = aRoom->getAllGateways();
+				pJSONObj["mRooms"][aRoom->getName()] = aRoom->getItemJSON();
+				pJSONObj["mRooms"][aRoom->getName()]["Region"] = aCurRegion->getName();
+				aTraversedRooms.emplace(aRoom->getName(),0);
 				for (auto& aGateway : aGateways)
 				{
 					if (aTraversedGateway.count(aGateway->getName()) == 0)
@@ -676,8 +678,13 @@ void GameLoader::createJSONData(Region* pFirstRegion, json::JSON& pJSONObj, std:
 					if (aRegionRooms.count(aRoom->getName()) == 0)
 					{
 						aRegionRooms.emplace(aRoom->getName(), aRoom);
-						aRoomIterator = aRegionRooms.begin();
+						aResetIterator = true;
 					}
+					aRoom = (*aRoomIterator).second;
+				}
+				if (aResetIterator)
+				{
+					aRoomIterator = aRegionRooms.begin();
 				}
 			}
 			else
@@ -733,9 +740,9 @@ void GameLoader::cleanUpGame(Region* pFirstRegion)
 					if (aRegionRooms.count(aRoom->getName()) == 0)
 					{
 						aRegionRooms.emplace(aRoom->getName(), aRoom);
-						aRoom = (*aRoomIterator).second;
 						aResetItr = true;
 					}
+					aRoom = (*aRoomIterator).second;
 				}
 				(*aRoomIterator).second = nullptr;
 				if (aResetItr)
