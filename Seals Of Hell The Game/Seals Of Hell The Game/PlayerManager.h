@@ -26,6 +26,7 @@ protected:
 	bool hasShield();
 	bool hasInInventory(IInteractable*);
 	std::map <std::string, IInteractable*>& getPlayerInventory() { return mInventory; }
+	int getInventorySize() { return mInventory.size(); }
 	friend class GameManager;
 	friend class CommandManager;
 };

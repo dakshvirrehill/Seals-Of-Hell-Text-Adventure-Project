@@ -1,7 +1,7 @@
 #include "Enemy.h"
 #include "GameManager.h"
 #include <iostream>
-
+#include "AnalyticsManager.h"
 Enemy::~Enemy()
 {
 }
@@ -52,6 +52,7 @@ void Enemy::attackEnemy(IInteractable* pWeapon)
 	}
 	else
 	{
+		AnalyticsManager::instance().UpdateActionData("Attack");
 		mLife -= 1;
 		if (mLife <= 0)
 		{
@@ -64,6 +65,7 @@ void Enemy::blockAttack()
 {
 	if(GameManager::instance().hasShield() && mLife > 0)
 	{
+		AnalyticsManager::instance().UpdateActionData("Block");
 		std::cout << getName() << std::endl;
 		std::cout << mBlockStory << std::endl;
 		GameManager::instance().blockAttack();

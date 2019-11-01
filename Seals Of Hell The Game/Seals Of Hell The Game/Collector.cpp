@@ -1,6 +1,7 @@
 #include "Collector.h"
 #include "PickableItem.h"
 #include "GameManager.h"
+#include "AnalyticsManager.h"
 #include<iostream>
 Collector::~Collector()
 {
@@ -51,6 +52,7 @@ void Collector::giveObject(IInteractable* pGiveable)
 	{
 		PickableItem* aGivable = (PickableItem*)pGiveable;
 		aGivable->objectGiven();
+		AnalyticsManager::instance().UpdateActionData("Give");
 	}
 	else
 	{

@@ -6,6 +6,7 @@
 
 void DatabaseManager::getAllData()
 {
+	sqlite3* mDBInstance;
 	try
 	{
 		int aResult = sqlite3_open("SealsOfHell.db", &mDBInstance);
@@ -20,7 +21,7 @@ void DatabaseManager::getAllData()
 			throw - 1;
 		}
 		aResult = sqlite3_step(aStatement);
-		if (aResult != SQLITE_OK)
+		if (aResult != SQLITE_OK && aResult != SQLITE_DONE && aResult != SQLITE_ROW)
 		{
 			throw - 1;
 		}
@@ -44,7 +45,7 @@ void DatabaseManager::getAllData()
 			throw - 1;
 		}
 		aResult = sqlite3_step(aStatement);
-		if (aResult != SQLITE_OK)
+		if (aResult != SQLITE_OK && aResult != SQLITE_DONE && aResult != SQLITE_ROW)
 		{
 			throw - 1;
 		}
@@ -59,20 +60,25 @@ void DatabaseManager::getAllData()
 			aResult = sqlite3_step(aStatement);
 		}
 		aResult = sqlite3_finalize(aStatement);
+		if (aResult != SQLITE_OK && aResult != SQLITE_DONE)
+		{
+			throw - 1;
+		}
+		aResult = sqlite3_close_v2(mDBInstance);
 		if (aResult != SQLITE_OK)
 		{
 			throw - 1;
 		}
-		sqlite3_close(mDBInstance);
 	}
 	catch (...)
 	{
-		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(mDBInstance));
+		fprintf(stderr, "Database Error: %s\n", sqlite3_errmsg(mDBInstance));
 	}
 }
 
 void DatabaseManager::setAllData()
 {
+	sqlite3* mDBInstance;
 	try
 	{
 		int aResult = sqlite3_open("SealsOfHell.db", &mDBInstance);
@@ -206,10 +212,18 @@ void DatabaseManager::setAllData()
 			throw - 1;
 		}
 		sqlite3_finalize(aStatement);
-		sqlite3_close(mDBInstance);
+		if (aResult != SQLITE_DONE && aResult != SQLITE_OK)
+		{
+			throw - 1;
+		}
+		aResult = sqlite3_close_v2(mDBInstance);
+		if (aResult != SQLITE_OK)
+		{
+			throw - 1;
+		}
 	}
 	catch (...)
 	{
-		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(mDBInstance));
+		fprintf(stderr, "Database Error: %s\n", sqlite3_errmsg(mDBInstance));
 	}
 }

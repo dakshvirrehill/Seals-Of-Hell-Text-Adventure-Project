@@ -2,6 +2,7 @@
 #include "GameManager.h"
 #include "Portal.h"
 #include "Region.h"
+#include "AnalyticsManager.h"
 Portal::~Portal()
 {
 	mActiveRegion = nullptr;
@@ -19,6 +20,7 @@ void Portal::teleportRegion()
 {
 	if (isInteractable() && isVisible())
 	{
+		AnalyticsManager::instance().UpdateActionData("Teleport");
 		std::cout << "Teleporting..." << std::endl << std::endl;
 		Region* aTemp = mActiveRegion;
 		mActiveRegion = mConnectedRegion;

@@ -19,7 +19,7 @@ public:
 	void pickObject() override;
 	void wearObject() override;
 	void dropObject() override;
-	bool isWorn() override { return mIsWorn || mIsDropped; }
+	bool isWorn() override { return (mIsWearable && mIsWorn) || (!mIsWearable && mIsDropped); }
 	bool isGiven() override { return mIsGiven; }
 	bool isPickable() override { return true; }
 	void resetPickable();

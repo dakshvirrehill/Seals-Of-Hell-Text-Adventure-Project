@@ -2,7 +2,7 @@
 #include "Room.h"
 #include "GameManager.h"
 #include <iostream>
-
+#include "AnalyticsManager.h"
 Gateway::~Gateway()
 {
 	mCurrentRoom = nullptr;
@@ -43,6 +43,7 @@ void Gateway::goDirection()
 	}
 	else
 	{
+		AnalyticsManager::instance().UpdateActionData("Go");
 		Room* aTemp = mCurrentRoom;
 		mCurrentRoom = mConnectedRoom;
 		mConnectedRoom = aTemp;

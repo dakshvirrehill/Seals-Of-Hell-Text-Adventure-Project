@@ -4,10 +4,9 @@
 class sqlite3;
 class DatabaseManager
 {
-	sqlite3* mDBInstance;
-	inline explicit DatabaseManager() : mDBInstance(nullptr) {}
+	inline explicit DatabaseManager() {}
 	inline ~DatabaseManager() {}
-	inline explicit DatabaseManager(DatabaseManager const&) : mDBInstance(nullptr) {}
+	inline explicit DatabaseManager(DatabaseManager const&) {}
 	inline DatabaseManager& operator=(DatabaseManager const&)
 	{
 		return *this;

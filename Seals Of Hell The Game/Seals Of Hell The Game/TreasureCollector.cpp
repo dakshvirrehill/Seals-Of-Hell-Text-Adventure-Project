@@ -4,7 +4,7 @@
 #include <iostream>
 #include <map>
 #include <string>
-
+#include "AnalyticsManager.h"
 TreasureCollector::~TreasureCollector()
 {
 }
@@ -68,6 +68,7 @@ void TreasureCollector::giveObject(IInteractable* pGiveable)
 	{
 		if (mTreasures.count(pGiveable->getName()) != 0)
 		{
+			AnalyticsManager::instance().UpdateActionData("Give");
 			PickableItem* aGiveable = (PickableItem*)pGiveable;
 			aGiveable->objectGiven();
 			mTreasures.erase(pGiveable->getName());

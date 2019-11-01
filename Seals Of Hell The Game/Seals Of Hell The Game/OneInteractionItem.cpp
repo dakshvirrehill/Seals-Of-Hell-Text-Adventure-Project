@@ -1,6 +1,7 @@
 #include "OneInteractionItem.h"
 #include "GameManager.h"
 #include <iostream>
+#include "AnalyticsManager.h"
 void OneInteractionItem::initialize(bool pIsMovable, bool pIsPlayable, bool pIsEatable, bool pIsRiddle)
 {
 	mIsMovable = pIsMovable;
@@ -25,6 +26,7 @@ void OneInteractionItem::moveObject()
 {
 	if (isInteractable() && mIsMovable)
 	{
+		AnalyticsManager::instance().UpdateActionData("Move");
 		endUpdate();
 	}
 	else
@@ -37,6 +39,7 @@ void OneInteractionItem::playObject()
 {
 	if (isInteractable() && mIsPlayable)
 	{
+		AnalyticsManager::instance().UpdateActionData("Play");
 		endUpdate();
 	}
 	else
@@ -49,6 +52,7 @@ void OneInteractionItem::eatObject()
 {
 	if (isInteractable() && mIsEatable)
 	{
+		AnalyticsManager::instance().UpdateActionData("Eat");
 		endUpdate();
 	}
 	else
@@ -61,6 +65,7 @@ void OneInteractionItem::answerRiddle()
 {
 	if (isInteractable() && mIsRiddle)
 	{
+		AnalyticsManager::instance().UpdateActionData("Answer");
 		endUpdate();
 	}
 	else

@@ -35,6 +35,7 @@ class AnalyticsManager
 	{
 		return *this;
 	}
+	void CleanUp();
 protected:
 	GameData*  mGameData;
 	std::map<std::string, ActionData*> mActionData;

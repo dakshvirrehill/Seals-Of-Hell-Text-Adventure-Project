@@ -1,7 +1,7 @@
 #include "AnalyticsManager.h"
 #include "DatabaseManager.h"
 
-void AnalyticsManager::ReInitializeAnalyticsData()
+void AnalyticsManager::CleanUp()
 {
 	if (mGameData != nullptr)
 	{
@@ -10,7 +10,7 @@ void AnalyticsManager::ReInitializeAnalyticsData()
 	if (mActionData.begin() != mActionData.end())
 	{
 		auto iter = mActionData.begin();
-		while(iter != mActionData.end())
+		while (iter != mActionData.end())
 		{
 			if ((*iter).second != nullptr)
 			{
@@ -31,6 +31,11 @@ void AnalyticsManager::ReInitializeAnalyticsData()
 			iter = mPickableData.erase(iter);
 		}
 	}
+}
+
+void AnalyticsManager::ReInitializeAnalyticsData()
+{
+	CleanUp();
 	DatabaseManager::instance().getAllData();
 }
 
@@ -40,6 +45,7 @@ void AnalyticsManager::SaveAnalyticsData()
 	{
 		DatabaseManager::instance().setAllData();
 	}
+	CleanUp();
 }
 
 void AnalyticsManager::UpdateActionData(std::string pActionName)
@@ -80,6 +86,7 @@ void AnalyticsManager::UpdatePickableData(std::string pPickableName, bool pIsPic
 		mPickableData.emplace(pPickableName, new PickableData());
 		mPickableData[pPickableName]->mPickableName = pPickableName;
 		mPickableData[pPickableName]->mPickCount = 1;
+		mPickableData[pPickableName]->mDropCount = 0;
 		mPickableData[pPickableName]->mPickableId = -1;
 	}
 }

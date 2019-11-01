@@ -1,7 +1,7 @@
 #include "PickableItem.h"
 #include "GameManager.h"
 #include <iostream>
-
+#include "AnalyticsManager.h"
 void PickableItem::initialize(bool pIsWeapon, bool pIsShield, bool pIsGiveable, bool pIsWearable, bool pIsPicked, bool pIsWorn, bool pIsGiven, bool pIsDropped)
 {
 	mIsWeapon = pIsWeapon;
@@ -16,14 +16,19 @@ void PickableItem::initialize(bool pIsWeapon, bool pIsShield, bool pIsGiveable, 
 
 void PickableItem::objectGiven()
 {
-	mIsGiven = true;
-	std::cout << getName() << " given." << std::endl;
+	if (isInteractable() && !mIsGiven)
+	{
+		mIsGiven = true;
+		std::cout << getName() << " given." << std::endl;
+	}
 }
 
 void PickableItem::pickObject()
 {
 	if (isInteractable() && !mIsPicked)
 	{
+		AnalyticsManager::instance().UpdateActionData("Pick");
+		AnalyticsManager::instance().UpdatePickableData(getName(), true);
 		mIsPicked = true;
 		GameManager::instance().addInInventory(this);
 		std::cout << getName() << " picked." << std::endl;
@@ -39,6 +44,7 @@ void PickableItem::wearObject()
 			mIsPicked = true;
 			GameManager::instance().addInInventory(this);
 		}
+		AnalyticsManager::instance().UpdateActionData("Wear");
 		mIsWorn = true;
 		std::cout << getName() << " worn." << std::endl;
 	}
@@ -48,6 +54,8 @@ void PickableItem::dropObject()
 {
 	if (mIsPicked && isInteractable())
 	{
+		AnalyticsManager::instance().UpdateActionData("Drop");
+		AnalyticsManager::instance().UpdatePickableData(getName(), false);
 		mIsWorn = false;
 		mIsGiven = false;
 		mIsPicked = false;

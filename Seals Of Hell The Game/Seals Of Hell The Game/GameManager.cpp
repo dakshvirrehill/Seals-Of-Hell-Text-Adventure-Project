@@ -9,17 +9,10 @@
 #include "Region.h"
 #include "Room.h"
 #include "AnalyticsManager.h"
-#include <chrono>
 void GameManager::look()
 {
-	if (instance().mCurrentRegion != nullptr)
-	{
-		instance().mCurrentRegion->look();
-	}
-	if (instance().mCurrentRoom != nullptr)
-	{
-		instance().mCurrentRoom->look();
-	}
+	AnalyticsManager::instance().UpdateActionData("Look");
+	instance().internalLook();
 }
 
 void GameManager::lookInsideRoom()
@@ -61,16 +54,14 @@ void GameManager::StartGame(std::string& pFileName, bool& pLoadSave)
 
 void GameManager::GameLoop()
 {
-	std::chrono::time_point<std::chrono::system_clock> _time;
-	std::chrono::time_point<std::chrono::system_clock> _endTime;
-	_time = std::chrono::system_clock::now();
+	mStartTime = clock();
 	std::cout << "Welcome to " << getName() << std::endl << std::endl;
 	std::cout << getStory() << std::endl << std::endl;
 	std::cout << "To interact with the game, type commands..." << std::endl;
 	std::cout << "Type HELP to see all the commands..." << std::endl;
 	std::cout << "Type SAVE to save the game..." << std::endl;
 	std::cout << "Type EXIT to exit the game... (The game autosaves on exit and gameover)" << std::endl << std::endl;
-	look();
+	internalLook();
 	mCurrentRoom->enterRoom();
 	std::string aCommandStr = "";
 	do
@@ -87,7 +78,7 @@ void GameManager::GameLoop()
 		}
 		if (mEndGame)
 		{
-			endGame();
+			internalEndGame();
 		}
 	} while (mGamePlay);
 }
@@ -97,7 +88,7 @@ void GameManager::setCurrentRegion(Region* pCurrentRegion)
 	mCurrentRegion = pCurrentRegion;
 	mCurrentRoom = mCurrentRegion->getStartingRoom();
 	mCurrentRoom->enterRoom();
-	look();
+	internalLook();
 }
 
 void GameManager::setCurrentRoom(Room* pRoom)
@@ -109,6 +100,7 @@ void GameManager::setCurrentRoom(Room* pRoom)
 
 void GameManager::inventory()
 {
+	AnalyticsManager::instance().UpdateActionData("Inventory");
 	GameManager::instance().mCurrentPlayer->inventory();
 }
 
@@ -150,25 +142,49 @@ void GameManager::internalSaveGame()
 	SaveGameManager::instance().saveGame(aJSON, mSaveFileName);
 }
 
+void GameManager::internalEndGame()
+{
+	clock_t aEndTime = clock();
+	GameData* aData = new GameData();
+	aData->mGameTimeInSeconds = (double)((aEndTime - mStartTime) / CLOCKS_PER_SEC);
+	aData->mNumberofItemsInInventory = mCurrentPlayer->getInventorySize();
+	aData->mGameID = -1;
+	AnalyticsManager::instance().SetGameData(aData);
+	AnalyticsManager::instance().SaveAnalyticsData();
+	mGamePlay = false;
+	internalSaveGame();
+	if (mCurrentPlayer != nullptr)
+	{
+		delete mCurrentPlayer;
+	}
+	GameLoader::instance().cleanUpGame(mFirstRegion);
+	mCurrentRegion = nullptr;
+	mCurrentRoom = nullptr;
+	mFirstRegion = nullptr;
+	mCurrentPlayer = nullptr;
+}
+
+void GameManager::internalLook()
+{
+	if (instance().mCurrentRegion != nullptr)
+	{
+		instance().mCurrentRegion->look();
+	}
+	if (instance().mCurrentRoom != nullptr)
+	{
+		instance().mCurrentRoom->look();
+	}
+}
+
 void GameManager::endGame()
 {
-	AnalyticsManager::instance().SaveAnalyticsData();
-	instance().mGamePlay = false;
-	instance().internalSaveGame();
-	if (instance().mCurrentPlayer != nullptr)
-	{
-		delete instance().mCurrentPlayer;
-	}
-	GameLoader::instance().cleanUpGame(instance().mFirstRegion);
-	instance().mCurrentRegion = nullptr;
-	instance().mCurrentRoom = nullptr;
-	instance().mFirstRegion = nullptr;
-	instance().mCurrentPlayer = nullptr;
-	AnalyticsManager::instance().SaveAnalyticsData();
+	AnalyticsManager::instance().UpdateActionData("Exit");
+	instance().internalEndGame();
 }
 
 void GameManager::saveGame()
 {
+	AnalyticsManager::instance().UpdateActionData("Save");
 	instance().internalSaveGame();
 }
 

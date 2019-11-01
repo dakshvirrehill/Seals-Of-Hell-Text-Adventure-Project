@@ -3,6 +3,7 @@
 #define GAME_MANAGER_H
 #include <string>
 #include "BasicObject.h"
+#include <cTime>
 class Region;
 class Room;
 class IInteractable;
@@ -19,15 +20,17 @@ private:
 	PlayerManager* mCurrentPlayer;
 	bool mGamePlay;
 	bool mEndGame;
-	double mPlayTime;
-	inline explicit GameManager() :BasicObject(), mFileName(""),mSaveFileName(""), mFirstRegion(nullptr), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false),mEndGame(false),mPlayTime(0) {}
+	clock_t mStartTime;
+	inline explicit GameManager() :BasicObject(), mFileName(""),mSaveFileName(""), mFirstRegion(nullptr), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false),mEndGame(false),mStartTime() {}
 	inline ~GameManager() {}
-	inline explicit GameManager(GameManager const&) :BasicObject(), mFileName(""), mFirstRegion(nullptr), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false),mEndGame(false),mPlayTime(0) {}
+	inline explicit GameManager(GameManager const&) :BasicObject(), mFileName(""), mFirstRegion(nullptr), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false),mEndGame(false), mStartTime() {}
 	inline GameManager& operator=(GameManager const&) 
 	{
 		return *this;
 	}
 	void internalSaveGame();
+	void internalEndGame();
+	void internalLook();
 protected:
 	static void endGame();
 	static void saveGame();

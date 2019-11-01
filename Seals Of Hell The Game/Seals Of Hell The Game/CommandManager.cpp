@@ -2,6 +2,7 @@
 #include "PlayerManager.h"
 #include "GameManager.h"
 #include "IInteractable.h"
+#include "AnalyticsManager.h"
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -37,6 +38,7 @@ void CommandManager::initialize()
 
 void CommandManager::help()
 {
+	AnalyticsManager::instance().UpdateActionData("Help");
 	std::cout << "==============================" << std::endl;
 	std::cout << "List of Commands" << std::endl;
 	std::cout << "HELP" << std::endl;
@@ -167,6 +169,10 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 	else
 	{
 		mInteractableCommands[aCommandWords.at(0)](aIObj1);
+		if (aCommandWords.at(0) == "LOOK")
+		{
+			AnalyticsManager::instance().UpdateActionData("Look");
+		}
 	}
 	return true;
 }
