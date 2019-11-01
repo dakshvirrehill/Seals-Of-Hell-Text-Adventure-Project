@@ -28,6 +28,8 @@ int main()
 		{
 			break;
 		}
+		std::string aDummy;
+		std::getline(std::cin, aDummy);
 		GameManager::instance().StartGame(aGameFile, aLoadGame);
 		GameManager::instance().GameLoop();
 	}

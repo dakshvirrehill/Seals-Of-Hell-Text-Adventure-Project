@@ -69,6 +69,12 @@ namespace Seals_of_Hell_Analytics_Visual_Tool
             }
             this.actionDataChart.Series[0].Points.Clear();
             this.actionDataChart.Series[0].Points.DataBindXY(aActionNames, aActionCountList);
+            this.actionDataChart.Series[0]["PieLabelStyle"] = "Outside";
+            foreach(var aActionPoint in this.actionDataChart.Series[0].Points)
+            {
+                aActionPoint.Label = "#PERCENT  #VALX";
+                aActionPoint.LabelForeColor = Color.Chocolate;
+            }
         }
         void CreatePickableDataChart()
         {

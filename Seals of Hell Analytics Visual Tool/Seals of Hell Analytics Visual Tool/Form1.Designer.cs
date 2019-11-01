@@ -111,8 +111,10 @@
             // actionDataChart
             // 
             chartArea1.Area3DStyle.Enable3D = true;
+            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.White;
             chartArea1.Name = "ChartArea1";
             this.actionDataChart.ChartAreas.Add(chartArea1);
+            legend1.ItemColumnSeparatorColor = System.Drawing.Color.BlanchedAlmond;
             legend1.Name = "Legend1";
             this.actionDataChart.Legends.Add(legend1);
             this.actionDataChart.Location = new System.Drawing.Point(0, 0);
