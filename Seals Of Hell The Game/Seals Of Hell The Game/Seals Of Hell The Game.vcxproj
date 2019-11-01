@@ -123,8 +123,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnalyticsManager.cpp" />
     <ClCompile Include="BasicObject.cpp" />
     <ClCompile Include="Collector.cpp" />
+    <ClCompile Include="DatabaseManager.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameLoader.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -142,11 +144,14 @@
     <ClCompile Include="Region.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="SaveGameManager.cpp" />
+    <ClCompile Include="sqlite3.c" />
     <ClCompile Include="TreasureCollector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnalyticsManager.h" />
     <ClInclude Include="BasicObject.h" />
     <ClInclude Include="Collector.h" />
+    <ClInclude Include="DatabaseManager.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameLoader.h" />
     <ClInclude Include="GameManager.h" />
@@ -163,6 +168,7 @@
     <ClInclude Include="Region.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="SaveGameManager.h" />
+    <ClInclude Include="sqlite3.h" />
     <ClInclude Include="TreasureCollector.h" />
   </ItemGroup>
   <ItemGroup>

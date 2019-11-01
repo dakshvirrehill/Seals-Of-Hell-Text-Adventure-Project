@@ -8,7 +8,8 @@
 #include "IInteractable.h"
 #include "Region.h"
 #include "Room.h"
-
+#include "AnalyticsManager.h"
+#include <chrono>
 void GameManager::look()
 {
 	if (instance().mCurrentRegion != nullptr)
@@ -55,10 +56,14 @@ void GameManager::StartGame(std::string& pFileName, bool& pLoadSave)
 	CommandManager::instance().initialize();
 	mGamePlay = true;
 	mEndGame = false;
+	AnalyticsManager::instance().ReInitializeAnalyticsData();
 }
 
 void GameManager::GameLoop()
 {
+	std::chrono::time_point<std::chrono::system_clock> _time;
+	std::chrono::time_point<std::chrono::system_clock> _endTime;
+	_time = std::chrono::system_clock::now();
 	std::cout << "Welcome to " << getName() << std::endl << std::endl;
 	std::cout << getStory() << std::endl << std::endl;
 	std::cout << "To interact with the game, type commands..." << std::endl;
@@ -147,6 +152,7 @@ void GameManager::internalSaveGame()
 
 void GameManager::endGame()
 {
+	AnalyticsManager::instance().SaveAnalyticsData();
 	instance().mGamePlay = false;
 	instance().internalSaveGame();
 	if (instance().mCurrentPlayer != nullptr)
@@ -158,6 +164,7 @@ void GameManager::endGame()
 	instance().mCurrentRoom = nullptr;
 	instance().mFirstRegion = nullptr;
 	instance().mCurrentPlayer = nullptr;
+	AnalyticsManager::instance().SaveAnalyticsData();
 }
 
 void GameManager::saveGame()

@@ -19,9 +19,10 @@ private:
 	PlayerManager* mCurrentPlayer;
 	bool mGamePlay;
 	bool mEndGame;
-	inline explicit GameManager() :BasicObject(), mFileName(""),mSaveFileName(""), mFirstRegion(nullptr), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false),mEndGame(false) {}
+	double mPlayTime;
+	inline explicit GameManager() :BasicObject(), mFileName(""),mSaveFileName(""), mFirstRegion(nullptr), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false),mEndGame(false),mPlayTime(0) {}
 	inline ~GameManager() {}
-	inline explicit GameManager(GameManager const&) :BasicObject(), mFileName(""), mFirstRegion(nullptr), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false),mEndGame(false) {}
+	inline explicit GameManager(GameManager const&) :BasicObject(), mFileName(""), mFirstRegion(nullptr), mCurrentRegion(nullptr), mCurrentRoom(nullptr), mCurrentPlayer(nullptr), mGamePlay(false),mEndGame(false),mPlayTime(0) {}
 	inline GameManager& operator=(GameManager const&) 
 	{
 		return *this;
