@@ -74,7 +74,14 @@ void GameManager::GameLoop()
 		}
 		if (!mEndGame && mGamePlay && mCurrentRoom != nullptr)
 		{
-			mCurrentRoom->updateRoom();
+			if (mCurrentPlayer->mInAttack)
+			{
+				mCurrentRoom->updateRoom();
+			}
+			if (!mEndGame)
+			{
+				mCurrentRoom->updateRoom();
+			}
 		}
 		if (mEndGame)
 		{
@@ -232,6 +239,11 @@ void GameManager::removeFromInventory(IInteractable* pInvObj)
 void GameManager::attackPlayer(IInteractable* pEnemy)
 {
 	mCurrentPlayer->attackPlayer(pEnemy);
+}
+
+bool GameManager::isPlayerInAttack()
+{
+	return mCurrentPlayer->mInAttack;
 }
 
 void GameManager::blockAttack()

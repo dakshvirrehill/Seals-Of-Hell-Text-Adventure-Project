@@ -48,10 +48,16 @@ void Enemy::attackEnemy(IInteractable* pWeapon)
 {
 	if (pWeapon != getConditionalObject() && !GameManager::instance().hasInInventory(pWeapon))
 	{
+		mCanAttack = true;
 		IInteractable::attackEnemy(pWeapon);
 	}
 	else
 	{
+		if (GameManager::instance().isPlayerInAttack())
+		{
+			mCanAttack = true;
+			return;
+		}
 		AnalyticsManager::instance().UpdateActionData("Attack");
 		mLife -= 1;
 		if (mLife <= 0)

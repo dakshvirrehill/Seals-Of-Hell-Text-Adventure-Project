@@ -58,6 +58,7 @@ public:
 	void addInInventory(IInteractable*);
 	void removeFromInventory(IInteractable*);
 	void attackPlayer(IInteractable*);
+	bool isPlayerInAttack();
 	void blockAttack();
 	bool hasShield();
 	bool hasInInventory(IInteractable*);
