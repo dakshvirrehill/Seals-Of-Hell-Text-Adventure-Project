@@ -126,4 +126,39 @@
   <metadata name="openGameJSONData.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>314, 17</value>
   </metadata>
+  <data name="infoContent.Text" xml:space="preserve">
+    <value>Main Menu :
+
+- Click on File &gt; Save to save json , Click on File &gt; Open to open previously saved json.
+The editor checks whether the data is valid before saving the json and explains if there are any data shortcomings.
+
+- Click on Edit Interactables Data to get to interactables form
+The Game Has Five Region Independant Interactables which can be added and edited in this form.
+Pickable Items are Items that can be picked.
+These items are either weapons, wearables, giveables or shield types.
+The enemies are dependant on weapons that can kill them, therefore you can't add enemies without a weapon pickable.
+The collectors need a giveable as a conditional object before you can add them.
+The killzones can be in the game without any disabling object
+The one interaction items are movable,playable,eatable or riddle types.
+You can assign more than one enemies the same killable weapon but a givable can only be assigned to one.
+
+- Click on Edit Room Data to get to room form
+The Room has a way to add new rooms and add these interactables to these rooms
+The other tabs are to add updatable objects that need to be present in the room to the respective types
+If you add an updatable object to any of the objects, those object would need to be disabled for the updatable object to work.
+Gateways and Portals are also available here after adding them in the region editor.
+
+- Click on Edit Region Data to get to region form
+The Region has a way to add new regions and add rooms to those regions
+As only rooms in a region can be connected via gateways, a way to add gateways is also here
+Once a room has a direction blocked, you can't add that room in the same direction again
+You can add portals that go between the region and main region to rooms here
+After adding portals and gateways here, they can be added as updatable objects to updatables in the room editor
+
+-Click on Edit Game Start Data to edit the first region, first room, treasure collector, game name and story.
+You can add interactables to the first room (all portals are added to the room when a region is created)
+The treasure collector needs to have some treasures assigned for the game to work and these are giveable pickables
+Have Fun Editing The Game!!
+</value>
+  </data>
 </root>

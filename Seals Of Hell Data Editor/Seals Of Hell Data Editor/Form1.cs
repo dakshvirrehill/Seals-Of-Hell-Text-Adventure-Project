@@ -28,6 +28,7 @@ namespace Seals_Of_Hell_Data_Editor
             InitializeComponent();
             this.Text = mGameDetails.mName;
             CleanUpAtEditorChange();
+            HelpToolStripMenuItem_Click(null, null);
         }
 
         void CleanUpAtEditorChange()
@@ -41,6 +42,7 @@ namespace Seals_Of_Hell_Data_Editor
             mSelectedPickable = null;
             mSelectedPortal = null;
             mSelectedGateway = null;
+            this.infoPanelControl.Visible =
             this.gameStartTabControl.Visible = 
             this.interactableDetailsTabControl.Visible = 
             this.regionTabControl.Visible =
@@ -48,6 +50,11 @@ namespace Seals_Of_Hell_Data_Editor
         }
 
         #region Main Menu
+        private void HelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CleanUpAtEditorChange();
+            this.infoPanelControl.Visible = true;
+        }
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openGameJSONData.ShowDialog();
@@ -1810,5 +1817,7 @@ namespace Seals_Of_Hell_Data_Editor
             }
         }
         #endregion
+
+
     }
 }

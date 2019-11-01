@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SealsOfHellMain));
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editGameStartDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addNewRegionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editRoomDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editInteractablesDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editRoomDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewRegionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editGameStartDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameStartTabControl = new System.Windows.Forms.TabControl();
             this.gameDetailsTab = new System.Windows.Forms.TabPage();
             this.editGameDetails = new System.Windows.Forms.Button();
@@ -187,6 +188,20 @@
             this.oIIRoomItemsListLabel = new System.Windows.Forms.Label();
             this.oIICurRoomListLabel = new System.Windows.Forms.Label();
             this.interactableDetailsTabControl = new System.Windows.Forms.TabControl();
+            this.pickableItemDetailsTab = new System.Windows.Forms.TabPage();
+            this.editPickableItemDetails = new System.Windows.Forms.Button();
+            this.deletePickableItem = new System.Windows.Forms.Button();
+            this.currentPickableItemListLabel = new System.Windows.Forms.Label();
+            this.currentPickableItemsList = new System.Windows.Forms.ListBox();
+            this.editSelectedPickableItem = new System.Windows.Forms.Button();
+            this.pickableItemTypeSelector = new System.Windows.Forms.ComboBox();
+            this.pickableItemTypeLabel = new System.Windows.Forms.Label();
+            this.isPickableItemInteractable = new System.Windows.Forms.CheckBox();
+            this.isPickableItemVisible = new System.Windows.Forms.CheckBox();
+            this.pickableItemStoryTextBox = new System.Windows.Forms.RichTextBox();
+            this.pickableItemStoryLabel = new System.Windows.Forms.Label();
+            this.pickableItemNameTextBox = new System.Windows.Forms.TextBox();
+            this.pickableItemNameLabel = new System.Windows.Forms.Label();
             this.collectorDetailsTab = new System.Windows.Forms.TabPage();
             this.editCollectorDetails = new System.Windows.Forms.Button();
             this.deleteCollectorDetails = new System.Windows.Forms.Button();
@@ -263,22 +278,12 @@
             this.oIIStoryLabel = new System.Windows.Forms.Label();
             this.oIINameTextBox = new System.Windows.Forms.TextBox();
             this.oIINameLabel = new System.Windows.Forms.Label();
-            this.pickableItemDetailsTab = new System.Windows.Forms.TabPage();
-            this.editPickableItemDetails = new System.Windows.Forms.Button();
-            this.deletePickableItem = new System.Windows.Forms.Button();
-            this.currentPickableItemListLabel = new System.Windows.Forms.Label();
-            this.currentPickableItemsList = new System.Windows.Forms.ListBox();
-            this.editSelectedPickableItem = new System.Windows.Forms.Button();
-            this.pickableItemTypeSelector = new System.Windows.Forms.ComboBox();
-            this.pickableItemTypeLabel = new System.Windows.Forms.Label();
-            this.isPickableItemInteractable = new System.Windows.Forms.CheckBox();
-            this.isPickableItemVisible = new System.Windows.Forms.CheckBox();
-            this.pickableItemStoryTextBox = new System.Windows.Forms.RichTextBox();
-            this.pickableItemStoryLabel = new System.Windows.Forms.Label();
-            this.pickableItemNameTextBox = new System.Windows.Forms.TextBox();
-            this.pickableItemNameLabel = new System.Windows.Forms.Label();
             this.saveGameJSONData = new System.Windows.Forms.SaveFileDialog();
             this.openGameJSONData = new System.Windows.Forms.OpenFileDialog();
+            this.infoPanelControl = new System.Windows.Forms.Panel();
+            this.infoTitle = new System.Windows.Forms.Label();
+            this.infoContent = new System.Windows.Forms.TextBox();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.gameStartTabControl.SuspendLayout();
             this.gameDetailsTab.SuspendLayout();
@@ -299,12 +304,13 @@
             this.killZoneUpdatablesTab.SuspendLayout();
             this.oIIUpdatablesTab.SuspendLayout();
             this.interactableDetailsTabControl.SuspendLayout();
+            this.pickableItemDetailsTab.SuspendLayout();
             this.collectorDetailsTab.SuspendLayout();
             this.enemyDetailsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.enemyLifeNumericUpDown)).BeginInit();
             this.killZoneDetailsTab.SuspendLayout();
             this.oneInteractionItemDetailsTab.SuspendLayout();
-            this.pickableItemDetailsTab.SuspendLayout();
+            this.infoPanelControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenuStrip
@@ -312,10 +318,10 @@
             this.mainMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editGameStartDataToolStripMenuItem,
-            this.addNewRegionToolStripMenuItem,
+            this.editInteractablesDataToolStripMenuItem,
             this.editRoomDataToolStripMenuItem,
-            this.editInteractablesDataToolStripMenuItem});
+            this.addNewRegionToolStripMenuItem,
+            this.editGameStartDataToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -326,6 +332,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpToolStripMenuItem,
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
@@ -336,37 +343,30 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
-            // editGameStartDataToolStripMenuItem
+            // editInteractablesDataToolStripMenuItem
             // 
-            this.editGameStartDataToolStripMenuItem.Name = "editGameStartDataToolStripMenuItem";
-            this.editGameStartDataToolStripMenuItem.Size = new System.Drawing.Size(127, 20);
-            this.editGameStartDataToolStripMenuItem.Text = "Edit Game Start Data";
-            this.editGameStartDataToolStripMenuItem.Click += new System.EventHandler(this.EditGameStartDataToolStripMenuItem_Click);
-            // 
-            // addNewRegionToolStripMenuItem
-            // 
-            this.addNewRegionToolStripMenuItem.Name = "addNewRegionToolStripMenuItem";
-            this.addNewRegionToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
-            this.addNewRegionToolStripMenuItem.Text = "Edit Region Data";
-            this.addNewRegionToolStripMenuItem.Click += new System.EventHandler(this.AddNewRegionToolStripMenuItem_Click);
+            this.editInteractablesDataToolStripMenuItem.Name = "editInteractablesDataToolStripMenuItem";
+            this.editInteractablesDataToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
+            this.editInteractablesDataToolStripMenuItem.Text = "Edit Interactables Data";
+            this.editInteractablesDataToolStripMenuItem.Click += new System.EventHandler(this.EditInteractablesDataToolStripMenuItem_Click);
             // 
             // editRoomDataToolStripMenuItem
             // 
@@ -375,12 +375,19 @@
             this.editRoomDataToolStripMenuItem.Text = "Edit Room Data";
             this.editRoomDataToolStripMenuItem.Click += new System.EventHandler(this.EditRoomDataToolStripMenuItem_Click);
             // 
-            // editInteractablesDataToolStripMenuItem
+            // addNewRegionToolStripMenuItem
             // 
-            this.editInteractablesDataToolStripMenuItem.Name = "editInteractablesDataToolStripMenuItem";
-            this.editInteractablesDataToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
-            this.editInteractablesDataToolStripMenuItem.Text = "Edit Interactables Data";
-            this.editInteractablesDataToolStripMenuItem.Click += new System.EventHandler(this.EditInteractablesDataToolStripMenuItem_Click);
+            this.addNewRegionToolStripMenuItem.Name = "addNewRegionToolStripMenuItem";
+            this.addNewRegionToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
+            this.addNewRegionToolStripMenuItem.Text = "Edit Region Data";
+            this.addNewRegionToolStripMenuItem.Click += new System.EventHandler(this.AddNewRegionToolStripMenuItem_Click);
+            // 
+            // editGameStartDataToolStripMenuItem
+            // 
+            this.editGameStartDataToolStripMenuItem.Name = "editGameStartDataToolStripMenuItem";
+            this.editGameStartDataToolStripMenuItem.Size = new System.Drawing.Size(127, 20);
+            this.editGameStartDataToolStripMenuItem.Text = "Edit Game Start Data";
+            this.editGameStartDataToolStripMenuItem.Click += new System.EventHandler(this.EditGameStartDataToolStripMenuItem_Click);
             // 
             // gameStartTabControl
             // 
@@ -1977,11 +1984,11 @@
             // 
             // interactableDetailsTabControl
             // 
+            this.interactableDetailsTabControl.Controls.Add(this.pickableItemDetailsTab);
             this.interactableDetailsTabControl.Controls.Add(this.collectorDetailsTab);
             this.interactableDetailsTabControl.Controls.Add(this.enemyDetailsTab);
             this.interactableDetailsTabControl.Controls.Add(this.killZoneDetailsTab);
             this.interactableDetailsTabControl.Controls.Add(this.oneInteractionItemDetailsTab);
-            this.interactableDetailsTabControl.Controls.Add(this.pickableItemDetailsTab);
             this.interactableDetailsTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.interactableDetailsTabControl.Location = new System.Drawing.Point(0, 27);
             this.interactableDetailsTabControl.Name = "interactableDetailsTabControl";
@@ -1990,6 +1997,152 @@
             this.interactableDetailsTabControl.TabIndex = 4;
             this.interactableDetailsTabControl.Visible = false;
             this.interactableDetailsTabControl.SelectedIndexChanged += new System.EventHandler(this.InteractableDetailsTabControl_SelectedIndexChanged);
+            // 
+            // pickableItemDetailsTab
+            // 
+            this.pickableItemDetailsTab.Controls.Add(this.editPickableItemDetails);
+            this.pickableItemDetailsTab.Controls.Add(this.deletePickableItem);
+            this.pickableItemDetailsTab.Controls.Add(this.currentPickableItemListLabel);
+            this.pickableItemDetailsTab.Controls.Add(this.currentPickableItemsList);
+            this.pickableItemDetailsTab.Controls.Add(this.editSelectedPickableItem);
+            this.pickableItemDetailsTab.Controls.Add(this.pickableItemTypeSelector);
+            this.pickableItemDetailsTab.Controls.Add(this.pickableItemTypeLabel);
+            this.pickableItemDetailsTab.Controls.Add(this.isPickableItemInteractable);
+            this.pickableItemDetailsTab.Controls.Add(this.isPickableItemVisible);
+            this.pickableItemDetailsTab.Controls.Add(this.pickableItemStoryTextBox);
+            this.pickableItemDetailsTab.Controls.Add(this.pickableItemStoryLabel);
+            this.pickableItemDetailsTab.Controls.Add(this.pickableItemNameTextBox);
+            this.pickableItemDetailsTab.Controls.Add(this.pickableItemNameLabel);
+            this.pickableItemDetailsTab.Location = new System.Drawing.Point(4, 29);
+            this.pickableItemDetailsTab.Name = "pickableItemDetailsTab";
+            this.pickableItemDetailsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.pickableItemDetailsTab.Size = new System.Drawing.Size(1000, 670);
+            this.pickableItemDetailsTab.TabIndex = 4;
+            this.pickableItemDetailsTab.Text = "Add/Edit Pickable Items";
+            this.pickableItemDetailsTab.UseVisualStyleBackColor = true;
+            // 
+            // editPickableItemDetails
+            // 
+            this.editPickableItemDetails.Location = new System.Drawing.Point(420, 398);
+            this.editPickableItemDetails.Name = "editPickableItemDetails";
+            this.editPickableItemDetails.Size = new System.Drawing.Size(270, 77);
+            this.editPickableItemDetails.TabIndex = 82;
+            this.editPickableItemDetails.Text = "Add/Edit Pickable Item";
+            this.editPickableItemDetails.UseVisualStyleBackColor = true;
+            this.editPickableItemDetails.Click += new System.EventHandler(this.EditPickableItemDetails_Click);
+            // 
+            // deletePickableItem
+            // 
+            this.deletePickableItem.Location = new System.Drawing.Point(103, 398);
+            this.deletePickableItem.Name = "deletePickableItem";
+            this.deletePickableItem.Size = new System.Drawing.Size(270, 77);
+            this.deletePickableItem.TabIndex = 81;
+            this.deletePickableItem.Text = "Delete Pickable Item";
+            this.deletePickableItem.UseVisualStyleBackColor = true;
+            this.deletePickableItem.Click += new System.EventHandler(this.DeletePickableItem_Click);
+            // 
+            // currentPickableItemListLabel
+            // 
+            this.currentPickableItemListLabel.AutoSize = true;
+            this.currentPickableItemListLabel.Location = new System.Drawing.Point(762, 34);
+            this.currentPickableItemListLabel.Name = "currentPickableItemListLabel";
+            this.currentPickableItemListLabel.Size = new System.Drawing.Size(153, 20);
+            this.currentPickableItemListLabel.TabIndex = 80;
+            this.currentPickableItemListLabel.Text = "Current Items List";
+            // 
+            // currentPickableItemsList
+            // 
+            this.currentPickableItemsList.FormattingEnabled = true;
+            this.currentPickableItemsList.ItemHeight = 20;
+            this.currentPickableItemsList.Location = new System.Drawing.Point(749, 57);
+            this.currentPickableItemsList.Name = "currentPickableItemsList";
+            this.currentPickableItemsList.Size = new System.Drawing.Size(205, 404);
+            this.currentPickableItemsList.TabIndex = 79;
+            // 
+            // editSelectedPickableItem
+            // 
+            this.editSelectedPickableItem.Location = new System.Drawing.Point(750, 494);
+            this.editSelectedPickableItem.Name = "editSelectedPickableItem";
+            this.editSelectedPickableItem.Size = new System.Drawing.Size(205, 77);
+            this.editSelectedPickableItem.TabIndex = 78;
+            this.editSelectedPickableItem.Text = "Edit Selected";
+            this.editSelectedPickableItem.UseVisualStyleBackColor = true;
+            this.editSelectedPickableItem.Click += new System.EventHandler(this.EditSelectedPickableItem_Click);
+            // 
+            // pickableItemTypeSelector
+            // 
+            this.pickableItemTypeSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.pickableItemTypeSelector.FormattingEnabled = true;
+            this.pickableItemTypeSelector.Location = new System.Drawing.Point(155, 259);
+            this.pickableItemTypeSelector.Name = "pickableItemTypeSelector";
+            this.pickableItemTypeSelector.Size = new System.Drawing.Size(538, 28);
+            this.pickableItemTypeSelector.TabIndex = 77;
+            // 
+            // pickableItemTypeLabel
+            // 
+            this.pickableItemTypeLabel.AutoSize = true;
+            this.pickableItemTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickableItemTypeLabel.Location = new System.Drawing.Point(52, 262);
+            this.pickableItemTypeLabel.Name = "pickableItemTypeLabel";
+            this.pickableItemTypeLabel.Size = new System.Drawing.Size(88, 20);
+            this.pickableItemTypeLabel.TabIndex = 76;
+            this.pickableItemTypeLabel.Text = "Item Type";
+            // 
+            // isPickableItemInteractable
+            // 
+            this.isPickableItemInteractable.AutoSize = true;
+            this.isPickableItemInteractable.Location = new System.Drawing.Point(459, 319);
+            this.isPickableItemInteractable.Name = "isPickableItemInteractable";
+            this.isPickableItemInteractable.Size = new System.Drawing.Size(145, 24);
+            this.isPickableItemInteractable.TabIndex = 75;
+            this.isPickableItemInteractable.Text = "Is Interactable";
+            this.isPickableItemInteractable.UseVisualStyleBackColor = true;
+            // 
+            // isPickableItemVisible
+            // 
+            this.isPickableItemVisible.AutoSize = true;
+            this.isPickableItemVisible.Location = new System.Drawing.Point(244, 319);
+            this.isPickableItemVisible.Name = "isPickableItemVisible";
+            this.isPickableItemVisible.Size = new System.Drawing.Size(101, 24);
+            this.isPickableItemVisible.TabIndex = 74;
+            this.isPickableItemVisible.Text = "Is Visible";
+            this.isPickableItemVisible.UseVisualStyleBackColor = true;
+            // 
+            // pickableItemStoryTextBox
+            // 
+            this.pickableItemStoryTextBox.Location = new System.Drawing.Point(156, 192);
+            this.pickableItemStoryTextBox.Name = "pickableItemStoryTextBox";
+            this.pickableItemStoryTextBox.Size = new System.Drawing.Size(538, 54);
+            this.pickableItemStoryTextBox.TabIndex = 73;
+            this.pickableItemStoryTextBox.Text = "";
+            // 
+            // pickableItemStoryLabel
+            // 
+            this.pickableItemStoryLabel.AutoSize = true;
+            this.pickableItemStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickableItemStoryLabel.Location = new System.Drawing.Point(48, 204);
+            this.pickableItemStoryLabel.Name = "pickableItemStoryLabel";
+            this.pickableItemStoryLabel.Size = new System.Drawing.Size(92, 20);
+            this.pickableItemStoryLabel.TabIndex = 72;
+            this.pickableItemStoryLabel.Text = "Item Story";
+            // 
+            // pickableItemNameTextBox
+            // 
+            this.pickableItemNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickableItemNameTextBox.Location = new System.Drawing.Point(156, 143);
+            this.pickableItemNameTextBox.Name = "pickableItemNameTextBox";
+            this.pickableItemNameTextBox.Size = new System.Drawing.Size(538, 26);
+            this.pickableItemNameTextBox.TabIndex = 71;
+            // 
+            // pickableItemNameLabel
+            // 
+            this.pickableItemNameLabel.AutoSize = true;
+            this.pickableItemNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pickableItemNameLabel.Location = new System.Drawing.Point(44, 146);
+            this.pickableItemNameLabel.Name = "pickableItemNameLabel";
+            this.pickableItemNameLabel.Size = new System.Drawing.Size(96, 20);
+            this.pickableItemNameLabel.TabIndex = 70;
+            this.pickableItemNameLabel.Text = "Item Name";
             // 
             // collectorDetailsTab
             // 
@@ -2790,152 +2943,6 @@
             this.oIINameLabel.TabIndex = 53;
             this.oIINameLabel.Text = "Item Name";
             // 
-            // pickableItemDetailsTab
-            // 
-            this.pickableItemDetailsTab.Controls.Add(this.editPickableItemDetails);
-            this.pickableItemDetailsTab.Controls.Add(this.deletePickableItem);
-            this.pickableItemDetailsTab.Controls.Add(this.currentPickableItemListLabel);
-            this.pickableItemDetailsTab.Controls.Add(this.currentPickableItemsList);
-            this.pickableItemDetailsTab.Controls.Add(this.editSelectedPickableItem);
-            this.pickableItemDetailsTab.Controls.Add(this.pickableItemTypeSelector);
-            this.pickableItemDetailsTab.Controls.Add(this.pickableItemTypeLabel);
-            this.pickableItemDetailsTab.Controls.Add(this.isPickableItemInteractable);
-            this.pickableItemDetailsTab.Controls.Add(this.isPickableItemVisible);
-            this.pickableItemDetailsTab.Controls.Add(this.pickableItemStoryTextBox);
-            this.pickableItemDetailsTab.Controls.Add(this.pickableItemStoryLabel);
-            this.pickableItemDetailsTab.Controls.Add(this.pickableItemNameTextBox);
-            this.pickableItemDetailsTab.Controls.Add(this.pickableItemNameLabel);
-            this.pickableItemDetailsTab.Location = new System.Drawing.Point(4, 29);
-            this.pickableItemDetailsTab.Name = "pickableItemDetailsTab";
-            this.pickableItemDetailsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.pickableItemDetailsTab.Size = new System.Drawing.Size(1000, 670);
-            this.pickableItemDetailsTab.TabIndex = 4;
-            this.pickableItemDetailsTab.Text = "Add/Edit Pickable Items";
-            this.pickableItemDetailsTab.UseVisualStyleBackColor = true;
-            // 
-            // editPickableItemDetails
-            // 
-            this.editPickableItemDetails.Location = new System.Drawing.Point(420, 398);
-            this.editPickableItemDetails.Name = "editPickableItemDetails";
-            this.editPickableItemDetails.Size = new System.Drawing.Size(270, 77);
-            this.editPickableItemDetails.TabIndex = 82;
-            this.editPickableItemDetails.Text = "Add/Edit Pickable Item";
-            this.editPickableItemDetails.UseVisualStyleBackColor = true;
-            this.editPickableItemDetails.Click += new System.EventHandler(this.EditPickableItemDetails_Click);
-            // 
-            // deletePickableItem
-            // 
-            this.deletePickableItem.Location = new System.Drawing.Point(103, 398);
-            this.deletePickableItem.Name = "deletePickableItem";
-            this.deletePickableItem.Size = new System.Drawing.Size(270, 77);
-            this.deletePickableItem.TabIndex = 81;
-            this.deletePickableItem.Text = "Delete Pickable Item";
-            this.deletePickableItem.UseVisualStyleBackColor = true;
-            this.deletePickableItem.Click += new System.EventHandler(this.DeletePickableItem_Click);
-            // 
-            // currentPickableItemListLabel
-            // 
-            this.currentPickableItemListLabel.AutoSize = true;
-            this.currentPickableItemListLabel.Location = new System.Drawing.Point(762, 34);
-            this.currentPickableItemListLabel.Name = "currentPickableItemListLabel";
-            this.currentPickableItemListLabel.Size = new System.Drawing.Size(153, 20);
-            this.currentPickableItemListLabel.TabIndex = 80;
-            this.currentPickableItemListLabel.Text = "Current Items List";
-            // 
-            // currentPickableItemsList
-            // 
-            this.currentPickableItemsList.FormattingEnabled = true;
-            this.currentPickableItemsList.ItemHeight = 20;
-            this.currentPickableItemsList.Location = new System.Drawing.Point(749, 57);
-            this.currentPickableItemsList.Name = "currentPickableItemsList";
-            this.currentPickableItemsList.Size = new System.Drawing.Size(205, 404);
-            this.currentPickableItemsList.TabIndex = 79;
-            // 
-            // editSelectedPickableItem
-            // 
-            this.editSelectedPickableItem.Location = new System.Drawing.Point(750, 494);
-            this.editSelectedPickableItem.Name = "editSelectedPickableItem";
-            this.editSelectedPickableItem.Size = new System.Drawing.Size(205, 77);
-            this.editSelectedPickableItem.TabIndex = 78;
-            this.editSelectedPickableItem.Text = "Edit Selected";
-            this.editSelectedPickableItem.UseVisualStyleBackColor = true;
-            this.editSelectedPickableItem.Click += new System.EventHandler(this.EditSelectedPickableItem_Click);
-            // 
-            // pickableItemTypeSelector
-            // 
-            this.pickableItemTypeSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.pickableItemTypeSelector.FormattingEnabled = true;
-            this.pickableItemTypeSelector.Location = new System.Drawing.Point(155, 259);
-            this.pickableItemTypeSelector.Name = "pickableItemTypeSelector";
-            this.pickableItemTypeSelector.Size = new System.Drawing.Size(538, 28);
-            this.pickableItemTypeSelector.TabIndex = 77;
-            // 
-            // pickableItemTypeLabel
-            // 
-            this.pickableItemTypeLabel.AutoSize = true;
-            this.pickableItemTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pickableItemTypeLabel.Location = new System.Drawing.Point(52, 262);
-            this.pickableItemTypeLabel.Name = "pickableItemTypeLabel";
-            this.pickableItemTypeLabel.Size = new System.Drawing.Size(88, 20);
-            this.pickableItemTypeLabel.TabIndex = 76;
-            this.pickableItemTypeLabel.Text = "Item Type";
-            // 
-            // isPickableItemInteractable
-            // 
-            this.isPickableItemInteractable.AutoSize = true;
-            this.isPickableItemInteractable.Location = new System.Drawing.Point(459, 319);
-            this.isPickableItemInteractable.Name = "isPickableItemInteractable";
-            this.isPickableItemInteractable.Size = new System.Drawing.Size(145, 24);
-            this.isPickableItemInteractable.TabIndex = 75;
-            this.isPickableItemInteractable.Text = "Is Interactable";
-            this.isPickableItemInteractable.UseVisualStyleBackColor = true;
-            // 
-            // isPickableItemVisible
-            // 
-            this.isPickableItemVisible.AutoSize = true;
-            this.isPickableItemVisible.Location = new System.Drawing.Point(244, 319);
-            this.isPickableItemVisible.Name = "isPickableItemVisible";
-            this.isPickableItemVisible.Size = new System.Drawing.Size(101, 24);
-            this.isPickableItemVisible.TabIndex = 74;
-            this.isPickableItemVisible.Text = "Is Visible";
-            this.isPickableItemVisible.UseVisualStyleBackColor = true;
-            // 
-            // pickableItemStoryTextBox
-            // 
-            this.pickableItemStoryTextBox.Location = new System.Drawing.Point(156, 192);
-            this.pickableItemStoryTextBox.Name = "pickableItemStoryTextBox";
-            this.pickableItemStoryTextBox.Size = new System.Drawing.Size(538, 54);
-            this.pickableItemStoryTextBox.TabIndex = 73;
-            this.pickableItemStoryTextBox.Text = "";
-            // 
-            // pickableItemStoryLabel
-            // 
-            this.pickableItemStoryLabel.AutoSize = true;
-            this.pickableItemStoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pickableItemStoryLabel.Location = new System.Drawing.Point(48, 204);
-            this.pickableItemStoryLabel.Name = "pickableItemStoryLabel";
-            this.pickableItemStoryLabel.Size = new System.Drawing.Size(92, 20);
-            this.pickableItemStoryLabel.TabIndex = 72;
-            this.pickableItemStoryLabel.Text = "Item Story";
-            // 
-            // pickableItemNameTextBox
-            // 
-            this.pickableItemNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pickableItemNameTextBox.Location = new System.Drawing.Point(156, 143);
-            this.pickableItemNameTextBox.Name = "pickableItemNameTextBox";
-            this.pickableItemNameTextBox.Size = new System.Drawing.Size(538, 26);
-            this.pickableItemNameTextBox.TabIndex = 71;
-            // 
-            // pickableItemNameLabel
-            // 
-            this.pickableItemNameLabel.AutoSize = true;
-            this.pickableItemNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pickableItemNameLabel.Location = new System.Drawing.Point(44, 146);
-            this.pickableItemNameLabel.Name = "pickableItemNameLabel";
-            this.pickableItemNameLabel.Size = new System.Drawing.Size(96, 20);
-            this.pickableItemNameLabel.TabIndex = 70;
-            this.pickableItemNameLabel.Text = "Item Name";
-            // 
             // saveGameJSONData
             // 
             this.saveGameJSONData.DefaultExt = "json";
@@ -2950,6 +2957,46 @@
             this.openGameJSONData.Title = "Open Game JSON Data to Edit";
             this.openGameJSONData.FileOk += new System.ComponentModel.CancelEventHandler(this.OpenGameJSONData_Click);
             // 
+            // infoPanelControl
+            // 
+            this.infoPanelControl.BackColor = System.Drawing.SystemColors.Control;
+            this.infoPanelControl.Controls.Add(this.infoTitle);
+            this.infoPanelControl.Controls.Add(this.infoContent);
+            this.infoPanelControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoPanelControl.Location = new System.Drawing.Point(0, 24);
+            this.infoPanelControl.Name = "infoPanelControl";
+            this.infoPanelControl.Size = new System.Drawing.Size(1008, 703);
+            this.infoPanelControl.TabIndex = 5;
+            this.infoPanelControl.Visible = false;
+            // 
+            // infoTitle
+            // 
+            this.infoTitle.AutoSize = true;
+            this.infoTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoTitle.Location = new System.Drawing.Point(354, 9);
+            this.infoTitle.Name = "infoTitle";
+            this.infoTitle.Size = new System.Drawing.Size(251, 20);
+            this.infoTitle.TabIndex = 0;
+            this.infoTitle.Text = "Game Data Editor Information";
+            // 
+            // infoContent
+            // 
+            this.infoContent.Location = new System.Drawing.Point(14, 35);
+            this.infoContent.Multiline = true;
+            this.infoContent.Name = "infoContent";
+            this.infoContent.ReadOnly = true;
+            this.infoContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.infoContent.Size = new System.Drawing.Size(982, 658);
+            this.infoContent.TabIndex = 2;
+            this.infoContent.Text = resources.GetString("infoContent.Text");
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.HelpToolStripMenuItem_Click);
+            // 
             // SealsOfHellMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2957,10 +3004,11 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.mainMenuStrip);
-            this.Controls.Add(this.regionTabControl);
             this.Controls.Add(this.interactableDetailsTabControl);
             this.Controls.Add(this.gameStartTabControl);
             this.Controls.Add(this.roomTabControl);
+            this.Controls.Add(this.infoPanelControl);
+            this.Controls.Add(this.regionTabControl);
             this.MainMenuStrip = this.mainMenuStrip;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1440, 1077);
@@ -3002,6 +3050,8 @@
             this.oIIUpdatablesTab.ResumeLayout(false);
             this.oIIUpdatablesTab.PerformLayout();
             this.interactableDetailsTabControl.ResumeLayout(false);
+            this.pickableItemDetailsTab.ResumeLayout(false);
+            this.pickableItemDetailsTab.PerformLayout();
             this.collectorDetailsTab.ResumeLayout(false);
             this.collectorDetailsTab.PerformLayout();
             this.enemyDetailsTab.ResumeLayout(false);
@@ -3011,8 +3061,8 @@
             this.killZoneDetailsTab.PerformLayout();
             this.oneInteractionItemDetailsTab.ResumeLayout(false);
             this.oneInteractionItemDetailsTab.PerformLayout();
-            this.pickableItemDetailsTab.ResumeLayout(false);
-            this.pickableItemDetailsTab.PerformLayout();
+            this.infoPanelControl.ResumeLayout(false);
+            this.infoPanelControl.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3271,6 +3321,11 @@
         private System.Windows.Forms.CheckBox isGatewayVisible;
         private System.Windows.Forms.SaveFileDialog saveGameJSONData;
         private System.Windows.Forms.OpenFileDialog openGameJSONData;
+        private System.Windows.Forms.Panel infoPanelControl;
+        private System.Windows.Forms.TextBox infoContent;
+        private System.Windows.Forms.Label infoMainMenu;
+        private System.Windows.Forms.Label infoTitle;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
     }
 }
 
