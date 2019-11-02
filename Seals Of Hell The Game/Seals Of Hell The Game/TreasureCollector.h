@@ -5,6 +5,12 @@
 #include "IUpdatable.h"
 #include <map>
 #include <string>
+/*
+################
+Treasure collector is responsible for collecting all giveables once the player has all of them
+It is an updatable object because it can spawn last minute enemies to stop the player (final boss)
+################
+*/
 class TreasureCollector : public IInteractable , public IUpdatable
 {
 	std::map<std::string,IInteractable*> mTreasures;

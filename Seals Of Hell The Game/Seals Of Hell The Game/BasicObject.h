@@ -2,6 +2,12 @@
 #ifndef BASIC_OBJECT_H
 #define BASIC_OBJECT_H
 #include <string>
+
+/*
+################
+AS ALL GAME OBJECTS HAVE A NAME AND A STORY, THIS IS THE BASIC OBJECT CLASS THAT HAS THEM
+################
+*/
 class BasicObject
 {
 	std::string mName;

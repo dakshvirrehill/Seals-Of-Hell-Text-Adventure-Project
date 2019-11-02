@@ -6,6 +6,12 @@
 #include<list>
 class IInteractable;
 class Room;
+/*
+################
+Current Player Class (Was a singleton Changed it as there can be more than one players in future iterations)
+Has the inventory, and when attacked while in attack, the player dies and game ends
+################
+*/
 class PlayerManager
 {
 private:

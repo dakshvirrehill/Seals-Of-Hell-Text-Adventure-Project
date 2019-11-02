@@ -2,6 +2,11 @@
 #ifndef DATABASE_MANAGER_H
 #define DATABASE_MANAGER_H
 class sqlite3;
+/*
+################
+SQLITE Database select insert and update queries called from this class at start and end of game by the analytics manager only
+################
+*/
 class DatabaseManager
 {
 	inline explicit DatabaseManager() {}

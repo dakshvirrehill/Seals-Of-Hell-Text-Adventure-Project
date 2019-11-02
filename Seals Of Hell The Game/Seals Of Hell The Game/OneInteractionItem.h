@@ -3,6 +3,12 @@
 #define ONE_INTERACTION_ITEM_H
 #include "IInteractable.h"
 #include "IUpdatable.h"
+/*
+################
+One Interaction Items may or maynot be updaitng other objects but have only one interaction
+The true boolean decides which type they are and accordingly their functions are called
+################
+*/
 class OneInteractionItem : public IInteractable, public IUpdatable
 {
 	bool mIsMovable;

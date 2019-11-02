@@ -3,6 +3,12 @@
 #define I_INTERACTABLE_H
 #include "BasicObject.h"
 #include "json.hpp"
+/*
+################
+ALL THE INTERACTABLE OBJECTS INHERIT FROM THIS CLASS IT HAS PROPERTIES LIKE VISIBLE AND INTERACTABLE 
+COMMON TO ALL OF THEM AND VIRTUAL FUNCTION FOR EACH COMMAND
+################
+*/
 class IInteractable : public BasicObject
 {
 	bool mVisible;

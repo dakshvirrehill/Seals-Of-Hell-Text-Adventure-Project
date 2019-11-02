@@ -3,6 +3,14 @@
 #define GATEWAY_H
 #include "IInteractable.h"
 class Room;
+/*
+################
+THE GATEWAY INTERACTABLE IS RESPONSIBLE FOR TRAVERSING IN ROOMS
+IT HAS TWO POINTERS, ONE FOR CURRENT AND ONE FOR CONNECTING ROOM
+IT SWAPS THESE POINTERS ONCE USED. THE ROOM ITS IN SETS ITSELF AS
+CURRENT ROOM ON ENTER ROOM
+################
+*/
 class Gateway : public IInteractable
 {
 	Room* mCurrentRoom;

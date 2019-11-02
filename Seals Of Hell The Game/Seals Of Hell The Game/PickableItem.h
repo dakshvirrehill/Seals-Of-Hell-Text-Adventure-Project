@@ -1,6 +1,12 @@
 #pragma once
 #include "IInteractable.h"
 #include "json.hpp"
+/*
+################
+Pickable Items are (weapons,shields,giveables,wearables)
+Their implementation is boolean based
+################
+*/
 class PickableItem : public IInteractable
 {
 	bool mIsWeapon;

@@ -124,12 +124,12 @@ bool CommandManager::runCommand(std::string& pCommandStr)
 	bool aSwapObj1n2 = false;
 	for (size_t aI = 1; aI < aCommandWords.size(); aI++)
 	{
-		if (aCommandWords.at(aI) == "WITH")
+		if (aTwoInteraction && aCommandWords.at(aI) == "WITH")
 		{
 			aSInObj2 = true;
 			continue;
 		}
-		else if (aCommandWords.at(aI) == "TO")
+		else if (aTwoInteraction && aCommandWords.at(aI) == "TO")
 		{
 			aSInObj2 = true;
 			aSwapObj1n2 = true;

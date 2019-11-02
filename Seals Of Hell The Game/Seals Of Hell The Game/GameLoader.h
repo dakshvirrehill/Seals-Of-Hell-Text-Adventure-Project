@@ -10,6 +10,14 @@ class BasicObject;
 class IUpdatable;
 class Room;
 class Region;
+/*
+################
+MAIN CLASS RESPONSIBLE FOR LOADING THE PROVIDED JSON AS GAME POINTERS 
+DURING BOTH LOAD AND NEW GAME
+MAKING JSON DATA FROM THE GAME POINTERS DURING SAVE
+CLEANING UP POINTERS AFTER GAME END
+################
+*/
 class GameLoader
 {
 	std::map<std::string, std::function<IInteractable* (GameLoader&)>> mObjectCreator;
@@ -51,9 +59,13 @@ protected:
 		}
 		return mInstance;
 	}
+	//function initilizes from save game
 	void initializeSaveGame(json::JSON& pSaveData);
+	//function initializes from load game
 	void initializeNewGame(json::JSON& pGameData);
+	//function creates save data
 	void createJSONData(Region*, json::JSON&, std::map<std::string,IInteractable*>&);
+	//function cleans up all pointers
 	void cleanUpGame(Region*);
 	friend class GameManager;
 };

@@ -6,6 +6,13 @@
 #include <string>
 #include <list>
 class PickableItem;
+/*
+################
+ENEMY IS AN UPDATING OBJECT THAT CAN KILL PLAYER IF NOT KILLED
+IT HAS A CAN ATTACK BOOLEAN USED TO GIVE THE PLAYER A CHANCE
+IT HAS A LIFE FOR MULTI-LEVEL ENEMIES LIKE HENCHMEN AND BOSSES
+################
+*/
 class Enemy : public IUpdatable,public IInteractable
 {
 	bool mCanAttack;

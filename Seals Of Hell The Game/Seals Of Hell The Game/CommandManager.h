@@ -6,6 +6,15 @@
 #include<map>
 #include<string>
 class IInteractable;
+/*
+################
+Singleton has 3 maps i.e. single word commands like help, 
+one object interaction commands like pick and 
+two object interaction commands like attack
+It is responsible to parse the string and call the correct
+function pointer
+################
+*/
 class CommandManager
 {
 private:

@@ -26,6 +26,11 @@ struct PickableData
 	int mDropCount;
 };
 
+/*
+################
+Singleton responsible for maintaining and updating the analytics data throughout the game
+################
+*/
 class AnalyticsManager
 {
 	inline explicit AnalyticsManager() : mGameData(nullptr),mActionData(),mPickableData() {}

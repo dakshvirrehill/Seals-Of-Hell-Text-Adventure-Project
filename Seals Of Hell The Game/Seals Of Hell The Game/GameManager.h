@@ -8,6 +8,15 @@ class Region;
 class Room;
 class IInteractable;
 class PlayerManager;
+/*
+################
+Game Manager object that is also a basic object as the game has a name and a story
+It is responsible for initializing all the managers and starting the game
+It is responsible for calling the game loop and taking player input
+It is responsible for calling update on rooms and current player methods
+It is responsible for saving, winning,losing,exiting, etc.
+################
+*/
 class GameManager : public BasicObject
 {
 
@@ -53,6 +62,8 @@ public:
 	IInteractable* getInteractable(std::string&);
 	void removeFromRoom(IInteractable*);
 	void addInRoom(IInteractable*);
+	
+	
 	//player functions
 	IInteractable* getInventoryObject(std::string&);
 	void addInInventory(IInteractable*);

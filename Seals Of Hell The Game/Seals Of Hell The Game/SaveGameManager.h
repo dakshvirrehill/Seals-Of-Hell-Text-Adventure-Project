@@ -3,6 +3,11 @@
 #define SAVE_GAME_MANAGER_H
 #include<string>
 namespace json { class JSON; }
+/*
+################
+Singleton responsible for loading and saving from json file and providing game manager with json or boolean
+################
+*/
 class SaveGameManager
 {
 private:

@@ -3,6 +3,12 @@
 #define PORTAL_H
 #include "IInteractable.h"
 class Region;
+/*
+################
+A Portal is a special interactable that has pointers to the main and current region
+They go back and forth when teleport command is used on them
+################
+*/
 class Portal : public IInteractable
 {
 	Region* mActiveRegion;

@@ -114,7 +114,6 @@ void GameManager::inventory()
 void GameManager::playerWon()
 {
 	mEndGame = true;
-	//Couldn't figure out how to load a completed game
 }
 
 void GameManager::playerLost()

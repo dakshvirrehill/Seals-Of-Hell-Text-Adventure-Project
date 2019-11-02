@@ -91,6 +91,7 @@ namespace Seals_of_Hell_Analytics_Visual_Tool
             this.pickableDataChart.Series[1].Points.Clear();
             this.pickableDataChart.Series[0].Points.DataBindXY(aPickableNames, aPickCountList);
             this.pickableDataChart.Series[1].Points.DataBindXY(aPickableNames, aDropCountList);
+            int a = this.pickableDataChart.Series[0].Points.Count;
         }
         void CreateGameDataChart()
         {

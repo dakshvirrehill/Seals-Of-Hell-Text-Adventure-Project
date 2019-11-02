@@ -102,6 +102,11 @@ void DatabaseManager::setAllData()
 				{
 					throw - 1;
 				}
+				aResult = sqlite3_bind_int(aStatement, 2, iter.second->mActionId);
+				if (aResult != SQLITE_OK)
+				{
+					throw - 1;
+				}
 			}
 			else
 			{
@@ -142,7 +147,7 @@ void DatabaseManager::setAllData()
 				{
 					throw - 1;
 				}
-				sqlite3_bind_parameter_count(aStatement);
+				aResult = sqlite3_bind_parameter_count(aStatement);
 				aResult = sqlite3_bind_int(aStatement, 1, iter.second->mPickCount);
 				if (aResult != SQLITE_OK)
 				{
@@ -150,6 +155,11 @@ void DatabaseManager::setAllData()
 				}
 				sqlite3_bind_parameter_count(aStatement);
 				aResult = sqlite3_bind_int(aStatement, 2, iter.second->mDropCount);
+				if (aResult != SQLITE_OK)
+				{
+					throw - 1;
+				}
+				aResult = sqlite3_bind_int(aStatement, 3, iter.second->mPickableId);
 				if (aResult != SQLITE_OK)
 				{
 					throw - 1;
